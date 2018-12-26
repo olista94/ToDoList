@@ -73,13 +73,13 @@ switch ($_REQUEST['action']){
 		}
 		else{
 			$tarea = getDataForm();
-			$id_tarea =$tarea -> BuscarID();
-			$descripcion = $tarea -> BuscarID2();
+			
 			$mensaje = $tarea-> add();
 			
 			/* new MESSAGE($mensaje,'../Views/Fases_ADD.php');		 */
 			if($mensaje == "Insertado correcto"){
-				
+				$id_tarea =$tarea -> BuscarMaxID();
+			$descripcion = $tarea -> BuscarID2();
 				
 				$contactos = new CONTACTOS_Model("","","","");
 				$cont = $contactos -> search();

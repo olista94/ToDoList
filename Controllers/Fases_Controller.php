@@ -42,8 +42,13 @@ function getDataForm(){
 	else{
 		$fecha_fin = "";
 	}
+	if(isset($_REQUEST['TAREAS_id_TAREAS'])){
+		$TAREAS_id_TAREAS = $_REQUEST['TAREAS_id_TAREAS'];
+	}
+	else{
+		$TAREAS_id_TAREAS = "";
+	}
 	
-	$TAREAS_id_TAREAS = $_REQUEST['TAREAS_id_TAREAS'];
 	$CONTACTOS_email = $_REQUEST['CONTACTOS_email'];
 	
 	$fase = new FASES_Model ($id_fase,$descripcion,$fecha_ini,$fecha_fin,$TAREAS_id_TAREAS,$CONTACTOS_email);
@@ -83,11 +88,31 @@ switch ($_REQUEST['action']){
 		}
 		
 	break;
+	
+		case 'Confirmar_CONTINUAR':
+		
+		
+		
+			$tareas = new TAREAS_Model("","","","","","","","");
+			$t = $tareas -> search();
+			
+			$contactos = new CONTACTOS_Model("","","","");
+			$cont = $contactos -> search();
+			
+			$id_tarea =$tareas -> BuscarMaxID();
+			$descripcion = $tareas -> BuscarID2();
+			
+			new Fases_ADD($id_tarea,$descripcion,$cont,'../Controllers/Fases_Controller.php');
+			
+			$fase = getDataForm();
+			$mensaje = $fase-> add();
+			new MESSAGE($mensaje,'../Controllers/Fases_Controller.php');	
+		
+		break;
 
 	case 'Confirmar_EDIT':
 		if(count($_REQUEST) < 4 ){
-			$tareas = new TAREAS_Model("","","","","","","","");
-			$t = $tareas -> search();
+			
 			
 			$contactos = new CONTACTOS_Model("","","","");
 			$cont = $contactos -> search();
@@ -96,7 +121,16 @@ switch ($_REQUEST['action']){
 			
 			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
 			$datos = $fase->rellenadatos();
-			new Fases_EDIT($datos,$t,$cont,'../Controllers/Fases_Controller.php');
+			/* print_r($_REQUEST['id_fase']);
+			print_r($datos[1]);
+			print_r($datos[2]);
+			print_r($datos[3]);
+			
+			print_r($datos[4]);
+			print_r($datos[5]);
+			print_r($datos[6]); */
+			
+			new Fases_EDIT($datos,$cont,'../Controllers/Fases_Controller.php');
 		}
 		else{
 			
@@ -157,6 +191,8 @@ switch ($_REQUEST['action']){
 			new Fases_SHOWCURRENT($datos,$p,$cat,'../Controllers/Fases_Controller.php');
 		}
 	break;
+	
+
 
 	 default: /*PARA EL SHOWALL */
 		$fase = new FASES_Model('','','','','','');
