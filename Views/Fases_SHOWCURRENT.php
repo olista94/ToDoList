@@ -2,7 +2,7 @@
  CREADO POR mi3ac6 EL 17/11/2018-->
  
   <?php
- class Tareas_SHOWCURRENT{
+ class Fases_SHOWCURRENT{
 	 
 
 	var $fila;
@@ -29,8 +29,8 @@
 ?>
   <article class="tablashowcurrent">
  <table >
- <tr><th colspan="2"><?php echo $GLOBALS['strings']['Datos del usuario seleccionado']; ?></th></tr>
- <tr><td><?php echo $GLOBALS['strings']['Id tarea']; ?></td><td><?php echo $this -> fila[0]; ?></td></tr>
+ <tr><th colspan="2"><?php echo $GLOBALS['strings']['Datos de la fase seleccionado']; ?></th></tr>
+ <tr><td><?php echo $GLOBALS['strings']['Id fase']; ?></td><td><?php echo $this -> fila[0]; ?></td></tr>
  <tr><td><?php echo $GLOBALS['strings']['Descripcion']; ?></td><td><?php echo $this -> fila[1]; ?></td></tr>
  <tr><td><?php echo $GLOBALS['strings']['Fecha inicio']; ?></td><td><?php echo $this -> fila[2]; ?></td></tr>
  <tr><td><?php echo $GLOBALS['strings']['Fecha fin']; ?></td><td><?php echo $this -> fila[3]; ?></td></tr>
