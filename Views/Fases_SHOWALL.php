@@ -42,11 +42,13 @@ include '../Views/Header.php';
 				<th></th>
 			</tr>
 		<?php 
-			while($fila = $this ->datos->fetch_array()){                        
+			while($fila = $this ->datos->fetch_array()){     
+			
 		?>
+	
 			<tr>
 				<form action="../Controllers/Fases_Controller.php" method="post" name="id_fase" >
-					<input type="hidden" name="id_fase" value="<?php echo $fila['id_FASES']; ?>">
+					<input type="hidden" name="id_fase" value="<?php echo $fila[0]; ?>">
 					<td><?php echo $fila['descripcion']; ?></td>
 					<td><?php echo $fila['fecha_inicio']; ?></td>				
 					<td style="text-align:right">
@@ -59,7 +61,8 @@ include '../Views/Header.php';
 		<?php
 			}
 		?>                    
-		</table>        
+		</table>     
+	
 	</div>           
 			
 	<?php   

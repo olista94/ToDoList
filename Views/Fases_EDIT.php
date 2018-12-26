@@ -6,23 +6,29 @@
  class Fases_EDIT{
 	 
 	var $datos;
-	var $tareas;
 	var $contactos;
 	var $enlace;
 	
 	
-	function __construct($datos,$tareas,$contactos,$enlace){
+	function __construct($datos,$contactos,$enlace){
 		
-		$this -> datos = $datos;
-		$this -> tareas = $tareas;
+		$this -> datos = $datos -> fetch_array();
+		
 		$this -> contactos = $contactos;
 		$this -> enlace = $enlace;
 		$this -> mostrar();
+		 /* print_r($datos[0]);
+		 print_r($datos[1]);
+		 print_r($datos[2]);
+		 print_r($datos[3]);
+		 print_r($datos[4]);
+		 print_r($datos[5]); */
 	}
 	
 	function mostrar(){
 		
 	 include_once "../Views/Header.php";
+	
 	 
 	 
 ?>
@@ -34,7 +40,9 @@
  
  <h3><?php echo $GLOBALS['strings']['Formulario para editar fase'];?></h3>
  
- <form action="../Controllers/Tareas_Controller.php" method="post" id="edit" name="edit" onsubmit="return validarformAddUser(this);">
+ <form action="../Controllers/Fases_Controller.php" method="post" id="edit" name="edit" onsubmit="return validarformAddUser(this);">
+ 
+	<input hidden type="text" name="id_fase"  value="<?php echo $this -> datos[0]; ?>" readonly><br>
  
 
    <label>
@@ -47,24 +55,9 @@
   <input type="date" name="fecha_ini"   value="<?php echo $this -> datos[2]; ?>" onblur=" return !comprobarVacio(this)"><br>
   
   <label>
-  <?php echo $GLOBALS['strings']['Fecha inicio']; ?></label><br>
+  <?php echo $GLOBALS['strings']['Fecha fin']; ?></label><br>
   <input type="date" name="fecha_fin"   value="<?php echo $this -> datos[3]; ?>" onblur=" return !comprobarVacio(this)"><br>
   
-<label>
-					<?php echo $GLOBALS['strings']['Tarea']; ?></label><br>
-					<select name="TAREAS_id_TAREAS">
-						<?php
-							while($tareas=$this->tareas->fetch_array())
-							{
-						?>
-							<option value="<?php echo $tareas[0];?>" <?php if($this -> datos[4] == $tareas[0]) echo "selected"; ?>><?php echo $tareas[1];?>
-
-							</option>
-						<?php
-							}
-						?>
-					</select><br>
-		
 		
 <label>
 					<?php echo $GLOBALS['strings']['Contacto']; ?></label><br>

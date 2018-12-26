@@ -73,6 +73,7 @@
  <!-- BOTONES DE CONFIRMAR O CANCELAR NUEVO tarea -->
   
  <button type="submit" title="<?php echo $GLOBALS['strings']['Añadir fase']; ?>" value="Confirmar_ADD" name="action" class="confirmar"><i class="fas fa-plus-circle"></i></button>
+<button type="submit" title="<?php echo $GLOBALS['strings']['Continuar']; ?>" value="Confirmar_CONTINUAR" name="action" class="confirmar"><i class="fas fa-arrow-right"></i></button>
 <a href="<?php echo $this -> enlace;?>"><button type="button" title="<?php echo $GLOBALS['strings']['Cancelar']; ?>" class="cancelar"><i class="fas fa-times"></i></button></a>
   
 </form>
