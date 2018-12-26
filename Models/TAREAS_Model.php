@@ -184,12 +184,25 @@ function BuscarID(){
 function BuscarID2(){
 	$sql = "SELECT descripcion
 			FROM tareas
-			WHERE `descripcion` = '$this->descripcion' &&
-					`fecha_ini` = '$this->fecha_ini' &&
-					`fecha_fin` = '$this->fecha_fin' &&
-					`USUARIOS_login` = '$this->USUARIOS_login' &&
-					`CATEGORIAS_id_CATEGORIAS` = '$this->CATEGORIAS_id_CATEGORIAS' &&
-					`PRIORIDADES_nivel` = '$this->PRIORIDADES_nivel'
+			WHERE id_tarea = (SELECT MAX(id_tarea)
+							 FROM tareas) ";
+					
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado->fetch_array()[0];
+		echo $result;
+		print_r($resultado);
+		return $result;
+	}
+}
+
+function BuscarMaxID(){
+	$sql = "SELECT MAX(id_tarea)
+			FROM tareas
 					";
 	/* echo $sql; */
 	
@@ -203,6 +216,8 @@ function BuscarID2(){
 		return $result;
 	}
 }
+
+
 
 
 }//fin de clase

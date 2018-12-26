@@ -60,7 +60,7 @@ function add(){
 function edit()
 {
 	
-    $sql = "SELECT * FROM fases WHERE (id_fase = '$this->id_fase')";
+    $sql = "SELECT * FROM fases WHERE (id_FASES = '$this->id_fase')";
     
     $result = $this->mysqli->query($sql);
     
@@ -70,11 +70,10 @@ function edit()
 					`descripcion` = '$this->descripcion',
 					`fecha_inicio` = '$this->fecha_ini',
 					`fecha_fin` = '$this->fecha_fin',
-					`TAREAS_id_TAREAS` = '$this->TAREAS_id_TAREAS',
 					`CONTACTOS_email` = '$this->CONTACTOS_email'
 					
 
-				WHERE (`id_fase` = '$this->id_fase')";
+				WHERE (`id_FASES` = '$this->id_fase')";
 
         if (!($resultado = $this->mysqli->query($sql))){
 			return $GLOBALS['strings']['Error en la modificación'];
@@ -114,14 +113,14 @@ function search(){
 
 function delete()
 {	
-    $sql = "SELECT * FROM fases WHERE (`id_fase` = '$this->id_fase')";
+    $sql = "SELECT * FROM fases WHERE (`id_FASES` = '$this->id_fase')";
     
     $result = $this->mysqli->query($sql);
     
     if ($result->num_rows == 1)
     {
     	
-        $sql = "DELETE FROM fases WHERE (`id_fase` = '$this->id_fase')";
+        $sql = "DELETE FROM fases WHERE (`id_FASES` = '$this->id_fase')";
         
         $this->mysqli->query($sql);
         
@@ -132,7 +131,7 @@ function delete()
 }
 
 	function rellenadatos() {	
-    $sql = "SELECT * FROM fases WHERE (`id_fase` = '$this->id_fase')";
+    $sql = "SELECT * FROM fases WHERE (`id_FASES` = '$this->id_fase')";
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return $GLOBALS['strings']['No existe']; 
@@ -140,11 +139,12 @@ function delete()
     else{ 
 		$result = $resultado;
 		return $result;
+	
 	}
 }
 
 function FasesShowAll(){
-	$sql = "SELECT descripcion,fecha_inicio FROM fases ";
+	$sql = "SELECT * FROM fases ";
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return $GLOBALS['strings']['No existe']; 
@@ -155,7 +155,47 @@ function FasesShowAll(){
 	}
 }
 
+function BuscarID(){
+	$sql = "SELECT id_tarea
+			FROM tareas
+			WHERE `descripcion` = '$this->descripcion' &&
+					`fecha_ini` = '$this->fecha_ini' &&
+					`fecha_fin` = '$this->fecha_fin' &&
+					`USUARIOS_login` = '$this->USUARIOS_login' &&
+					`CATEGORIAS_id_CATEGORIAS` = '$this->CATEGORIAS_id_CATEGORIAS' &&
+					`PRIORIDADES_nivel` = '$this->PRIORIDADES_nivel'
+					";
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado->fetch_array()[0];
+		echo $result;
+		print_r($resultado);
+		return $result;
+	}
+}
 
+function BuscarID2(){
+	$sql = "SELECT descripcion
+			FROM tareas
+			WHERE id_tarea = (SELECT MAX(id_tarea)
+							 FROM tareas) ";
+					
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado->fetch_array()[0];
+		echo $result;
+		print_r($resultado);
+		return $result;
+	}
+}
 
 
 }//fin de clase
