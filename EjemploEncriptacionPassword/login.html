@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>
+		AppGestionIU
+	</title>
+	<meta charset="UTF-8">
+	<title>Gestión Asignatura IU</title>
+	<script type="text/javascript" src="md5.js"></script> 
+	<script type="text/javascript">
+	 	//jrodeiro
+	    //10/10/2017
+	    //encriptar()
+	    //encripta en md5 el valor del campo password
+	    function encriptar(){
+	      document.getElementById('password').value = hex_md5(document.getElementById('password').value);
+	      return true;
+	    }
+	</script>
+</head>
+<body>
+	<form name = 'Form' action='#' method='post' onsubmit = "return encriptar();" >
+		
+	 	login : <input type = 'text' name = 'login' id = 'login' placeholder = 'Utiliza tu Dni' size = '9' value = ''   ><br>
+			 	
+		password : <input type = 'text' name = 'password' id = 'password' placeholder = 'Letras y numeros' size = '15' value = '' ><br>
+
+		<input type='submit' name='action' value='Login'>
+
+	</form>
+</body>
+</html>
