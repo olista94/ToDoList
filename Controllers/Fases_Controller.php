@@ -83,16 +83,14 @@ switch ($_REQUEST['action']){
 		else{
 			$fase = getDataForm();
 			$mensaje = $fase-> add();
-			new MESSAGE($mensaje,'../Controllers/Fases_Controller.php');		
+			new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');		
 			 
 		}
 		
 	break;
 	
 		case 'Confirmar_CONTINUAR':	
-		
-			if(count($_REQUEST) < 4 ){
-			
+					
 				$tareas = new TAREAS_Model("","","","","","","","");
 				$t = $tareas -> search();
 				
@@ -106,16 +104,8 @@ switch ($_REQUEST['action']){
 				
 				$fase = getDataForm();
 				$mensaje = $fase-> add();
+				new MESSAGE($mensaje,'../Controllers/Fases_Controller.php');
 
-				/*
-
-				$fase2 = new FASES_Model('','','','',$id_tarea,'');
-				$datos = $fase2->getFasesOfTarea();
-				new Fases_SHOWALL($datos,'../Controllers/Fases_Controller.php');
-
-				*/
-			}
-		
 		break;
 
 	case 'Confirmar_EDIT':
