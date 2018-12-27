@@ -29,8 +29,8 @@ include '../Views/Header.php';
             <table class="showAllUsers">
 				<tr><th class="title" colspan="4"><?php echo $strings['Categorias']; ?>
 				<form class="tableActions" action="../Controllers/Categorias_Controller.php" method="">
-				<button class="buscar-little" name="action" value="Confirmar_SEARCH" type="submit"></button>
-				<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
+				<button class="buscar-little" name="action" value="Confirmar_SEARCH1" type="submit"></button>
+				<button class="anadir-little"  name="action" value="Confirmar_ADD1" type="submit"></button>
 				</form></th></tr>
 		
 				<tr>
@@ -43,11 +43,11 @@ include '../Views/Header.php';
 			?>
 				<tr>
 					<form action="../Controllers/Categorias_Controller.php" method="post" name="action" >
-						<input type="hidden" name="id_CATEGORIA" value="<?php echo $fila['id_CATEGORIA']; ?>">
+						<input type="hidden" name="id_CATEGORIAS" value="<?php echo $fila['id_CATEGORIAS']; ?>">
 						<td><?php echo $fila['nombre']; ?></td>
 									
 						<td style="text-align:right">
-							<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>
+							<button class="editar" name="action" value="Confirmar_EDIT1" type="submit"></button>
 							<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>
 							<button class="add" name="action" value="Confirmar_SHOWCURRENT" type="submit"></button>
 						</td>

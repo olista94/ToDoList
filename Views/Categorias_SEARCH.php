@@ -28,11 +28,11 @@
 
             
                 <label ><?php echo $strings['Nombre']; ?></label>
-                <input type="text"  name="id_CATEGORIA" size="45"/>
+                <input type="text"  name="nombre" size="45"/>
             
             
             
-            <button type="submit" name="action" value="Confirmar_SEARCH" class="buscar"></button>
+            <button type="submit" name="action" value="Confirmar_SEARCH2" class="buscar"></button>
 
         </form>
             

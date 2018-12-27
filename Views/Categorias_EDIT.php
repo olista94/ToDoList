@@ -1,6 +1,6 @@
 <?php
 
-class Prioridades_EDIT{
+class Categorias_EDIT{
 	 
 	var $datos;
 	var $enlace;
@@ -26,25 +26,21 @@ class Prioridades_EDIT{
 
 		<div class="form">
 
-			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Prioridades_Controller.php" enctype="multipart/form-data">
-				<legend><?php echo $strings['Editar prioridad'];?>
-				<button onclick="location.href='../Controllers/Prioridades_Controller.php';" class="volver"></button>
+			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Categorias_Controller.php" enctype="multipart/form-data">
+				<legend><?php echo $strings['Editar categoria'];?>
+				<button onclick="location.href='../Controllers/Categorias_Controller.php';" class="volver"></button>
 				</legend>
 
-				<div>
+				<input hidden type="text" name="id_CATEGORIAS"  value="<?php echo $this -> fila[0]; ?>" readonly><br>	
 
-					<label for="nivel"><?php echo $strings['Nivel']; ?></label>
-					<input type="nivel" id="nivel" name="nivel" size="40" value="<?php echo $this -> fila['nivel']; ?>" maxlength="60" readonly/>	
-						
-					<label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
-					<input type="text" name="descripcion" id="descripcion" value="<?php echo $this -> fila['descripcion']; ?>" size="40" maxlength="30"/>
-          						
-					<label for="color"><?php echo $strings['Color']; ?></label>
-					<input type="text" name="color" id="color" size="40" value="<?php echo $this -> fila['color']; ?>" maxlength="30"/>
-					
+				<div>	
+				  <label ><?php echo $strings['Nombre']; ?></label>
+				  <input type="text" id="nombre" name="nombre" size="50" value="<?php echo $this -> fila['nombre']; ?>" >
 				</div>
+	
+	
 
-				<button type="submit" name="action" value="Confirmar_EDIT" value="Submit" class="aceptar"></button>
+				<button type="submit" name="action" value="Confirmar_EDIT2" value="Submit" class="aceptar"></button>
 				<button type="reset" value="Reset" class="cancelar"></button>
 
 			</form> 
