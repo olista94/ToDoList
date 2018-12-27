@@ -33,19 +33,19 @@ function add(){
 
 			
 		$sql = "INSERT INTO categorias (
-			id_CATEGORIAS,
+			
 			nombre
 			
 			) 
 				VALUES (
-					'$this->id_CATEGORIAS',
+					
 					'$this->nombre'
 					
 					
 					)";
 			
 		if (!$this->mysqli->query($sql)) {
-			/* echo $sql; */
+			echo $sql;
 			return $GLOBALS['strings']['Error al insertar'];
 		}
 		else{
@@ -87,11 +87,12 @@ function edit()
 			return $GLOBALS['strings']['Error en la modificación'];
 		}
 		else{ 
-			/* echo $sql; */
+			echo $sql;
 			return $GLOBALS['strings']['Modificado correctamente']; 
 		}
     }
     else 
+		echo $sql;
     	return $GLOBALS['strings']['No existe'];
 } 
 
@@ -101,7 +102,7 @@ function search(){
        			FROM categorias
     			WHERE
     				( 
-    				(`id_CATEGORIAS` LIKE '%$this->id_CATEGORIAS%') &&
+    				
 	 				(`nombre` LIKE '%$this->nombre%')
 					
     				)";
