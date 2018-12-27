@@ -50,6 +50,7 @@ include '../Views/Header.php';
 							<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>
 							<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>
 							<button class="add" name="action" value="Confirmar_SHOWCURRENT" type="submit"></button>
+							<button class="ver" name="action" value="Confirmar_SHOWFASES" type="submit"></button>
 						</td>
 					</form>
 				</tr>

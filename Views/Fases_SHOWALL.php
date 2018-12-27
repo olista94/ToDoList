@@ -3,7 +3,7 @@
 <?php
 
 include_once '../Functions/Authentication.php';
-include '../Views/Header.php';
+include_once '../Views/Header.php';
 
  class Fases_SHOWALL{	 
 	
@@ -38,7 +38,8 @@ include '../Views/Header.php';
 
 			<tr>
 				<th><?php echo $strings['Descripcion']; ?></th>
-				<th><?php echo $strings['Fecha inicio']; ?></th>			
+				<th><?php echo $strings['Fecha inicio']; ?></th>
+				<th><?php echo $strings['Contacto']; ?></th>			
 				<th></th>
 			</tr>
 		<?php 
@@ -50,7 +51,8 @@ include '../Views/Header.php';
 				<form action="../Controllers/Fases_Controller.php" method="post" name="id_fase" >
 					<input type="hidden" name="id_fase" value="<?php echo $fila[0]; ?>">
 					<td><?php echo $fila['descripcion']; ?></td>
-					<td><?php echo $fila['fecha_inicio']; ?></td>				
+					<td><?php echo $fila['fecha_inicio']; ?></td>
+					<td><?php echo $fila['CONTACTOS_email']; ?></td>				
 					<td style="text-align:right">
 						<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>
 						<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>

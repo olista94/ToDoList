@@ -2,51 +2,71 @@
  CREADO POR mi3ac6 EL 17/11/2018-->
  
   <?php
- class Tareas_DELETE{
-	 
+  	 
+	include_once '../Functions/Authentication.php';
+
+ class Fases_DELETE{
+
 
 	var $fila;
-	var $prioridades;
-	var $categorias;
 	var $enlace;
 	
-	function __construct($fila,$prioridades,$categorias,$enlace){
+	function __construct($fila,$enlace){
 		
 		$this -> fila = $fila -> fetch_array();
-		
-		$this -> prioridades = $prioridades -> fetch_array();
-		$this -> categorias = $categorias -> fetch_array();
+
 		$this -> enlace = $enlace;
 		$this -> mostrar();
 	}
 	
-	function mostrar(){
-		
-	 include_once "../Views/Header.php";
+	//función que pinta la vista
+    function mostrar(){
+        //comprueba si hay un idioma en $_SESSION
+        //si no, inserta el idioma español
+        if(!isset($_SESSION['idioma'])){
+            $_SESSION['idioma'] = 'SPANISH';
+        }
 
-	 
-	 
+        include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
+	?>
+            
+		<div class="show-half">
+            <form class="formShow" enctype="multipart/form-data" action="../Controllers/Fases_Controller.php">
+                <input type="hidden" name="id_fase" value= "<?php echo $this -> fila['id_FASES'] ?>">
+                <table class="showU" style="margin-left: 40%;">
+
+                    <tr><th class="title" colspan="4"><?php echo $strings['Borrar fase']; ?>
+                        <button onclick="location.href='../Controllers/Fases_Controller.php';" class="volver"></button></th>
+                    </tr>
+
+                    <tr>
+                        <th><?php echo $strings['Descripcion']; ?></th>
+                        <td><?php echo $this -> fila['descripcion']; ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $strings['Fecha inicio']; ?></th>
+                        <td><?php echo $this -> fila['fecha_inicio']; ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $strings['Fecha fin']; ?></th>
+                        <td><?php echo $this -> fila['fecha_fin']; ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $strings['Contacto']; ?></th>
+                        <td><?php echo $this -> fila['CONTACTOS_email']; ?></td>
+                    </tr>
+
+                    <tr>
+                        <th><button class="borrar-si" type="submit" name="action" value="Confirmar_DELETE2"></button></th>
+                        <td><button class="borrar-no" type="submit" name="action" value=""></button></td>
+                    </tr>            
+                                                                            
+                </table>
+            </form>            
+        </div>       
+        
+<?php    
+    }
+}
 ?>
-  <article class="tablashowcurrent">
- <table >
- <tr><th colspan="2"><?php echo $GLOBALS['strings']['Datos del usuario seleccionado']; ?></th></tr>
- <tr><td><?php echo $GLOBALS['strings']['Id tarea']; ?></td><td><?php echo $this -> fila[0]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Descripcion']; ?></td><td><?php echo $this -> fila[1]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Fecha inicio']; ?></td><td><?php echo $this -> fila[2]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Fecha fin']; ?></td><td><?php echo $this -> fila[3]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Usuario']; ?></td><td><?php echo $this -> fila[4]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Categoria']; ?></td><td><?php echo $this -> categorias[1]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Prioridad']; ?></td><td><?php echo $this -> prioridades[1]; ?></td></tr>
-
-
- </table>
-<form action="../Controllers/Tareas_Controller.php"><input type ="hidden" name="id_tarea" value="<?php echo $this ->fila[0];?>"><button type="submit" title="<?php echo $GLOBALS['strings']['Confirmar borrado']; ?>" class="confirmar" name="action" value="Confirmar_DELETE2" ><i class="fas fa-check"></i></button>
-       <button type="submit" title="<?php echo $GLOBALS['strings']['Cancelar']; ?>"class="cancelar"><i class="fas fa-times"></i> </button></form>
- 
- </article>
- 
-   <?php
-	include_once "../Views/Footer.php";
-	}
- }
  ?>

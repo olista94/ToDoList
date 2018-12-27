@@ -482,6 +482,19 @@ button {
   padding: 10px 15px;
 }
 
+.ver{
+  background-image: url(../img/ver.png);
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  margin-top: 5px;
+  margin-right: 2px;
+  padding: 10px 15px;
+}
+
 /******* Showcurrent *******/
 
 .showU {
