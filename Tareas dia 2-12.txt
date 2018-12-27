@@ -1,0 +1,8 @@
+Yago:
+	- Ordenar
+	- Permisos
+	- Registro
+Alex:
+	- Subir archivos
+	- Colores
+	- Fechas
