@@ -371,7 +371,7 @@ array(
 	'Descripcion' => 'Descripción',
 	'Prioridad' => 'Prioridade',
 	'Listado de todas las tarefas' => 'Listado de todas las tarefas',
-	'Fecha inicio' ='Data fin',
+	'Fecha inicio' =>'Data fin',
 	'Categoria' => 'Categoría',
 	'Usuario' => 'Usuario',
 	'tarefa' => 'tarefa',
@@ -401,7 +401,7 @@ array(
 	'Usuarios' => 'Usuarios',
 	'Prioridades' => 'Prioridades',
 	'Fases' => 'Fases',
-	'tareas' => 'tarefas',
+	'Tareas' => 'Tarefas',
 	'Contactos' => 'Contactos',
 	
 	'Formulario para Engadir fase' => 'Formulario para Engadir fase',
