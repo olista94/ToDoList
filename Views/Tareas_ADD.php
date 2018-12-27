@@ -70,7 +70,7 @@ class Tareas_ADD{
 				</div>
 
 				<button type="submit" name="action" value="Confirmar_ADD" value="Submit" class="aceptar"></button>
-				<a href="<?php echo $this -> enlace;?>"><button type="button" title="<?php echo $GLOBALS['strings']['Cancelar']; ?>" class="cancelar"><i class="fas fa-times"></i></button></a>
+				<button type="reset" value="Reset" class="cancelar"></button>
 
 			</form> 
 		</div> 

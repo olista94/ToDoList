@@ -418,6 +418,11 @@ button {
   background-color: #4CAF50;
 }
 
+.continuar {
+  background-image: url(../img/continuar.png);
+  background-color: #4CAF50;
+}
+
 .cancelar {
   background-image: url(../img/cancelar.png);
   background-color: rgb(175, 76, 76);
