@@ -48,47 +48,42 @@ if(!isset($_REQUEST['action'])){
 
 
 switch ($_REQUEST['action']){
-	case 'Confirmar_ADD':
-		if(count($_REQUEST) < 4 ){
-			
-			new Categorias_ADD('../Controllers/Categorias_Controller.php');
-		}
-		else{
-			$categoria = getDataForm();
-			$datos = $categoria-> add();
-			new Categorias_SHOWALL($datos,'../Controllers/Categorias_Controller.php');
-				
-			
-		}
-		
+	
+	case 'Confirmar_ADD1':		
+		new Categorias_ADD('../Controllers/Categorias_Controller.php');
+	break;
+	
+	case 'Confirmar_ADD2':
+		$categoria = getDataForm();
+		$mensaje = $categoria-> add();
+		new MESSAGE($mensaje,'../Controllers/Categorias_Controller.php');
 	break;
 
-	case 'Confirmar_EDIT':
-		if(count($_REQUEST) < 4 ){
-			$categoria = new CATEGORIAS_Model($_REQUEST['id_CATEGORIAS'],'');
-			$datos = $categoria->rellenadatos();
-			new Categorias_EDIT($datos,'../Controllers/Categorias_Controller.php');
-		}
-		else{
-			
+
+
+	case 'Confirmar_EDIT1':
+		$categoria = new CATEGORIAS_Model($_REQUEST['id_CATEGORIAS'],'');
+		$datos = $categoria->rellenadatos();
+		new Categorias_EDIT($datos,'../Controllers/Categorias_Controller.php');
+	break;
+	
+	case 'Confirmar_EDIT2':	
 			$categoria = getDataForm();
 			$mensaje = $categoria-> edit();
 			new MESSAGE($mensaje,'../Controllers/Categorias_Controller.php');
-		}
 	break;
 
 	
-	case 'Confirmar_SEARCH':
-		if(count($_REQUEST) < 4 ){
-			
+	case 'Confirmar_SEARCH1':
+		
+			print_r($_REQUEST);
 			new Categorias_SEARCH('../Controllers/Categorias_Controller.php');
-		}
-		else{
+	break;
+	
+	case 'Confirmar_SEARCH2':
 			$categoria = getDataForm();
 			$datos = $categoria-> search();
 			new Categorias_SHOWALL($datos,'../Controllers/Categorias_Controller.php');
-			
-		}
 	break;
 
 	
