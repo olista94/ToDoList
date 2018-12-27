@@ -89,24 +89,32 @@ switch ($_REQUEST['action']){
 		
 	break;
 	
-		case 'Confirmar_CONTINUAR':
+		case 'Confirmar_CONTINUAR':	
 		
-		
-		
-			$tareas = new TAREAS_Model("","","","","","","","");
-			$t = $tareas -> search();
+			if(count($_REQUEST) < 4 ){
 			
-			$contactos = new CONTACTOS_Model("","","","");
-			$cont = $contactos -> search();
-			
-			$id_tarea =$tareas -> BuscarMaxID();
-			$descripcion = $tareas -> BuscarID2();
-			
-			new Fases_ADD($id_tarea,$descripcion,$cont,'../Controllers/Fases_Controller.php');
-			
-			$fase = getDataForm();
-			$mensaje = $fase-> add();
-			new MESSAGE($mensaje,'../Controllers/Fases_Controller.php');	
+				$tareas = new TAREAS_Model("","","","","","","","");
+				$t = $tareas -> search();
+				
+				$contactos = new CONTACTOS_Model("","","","");
+				$cont = $contactos -> search();
+				
+				$id_tarea =$tareas -> BuscarMaxID();
+				$descripcion = $tareas -> BuscarID2();
+				
+				new Fases_ADD($id_tarea,$descripcion,$cont,'../Controllers/Fases_Controller.php');
+				
+				$fase = getDataForm();
+				$mensaje = $fase-> add();
+
+				/*
+
+				$fase2 = new FASES_Model('','','','',$id_tarea,'');
+				$datos = $fase2->getFasesOfTarea();
+				new Fases_SHOWALL($datos,'../Controllers/Fases_Controller.php');
+
+				*/
+			}
 		
 		break;
 

@@ -14,6 +14,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 }else{ //si lo está
 
 	include_once "../Models/TAREAS_Model.php";
+	include_once "../Models/FASES_Model.php";
 	include_once "../Views/Tareas_SHOWALL.php";
 	include_once "../Views/Tareas_ADD.php";
 	include_once "../Views/Tareas_SEARCH.php";
@@ -24,6 +25,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 	include_once "../Models/CATEGORIAS_Model.php";
 	include_once "../Models/CONTACTOS_Model.php";
 	include_once "../Views/Fases_ADD.php";
+	include_once "../Views/Fases_SHOWALL.php";
 
 
 /* RECOGE LOS DATOS DEL FORMULARIO */
@@ -161,6 +163,16 @@ switch ($_REQUEST['action']){
 			$datos = $tarea->rellenadatos();
 			
 			new Tareas_SHOWCURRENT($datos,$p,$cat,'../Controllers/Tareas_Controller.php');
+		}
+	break;
+
+	case 'Confirmar_SHOWFASES':
+		if(count($_REQUEST) < 4 ){
+			
+			$fase = new FASES_Model('','','','',$_REQUEST['id_tarea'],'');
+			$datos = $fase->getFasesOfTarea();
+
+			$respuesta = new Fases_SHOWALL($datos,'../Controllers/Fases_Controller.php');				
 		}
 	break;
 
