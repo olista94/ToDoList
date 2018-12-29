@@ -47,10 +47,11 @@ function add(){
 				if (!$this->mysqli->query($sql)) { 
 					/* return $GLOBALS['strings']['Error al insertar']; */
 					
-					/* echo $sql; */
+					echo $sql;
 						
 				}
 				else{ 
+				echo $sql;
 					return $GLOBALS['strings']['Insertado correcto']; 
 					
 				}

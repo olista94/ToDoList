@@ -1,31 +1,19 @@
 <!---MODELO DE LOS USUARIOS QUE ADMINISTRARÁN LA LOTERIAIU,DONDE SE REALIZARÁ LA OPERACION DE INSERCIÓN EN LA BD
  CREADO POR mi3ac6 EL 23/11/2018-->
 <?php
-
-
-
 class CATEGORIAS_Model {
-
 	var $id_CATEGORIAS;
 	var $nombre;
-
 	
-
 //Constructor de la clase
 //
-
 function __construct($id_CATEGORIAS,$nombre){
 	$this->id_CATEGORIAS = $id_CATEGORIAS;
 	$this->nombre = $nombre;
-
-
-
 	include_once 'Access_DB.php';
 	$this->mysqli = ConnectDB();
 }
-
 function add(){
-
 			
 		$sql = "INSERT INTO categorias (
 			
@@ -60,7 +48,6 @@ function add(){
 		return $result;
 	}
 }
-
 function edit()
 {
 	
@@ -75,9 +62,7 @@ function edit()
 					
 					`nombre` = '$this->nombre'
 					
-
 				WHERE (`id_CATEGORIAS` = '$this->id_CATEGORIAS')";
-
         if (!($resultado = $this->mysqli->query($sql))){
 			return $GLOBALS['strings']['Error en la modificación'];
 		}
@@ -90,9 +75,7 @@ function edit()
 		echo $sql;
     	return $GLOBALS['strings']['No existe'];
 } 
-
 function search(){ 
-
 	     $sql = "SELECT *
        			FROM categorias
     			WHERE
@@ -111,9 +94,7 @@ function search(){
 		return $resultado;
 	}
 }
-
 function searchById(){ 
-
 	$sql = "SELECT *
 			  FROM categorias
 		   WHERE
@@ -123,7 +104,6 @@ function searchById(){
 			   
 			   )";
 		   /* echo $sql; */
-
 	if (!($resultado = $this->mysqli->query($sql))){
 		return $GLOBALS['strings']['Error en la búsqueda'];
 		/* return "Error en la consulta"; */
@@ -132,7 +112,6 @@ function searchById(){
 		return $resultado;
 	}
 }
-
 function delete()
 {	
     $sql = "SELECT * FROM categorias WHERE (`id_CATEGORIAS` = '$this->id_CATEGORIAS')";
@@ -151,7 +130,5 @@ function delete()
     else
         return $GLOBALS['strings']['No existe'];
 }  
-
 }//fin de clase
-
 ?> 

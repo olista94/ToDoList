@@ -1,6 +1,7 @@
 <!---MODELO DE LOS USUARIOS QUE ADMINISTRARÁN LA LOTERIAIU,DONDE SE REALIZARÁ LA OPERACION DE INSERCIÓN EN LA BD
  CREADO POR mi3ac6 EL 23/11/2018-->
 <?php
+$login = $_SESSION['login'];
 
 class TAREAS_Model {
 
@@ -12,7 +13,8 @@ class TAREAS_Model {
 	var $CATEGORIAS_id_CATEGORIAS;
 	var $PRIORIDADES_nivel;
 	/* var $mysqli; */
-
+	
+	
 //Constructor de la clase
 //
 
@@ -134,13 +136,16 @@ function delete()
 
 	function rellenadatos() {	
 	$sql = "SELECT * FROM tareas WHERE (`id_tarea` = '$this->id_tarea')";
-   
+   /* echo $sql; */
     if (!($resultado = $this->mysqli->query($sql))){
+		/* echo $sql; */
 		return 'No existe'; 
 	}
     else{ 
+	/* echo $sql; */
 		$result = $resultado;
 		return $result;
+		
 	}
 }
 
@@ -217,6 +222,140 @@ function BuscarMaxID(){
 	}
 }
 
+function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario normal
+	$sql = " SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion 
+	AS descripcion_prioridad, Fecha_Ini
+			FROM tareas t,prioridades p
+			WHERE `USUARIOS_login` = '".$_SESSION['login']."' && t.PRIORIDADES_nivel = p.nivel
+					";
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		/* echo $result; */
+		/* print_r($resultado); */
+		return $result;
+	}
+}
+
+
+function OrdenarFecha(){//Ordena por fecha de inicio
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+			FROM tareas t,prioridades p
+			WHERE t.PRIORIDADES_nivel = p.nivel
+			ORDER BY `Fecha_Ini` 
+					";
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		
+		/* print_r($resultado); */
+		return $result;
+	}
+}
+
+function OrdenarPrioridad(){//Ordena por prioridad
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+			FROM tareas t,prioridades p
+			WHERE t.PRIORIDADES_nivel = p.nivel 
+			ORDER BY `PRIORIDADES_nivel`  
+					";
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		
+		/* print_r($resultado); */
+		return $result;
+	}
+}
+
+function OrdenarCategoria(){//Ordena por categoria
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+			FROM tareas t,prioridades p
+			WHERE t.PRIORIDADES_nivel = p.nivel
+			ORDER BY `CATEGORIAS_id_CATEGORIAS`  
+					";
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		
+		/* print_r($resultado); */
+		return $result;
+	}
+}
+
+
+function OrdenarFechaNormal(){//Ordena por fecha de inicio
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+			FROM tareas t,prioridades p
+			WHERE t.PRIORIDADES_nivel = p.nivel && `USUARIOS_login` = '".$_SESSION['login']."'
+			ORDER BY `Fecha_Ini` 
+					";
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		
+		/* print_r($resultado); */
+		return $result;
+	}
+}
+
+function OrdenarPrioridadNormal(){//Ordena por prioridad
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+			FROM tareas t,prioridades p
+			WHERE t.PRIORIDADES_nivel = p.nivel && `USUARIOS_login` = '".$_SESSION['login']."'
+			ORDER BY `PRIORIDADES_nivel`  
+					";
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		
+		/* print_r($resultado); */
+		return $result;
+	}
+}
+
+function OrdenarCategoriaNormal(){//Ordena por categoria
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+			FROM tareas t,prioridades p
+			WHERE t.PRIORIDADES_nivel = p.nivel && `USUARIOS_login` = '".$_SESSION['login']."'
+			ORDER BY `CATEGORIAS_id_CATEGORIAS`  
+					";
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		
+		/* print_r($resultado); */
+		return $result;
+	}
+}
 
 
 

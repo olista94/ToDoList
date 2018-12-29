@@ -12,12 +12,13 @@ class USUARIOS_Model {
 	var $telefono;
 	var $email;
 	var $fecha;
+	var $tipo;
 	/* var $mysqli; */
 
 //Constructor de la clase
 //
 
-function __construct($login,$password,$dni,$nombre,$apellidos,$telefono,$email,$fecha){
+function __construct($login,$password,$dni,$nombre,$apellidos,$telefono,$email,$fecha,$tipo){
 	$this->login = $login;
 	$this->password = $password;
 	$this->dni = $dni;
@@ -26,6 +27,7 @@ function __construct($login,$password,$dni,$nombre,$apellidos,$telefono,$email,$
 	$this->telefono = $telefono;
 	$this->email = $email;
 	$this->fecha = $fecha;
+	$this->tipo = $tipo;
 
 	include_once '../Models/Access_DB.php';
 	$this->mysqli = ConnectDB();
@@ -83,7 +85,8 @@ function registrar(){
 			apellidos,
 			telefono,
 			email,
-			fecha
+			fecha,
+			tipo
 			) 
 				VALUES (
 					'$this->login',
@@ -93,14 +96,16 @@ function registrar(){
 					'$this->apellidos',
 					'$this->telefono',
 					'$this->email',
-					'$this->fecha'
+					'$this->fecha',
+					'$this->tipo'
 					)";
 			
 		if (!$this->mysqli->query($sql)) {
-			echo $sql;
+			/* echo $sql; */
 			return $GLOBALS['strings']['Error al insertar'];
 		}
 		else{
+			/* echo $sql; */
 			return  $GLOBALS['strings']['Insercion correcta']; //operacion de insertado correcta
 		}		
 	}
@@ -134,7 +139,8 @@ function edit()
 					`apellidos` = '$this->apellidos',
 					`telefono` = '$this->telefono',
 					`email` = '$this->email',
-					`fecha` = '$this->fecha'
+					`fecha` = '$this->fecha',
+					`tipo` = '$this->tipo'
 
 				WHERE (`login` = '$this->login')";
 
@@ -162,7 +168,8 @@ function search(){
 					(`dni` LIKE '%$this->dni%') &&
 					(`telefono` LIKE '%$this->telefono%') &&
 					(`email` LIKE '%$this->email%') &&
-					(`fecha` LIKE '%$this->fecha%')
+					(`fecha` LIKE '%$this->fecha%') &&
+					(`tipo` LIKE '%$this->tipo%')
 					
     				)";
 				/* echo $sql; */
@@ -190,6 +197,20 @@ function delete()
         $this->mysqli->query($sql);
         
     	return $GLOBALS['strings']['Borrado correctamente'];
+    } 
+    else
+        return $GLOBALS['strings']['No existe'];
+}  
+
+function DevolverTipo()
+{	
+    $sql = "SELECT tipo FROM usuarios WHERE (`login` = '$this->login')";
+    
+    $result = $this->mysqli->query($sql);
+    
+    if ($result->num_rows == 1)
+    {    
+    	return $result -> fetch_array()[0];
     } 
     else
         return $GLOBALS['strings']['No existe'];

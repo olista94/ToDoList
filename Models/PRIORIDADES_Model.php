@@ -1,31 +1,19 @@
-<!---MODELO DE LOS USUARIOS QUE ADMINISTRARÁN LA LOTERIAIU,DONDE SE REALIZARÁ LA OPERACION DE INSERCIÓN EN LA BD
- CREADO POR mi3ac6 EL 23/11/2018-->
 <?php
-
-
-
 class PRIORIDADES_Model {
-
 	var $nivel;
 	var $descripcion;
 	var $color;
 	
-
 //Constructor de la clase
 //
-
 function __construct($nivel,$descripcion,$color){
 	$this->nivel = $nivel;
 	$this->descripcion = $descripcion;
 	$this->color = $color;
-
-
 	include_once 'Access_DB.php';
 	$this->mysqli = ConnectDB();
 }
-
 function add(){
-
 			
 		$sql = "INSERT INTO prioridades (
 			nivel,
@@ -60,7 +48,6 @@ function add(){
 		return $result;
 	}
 }
-
 function edit()
 {
 	
@@ -75,9 +62,7 @@ function edit()
 					`descripcion` = '$this->descripcion',
 					`color` = '$this->color'
 					
-
 				WHERE (`nivel` = '$this->nivel')";
-
         if (!($resultado = $this->mysqli->query($sql))){
 			return 'Error en la inserción';
 		}
@@ -89,9 +74,7 @@ function edit()
     else 
     	return 'No existe';
 } 
-
 function search(){ 
-
 	     $sql = "SELECT *
        			FROM prioridades
     			WHERE
@@ -111,9 +94,7 @@ function search(){
 		return $resultado;
 	}
 }
-
 function searchById(){ 
-
 	$sql = "SELECT *
 			  FROM prioridades
 		   WHERE
@@ -122,7 +103,6 @@ function searchById(){
 			   
 			   )";
 		   /* echo $sql; */
-
 if (!($resultado = $this->mysqli->query($sql))){
    return 'Error en la búsqueda';
    /* return "Error en la consulta"; */
@@ -131,7 +111,6 @@ else{
    return $resultado;
 }
 }
-
 function delete()
 {	
     $sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";
@@ -150,7 +129,5 @@ function delete()
     else
         return 'No existe';
 }  
-
 }//fin de clase
-
 ?> 
