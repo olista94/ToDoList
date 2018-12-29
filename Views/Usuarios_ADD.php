@@ -49,6 +49,13 @@
 
       <label for="fecha"><?php echo $strings['Fecha de nacimiento']; ?></label>
       <input id="fecha" type="text" name="fecha" size="28" class="tcal" value="" readonly/>
+	  
+	  <label for="tipo"><?php echo $strings['Tipo']; ?></label>
+	  
+      <select name="tipo" id="tipo">
+		<option value="ADMIN"><?php echo $strings['Admin']; ?></option>
+		<option value="NORMAL"><?php echo $strings['Normal']; ?></option>
+	  </select>
       
     </div>
     

@@ -42,12 +42,18 @@ class Fases_ADD{
 					<input type="date"  name="fecha_ini" id="fecha_ini" onkeypress="return false;"/>
 					
 					<label>
+					<?php echo $GLOBALS['strings']['Tarea']; ?></label><br>
+					<input type="text" name="descripcion_tarea" readonly value="<?php echo $this -> descripcion;?>">
+					<input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $this -> id_tarea;?>">
+					<br>
+					
+					<label>
 					<?php echo $strings['Contacto']; ?></label><br>
-					<select name="id_contacto">
+					<select name="CONTACTOS_email">
 						<?php
 							while($contactos=$this->contactos->fetch_array()){
 						?>
-								<option value="<?php echo $contactos[0];?>"><?php echo $contactos[1];?>
+								<option value="<?php echo $contactos[0];?>"><?php echo $contactos[0];?>
 
 								</option>
 						<?php

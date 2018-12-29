@@ -1,95 +1,73 @@
  <?php
- include_once '../Locales/Strings_'.$_SESSION['idioma'].'.php';
- 
- class REGISTRO_View{
-	 
-	var $titulos;
-	var $enlace;
+
+ class REGISTRO_View{	 
+
+	var $enlace;	
 	
-	
-	function __construct($titulos,$enlace){
-		$this -> titulos = $titulos;
+	function __construct($enlace){
+		
 		$this -> enlace = $enlace;
 		$this -> mostrar();
 	}
 	
 	function mostrar(){
 		
-	 /* include_once "../Views/Header.php"; */
-	 
-	 
-?>
- <link rel="stylesheet" href="../Views/css/estilosLogin.css" type="text/css">
- <script type="text/javascript" src="../Views/js/validaciones.js"></script>
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
- 
- <article class="add">
- 
- <h3><?php echo $GLOBALS['strings']['Formulario para añadir usuario'];?></h3>
- 
- <form enctype="multipart/form-data" action="../Controllers/Registro_Controller.php" method="post" id="add" name="add" onsubmit="return validarformAddUser(this);">
- 
+		 include_once '../Views/Header.php';
   
-  <label>
-  <?php echo $GLOBALS['strings']['Login']; ?></label>
-  <input type="text" name="login"  size="20" placeholder="<?php echo $GLOBALS['strings']['Max. 15 caracteres'];?>" onblur=" return !comprobarVacio(this) && comprobarAlfabetico(this,15);"><br>
-  
-  
-   <label>
-   <?php echo $GLOBALS['strings']['Password']; ?></label>
-  <input type="password" name="password"  size="25" placeholder="<?php echo $GLOBALS['strings']['Max. 20 caracteres'];?>" onblur=" return !comprobarVacio(this) && comprobarAlfabetico(this,20);"><br>
-  
-  
-  <label>
-  <?php echo $GLOBALS['strings']['DNI']; ?></label>
-  <input type="text" name="dni"  size="15" placeholder="<?php echo $GLOBALS['strings']['Ej:44657879K'];?>" onblur=" return !comprobarVacio(this) && comprobarDni(this);"><br>
-  
-  <label>
-  <?php echo $GLOBALS['strings']['Nombre']; ?></label>
-  <input type="text" name="nombre" size="35" placeholder="<?php echo $GLOBALS['strings']['Max. 30 caracteres'];?>"  onblur=" return !comprobarVacio(this) && comprobarTexto(this,30);"><br>
-  
-  
-  <label>
-  <?php echo $GLOBALS['strings']['Apellidos']; ?></label>
-  <input type="text" name="apellidos" size="55" placeholder="<?php echo $GLOBALS['strings']['Max. 50 caracteres'];?>"  onblur=" return !comprobarVacio(this) && comprobarTexto(this,50);"><br>
-  
-  
-  <label>
-  <?php echo $GLOBALS['strings']['Telefono']; ?></label>
-  <input type="text" name="telefono" size="15" placeholder="<?php echo $GLOBALS['strings']['Ej:667523632'];?>" onblur=" return !comprobarVacio(this) && comprobarTelf(this);"><br>
-  
-  
-  <label>
-  <?php echo $GLOBALS['strings']['Email']; ?></label>
-  <input type="text" name="email" size="60" placeholder="<?php echo $GLOBALS['strings']['Max. 60 caracteres'];?>"  onblur=" return !comprobarVacio(this) && comprobarEmail(this,60);"><br>
-  
-   <label>
-  <?php echo $GLOBALS['strings']['Fecha de nacimiento']; ?></label>
-  <input type="date" name="fechanacimiento"  onblur=" return comprobarFecha(this)"><br>
-  
-  <label>
-  <?php echo $GLOBALS['strings']['Foto personal']; ?></label><br>
-  <input type="file" name="fotopersonal" size="55" placeholder="<?php echo $GLOBALS['strings']['Max. 50 caracteres']; ?>" ><br>
-  
-  <label>
-  <?php echo $GLOBALS['strings']['Sexo']; ?></label>
-  <select name="sexo">
-  <option value="Hombre"><?php echo $GLOBALS['strings']['Hombre'];?></option>
-  <option value="Mujer"><?php echo $GLOBALS['strings']['Mujer'];?></option>
-  </select><br>
+  if(!isset($_SESSION['idioma'])){
+    $_SESSION['idioma'] = 'SPANISH';
+  }
 
- <!-- BOTONES DE CONFIRMAR O CANCELAR NUEVO USUARIO -->
-  
-  <button type="submit" title="<?php echo $GLOBALS['strings']['Añadir usuario']; ?>" value="Confirmar_ADD" name="action" class="confirmar"><i class="fas fa-user-plus"></i></button>
-<a href="<?php echo $this -> enlace;?>"><button type="button" title="<?php echo $GLOBALS['strings']['Cancelar']; ?>" class="cancelar"><i class="fas fa-times"></i></button></a>
-  
-</form>
+  include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
+	 	 
+?>
+
+  <form name="Form" id="registerForm" action="../Controllers/Registro_Controller.php" method="post" enctype="multipart/form-data" onsubmit="return comprobarRegistro(this)">
+    <legend><?php echo $strings['Regístrate']; ?>
+    <button onclick="location.href='../index.php';" class="volver"></button>
+    </legend>
+
+    <div>	
+      <label for="login"><?php echo $strings['Login']; ?></label>
+      <input type="text" id="login" name="login" size="40" maxlength="15" onchange="comprobarTexto(this,15)" required/>
+      
+      <label for="password"><?php echo $strings['Contraseña']; ?></label>
+      <input type="password" id="password" name="password" size="40" maxlength="20" onchange="comprobarTexto(this,128)" required/>
+
+      <label for="dni"><?php echo $strings['DNI']; ?></label>
+      <input type="text" id="dni" name="DNI" size="40" maxlenght="9" onchange="comprobarDni(this)" required/>
+        
+      <label for="nombre"><?php echo $strings['Nombre']; ?></label>
+      <input type="text" name="nombre" id="nombre" size="40" maxlength="30" onchange="comprobarAlfabetico(this,30)" required/>
+      
+      <label for="apellidos"><?php echo $strings['Apellidos']; ?></label>
+      <input type="text" name="apellidos" id="apellidos" size="40" maxlength="50" onchange="comprobarAlfabetico(this,50)" required/>
+
+      <label for="telefono"><?php echo $strings['Teléfono']; ?></label>
+      <input type="text" name="telefono" id="telefono" size="40" maxlength="13" onchange="comprobarTelf(this)" required/>
+
+      <label for="email"><?php echo $strings['Correo electrónico']; ?></label>
+      <input type="email" id="email" name="email" size="40" maxlength="50" onchange="comprobarEmail(this,50)" required/>	
+
+      <label for="fecha"><?php echo $strings['Fecha de nacimiento']; ?></label>
+      <input id="fecha" type="text" name="FechaNacimiento" size="28" class="tcal" value="" readonly/>
+	  
+	  <label for="tipo"><?php echo $strings['Tipo']; ?></label>
+	  
+      <select name="tipo" id="tipo">
+		<option value="ADMIN"><?php echo $strings['Admin']; ?></option>
+		<option value="NORMAL"><?php echo $strings['Normal']; ?></option>
+	  </select>
+      
+    </div>
+    
+    <button type="submit" name="action" value="Confirmar_ADD" class="aceptar"></button>
+    <button type="reset" value="Reset" class="cancelar"></button>
+
+	</form>
  
- 
- </article>
  
  <?php
-	/* include_once "../Views/Footer.php"; */
-	}
- }
+  }
+}
  ?>

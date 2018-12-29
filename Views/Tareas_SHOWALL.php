@@ -3,6 +3,7 @@
 include_once '../Functions/Authentication.php';
 include '../Views/Header.php';
 
+
  class Tareas_SHOWALL{ 
 	
 	var $datos;
@@ -25,12 +26,17 @@ include '../Views/Header.php';
 ?>
 
         <div class="showall">   
-                                
+		
+             
+		
             <table class="showAllUsers">
 				<tr><th class="title" colspan="4"><?php echo $strings['Tareas']; ?>
 				<form class="tableActions" action="../Controllers/Tareas_Controller.php" method="">
 				<button class="buscar-little" name="action" value="Confirmar_SEARCH" type="submit"></button>
 				<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
+				<button class="anadir-little"  name="action" value="Ordenar_Fecha" type="submit"><?php echo $strings['Fecha']; ?></button>
+				<button class="anadir-little"  name="action" value="Ordenar_Prioridad" type="submit"><?php echo $strings['Prioridad']; ?></button>
+				<button class="anadir-little"  name="action" value="Ordenar_Categoria" type="submit"><?php echo $strings['Categoria']; ?></button>
 				</form></th></tr>
 		
 				<tr>
@@ -44,8 +50,8 @@ include '../Views/Header.php';
 				<tr>
 					<form action="../Controllers/Tareas_Controller.php" method="post" name="id_tarea" >
 						<input type="hidden" name="id_tarea" value="<?php echo $fila['id_tarea']; ?>">
-						<td><?php echo $fila['descripcion_tarea']; ?></td>
-						<td><?php echo $fila['descripcion_prioridad']; ?></td>				
+						<td><?php echo $fila[1]; ?></td>
+						<td><?php echo $fila[2]; ?></td>				
 						<td style="text-align:right">
 							<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>
 							<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>

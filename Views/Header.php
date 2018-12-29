@@ -29,6 +29,11 @@
 
 </head>
 
+<?php
+if(isset($_SESSION['tipo'])){
+	if($_SESSION['tipo']=='ADMIN'){
+?>
+
 <header id="main-header">	
 
 	<div class="fixednav">
@@ -83,3 +88,64 @@
 	</div>
 
 </header>
+
+<?php
+	}
+	else{
+		?>
+		
+		<header id="main-header">	
+
+	<div class="fixednav">
+		<div class="topnav">
+			<div class="topnav-centered">
+				<a><h2><?php echo $strings['ToDoList']; ?></h2></a>
+			</div>
+
+			<a><button class="logo"></button></a>
+
+			<div class="topnav-right">
+			<form name='idiomaform' action="../Functions/CambioIdioma.php" method="post" style="display: contents;">
+				<select class="idioma" name="idioma" onChange='this.form.submit()'>
+					<option value="SPANISH"> </option>
+					<option value="ENGLISH"><?php echo $strings['Ingles']; ?></option>
+					<option value="SPANISH"><?php echo $strings['Español']; ?></option>
+					<option value="GALLAECIAN"><?php echo $strings['Gallego']; ?></option>
+				</select>
+			</form>
+                <?php	
+                    if (IsAuthenticated()){
+                ?>
+
+				<button class="user"><?php echo $_SESSION['login'];?></button>				   		
+   
+				<a href='../Functions/Desconectar.php'><button class="logout"></button></a>
+
+                <?php                    
+                    }
+                    else{
+                ?>
+                    <a href='../Controllers/Registro_Controller.php'><button class="registrar"></button></a>
+                <?php
+                    }	
+                ?>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="menu-bar" id="menu-bar">
+		<li><a href="../Controllers/Tareas_Controller.php"><?php echo $strings['Tareas']; ?></a></li>
+		<li><a href="../Controllers/Fases_Controller.php"><?php echo $strings['Fases']; ?></a></li>
+		<li><a href="../Controllers/Contactos_Controller.php"><?php echo $strings['Contactos']; ?></a></li>
+		<a href="javascript:void(0);" class="icon" onclick="responsiveMenu()">
+			<i class="fa fa-bars"></i>
+		</a>
+	</div>
+
+</header>
+		
+<?php
+}
+}
+?>
