@@ -128,7 +128,7 @@ switch ($_REQUEST['action']){
 	break;
 
 	
-	case 'Confirmar_DELETE1':
+		case 'Confirmar_DELETE1':
 		
 		$prioridades = new PRIORIDADES_Model("","","");
 		if(count($_REQUEST) < 4 ){
@@ -137,13 +137,11 @@ switch ($_REQUEST['action']){
 			$datos = $tarea->rellenadatos();
 			
 			$array = $datos -> fetch_array();
-
 			$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"","");
 			$p = $prioridades -> searchById();
 			
 			$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],"");
 			$cat = $categorias -> searchById();
-
 			$datos = $tarea->rellenadatos();
 			
 			new Tareas_DELETE($datos,$p,$cat,'../Controllers/Tareas_Controller.php');
@@ -166,13 +164,11 @@ switch ($_REQUEST['action']){
 			$datos = $tarea->rellenadatos();
 			
 			$array = $datos -> fetch_array();
-
 			$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"","");
 			$p = $prioridades -> searchById();
 			
 			$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],"");
 			$cat = $categorias -> searchById();
-
 			$datos = $tarea->rellenadatos();
 			
 			new Tareas_SHOWCURRENT($datos,$p,$cat,'../Controllers/Tareas_Controller.php');
@@ -188,13 +184,83 @@ switch ($_REQUEST['action']){
 			$respuesta = new Fases_SHOWALL($datos,'../Controllers/Fases_Controller.php');				
 		}
 	break;
+	
+	
+	
+	
+	case 'Ordenar_Fecha':
+		if(isset($_SESSION['tipo'])){
+			if($_SESSION['tipo']=='ADMIN'){
+			
+				$tarea = new TAREAS_Model('','','','','','','','');
+				$datos = $tarea -> OrdenarFecha();
+				/* print_r($datos); */
+				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');			
+		
+			}else{
+				$tarea = new TAREAS_Model('','','','','','','','');
+				$datos = $tarea -> OrdenarFechaNormal();
+				/* print_r($datos); */
+				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');	
+			}
+		}
+	break;
+
+	case 'Ordenar_Prioridad':
+		if(isset($_SESSION['tipo'])){
+			if($_SESSION['tipo']=='ADMIN'){
+				
+				$tarea = new TAREAS_Model('','','','','','','','');
+				$datos = $tarea -> OrdenarPrioridad();
+				/* print_r($datos); */
+				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');			
+				
+			}else{
+				$tarea = new TAREAS_Model('','','','','','','','');
+				$datos = $tarea -> OrdenarPrioridadNormal();
+				/* print_r($datos); */
+				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');	
+			}
+		}			
+	break;
+	
+	case 'Ordenar_Categoria':
+		if(isset($_SESSION['tipo'])){
+			if($_SESSION['tipo']=='ADMIN'){
+				$tarea = new TAREAS_Model('','','','','','','','');
+				$datos = $tarea -> OrdenarCategoria();
+				/* print_r($datos); */
+				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');			
+			
+			}else{
+				$tarea = new TAREAS_Model('','','','','','','','');
+				$datos = $tarea -> OrdenarCategoriaNormal();
+				/* print_r($datos); */
+				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');	
+			}
+		}
+	break;
+		
+		
 
 	 default: /*PARA EL SHOWALL */
+	 if(isset($_SESSION['tipo'])){
+		if($_SESSION['tipo']=='ADMIN'){
+			
 		$tarea = new TAREAS_Model('','','','','','','','');
+		
 		$datos = $tarea -> TareasShowAll();
 		$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
-
+		
+		}else{
+			
+			$tarea = new TAREAS_Model('','','','','','','','');
+			$datos = $tarea -> BuscarTareasUser();
+			/* print_r($datos); */
+			$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
 	}
+	 
 }
-
+}
+}
 ?>

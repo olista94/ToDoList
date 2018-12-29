@@ -119,14 +119,7 @@ switch ($_REQUEST['action']){
 			
 			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
 			$datos = $fase->rellenadatos();
-			/* print_r($_REQUEST['id_fase']);
-			print_r($datos[1]);
-			print_r($datos[2]);
-			print_r($datos[3]);
 			
-			print_r($datos[4]);
-			print_r($datos[5]);
-			print_r($datos[6]); */
 			
 			new Fases_EDIT($datos,$cont,'../Controllers/Fases_Controller.php');
 		}

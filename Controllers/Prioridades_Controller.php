@@ -2,6 +2,9 @@
  CREADO POR mi3ac6 EL 19/11/2018-->
 <?php
 session_start();
+if(isset($_SESSION['tipo'])){
+	if($_SESSION['tipo']=='ADMIN'){
+		
 include_once "../Views/MESSAGE.php";
 include_once "../Functions/Authentication.php";
 
@@ -49,8 +52,8 @@ switch ($_REQUEST['action']){
 		}
 		else{
 			$prioridad = getDataForm();
-			$datos = $prioridad-> add();
-			new Prioridades_SHOWALL($datos,'../Controllers/Prioridades_Controller.php');
+			$mensaje = $prioridad-> add();
+			new MESSAGE($mensaje,'../Controllers/Prioridades_Controller.php');	
 				
 			
 		}
@@ -117,5 +120,6 @@ switch ($_REQUEST['action']){
 	}
 
 }
-
+}
+}
 ?>

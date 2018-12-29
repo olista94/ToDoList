@@ -3,6 +3,10 @@
 
  <?php
 session_start();
+
+if(isset($_SESSION['tipo'])){
+	if($_SESSION['tipo']=='ADMIN'){
+		
 include_once "../Models/CATEGORIAS_Model.php";
 include_once "../Views/Categorias_SHOWALL.php";
 include_once "../Views/Categorias_ADD.php";
@@ -116,6 +120,8 @@ switch ($_REQUEST['action']){
 		$datos = $categoria -> search();
 		$respuesta = new Categorias_SHOWALL($datos,'../Controllers/Categorias_Controller.php');
 
+}
+	}
 }
 
 ?>
