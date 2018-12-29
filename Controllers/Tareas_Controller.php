@@ -131,14 +131,23 @@ switch ($_REQUEST['action']){
 	case 'Confirmar_DELETE1':
 		
 		$prioridades = new PRIORIDADES_Model("","","");
-			$p = $prioridades -> search();
-			
-			$categorias = new CATEGORIAS_Model("","");
-			$cat = $categorias -> search();
+		if(count($_REQUEST) < 4 ){
 			
 			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
 			$datos = $tarea->rellenadatos();
+			
+			$array = $datos -> fetch_array();
+
+			$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"","");
+			$p = $prioridades -> searchById();
+			
+			$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],"");
+			$cat = $categorias -> searchById();
+
+			$datos = $tarea->rellenadatos();
+			
 			new Tareas_DELETE($datos,$p,$cat,'../Controllers/Tareas_Controller.php');
+		}
 	break;
 	
 	case 'Confirmar_DELETE2':
@@ -153,13 +162,17 @@ switch ($_REQUEST['action']){
 	case 'Confirmar_SHOWCURRENT':
 		if(count($_REQUEST) < 4 ){
 			
-			$prioridades = new PRIORIDADES_Model("","","");
-			$p = $prioridades -> search();
-			
-			$categorias = new CATEGORIAS_Model("","");
-			$cat = $categorias -> search();
-			
 			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+			$datos = $tarea->rellenadatos();
+			
+			$array = $datos -> fetch_array();
+
+			$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"","");
+			$p = $prioridades -> searchById();
+			
+			$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],"");
+			$cat = $categorias -> searchById();
+
 			$datos = $tarea->rellenadatos();
 			
 			new Tareas_SHOWCURRENT($datos,$p,$cat,'../Controllers/Tareas_Controller.php');
