@@ -417,6 +417,7 @@ array(
 	'Formulario para añadir categoria' => 'Form to add category',
 	'Formulario para buscar categoria' => 'Form to search category',
 	'Añadir categoria' => 'Add category',
+	'Fecha' => 'Date',
 	'' => '',
 	'' => '',
 	'' => '',

@@ -371,11 +371,13 @@ array(
 	'Descripcion' => 'Descripción',
 	'Prioridad' => 'Prioridade',
 	'Listado de todas las tarefas' => 'Listado de todas las tarefas',
-	'Fecha inicio' =>'Data fin',
+	'Fecha inicio' => 'Data fin',
 	'Categoria' => 'Categoría',
 	'Usuario' => 'Usuario',
-	'tarefa' => 'tarefa',
+	'tarefa' => 'Tarefa',
 	'Contacto' => 'Contacto',
+	'Tarea' => 'Tarefa',
+	'Tareas' => 'Tarefas',
 	
 	'Formulario para Engadir tarefa' => 'Formulario para Engadir tarefa',
 	'Formulario para editar tarefa' => 'Formulario para editar tarefa',
@@ -401,7 +403,7 @@ array(
 	'Usuarios' => 'Usuarios',
 	'Prioridades' => 'Prioridades',
 	'Fases' => 'Fases',
-	'Tareas' => 'Tarefas',
+	'tareas' => 'tarefas',
 	'Contactos' => 'Contactos',
 	
 	'Formulario para Engadir fase' => 'Formulario para Engadir fase',
@@ -417,6 +419,7 @@ array(
 	'Formulario para Engadir categoria' => 'Formulario para engadir categoria',
 	'Formulario para buscar categoria' => 'Formulario para buscar categoria',
 	'Engadir categoria' => 'Engadir categoria',
+	'Fecha' => 'Data',
 	'' => '',
 	
 	
