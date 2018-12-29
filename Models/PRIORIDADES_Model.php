@@ -112,6 +112,26 @@ function search(){
 	}
 }
 
+function searchById(){ 
+
+	$sql = "SELECT *
+			  FROM prioridades
+		   WHERE
+			   ( 
+			   (`nivel` LIKE '%$this->nivel%')
+			   
+			   )";
+		   /* echo $sql; */
+
+if (!($resultado = $this->mysqli->query($sql))){
+   return 'Error en la búsqueda';
+   /* return "Error en la consulta"; */
+}
+else{ 
+   return $resultado;
+}
+}
+
 function delete()
 {	
     $sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";

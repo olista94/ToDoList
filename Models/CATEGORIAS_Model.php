@@ -24,11 +24,6 @@ function __construct($id_CATEGORIAS,$nombre){
 	$this->mysqli = ConnectDB();
 }
 
-
-
-
-
-
 function add(){
 
 			
@@ -113,6 +108,27 @@ function search(){
 		/* return "Error en la consulta"; */
 	}
     else{ 
+		return $resultado;
+	}
+}
+
+function searchById(){ 
+
+	$sql = "SELECT *
+			  FROM categorias
+		   WHERE
+			   ( 
+			   
+				(`id_CATEGORIAS` LIKE '%$this->id_CATEGORIAS%')
+			   
+			   )";
+		   /* echo $sql; */
+
+	if (!($resultado = $this->mysqli->query($sql))){
+		return $GLOBALS['strings']['Error en la búsqueda'];
+		/* return "Error en la consulta"; */
+	}
+	else{ 
 		return $resultado;
 	}
 }
