@@ -7,6 +7,7 @@ include '../Views/Header.php';
  class Tareas_SHOWALL{ 
 	
 	var $datos;
+	var $prioridades;
 	var $enlace;	
 	
 	function __construct($datos,$enlace){
@@ -25,19 +26,29 @@ include '../Views/Header.php';
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
 ?>
 
-        <div class="showall">   
-		
-             
+        <div class="showall">             
 		
             <table class="showAllUsers">
 				<tr><th class="title" colspan="4"><?php echo $strings['Tareas']; ?>
 				<form class="tableActions" action="../Controllers/Tareas_Controller.php" method="">
-				<button class="buscar-little" name="action" value="Confirmar_SEARCH" type="submit"></button>
-				<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
-				<button class="anadir-little"  name="action" value="Ordenar_Fecha" type="submit"><?php echo $strings['Fecha']; ?></button>
-				<button class="anadir-little"  name="action" value="Ordenar_Prioridad" type="submit"><?php echo $strings['Prioridad']; ?></button>
-				<button class="anadir-little"  name="action" value="Ordenar_Categoria" type="submit"><?php echo $strings['Categoria']; ?></button>
-				</form></th></tr>
+					<button class="buscar-little" name="action" value="Confirmar_SEARCH" type="submit"></button>
+					<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
+				</form>
+
+				<form class="tableActions" action="../Controllers/Tareas_Controller.php" method="">
+					<div>
+						<label class="lblSearch" for="action">Ordenar por:</label>
+						<select class="slcSearch" name="action" id="action" onchange="this.form.submit()">
+							<option value="">Seleccionar</option>
+							<option value="Ordenar_Fecha"><?php echo $strings['Fecha']; ?></option>
+							<option value="Ordenar_Prioridad"><?php echo $strings['Prioridad']; ?></option>
+							<option value="Ordenar_Categoria"><?php echo $strings['Categoria']; ?></option>
+						</select>
+
+					</div>
+				</form>
+				
+				</th></tr>
 		
 				<tr>
 					<th><?php echo $strings['Descripcion']; ?></th>
@@ -50,7 +61,7 @@ include '../Views/Header.php';
 				<tr>
 					<form action="../Controllers/Tareas_Controller.php" method="post" name="id_tarea" >
 						<input type="hidden" name="id_tarea" value="<?php echo $fila['id_tarea']; ?>">
-						<td><?php echo $fila[1]; ?></td>
+						<td style="background-color:<?php echo $fila['color_tarea']; ?>;" ><?php echo $fila[1]; ?></td>
 						<td><?php echo $fila[2]; ?></td>				
 						<td style="text-align:right">
 							<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>

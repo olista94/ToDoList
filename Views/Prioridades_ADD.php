@@ -35,8 +35,8 @@ class Prioridades_ADD{
 					<input type="text" name="descripcion" id="descripcion" size="40" maxlength="30"/>
           						
 					<label for="color"><?php echo $strings['Color']; ?></label>
-					<input type="text" name="color" id="color" size="40" maxlength="30"/>
-					
+					<input type="color" name="color" id="color" value="">
+				
 				</div>
 
 				<button type="submit" name="action" value="Confirmar_ADD" value="Submit" class="aceptar"></button>

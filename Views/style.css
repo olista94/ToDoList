@@ -585,3 +585,12 @@ select{
   cursor: pointer;
   vertical-align: super;
 }
+
+.lblSearch{
+  float: left;
+}
+
+.slcSearch{
+  margin-top: 7px;
+  margin-left: 5px;
+}

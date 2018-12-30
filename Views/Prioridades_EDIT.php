@@ -40,7 +40,7 @@ class Prioridades_EDIT{
 					<input type="text" name="descripcion" id="descripcion" value="<?php echo $this -> fila['descripcion']; ?>" size="40" maxlength="30"/>
           						
 					<label for="color"><?php echo $strings['Color']; ?></label>
-					<input type="text" name="color" id="color" size="40" value="<?php echo $this -> fila['color']; ?>" maxlength="30"/>
+					<input type="color" name="color" id="color" value="<?php echo $this -> fila['color']; ?>">
 					
 				</div>
 

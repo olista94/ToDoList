@@ -36,7 +36,7 @@ include '../Views/Header.php';
 				<tr>
 					<th><?php echo $strings['Nivel']; ?></th>
 					<th><?php echo $strings['Descripcion']; ?></th>
-					<th><?php echo $strings['Prioridad']; ?></th>			
+					<th><?php echo $strings['Color']; ?></th>			
 					<th></th>
 				</tr>
 			<?php 
@@ -47,7 +47,7 @@ include '../Views/Header.php';
 						<input type="hidden" name="nivel" value="<?php echo $fila['nivel']; ?>">
 						<td><?php echo $fila['nivel']; ?></td>
 						<td><?php echo $fila['descripcion']; ?></td>
-						<td><?php echo $fila['color']; ?></td>				
+						<td style="color:<?php echo $fila['color']; ?>;"><?php echo $fila['color']; ?></td>				
 						<td style="text-align:right">
 							<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>
 							<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>
