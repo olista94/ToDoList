@@ -4,28 +4,25 @@
 
 
 
-class FASES_Model {
+class ARCHIVOS_Model {
 
-	var $id_fase;
-	var $descripcion;
-	var $fecha_ini;
-	var $fecha_fin;
-	var $TAREAS_id_TAREAS;
-	var $CONTACTOS_email;
+	var $id_ARCHIVOS;
+	var $nombre;
+    var $url;
+	var $FASES_id_FASES;
 	
 	/* var $mysqli; */
 
 //Constructor de la clase
 //
 
-function __construct($id_fase,$descripcion,$fecha_ini,$fecha_fin,$TAREAS_id_TAREAS,$CONTACTOS_email){
-	$this->id_fase = $id_fase;
-	$this->descripcion = $descripcion;
-	$this->fecha_ini = $fecha_ini;
-	$this->fecha_fin = $fecha_fin;
-	$this->TAREAS_id_TAREAS = $TAREAS_id_TAREAS;
-	$this->CONTACTOS_email = $CONTACTOS_email;
+function __construct($id_ARCHIVOS, $nombre, $url, $FASES_id_FASES){
 
+	$this->id_ARCHIVOS = $id_ARCHIVOS;
+    $this->nombre = $nombre;
+    $this->url = $url;
+    $this->FASES_id_FASES = $FASES_id_FASES;
+    
 	include_once '../Models/Access_DB.php';
 	$this->mysqli = ConnectDB();
 }
@@ -33,14 +30,12 @@ function __construct($id_fase,$descripcion,$fecha_ini,$fecha_fin,$TAREAS_id_TARE
 
 function add(){
 				
-				$sql = "INSERT INTO fases
+				$sql = "INSERT INTO archivos
 						VALUES (
-							'$this->id_fase',
-							'$this->descripcion',
-							'$this->fecha_ini',
-							'$this->fecha_fin',
-							'$this->TAREAS_id_TAREAS',
-							'$this->CONTACTOS_email'
+							'$this->id_ARCHIVOS',
+							'$this->nombre',
+							'$this->url',
+							'$this->FASES_id_FASES'
 							)
 						";
 
@@ -132,7 +127,7 @@ function delete()
 }
 
 	function rellenadatos() {	
-    $sql = "SELECT * FROM fases WHERE (`id_FASES` = '$this->id_fase')";
+    $sql = "SELECT * FROM archivos WHERE (`FASES_id_FASES` = '$this->id_fase')";
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return $GLOBALS['strings']['No existe']; 
@@ -197,22 +192,6 @@ function BuscarID2(){
 			FROM tareas
 			WHERE id_tarea = (SELECT MAX(id_tarea)
 							 FROM tareas) ";
-					
-	/* echo $sql; */
-	
-	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado->fetch_array()[0];
-		echo $result;
-		print_r($resultado);
-		return $result;
-	}
-}
-
-function BuscarIDFase(){
-	$sql = "SELECT MAX(id_FASES) FROM fases";
 					
 	/* echo $sql; */
 	
