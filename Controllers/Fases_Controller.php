@@ -22,6 +22,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 	include_once "../Models/CATEGORIAS_Model.php";
 	include_once "../Models/TAREAS_Model.php";
 	include_once "../Models/CONTACTOS_Model.php";
+	include_once "../Models/ARCHIVOS_Model.php";
 
 
 /* RECOGE LOS DATOS DEL FORMULARIO */
@@ -81,8 +82,29 @@ switch ($_REQUEST['action']){
 			
 		}
 		else{
+
 			$fase = getDataForm();
 			$mensaje = $fase-> add();
+
+			$idFase = $fase -> BuscarIDFase();
+
+			$output_dir = "../Files/";//Path for file upload
+			$fileCount = count($_FILES["archivo"]['name']);
+			for($i=0; $i < $fileCount; $i++){
+				$RandomNum = time();
+				$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
+				$ImageType = $_FILES['archivo']['type'][$i]; //"image/png", image/jpeg etc.
+				$ImageExt = substr($ImageName, strrpos($ImageName, '.'));
+				$ImageExt = str_replace('.','',$ImageExt);
+				$ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
+				$NewImageName = $ImageName.'-'.$RandomNum.'.'.$ImageExt;
+				$ruta= $output_dir.$NewImageName;
+				move_uploaded_file($_FILES["archivo"]["tmp_name"][$i],$output_dir."/".$NewImageName );
+
+				$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase);
+				$model -> add();
+			}
+
 			new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');		
 			 
 		}
@@ -99,11 +121,31 @@ switch ($_REQUEST['action']){
 				
 				$id_tarea =$tareas -> BuscarMaxID();
 				$descripcion = $tareas -> BuscarID2();
-				
+								
 				new Fases_ADD($id_tarea,$descripcion,$cont,'../Controllers/Fases_Controller.php');
 				
 				$fase = getDataForm();
 				$mensaje = $fase-> add();
+
+				$idFase = $fase -> BuscarIDFase();
+
+				$output_dir = "../Files/";//Path for file upload
+				$fileCount = count($_FILES["archivo"]['name']);
+				for($i=0; $i < $fileCount; $i++){
+					$RandomNum = time();
+					$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
+					$ImageType = $_FILES['archivo']['type'][$i]; //"image/png", image/jpeg etc.
+					$ImageExt = substr($ImageName, strrpos($ImageName, '.'));
+					$ImageExt = str_replace('.','',$ImageExt);
+					$ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
+					$NewImageName = $ImageName.'-'.$RandomNum.'.'.$ImageExt;
+					$ruta= $output_dir.$NewImageName;
+					move_uploaded_file($_FILES["archivo"]["tmp_name"][$i],$output_dir."/".$NewImageName );
+
+					$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase);
+					$model -> add();
+				}
+				
 				new MESSAGE($mensaje,'../Controllers/Fases_Controller.php');
 
 		break;
@@ -114,8 +156,7 @@ switch ($_REQUEST['action']){
 			
 			$contactos = new CONTACTOS_Model("","","","");
 			$cont = $contactos -> search();
-			
-			
+						
 			
 			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
 			$datos = $fase->rellenadatos();
