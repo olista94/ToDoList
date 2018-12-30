@@ -151,7 +151,7 @@ function delete()
 
 function TareasShowAll(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion 
-	AS descripcion_prioridad, Fecha_Ini FROM tareas t,prioridades p WHERE t.PRIORIDADES_nivel = p.nivel";
+	AS descripcion_prioridad, p.color AS color_tarea, Fecha_Ini FROM tareas t,prioridades p WHERE t.PRIORIDADES_nivel = p.nivel";
 	//die($sql);
 	
 	if (!($resultado = $this->mysqli->query($sql))){
@@ -224,7 +224,7 @@ function BuscarMaxID(){
 
 function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario normal
 	$sql = " SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion 
-	AS descripcion_prioridad, Fecha_Ini
+	AS descripcion_prioridad, p.color AS color_tarea, Fecha_Ini
 			FROM tareas t,prioridades p
 			WHERE `USUARIOS_login` = '".$_SESSION['login']."' && t.PRIORIDADES_nivel = p.nivel
 					";
@@ -243,7 +243,7 @@ function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario norm
 
 
 function OrdenarFecha(){//Ordena por fecha de inicio
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea
 			FROM tareas t,prioridades p
 			WHERE t.PRIORIDADES_nivel = p.nivel
 			ORDER BY `Fecha_Ini` 
@@ -262,7 +262,7 @@ function OrdenarFecha(){//Ordena por fecha de inicio
 }
 
 function OrdenarPrioridad(){//Ordena por prioridad
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea
 			FROM tareas t,prioridades p
 			WHERE t.PRIORIDADES_nivel = p.nivel 
 			ORDER BY `PRIORIDADES_nivel`  
@@ -281,7 +281,7 @@ function OrdenarPrioridad(){//Ordena por prioridad
 }
 
 function OrdenarCategoria(){//Ordena por categoria
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea
 			FROM tareas t,prioridades p
 			WHERE t.PRIORIDADES_nivel = p.nivel
 			ORDER BY `CATEGORIAS_id_CATEGORIAS`  
