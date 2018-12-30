@@ -8,6 +8,7 @@ include_once '../Views/Header.php';
  class Fases_SHOWALL{	 
 	
 	var $datos;
+	//var $ficheros;
 	var $enlace;	
 	
 	function __construct($datos,$enlace){
