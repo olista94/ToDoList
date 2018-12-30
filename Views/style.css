@@ -343,6 +343,7 @@ th{
   background-image: url(../img/user.png);
 }
 
+
 .registrar{
   background-size: 25px 25px;
   background-color: #333;
@@ -416,6 +417,11 @@ button {
 .aceptar {
   background-image: url(../img/aceptar.png);
   background-color: #4CAF50;
+}
+
+.registrarse {
+  background-image: url(../img/register.png);
+  background-color: rgb(46, 91, 173);
 }
 
 .continuar {

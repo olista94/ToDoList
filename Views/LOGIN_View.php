@@ -31,9 +31,8 @@
 
 		</div>
 		
-		<button type="submit" value="Confirmar_LOGIN" name="action" class="aceptar"></button>
-		<button type="submit" title="<?php echo $strings['Registrar nuevo usuario']; ?>" class="botontabla" name="action" value="Confirmar_REGISTRO">
-		<i class="fas fa-user-plus"></i></button>
+		<button type="submit" title="<?php echo $strings['Iniciar sesion']; ?>" value="Confirmar_LOGIN" name="action" class="aceptar"></button>
+		<button type="submit" title="<?php echo $strings['Registrar nuevo usuario']; ?>" class="registrarse" name="action" value="Confirmar_REGISTRO"></button>
 
 	</form>							
 <?php
