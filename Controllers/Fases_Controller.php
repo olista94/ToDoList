@@ -88,21 +88,24 @@ switch ($_REQUEST['action']){
 			
 			$idFase = $fase -> BuscarIDFase();
 
-			$output_dir = "../Files/";//Path for file upload
-			$fileCount = count($_FILES["archivo"]['name']);
-			for($i=0; $i < $fileCount; $i++){
-				$RandomNum = time();
-				$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
-				$ImageType = $_FILES['archivo']['type'][$i]; //"image/png", image/jpeg etc.
-				$ImageExt = substr($ImageName, strrpos($ImageName, '.'));
-				$ImageExt = str_replace('.','',$ImageExt);
-				$ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
-				$NewImageName = $ImageName.'-'.$RandomNum.'.'.$ImageExt;
-				$ruta= $output_dir.$NewImageName;
-				move_uploaded_file($_FILES["archivo"]["tmp_name"][$i],$output_dir."/".$NewImageName );
+			if($_FILES['archivo']['size'] > 0) {
 
-				$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase,$_REQUEST['TAREAS_id_TAREAS']);
-				$model -> add();
+				$output_dir = "../Files/";//Path for file upload
+				$fileCount = count($_FILES["archivo"]['name']);
+				for($i=0; $i < $fileCount; $i++){
+					$RandomNum = time();
+					$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
+					$ImageType = $_FILES['archivo']['type'][$i]; //"image/png", image/jpeg etc.
+					$ImageExt = substr($ImageName, strrpos($ImageName, '.'));
+					$ImageExt = str_replace('.','',$ImageExt);
+					$ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
+					$NewImageName = $ImageName.'-'.$RandomNum.'.'.$ImageExt;
+					$ruta= $output_dir.$NewImageName;
+					move_uploaded_file($_FILES["archivo"]["tmp_name"][$i],$output_dir."/".$NewImageName );
+
+					$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase,$_REQUEST['TAREAS_id_TAREAS']);
+					$model -> add();
+				}
 			}
 
 			new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');		
@@ -128,22 +131,23 @@ switch ($_REQUEST['action']){
 				$mensaje = $fase-> add();
 
 				$idFase = $fase -> BuscarIDFase();
+				if($_FILES['archivo']['size'] > 0) {
+					$output_dir = "../Files/";//Path for file upload
+					$fileCount = count($_FILES["archivo"]['name']);
+					for($i=0; $i < $fileCount; $i++){
+						$RandomNum = time();
+						$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
+						$ImageType = $_FILES['archivo']['type'][$i]; //"image/png", image/jpeg etc.
+						$ImageExt = substr($ImageName, strrpos($ImageName, '.'));
+						$ImageExt = str_replace('.','',$ImageExt);
+						$ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
+						$NewImageName = $ImageName.'-'.$RandomNum.'.'.$ImageExt;
+						$ruta= $output_dir.$NewImageName;
+						move_uploaded_file($_FILES["archivo"]["tmp_name"][$i],$output_dir."/".$NewImageName );
 
-				$output_dir = "../Files/";//Path for file upload
-				$fileCount = count($_FILES["archivo"]['name']);
-				for($i=0; $i < $fileCount; $i++){
-					$RandomNum = time();
-					$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
-					$ImageType = $_FILES['archivo']['type'][$i]; //"image/png", image/jpeg etc.
-					$ImageExt = substr($ImageName, strrpos($ImageName, '.'));
-					$ImageExt = str_replace('.','',$ImageExt);
-					$ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
-					$NewImageName = $ImageName.'-'.$RandomNum.'.'.$ImageExt;
-					$ruta= $output_dir.$NewImageName;
-					move_uploaded_file($_FILES["archivo"]["tmp_name"][$i],$output_dir."/".$NewImageName );
-
-					$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase,$_REQUEST['TAREAS_id_TAREAS']);
-					$model -> add();
+						$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase,$_REQUEST['TAREAS_id_TAREAS']);
+						$model -> add();
+					}
 				}
 				
 				new MESSAGE($mensaje,'../Controllers/Fases_Controller.php');
