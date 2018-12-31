@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-12-2018 a las 21:38:46
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.3.0
+-- Tiempo de generación: 31-12-2018 a las 19:25:24
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.0.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,6 +43,10 @@ CREATE TABLE `archivos` (
   `FASES_id_FASES` int(11) NOT NULL,
   `FASES_TAREAS_id_TAREAS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `archivos`
+--
 
 -- --------------------------------------------------------
 
@@ -98,6 +102,7 @@ CREATE TABLE `fases` (
   `descripcion` varchar(45) NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date DEFAULT NULL,
+  `completada` tinyint(4) NOT NULL DEFAULT '0',
   `TAREAS_id_TAREAS` int(11) NOT NULL,
   `CONTACTOS_email` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -106,16 +111,15 @@ CREATE TABLE `fases` (
 -- Volcado de datos para la tabla `fases`
 --
 
-INSERT INTO `fases` (`id_FASES`, `descripcion`, `fecha_inicio`, `fecha_fin`, `TAREAS_id_TAREAS`, `CONTACTOS_email`) VALUES
-(12, 'Comprar la comida', '2018-12-27', '0000-00-00', 16, 'afmontero@esei.uvigo.es'),
-(13, 'Poner la mesa', '2018-12-27', '0000-00-00', 16, 'olista94@gmail.com'),
-(14, 'Cocinar', '2018-12-27', '0000-00-00', 16, 'ypgarcia@esei.uvigo.es'),
-(15, 'Fase uno', '2018-12-29', '0000-00-00', 17, 'ypgarcia@esei.uvigo.es'),
-(16, 'Fase dos', '2018-12-29', '0000-00-00', 17, 'ypgarcia@esei.uvigo.es'),
-(17, 'Fase tres', '2018-12-31', '0000-00-00', 17, 'olista94@gmail.com'),
-(18, 'Oscar', '2018-12-30', '0000-00-00', 18, 'manolo@gmail.com'),
-(19, 'Lista', '2018-12-31', '0000-00-00', 18, 'olista94@gmail.com'),
-(20, 'Primera', '2018-12-15', '0000-00-00', 20, 'afmontero@esei.uvigo.es');
+INSERT INTO `fases` (`id_FASES`, `descripcion`, `fecha_inicio`, `fecha_fin`, `completada`, `TAREAS_id_TAREAS`, `CONTACTOS_email`) VALUES
+(12, 'Comprar la comida', '2018-12-27', '2018-12-31', 1, 16, 'afmontero@esei.uvigo.es'),
+(13, 'Poner la mesa', '2018-12-27', '2018-12-31', 1, 16, 'olista94@gmail.com'),
+(14, 'Cocinar', '2018-12-27', '2018-12-31', 1, 16, 'ypgarcia@esei.uvigo.es'),
+(15, 'Fase uno', '2018-12-29', '0000-00-00', 0, 17, 'ypgarcia@esei.uvigo.es'),
+(16, 'Fase dos', '2018-12-29', '0000-00-00', 0, 17, 'ypgarcia@esei.uvigo.es'),
+(17, 'Fase tres', '2018-12-31', '2018-12-31', 1, 17, 'olista94@gmail.com'),
+(18, 'Oscar', '2018-12-30', '2018-12-31', 1, 18, 'manolo@gmail.com'),
+(19, 'Lista', '2018-12-31', '2018-12-31', 1, 18, 'olista94@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -152,6 +156,7 @@ CREATE TABLE `tareas` (
   `descripcion` mediumtext NOT NULL,
   `Fecha_Ini` date NOT NULL,
   `Fecha_Fin` date NOT NULL,
+  `completada` tinyint(4) NOT NULL DEFAULT '0',
   `USUARIOS_login` varchar(15) NOT NULL,
   `CATEGORIAS_id_CATEGORIAS` int(11) NOT NULL,
   `PRIORIDADES_nivel` int(11) NOT NULL
@@ -161,11 +166,11 @@ CREATE TABLE `tareas` (
 -- Volcado de datos para la tabla `tareas`
 --
 
-INSERT INTO `tareas` (`id_tarea`, `descripcion`, `Fecha_Ini`, `Fecha_Fin`, `USUARIOS_login`, `CATEGORIAS_id_CATEGORIAS`, `PRIORIDADES_nivel`) VALUES
-(16, 'Hacer la comida', '2018-12-31', '0000-00-00', 'root', 1, 1),
-(17, 'Tarea uno', '2018-12-28', '0000-00-00', 'root', 5, 6),
-(18, 'Oscar Lista', '2018-12-29', '0000-00-00', 'Olista', 4, 3),
-(20, 'Primera', '2018-12-01', '0000-00-00', 'Olista', 5, 3);
+INSERT INTO `tareas` (`id_tarea`, `descripcion`, `Fecha_Ini`, `Fecha_Fin`, `completada`, `USUARIOS_login`, `CATEGORIAS_id_CATEGORIAS`, `PRIORIDADES_nivel`) VALUES
+(16, 'Hacer la comida', '2018-12-31', '0000-00-00', 1, 'root', 1, 1),
+(17, 'Tarea uno', '2018-12-28', '0000-00-00', 0, 'root', 5, 6),
+(18, 'Oscar Lista', '2018-12-29', '0000-00-00', 1, 'Olista', 4, 3),
+(20, 'Primera', '2018-12-01', '0000-00-00', 0, 'Olista', 5, 3);
 
 -- --------------------------------------------------------
 
@@ -267,7 +272,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id_ARCHIVOS` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ARCHIVOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -279,13 +284,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `fases`
 --
 ALTER TABLE `fases`
-  MODIFY `id_FASES` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_FASES` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Restricciones para tablas volcadas

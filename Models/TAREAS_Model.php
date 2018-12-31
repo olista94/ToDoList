@@ -9,6 +9,7 @@ class TAREAS_Model {
 	var $descripcion;
 	var $fecha_ini;
 	var $fecha_fin;
+	var $completada;
 	var $USUARIOS_login;
 	var $CATEGORIAS_id_CATEGORIAS;
 	var $PRIORIDADES_nivel;
@@ -18,11 +19,12 @@ class TAREAS_Model {
 //Constructor de la clase
 //
 
-function __construct($id_tarea,$descripcion,$fecha_ini,$fecha_fin,$USUARIOS_login,$CATEGORIAS_id_CATEGORIAS,$PRIORIDADES_nivel){
+function __construct($id_tarea,$descripcion,$fecha_ini,$fecha_fin,$completada,$USUARIOS_login,$CATEGORIAS_id_CATEGORIAS,$PRIORIDADES_nivel){
 	$this->id_tarea = $id_tarea;
 	$this->descripcion = $descripcion;
 	$this->fecha_ini = $fecha_ini;
 	$this->fecha_fin = $fecha_fin;
+	$this->completada = $completada;
 	$this->USUARIOS_login = $USUARIOS_login;
 	$this->CATEGORIAS_id_CATEGORIAS = $CATEGORIAS_id_CATEGORIAS;
 	$this->PRIORIDADES_nivel = $PRIORIDADES_nivel;
@@ -40,6 +42,7 @@ function add(){
 							'$this->descripcion',
 							'$this->fecha_ini',
 							'$this->fecha_fin',
+							'$this->completada',
 							'$this->USUARIOS_login',
 							'$this->CATEGORIAS_id_CATEGORIAS',
 							'$this->PRIORIDADES_nivel')
@@ -151,7 +154,7 @@ function delete()
 
 function TareasShowAll(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion 
-	AS descripcion_prioridad, p.color AS color_tarea, Fecha_Ini FROM tareas t,prioridades p WHERE t.PRIORIDADES_nivel = p.nivel";
+	AS descripcion_prioridad, p.color AS color_tarea, Fecha_Ini, t.completada AS completa FROM tareas t,prioridades p WHERE t.PRIORIDADES_nivel = p.nivel";
 	//die($sql);
 	
 	if (!($resultado = $this->mysqli->query($sql))){
@@ -224,7 +227,7 @@ function BuscarMaxID(){
 
 function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario normal
 	$sql = " SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion 
-	AS descripcion_prioridad, p.color AS color_tarea, Fecha_Ini
+	AS descripcion_prioridad, p.color AS color_tarea, Fecha_Ini, t.completada AS completa
 			FROM tareas t,prioridades p
 			WHERE `USUARIOS_login` = '".$_SESSION['login']."' && t.PRIORIDADES_nivel = p.nivel
 					";
@@ -243,7 +246,7 @@ function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario norm
 
 
 function OrdenarFecha(){//Ordena por fecha de inicio
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea, t.completada AS completa
 			FROM tareas t,prioridades p
 			WHERE t.PRIORIDADES_nivel = p.nivel
 			ORDER BY `Fecha_Ini` 
@@ -262,7 +265,7 @@ function OrdenarFecha(){//Ordena por fecha de inicio
 }
 
 function OrdenarPrioridad(){//Ordena por prioridad
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea, t.completada AS completa
 			FROM tareas t,prioridades p
 			WHERE t.PRIORIDADES_nivel = p.nivel 
 			ORDER BY `PRIORIDADES_nivel`  
@@ -281,7 +284,7 @@ function OrdenarPrioridad(){//Ordena por prioridad
 }
 
 function OrdenarCategoria(){//Ordena por categoria
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea, t.completada AS completa
 			FROM tareas t,prioridades p
 			WHERE t.PRIORIDADES_nivel = p.nivel
 			ORDER BY `CATEGORIAS_id_CATEGORIAS`  
@@ -301,7 +304,7 @@ function OrdenarCategoria(){//Ordena por categoria
 
 
 function OrdenarFechaNormal(){//Ordena por fecha de inicio
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, t.completada AS completa
 			FROM tareas t,prioridades p
 			WHERE t.PRIORIDADES_nivel = p.nivel && `USUARIOS_login` = '".$_SESSION['login']."'
 			ORDER BY `Fecha_Ini` 
@@ -320,7 +323,7 @@ function OrdenarFechaNormal(){//Ordena por fecha de inicio
 }
 
 function OrdenarPrioridadNormal(){//Ordena por prioridad
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, t.completada AS completa
 			FROM tareas t,prioridades p
 			WHERE t.PRIORIDADES_nivel = p.nivel && `USUARIOS_login` = '".$_SESSION['login']."'
 			ORDER BY `PRIORIDADES_nivel`  
@@ -339,7 +342,7 @@ function OrdenarPrioridadNormal(){//Ordena por prioridad
 }
 
 function OrdenarCategoriaNormal(){//Ordena por categoria
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad
+	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, t.completada AS completa
 			FROM tareas t,prioridades p
 			WHERE t.PRIORIDADES_nivel = p.nivel && `USUARIOS_login` = '".$_SESSION['login']."'
 			ORDER BY `CATEGORIAS_id_CATEGORIAS`  
@@ -354,6 +357,51 @@ function OrdenarCategoriaNormal(){//Ordena por categoria
 		
 		/* print_r($resultado); */
 		return $result;
+	}
+}
+
+function puedeCompletar()
+{
+	
+	$sql = "SELECT * FROM fases WHERE (TAREAS_id_TAREAS = '$this->id_tarea') 
+								   && (completada = '0')";
+
+	    
+    $result = $this->mysqli->query($sql);
+    
+    if ($result->num_rows == 0)
+    {	
+		$date = date('Y-m-d', time());
+		$sql = "UPDATE tareas SET
+					`completada` = '1',
+					`Fecha_Fin` = '$date'				
+
+				WHERE (`id_tarea` = '$this->id_tarea')";
+
+        if (!($resultado = $this->mysqli->query($sql))){
+			return 'Error al completar la tarea';
+		}
+		else{ 
+			return 'La tarea se ha cerrado'; 
+		}
+    }
+    else 
+    	return 'No se puede completar una tarea con fases abiertas';
+}
+
+function puedeDescompletar()
+{	
+	$sql = "UPDATE tareas SET
+				`completada` = '0',
+				`Fecha_Fin` = ''				
+
+			WHERE (`id_tarea` = '$this->id_tarea')";
+
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'Error al completar la tarea';
+	}
+	else{ 
+		return 'La tarea se ha cerrado'; 
 	}
 }
 

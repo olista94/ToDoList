@@ -10,6 +10,7 @@ class FASES_Model {
 	var $descripcion;
 	var $fecha_ini;
 	var $fecha_fin;
+	var $completada;
 	var $TAREAS_id_TAREAS;
 	var $CONTACTOS_email;
 	
@@ -18,11 +19,12 @@ class FASES_Model {
 //Constructor de la clase
 //
 
-function __construct($id_fase,$descripcion,$fecha_ini,$fecha_fin,$TAREAS_id_TAREAS,$CONTACTOS_email){
+function __construct($id_fase,$descripcion,$fecha_ini,$fecha_fin,$completada,$TAREAS_id_TAREAS,$CONTACTOS_email){
 	$this->id_fase = $id_fase;
 	$this->descripcion = $descripcion;
 	$this->fecha_ini = $fecha_ini;
 	$this->fecha_fin = $fecha_fin;
+	$this->completada = $completada;
 	$this->TAREAS_id_TAREAS = $TAREAS_id_TAREAS;
 	$this->CONTACTOS_email = $CONTACTOS_email;
 
@@ -39,6 +41,7 @@ function add(){
 							'$this->descripcion',
 							'$this->fecha_ini',
 							'$this->fecha_fin',
+							'$this->completada',
 							'$this->TAREAS_id_TAREAS',
 							'$this->CONTACTOS_email'
 							)
@@ -85,7 +88,7 @@ function edit()
     }
     else 
     	return $GLOBALS['strings']['No existe'];
-} 
+}
 
 function search(){ 
 
@@ -226,6 +229,59 @@ function BuscarIDFase(){
 		return $result;
 	}
 }
+
+function setCompletada()
+{
+	
+    $sql = "SELECT * FROM fases WHERE (id_FASES = '$this->id_fase')";
+    
+    $result = $this->mysqli->query($sql);
+    
+    if ($result->num_rows == 1)
+    {	
+		$date = date('Y-m-d', time());
+		$sql = "UPDATE fases SET
+					`completada` = '1',
+					`fecha_fin` = '$date'				
+
+				WHERE (`id_FASES` = '$this->id_fase')";
+
+        if (!($resultado = $this->mysqli->query($sql))){
+			return $GLOBALS['strings']['Error en la modificación'];
+		}
+		else{ 
+			return $GLOBALS['strings']['Modificado correctamente']; 
+		}
+    }
+    else 
+    	return $GLOBALS['strings']['No existe'];
+} 
+
+function setNoCompletada()
+{
+	
+	$sql = "SELECT * FROM fases WHERE (id_FASES = '$this->id_fase')";
+    
+    $result = $this->mysqli->query($sql);
+    
+    if ($result->num_rows == 1)
+    {	
+		$sql = "UPDATE fases SET
+					`completada` = '0',
+					`fecha_fin` = ''					
+
+				WHERE (`id_FASES` = '$this->id_fase')";
+
+        if (!($resultado = $this->mysqli->query($sql))){
+			return $GLOBALS['strings']['Error en la modificación'];
+		}
+		else{ 
+			return $GLOBALS['strings']['Modificado correctamente']; 
+		}
+    }
+    else 
+    	return $GLOBALS['strings']['No existe'];
+} 
 
 
 }//fin de clase
