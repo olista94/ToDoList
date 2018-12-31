@@ -53,6 +53,7 @@ include_once '../Views/Header.php';
 			</form></th></tr>
 
 			<tr>
+				<th><?php echo $strings['Completada']; ?></th>
 				<th><?php echo $strings['Descripcion']; ?></th>
 				<th><?php echo $strings['Fecha inicio']; ?></th>
 				<th><?php echo $strings['Contacto']; ?></th>			
@@ -66,6 +67,27 @@ include_once '../Views/Header.php';
 			<tr>
 				<form action="../Controllers/Fases_Controller.php" method="post" name="id_fase" >
 					<input type="hidden" name="id_fase" value="<?php echo $fila[0]; ?>">
+					<input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $fila['TAREAS_id_TAREAS']; ?>">
+					<?php
+						if($fila['completada'] == 0){
+					?>
+						<td>
+							<label class="container">
+							<input type="checkbox" name="action" onclick="this.form.submit()" value="Confirmar_COMPLETADA"><span class="checkmark"></span>
+							</label>
+						</td>
+					<?php
+						}else{
+					?>
+						<td>
+							<label class="container">
+							<input type="hidden" name="action" value="Confirmar_NO_COMPLETADA"/>
+							<input type="checkbox" name="action" onclick="this.form.submit()" value="Confirmar_NO_COMPLETADA" checked><span class="checkmark"></span>
+							</label>
+						</td>
+					<?php
+						}
+					?>
 					<td><?php echo $fila['descripcion']; ?></td>
 					<td><?php echo $fila['fecha_inicio']; ?></td>
 					<td><?php echo $fila['CONTACTOS_email']; ?></td>				

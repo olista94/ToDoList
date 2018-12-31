@@ -16,7 +16,7 @@ include '../Views/Header.php';
 		$this -> enlace = $enlace;
 		$this -> pinta();
 	}
-	
+		
 	function pinta(){
 		
 		if(!isset($_SESSION['idioma'])){
@@ -51,6 +51,7 @@ include '../Views/Header.php';
 				</th></tr>
 		
 				<tr>
+					<th><?php echo $strings['Completada']; ?></th>
 					<th><?php echo $strings['Descripcion']; ?></th>
 					<th><?php echo $strings['Prioridad']; ?></th>			
 					<th></th>
@@ -61,6 +62,26 @@ include '../Views/Header.php';
 				<tr>
 					<form action="../Controllers/Tareas_Controller.php" method="post" name="id_tarea" >
 						<input type="hidden" name="id_tarea" value="<?php echo $fila['id_tarea']; ?>">
+						<?php
+							if($fila['completa'] == 0){
+						?>
+							<td>
+								<label class="container">
+								<input type="checkbox" name="action" onclick="this.form.submit()" value="Confirmar_COMPLETADA"><span class="checkmark"></span>
+								</label>
+							</td>
+						<?php
+							}else{
+						?>
+							<td>
+								<label class="container">
+								<input type="hidden" name="action" value="Confirmar_NO_COMPLETADA"/>
+								<input type="checkbox" name="action" onclick="this.form.submit()" value="Confirmar_NO_COMPLETADA" checked><span class="checkmark"></span>
+								</label>
+							</td>
+						<?php
+							}
+						?>
 						<td style="background-color:<?php echo $fila['color_tarea']; ?>;" ><?php echo $fila[1]; ?></td>
 						<td><?php echo $fila[2]; ?></td>				
 						<td style="text-align:right">
