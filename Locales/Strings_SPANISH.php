@@ -418,7 +418,7 @@ array(
 	'Formulario para buscar categoria' => 'Formulario para buscar categoria',
 	'Añadir categoria' => 'Añadir categoria',
 	'Fecha' => 'Fecha',
-	'' => '',
+	'Completada' => 'Completada',
 	'' => '',
 	'' => '',
 	'' => '',
