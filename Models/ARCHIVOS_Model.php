@@ -10,18 +10,20 @@ class ARCHIVOS_Model {
 	var $nombre;
     var $url;
 	var $FASES_id_FASES;
+	var $FASES_TAREAS_id_TAREAS;
 	
 	/* var $mysqli; */
 
 //Constructor de la clase
 //
 
-function __construct($id_ARCHIVOS, $nombre, $url, $FASES_id_FASES){
+function __construct($id_ARCHIVOS, $nombre, $url, $FASES_id_FASES,$FASES_TAREAS_id_TAREAS){
 
 	$this->id_ARCHIVOS = $id_ARCHIVOS;
     $this->nombre = $nombre;
     $this->url = $url;
-    $this->FASES_id_FASES = $FASES_id_FASES;
+	$this->FASES_id_FASES = $FASES_id_FASES;
+	$this->FASES_TAREAS_id_TAREAS = $FASES_TAREAS_id_TAREAS;
     
 	include_once '../Models/Access_DB.php';
 	$this->mysqli = ConnectDB();
@@ -35,7 +37,8 @@ function add(){
 							'$this->id_ARCHIVOS',
 							'$this->nombre',
 							'$this->url',
-							'$this->FASES_id_FASES'
+							'$this->FASES_id_FASES',
+							'$this->FASES_TAREAS_id_TAREAS'
 							)
 						";
 
@@ -51,7 +54,20 @@ function add(){
 					
 				}
 
-} 
+}
+
+function getArchivosOfTarea() {	
+    $sql = "SELECT * FROM archivos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS')";
+   
+    if (!($resultado = $this->mysqli->query($sql))){
+		return $GLOBALS['strings']['No existe']; 
+	}
+    else{ 
+		$result = $resultado;
+		return $result;
+	
+	}
+}
 
 function edit()
 {

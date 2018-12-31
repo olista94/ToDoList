@@ -22,6 +22,14 @@ SET time_zone = "+00:00";
 -- Base de datos: `todolist`
 --
 
+DROP SCHEMA IF EXISTS `todolist` ;
+
+-- -----------------------------------------------------
+-- Schema todolist
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `todolist` DEFAULT CHARACTER SET utf8 ;
+USE `todolist` ;
+
 -- --------------------------------------------------------
 
 --
@@ -32,7 +40,8 @@ CREATE TABLE `archivos` (
   `id_ARCHIVOS` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `url` varchar(255) NOT NULL,
-  `FASES_id_FASES` int(11) NOT NULL
+  `FASES_id_FASES` int(11) NOT NULL,
+  `FASES_TAREAS_id_TAREAS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -125,12 +134,12 @@ CREATE TABLE `prioridades` (
 --
 
 INSERT INTO `prioridades` (`nivel`, `descripcion`, `color`) VALUES
-(1, 'No urgente', 'Verde'),
-(2, 'Poco importante', 'Azul'),
-(3, 'Importante', 'Amarillo'),
-(4, 'Muy importante', 'Naranja'),
-(5, 'Urgente', 'Rojo'),
-(6, 'Super', 'Rosita');
+(1, 'No urgente', '#008000'),
+(2, 'Poco importante', '#00FFFF'),
+(3, 'Importante', '#FFFF00'),
+(4, 'Muy importante', '#FFA500'),
+(5, 'Urgente', '#FF0000'),
+(6, 'Super', '#FF00FF');
 
 -- --------------------------------------------------------
 
@@ -194,9 +203,10 @@ INSERT INTO `usuarios` (`login`, `password`, `dni`, `nombre`, `apellidos`, `tele
 -- Indices de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  ADD PRIMARY KEY (`id_ARCHIVOS`,`FASES_id_FASES`),
+  ADD PRIMARY KEY (`id_ARCHIVOS`,`FASES_id_FASES`,`FASES_TAREAS_id_TAREAS`),
   ADD UNIQUE KEY `id_ARCHIVOS_UNIQUE` (`id_ARCHIVOS`),
-  ADD KEY `fk_ARCHIVOS_FASES1_idx` (`FASES_id_FASES`);
+  ADD KEY `fk_ARCHIVOS_FASES1_idx` (`FASES_id_FASES`),
+  ADD KEY `fk_ARCHIVOS_TAREAS1_idx` (`FASES_TAREAS_id_TAREAS`);
 
 --
 -- Indices de la tabla `categorias`
@@ -285,7 +295,8 @@ ALTER TABLE `tareas`
 -- Filtros para la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  ADD CONSTRAINT `fk_ARCHIVOS_FASES1` FOREIGN KEY (`FASES_id_FASES`) REFERENCES `fases` (`id_FASES`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_ARCHIVOS_FASES1` FOREIGN KEY (`FASES_id_FASES`) REFERENCES `fases` (`id_FASES`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ARCHIVOS_TAREAS1` FOREIGN KEY (`FASES_TAREAS_id_TAREAS`) REFERENCES `fases` (`TAREAS_id_TAREAS`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `fases`
