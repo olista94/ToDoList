@@ -8,12 +8,13 @@ include_once '../Views/Header.php';
  class Fases_SHOWALL{	 
 	
 	var $datos;
-	//var $ficheros;
+	var $archivos;
 	var $enlace;	
 	
-	function __construct($datos,$enlace){
+	function __construct($datos,$archivos,$enlace){
 		
 		$this -> datos = $datos;
+		$this -> archivos = $archivos;
 		$this -> enlace = $enlace;
 		$this -> mostrar();
 	}
@@ -29,9 +30,23 @@ include_once '../Views/Header.php';
 ?>
 
 	<div class="showall">
-									
+
+			
+		<form>
+		<legend>Ficheros de la tarea</legend>
+		<?php
+			if($this ->archivos != null){
+				while($fila2 = $this ->archivos->fetch_array()){
+		?>  
+			<li><a href="<?php echo $fila2['url']; ?>" download><?php echo $fila2['nombre']; ?></a></li>
+		<?php
+				}
+			}
+		?>
+		</form> 
+								
 		<table class="showAllUsers">
-			<tr><th class="title" colspan="4"><?php echo $strings['Fases']; ?>
+			<tr><th class="title" colspan="8"><?php echo $strings['Fases']; ?>
 			<form class="tableActions" action="../Controllers/Fases_Controller.php" method="">
 			<button class="buscar-little" name="action" value="Confirmar_SEARCH" type="submit"></button>
 			<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
@@ -47,7 +62,7 @@ include_once '../Views/Header.php';
 			while($fila = $this ->datos->fetch_array()){     
 			
 		?>
-	
+		
 			<tr>
 				<form action="../Controllers/Fases_Controller.php" method="post" name="id_fase" >
 					<input type="hidden" name="id_fase" value="<?php echo $fila[0]; ?>">
@@ -63,8 +78,8 @@ include_once '../Views/Header.php';
 			</tr>
 		<?php
 			}
-		?>                    
-		</table>     
+		?>                 
+		</table> 
 	
 	</div>           
 			
