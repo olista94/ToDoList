@@ -62,7 +62,7 @@ class Fases_ADD{
 					</select>
 
 					<label for="archivo"><?php echo $strings['Archivos']; ?></label>
-                    <input type="file" name="archivo[]" id="archivo" size="40" multiple="multiple" required/>
+                    <input type="file" name="archivo[]" id="archivo" size="40" multiple="multiple"/>
 					
 				</div>
 				
