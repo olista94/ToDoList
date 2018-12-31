@@ -179,7 +179,7 @@ switch ($_REQUEST['action']){
 	case 'Confirmar_SHOWFASES':
 		if(count($_REQUEST) < 4 ){
 			
-			$fase = new FASES_Model('','','','',$_REQUEST['id_tarea'],'');
+			$fase = new FASES_Model('','','','','',$_REQUEST['id_tarea'],'');
 			$datos = $fase->getFasesOfTarea();
 
 			$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['id_tarea']);
@@ -188,9 +188,24 @@ switch ($_REQUEST['action']){
 			$respuesta = new Fases_SHOWALL($datos,$archivo,'../Controllers/Fases_Controller.php');				
 		}
 	break;
-	
-	
-	
+
+	case 'Confirmar_COMPLETADA':	
+		$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+
+		$tarea-> puedeCompletar();
+		$datos = $tarea->TareasShowAll();
+
+		new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
+	break;
+
+	case 'Confirmar_NO_COMPLETADA':
+		$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+
+		$tarea-> puedeDescompletar();
+		$datos = $tarea->TareasShowAll();
+
+		new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
+	break;
 	
 	case 'Ordenar_Fecha':
 		if(isset($_SESSION['tipo'])){
