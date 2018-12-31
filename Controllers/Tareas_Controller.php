@@ -15,6 +15,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 
 	include_once "../Models/TAREAS_Model.php";
 	include_once "../Models/FASES_Model.php";
+	include_once "../Models/ARCHIVOS_Model.php";
 	include_once "../Views/Tareas_SHOWALL.php";
 	include_once "../Views/Tareas_ADD.php";
 	include_once "../Views/Tareas_SEARCH.php";
@@ -181,7 +182,10 @@ switch ($_REQUEST['action']){
 			$fase = new FASES_Model('','','','',$_REQUEST['id_tarea'],'');
 			$datos = $fase->getFasesOfTarea();
 
-			$respuesta = new Fases_SHOWALL($datos,'../Controllers/Fases_Controller.php');				
+			$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['id_tarea']);
+			$archivo = $archivos -> getArchivosOfTarea();
+
+			$respuesta = new Fases_SHOWALL($datos,$archivo,'../Controllers/Fases_Controller.php');				
 		}
 	break;
 	

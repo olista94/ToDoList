@@ -85,7 +85,7 @@ switch ($_REQUEST['action']){
 
 			$fase = getDataForm();
 			$mensaje = $fase-> add();
-
+			
 			$idFase = $fase -> BuscarIDFase();
 
 			$output_dir = "../Files/";//Path for file upload
@@ -101,7 +101,7 @@ switch ($_REQUEST['action']){
 				$ruta= $output_dir.$NewImageName;
 				move_uploaded_file($_FILES["archivo"]["tmp_name"][$i],$output_dir."/".$NewImageName );
 
-				$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase);
+				$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase,$_REQUEST['TAREAS_id_TAREAS']);
 				$model -> add();
 			}
 
@@ -142,7 +142,7 @@ switch ($_REQUEST['action']){
 					$ruta= $output_dir.$NewImageName;
 					move_uploaded_file($_FILES["archivo"]["tmp_name"][$i],$output_dir."/".$NewImageName );
 
-					$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase);
+					$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase,$_REQUEST['TAREAS_id_TAREAS']);
 					$model -> add();
 				}
 				
@@ -229,7 +229,7 @@ switch ($_REQUEST['action']){
 	 default: /*PARA EL SHOWALL */
 		$fase = new FASES_Model('','','','','','');
 		$datos = $fase -> FasesShowAll();
-		$respuesta = new Fases_SHOWALL($datos,'../Controllers/Fases_Controller.php');
+		$respuesta = new Fases_SHOWALL($datos,'','../Controllers/Fases_Controller.php');
 	}
 
 }
