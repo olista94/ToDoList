@@ -13,5 +13,5 @@ Completar:
 	- Editar fase
 
 Añadidos:
-	- ~~Boton volver a la vista de tareas en desde la vista de ver fases~~
-	- ~~Mensajes alerta o informacion aparte de los MESSAGE~~
+	- ~Boton volver a la vista de tareas en desde la vista de ver fases~
+	- ~Mensajes alerta o informacion aparte de los MESSAGE~
