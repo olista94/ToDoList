@@ -1,5 +1,6 @@
 Corregir:    
 - Subir fichero obligatoriamente  
+- ~Arreglar añadir tarea sin ficheros~
 - ~Eliminar menu showall ver fases por defecto~
 - ~Arreglar boton añadir fases~
 - Mostrar si tarea tiene fases, si tiene contactos, si tiene archivos  
