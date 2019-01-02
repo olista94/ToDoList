@@ -48,11 +48,18 @@ function getDataForm(){
 		$fecha_fin = "";
 	}
 	
+	if(isset($_REQUEST['completada'])){
+		$completada = $_REQUEST['completada'];
+	}
+	else{
+		$completada = "";
+	}
+	
 	$usuarios_login = $_SESSION['login'];
 	$id_categoria = $_REQUEST['id_categoria'];
 	$nivel_prioridad = $_REQUEST['nivel_prioridad'];		
 	
-	$tarea = new TAREAS_Model ($id_tarea,$descripcion,$fecha_ini,$fecha_fin,$usuarios_login,$id_categoria,$nivel_prioridad);
+	$tarea = new TAREAS_Model ($id_tarea,$descripcion,$fecha_ini,$fecha_fin,$completada,$usuarios_login,$id_categoria,$nivel_prioridad);
 	
 	return $tarea;
 }
