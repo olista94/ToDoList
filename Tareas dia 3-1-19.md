@@ -5,13 +5,15 @@ Corregir:
 - ~Arreglar boton añadir fases~
 - Mostrar si tarea tiene fases, si tiene contactos, si tiene archivos  
 - Mostrar fases tarea al hacer clic en ella, no en el boton (javascript?)  
-- ~Sobra el boton cancelar borrado~
+- Sobra el boton cancelar borrado
 	
 Completar:  
 - ~Ver detalle fase~  
 - Ver eliminar fase  
 - ~Ver archivos fase~  
 - Editar fase  
+- Strings
+- Poner mensajes de retorno lógicos en los modelos (no genericos)
 
 Añadidos:  
 - ~Boton volver a la vista de tareas en desde la vista de ver fases~  
