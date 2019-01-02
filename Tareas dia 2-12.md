@@ -7,11 +7,11 @@ Corregir:
 - ~Sobra el boton cancelar borrado~
 	
 Completar:  
-	- ~Ver detalle fase~  
-	- Ver eliminar fase  
-	- ~Ver archivos fase~  
-	- Editar fase  
+- ~Ver detalle fase~  
+- Ver eliminar fase  
+- ~Ver archivos fase~  
+- Editar fase  
 
 Añadidos:  
-	- ~Boton volver a la vista de tareas en desde la vista de ver fases~  
-	- ~Mensajes alerta o informacion aparte de los MESSAGE~  
+- ~Boton volver a la vista de tareas en desde la vista de ver fases~  
+- ~Mensajes alerta o informacion aparte de los MESSAGE~  
