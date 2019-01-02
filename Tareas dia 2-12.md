@@ -1,4 +1,4 @@
-Corregir:  
+Corregir:    
 - Subir fichero obligatoriamente  
 - ~Eliminar menu showall ver fases por defecto~
 - ~Arreglar boton añadir fases~
@@ -6,12 +6,12 @@ Corregir:
 - Mostrar fases tarea al hacer clic en ella, no en el boton (javascript?)  
 - ~Sobra el boton cancelar borrado~
 	
-Completar:
-	- ~Ver detalle fase~
-	- Ver eliminar fase
-	- ~Ver archivos fase~
-	- Editar fase
+Completar:  
+	- ~Ver detalle fase~  
+	- Ver eliminar fase  
+	- ~Ver archivos fase~  
+	- Editar fase  
 
-Añadidos:
-	- ~Boton volver a la vista de tareas en desde la vista de ver fases~
-	- ~Mensajes alerta o informacion aparte de los MESSAGE~
+Añadidos:  
+	- ~Boton volver a la vista de tareas en desde la vista de ver fases~  
+	- ~Mensajes alerta o informacion aparte de los MESSAGE~  
