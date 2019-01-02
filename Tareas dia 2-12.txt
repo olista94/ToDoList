@@ -6,3 +6,7 @@ Alex:
 	- Subir archivos
 	- Colores
 	- Fechas
+
+
+Corregir:
+	- Al abrir una tarea para ver fases no hay boton para volver
