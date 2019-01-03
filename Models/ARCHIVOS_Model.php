@@ -43,14 +43,14 @@ function add(){
 						";
 
 				if (!$this->mysqli->query($sql)) { 
-					/* return $GLOBALS['strings']['Error al insertar']; */
+					return 'Error al insertar';
 					
 					echo $sql;
 						
 				}
 				else{ 
 				echo $sql;
-					return $GLOBALS['strings']['Insertado correcto']; 
+					return 'Insertado correcto'; 
 					
 				}
 
@@ -60,7 +60,20 @@ function getArchivosOfTarea() {
     $sql = "SELECT * FROM archivos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		return $result;
+	
+	}
+}
+
+function getArchivosOfFase() {	
+    $sql = "SELECT * FROM archivos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES')";
+   
+    if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
@@ -88,14 +101,14 @@ function edit()
 				WHERE (`id_FASES` = '$this->id_fase')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return $GLOBALS['strings']['Error en la modificación'];
+			return 'Error en la modificación';
 		}
 		else{ 
-			return $GLOBALS['strings']['Modificado correctamente']; 
+			return 'Modificado correctamente'; 
 		}
     }
     else 
-    	return $GLOBALS['strings']['No existe'];
+    	return 'No existe';
 } 
 
 function search(){ 
@@ -115,7 +128,7 @@ function search(){
 				/* echo $sql; */
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['Error en la búsqueda'];
+		return 'Error en la búsqueda';
 		/* return "Error en la consulta"; */
 	}
     else{ 
@@ -136,17 +149,17 @@ function delete()
         
         $this->mysqli->query($sql);
         
-    	return $GLOBALS['strings']['Borrado correctamente'];
+    	return 'Borrado correctamente';
     } 
     else
-        return $GLOBALS['strings']['No existe'];
+        return 'No existe';
 }
 
 	function rellenadatos() {	
     $sql = "SELECT * FROM archivos WHERE (`FASES_id_FASES` = '$this->id_fase')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
@@ -159,7 +172,7 @@ function getFasesOfTarea() {
     $sql = "SELECT * FROM fases WHERE (`TAREAS_id_TAREAS` = '$this->TAREAS_id_TAREAS')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
@@ -172,7 +185,7 @@ function FasesShowAll(){
 	$sql = "SELECT * FROM fases ";
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;

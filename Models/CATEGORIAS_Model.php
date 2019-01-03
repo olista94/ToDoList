@@ -29,10 +29,10 @@ function add(){
 			
 		if (!$this->mysqli->query($sql)) {
 			echo $sql;
-			return $GLOBALS['strings']['Error al insertar'];
+			return 'Error al insertar';
 		}
 		else{
-			return  $GLOBALS['strings']['Insercion correcta']; //operacion de insertado correcta
+			return  'Insercion correcta'; //operacion de insertado correcta
 		}		
 	}
 	
@@ -41,7 +41,7 @@ function add(){
     $sql = "SELECT * FROM categorias WHERE (`id_CATEGORIAS` = '$this->id_CATEGORIAS')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
@@ -64,16 +64,16 @@ function edit()
 					
 				WHERE (`id_CATEGORIAS` = '$this->id_CATEGORIAS')";
         if (!($resultado = $this->mysqli->query($sql))){
-			return $GLOBALS['strings']['Error en la modificación'];
+			return 'Error en la modificación';
 		}
 		else{ 
 			echo $sql;
-			return $GLOBALS['strings']['Modificado correctamente']; 
+			return 'Modificado correctamente'; 
 		}
     }
     else 
 		echo $sql;
-    	return $GLOBALS['strings']['No existe'];
+    	return 'No existe';
 } 
 function search(){ 
 	     $sql = "SELECT *
@@ -87,7 +87,7 @@ function search(){
 				/* echo $sql; */
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['Error en la búsqueda'];
+		return 'Error en la búsqueda';
 		/* return "Error en la consulta"; */
 	}
     else{ 
@@ -105,7 +105,7 @@ function searchById(){
 			   )";
 		   /* echo $sql; */
 	if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['Error en la búsqueda'];
+		return 'Error en la búsqueda';
 		/* return "Error en la consulta"; */
 	}
 	else{ 
@@ -125,10 +125,10 @@ function delete()
         
         $this->mysqli->query($sql);
         
-    	return $GLOBALS['strings']['Borrado correctamente'];
+    	return 'Borrado correctamente';
     } 
     else
-        return $GLOBALS['strings']['No existe'];
+        return 'No existe';
 }  
 }//fin de clase
 ?> 

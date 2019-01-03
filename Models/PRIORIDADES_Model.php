@@ -41,7 +41,7 @@ function add(){
     $sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;

@@ -28,7 +28,7 @@ function add(){
 		
         $sql = "SELECT * FROM contactos WHERE (`email` = '$this->email')";
 		if (!$result = $this->mysqli->query($sql)){ 
-			return $GLOBALS['strings']['No se ha podido conectar con la base de datos']; 
+			return 'No se ha podido conectar con la base de datos'; 
 		}
 		else { 
 			if ($result->num_rows == 0 ){ 
@@ -43,21 +43,21 @@ function add(){
 						";
 
 				if (!$this->mysqli->query($sql)) { 
-					return $GLOBALS['strings']['Error al insertar'];
+					return 'Error al insertar';
 					/* echo $sql; */
 				}
 				else{ 
-					return $GLOBALS['strings']['Insertado correcto']; 
+					return 'Insertado correcto'; 
 					
 				}
 
 			}
 			else 
-				return $GLOBALS['strings']['El usuario ya existe']; 
+				return 'El usuario ya existe'; 
 		}
     }
     else{ 
-         return $GLOBALS['strings']['Introduzca un valor para la clave']; 
+         return 'Introduzca un valor para la clave'; 
 		
 	}
 } 
@@ -77,7 +77,7 @@ function search(){
 				/* echo $sql; */
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['Error en la búsqueda'];
+		return 'Error en la búsqueda';
 		/* return "Error en la consulta"; */
 	}
     else{ 
@@ -97,10 +97,10 @@ function delete()
         
         $this->mysqli->query($sql);
         
-    	return $GLOBALS['strings']['Borrado correctamente'];
+    	return 'Borrado correctamente';
     } 
     else
-        return $GLOBALS['strings']['No existe'];
+        return 'No existe';
 } 
 
 
@@ -109,7 +109,7 @@ function rellenadatos()
     $sql = "SELECT * FROM contactos WHERE (`email` = '$this->email')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
@@ -134,14 +134,14 @@ function edit()
 				WHERE (`email` = '$this->email')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return $GLOBALS['strings']['Error en la modificación'];
+			return 'Error en la modificación';
 		}
 		else{ 
-			return $GLOBALS['strings']['Modificado correctamente']; 
+			return 'Modificado correctamente'; 
 		}
     }
     else 
-    	return $GLOBALS['strings']['No existe'];
+    	return 'No existe';
 }
 }
 ?>

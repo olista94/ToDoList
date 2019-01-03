@@ -48,14 +48,14 @@ function add(){
 						";
 
 				if (!$this->mysqli->query($sql)) { 
-					/* return $GLOBALS['strings']['Error al insertar']; */
+					return 'Error al insertar';
 					
 					echo $sql;
 						
 				}
 				else{ 
 				echo $sql;
-					return $GLOBALS['strings']['Insertado correcto']; 
+					return 'Insertado correcto'; 
 					
 				}
 
@@ -80,14 +80,14 @@ function edit()
 				WHERE (`id_FASES` = '$this->id_fase')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return $GLOBALS['strings']['Error en la modificación'];
+			return 'Error en la modificación';
 		}
 		else{ 
-			return $GLOBALS['strings']['Modificado correctamente']; 
+			return 'Modificado correctamente'; 
 		}
     }
     else 
-    	return $GLOBALS['strings']['No existe'];
+    	return 'No existe';
 }
 
 function search(){ 
@@ -107,8 +107,7 @@ function search(){
 				/* echo $sql; */
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['Error en la búsqueda'];
-		/* return "Error en la consulta"; */
+		return "Error en la consulta";
 	}
     else{ 
 		return $resultado;
@@ -128,17 +127,17 @@ function delete()
         
         $this->mysqli->query($sql);
         
-    	return $GLOBALS['strings']['Borrado correctamente'];
+    	return 'Borrado correctamente';
     } 
     else
-        return $GLOBALS['strings']['No existe'];
+        return 'No existe';
 }
 
 	function rellenadatos() {	
     $sql = "SELECT * FROM fases WHERE (`id_FASES` = '$this->id_fase')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
@@ -151,7 +150,7 @@ function getFasesOfTarea() {
     $sql = "SELECT * FROM fases WHERE (`TAREAS_id_TAREAS` = '$this->TAREAS_id_TAREAS')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
@@ -259,28 +258,38 @@ function setCompletada()
 
 function setNoCompletada()
 {
-	
-	$sql = "SELECT * FROM fases WHERE (id_FASES = '$this->id_fase')";
+	$sql = "SELECT * FROM tareas WHERE (id_tarea = '$this->TAREAS_id_TAREAS') && (completada = '1')";
     
     $result = $this->mysqli->query($sql);
     
-    if ($result->num_rows == 1)
+    if ($result->num_rows == 0)
     {	
-		$sql = "UPDATE fases SET
-					`completada` = '0',
-					`fecha_fin` = ''					
+	
+		$sql = "SELECT * FROM fases WHERE (id_FASES = '$this->id_fase')";
+		
+		$result = $this->mysqli->query($sql);
+		
+		if ($result->num_rows == 1)
+		{	
+			$sql = "UPDATE fases SET
+						`completada` = '0',
+						`fecha_fin` = ''					
 
-				WHERE (`id_FASES` = '$this->id_fase')";
+					WHERE (`id_FASES` = '$this->id_fase')";
 
-        if (!($resultado = $this->mysqli->query($sql))){
-			return $GLOBALS['strings']['Error en la modificación'];
+			if (!($resultado = $this->mysqli->query($sql))){
+				return 'Error en el cierre de la fase';
+			}
+			else{ 
+				return 'Fase cerrada correctamente'; 
+			}
+		}else{
+			return 'No existe';
 		}
-		else{ 
-			return $GLOBALS['strings']['Modificado correctamente']; 
-		}
-    }
-    else 
-    	return $GLOBALS['strings']['No existe'];
+	}else{
+		return 'No se puede abrir una fase de una tarea cerrada';
+	}
+		
 } 
 
 

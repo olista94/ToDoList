@@ -225,6 +225,24 @@ function BuscarMaxID(){
 	}
 }
 
+function BuscarDescripcion(){
+	$sql = "SELECT descripcion
+			FROM tareas
+			WHERE id_tarea = '$this->id_tarea' ";
+					
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado->fetch_array()[0];
+		echo $result;
+		print_r($resultado);
+		return $result;
+	}
+}
+
 function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario normal
 	$sql = " SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion 
 	AS descripcion_prioridad, p.color AS color_tarea, Fecha_Ini, t.completada AS completa
@@ -379,14 +397,14 @@ function puedeCompletar()
 				WHERE (`id_tarea` = '$this->id_tarea')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error al completar la tarea';
+			return 'Error al cerrar la tarea';
 		}
 		else{ 
 			return 'La tarea se ha cerrado'; 
 		}
-    }
-    else 
-    	return 'No se puede completar una tarea con fases abiertas';
+    }else{ 
+		return 'No se puede cerrar una tarea con fases abiertas';
+	}
 }
 
 function puedeDescompletar()
@@ -398,10 +416,10 @@ function puedeDescompletar()
 			WHERE (`id_tarea` = '$this->id_tarea')";
 
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'Error al completar la tarea';
+		return 'Error al abrir la tarea';
 	}
 	else{ 
-		return 'La tarea se ha cerrado'; 
+		return 'La tarea se ha vuelto a abrir'; 
 	}
 }
 
