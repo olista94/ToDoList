@@ -422,7 +422,7 @@ array(
 	'Completada' => 'Done',
 	'Tipo' => 'Type',
 	'Admin' => 'Admin',
-	'Normal' => 'User',
+	'Normal' => 'Normal',
 	'Seleccionar' => 'Select',
 	'El login no existe' => 'The login does not exist',
 	'La password para este usuario no es correcta' => 'The password for this user is not correct',
