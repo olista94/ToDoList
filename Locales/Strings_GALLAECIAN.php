@@ -1,4 +1,4 @@
-<!---ARCHIVO QUE REALIZARÁ LA TRADUCCIÓN AL CASTELLANO
+<!---ARCHIVO QUE REALIZARÁ LA TRADUCCIÓN AL GALLEGO
  CREADO POR mi3ac6 EL 22/11/2018-->
 <?php 
 
@@ -437,6 +437,7 @@ array(
 	'Error en la búsqueda' => 'Erro na búsqueda',
 	'Borrado correctamente' => 'Borrado correctamente',
 	'No existe' => 'Non existe',
+	'No se puede completar una tarea con fases abiertas' => 'Non se pode completar una tarefa con fases abertas',
 	'' => '',
 	'' => '',
 	'' => '',
