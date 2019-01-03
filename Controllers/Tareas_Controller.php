@@ -231,14 +231,17 @@ switch ($_REQUEST['action']){
 			
 				$tarea = new TAREAS_Model('','','','','','','','');
 				$datos = $tarea -> OrdenarFecha();
+				
+				$archivos = $tarea -> ContarArchivos();
 				/* print_r($datos); */
-				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');			
+				$respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');			
 		
 			}else{
 				$tarea = new TAREAS_Model('','','','','','','','');
 				$datos = $tarea -> OrdenarFechaNormal();
+				$archivos = $tarea -> ContarArchivos();
 				/* print_r($datos); */
-				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');	
+				$respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');	
 			}
 		}
 	break;
@@ -249,14 +252,16 @@ switch ($_REQUEST['action']){
 				
 				$tarea = new TAREAS_Model('','','','','','','','');
 				$datos = $tarea -> OrdenarPrioridad();
+				$archivos = $tarea -> ContarArchivos();
 				/* print_r($datos); */
-				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');			
+				$respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');			
 				
 			}else{
 				$tarea = new TAREAS_Model('','','','','','','','');
 				$datos = $tarea -> OrdenarPrioridadNormal();
+				$archivos = $tarea -> ContarArchivos();
 				/* print_r($datos); */
-				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');	
+				$respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');	
 			}
 		}			
 	break;
@@ -266,14 +271,16 @@ switch ($_REQUEST['action']){
 			if($_SESSION['tipo']=='ADMIN'){
 				$tarea = new TAREAS_Model('','','','','','','','');
 				$datos = $tarea -> OrdenarCategoria();
+				$archivos = $tarea -> ContarArchivos();
 				/* print_r($datos); */
-				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');			
+				$respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');			
 			
 			}else{
 				$tarea = new TAREAS_Model('','','','','','','','');
 				$datos = $tarea -> OrdenarCategoriaNormal();
+				$archivos = $tarea -> ContarArchivos();
 				/* print_r($datos); */
-				$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');	
+				$respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');	
 			}
 		}
 	break;
@@ -294,7 +301,7 @@ switch ($_REQUEST['action']){
 	   }else{
 		   
 		   $tarea = new TAREAS_Model('','','','','','','','');
-		   $datos = $tarea -> BuscarTareasUser();
+		   $datos = $tarea -> TareasShowAllNormal();
 		   /* print_r($datos); */
 		   $archivos = $tarea -> ContarArchivos();
 		   $respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
