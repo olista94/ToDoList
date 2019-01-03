@@ -3,6 +3,7 @@
 <?php
 session_start();
 include_once "../Views/MESSAGE.php";
+include_once "../Views/ALERT.php";
 include_once "../Functions/Authentication.php";
 
 if (!IsAuthenticated()){ //si no está autenticado
@@ -76,17 +77,15 @@ switch ($_REQUEST['action']){
 		if(count($_REQUEST) < 4 ){
 			/* $prioridades = new PRIORIDADES_Model("","","");
 			$p = $prioridades -> search(); */
-			
-		
-			
-			$tareas = new TAREAS_Model("","","","","","","","");
-			$t = $tareas -> search();
+			//die($_REQUEST['TAREAS_id_TAREAS']);
+			$tarea = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],"","","","","","","");
+			$id_tarea =$tarea -> BuscarMaxID();
+			$descripcion = $tarea -> BuscarDescripcion();
 			
 			$contactos = new CONTACTOS_Model("","","","");
 			$cont = $contactos -> search();
 			
-			
-			new Fases_ADD($t,$cont,'../Controllers/Fases_Controller.php');
+			new Fases_ADD($_REQUEST['TAREAS_id_TAREAS'],$descripcion,$cont,'../Controllers/Tareas_Controller.php');
 			
 		}
 		else{
@@ -96,10 +95,10 @@ switch ($_REQUEST['action']){
 			
 			$idFase = $fase -> BuscarIDFase();
 
-			if($_FILES['archivo']['size'] > 0) {
+			if($_FILES["archivo"]['size'][0] > 0) {
 
 				$output_dir = "../Files/";//Path for file upload
-				$fileCount = count($_FILES["archivo"]['name']);
+				$fileCount = count($_FILES["archivo"]['name']);				
 				for($i=0; $i < $fileCount; $i++){
 					$RandomNum = time();
 					$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
@@ -139,9 +138,10 @@ switch ($_REQUEST['action']){
 		$mensaje = $fase-> add();
 
 		$idFase = $fase -> BuscarIDFase();
-		if($_FILES['archivo']['size'] > 0) {
+		if($_FILES["archivo"]['size'][0] > 0) {
 			$output_dir = "../Files/";//Path for file upload
 			$fileCount = count($_FILES["archivo"]['name']);
+			die($fileCount);
 			for($i=0; $i < $fileCount; $i++){
 				$RandomNum = time();
 				$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
@@ -158,7 +158,7 @@ switch ($_REQUEST['action']){
 			}
 		}
 		
-		new MESSAGE($mensaje,'../Controllers/Fases_Controller.php');
+		new ALERT($mensaje);
 
 	break;
 
@@ -169,7 +169,7 @@ switch ($_REQUEST['action']){
 			$cont = $contactos -> search();
 						
 			
-			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
+			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','','');
 			$datos = $fase->rellenadatos();			
 			
 			new Fases_EDIT($datos,$cont,'../Controllers/Fases_Controller.php');
@@ -184,25 +184,27 @@ switch ($_REQUEST['action']){
 	case 'Confirmar_COMPLETADA':	
 		$fase = new FASES_Model($_REQUEST['id_fase'],'','','','',$_REQUEST['TAREAS_id_TAREAS'],'');
 
-		$fase-> setCompletada();
+		$mensaje = $fase-> setCompletada();
 		$datos = $fase->getFasesOfTarea();
 
 		$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['TAREAS_id_TAREAS']);
 		$archivo = $archivos -> getArchivosOfTarea();
 
 		new Fases_SHOWALL($datos,$archivo,'../Controllers/Fases_Controller.php');
+		new ALERT($mensaje);
 	break;
 
 	case 'Confirmar_NO_COMPLETADA':
 		$fase = new FASES_Model($_REQUEST['id_fase'],'','','','',$_REQUEST['TAREAS_id_TAREAS'],'');
 
-		$fase-> setNoCompletada();
+		$mensaje = $fase-> setNoCompletada();
 		$datos = $fase->getFasesOfTarea();
 
 		$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['TAREAS_id_TAREAS']);
 		$archivo = $archivos -> getArchivosOfTarea();
 
 		new Fases_SHOWALL($datos,$archivo,'../Controllers/Fases_Controller.php');
+		new ALERT($mensaje);
 	break;
 	
 	case 'Confirmar_SEARCH':
@@ -226,7 +228,7 @@ switch ($_REQUEST['action']){
 		$categorias = new CATEGORIAS_Model("","");
 		$cat = $categorias -> search();
 		
-		$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
+		$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','','');
 		$datos = $fase->rellenadatos();
 		new Fases_DELETE($datos,$p,$cat,'../Controllers/Fases_Controller.php');
 	break;
@@ -234,22 +236,19 @@ switch ($_REQUEST['action']){
 	case 'Confirmar_DELETE2':			
 		$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','','','');
 		$mensaje = $fase-> delete();
-		new MESSAGE($mensaje,'../Controllers/Fases_Controller.php');
+		new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');
 			
 	break;
 
 	case 'Confirmar_SHOWCURRENT':
 		if(count($_REQUEST) < 4 ){
+
+			$archivos = new ARCHIVOS_Model('','','',$_REQUEST['id_fase'],'');
+			$archivo = $archivos -> getArchivosOfFase();
 			
-			$prioridades = new PRIORIDADES_Model("","","");
-			$p = $prioridades -> search();
-			
-			$categorias = new CATEGORIAS_Model("","");
-			$cat = $categorias -> search();
-			
-			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
+			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','','');
 			$datos = $fase->rellenadatos();
-			new Fases_SHOWCURRENT($datos,$p,$cat,'../Controllers/Fases_Controller.php');
+			new Fases_SHOWCURRENT($datos,$archivo,'../Controllers/Fases_Controller.php');
 		}
 	break;
 	

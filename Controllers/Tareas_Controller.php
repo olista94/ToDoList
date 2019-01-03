@@ -3,6 +3,7 @@
 <?php
 session_start();
 include_once "../Views/MESSAGE.php";
+include_once "../Views/ALERT.php";
 include_once "../Functions/Authentication.php";
 
 
@@ -89,7 +90,7 @@ switch ($_REQUEST['action']){
 			/* new MESSAGE($mensaje,'../Views/Fases_ADD.php');		 */
 			if($mensaje == "Insertado correcto"){
 				$id_tarea =$tarea -> BuscarMaxID();
-			$descripcion = $tarea -> BuscarID2();
+				$descripcion = $tarea -> BuscarID2();
 				
 				$contactos = new CONTACTOS_Model("","","","");
 				$cont = $contactos -> search();
@@ -199,19 +200,21 @@ switch ($_REQUEST['action']){
 	case 'Confirmar_COMPLETADA':	
 		$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
 
-		$tarea-> puedeCompletar();
+		$alert = $tarea-> puedeCompletar();
 		$datos = $tarea->TareasShowAll();
 
 		new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
+		new ALERT($alert);
 	break;
 
 	case 'Confirmar_NO_COMPLETADA':
 		$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
 
-		$tarea-> puedeDescompletar();
+		$alert = $tarea-> puedeDescompletar();
 		$datos = $tarea->TareasShowAll();
 
 		new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
+		new ALERT($alert);
 	break;
 	
 	case 'Ordenar_Fecha':
