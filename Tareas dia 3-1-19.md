@@ -4,7 +4,8 @@ Corregir:
 - ~Arreglar boton añadir fases~
 - **Mostrar si tarea tiene fases, si tiene contactos, si tiene archivos**  
 - Mostrar fases tarea al hacer clic en ella, no en el boton (javascript?)  
-- Sobra el boton cancelar borrado
+- Sobra el boton cancelar borrado  
+- Corregir Tareas_SHOWALL
 	
 Completar:  
 - ~Ver detalle fase~  
