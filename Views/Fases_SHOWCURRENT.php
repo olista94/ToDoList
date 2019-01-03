@@ -48,7 +48,7 @@ include_once '../Views/Header.php';
 		<div class="show-half">	
             <table class="showU" style="margin-left: 40%;">
 
-                <tr><th class="title" colspan="4"><?php echo $strings['Detalles de la fase']; ?>
+                <tr><th class="title" colspan="2"><?php echo $strings['Detalles de la fase']; ?>
                     <button onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $this -> fila['TAREAS_id_TAREAS']; ?>';" class="volver"></button></th>
                 </tr>
                 <tr>

@@ -9,12 +9,14 @@ include_once '../Views/Header.php';
 	
 	var $datos;
 	var $archivos;
+	var $tareas;
 	var $enlace;	
 	
-	function __construct($datos,$archivos,$enlace){
+	function __construct($datos,$archivos,$tareas,$enlace){
 		
 		$this -> datos = $datos;
 		$this -> archivos = $archivos;
+		$this -> tareas = $tareas -> fetch_array();
 		$this -> enlace = $enlace;
 		
 		$this -> aux = $this ->datos->fetch_array();
@@ -28,9 +30,47 @@ include_once '../Views/Header.php';
             $_SESSION['idioma'] = 'SPANISH';
         }
 
-        include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
- 
+        include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
 ?>
+	
+	<div class="showall">	
+		<table class="showAllUsers" >
+
+			<tr><th class="title" colspan="4"><?php echo $strings['Detalles de la tarea']; ?>
+
+			</tr>
+			<tr>
+				<th><?php echo $strings['Id tarea']; ?></th>
+				<td><?php echo $this -> tareas['id_tarea']; ?></td>								
+			</tr>
+			<tr>
+				<th><?php echo $strings['Descripcion']; ?></th>
+				<td><?php echo $this -> tareas['descripcion']; ?></td>
+			</tr>
+			<tr>
+				<th><?php echo $strings['Fecha inicio']; ?></th>
+				<td><?php echo $this -> tareas['Fecha_Ini']; ?></td>
+			</tr>
+			<tr>
+				<th><?php echo $strings['Fecha fin']; ?></th>
+				<td><?php echo $this -> tareas['Fecha_Fin']; ?></td>
+			</tr>
+			<tr>
+				<th><?php echo $strings['Usuario']; ?></th>
+				<td><?php echo $this -> tareas['USUARIOS_login']; ?></td>
+			</tr>
+			<tr>
+				<th><?php echo $strings['Categoria']; ?></th>
+				<td><?php echo $this -> tareas[8]; ?></td>
+			</tr>
+			<tr>
+				<th><?php echo $strings['Prioridad']; ?></th>
+				<td><?php echo $this -> tareas[9]; ?></td>
+			</tr>             
+
+		</table>
+
+	</div>
 
 	<div class="showall">
 
@@ -63,7 +103,8 @@ include_once '../Views/Header.php';
 				<th><?php echo $strings['Contacto']; ?></th>			
 				<th></th>
 			</tr>
-		<?php 
+		<?php
+			$this -> datos->data_seek(0);
 			while($fila = $this ->datos->fetch_array()){     
 			
 		?>

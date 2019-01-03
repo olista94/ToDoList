@@ -7,12 +7,20 @@ include '../Views/Header.php';
  class Tareas_SHOWALL{ 
 	
 	var $datos;
-	var $prioridades;
+	var $archivos;
+	var $archivos2;
 	var $enlace;	
 	
-	function __construct($datos,$enlace){
+	function __construct($datos,$archivos,$enlace){
 		
 		$this -> datos = $datos;
+		$this -> archivos = $archivos;
+		$this -> archivos2 = [];
+		if($this -> archivos -> num_rows > 0){
+			while($archi = $this -> archivos -> fetch_array()){
+						$this -> archivos2[$archi[1]] = $archi[0];	
+							}
+		}
 		$this -> enlace = $enlace;
 		$this -> pinta();
 	}
@@ -29,7 +37,7 @@ include '../Views/Header.php';
         <div class="showall">             
 		
             <table class="showAllUsers">
-				<tr><th class="title" colspan="4"><?php echo $strings['Tareas']; ?>
+				<tr><th class="title" colspan="6"><?php echo $strings['Tareas']; ?>
 				<form class="tableActions" action="../Controllers/Tareas_Controller.php" method="">
 					<button class="buscar-little" name="action" value="Confirmar_SEARCH" type="submit"></button>
 					<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
@@ -53,10 +61,12 @@ include '../Views/Header.php';
 				<tr>
 					<th><?php echo $strings['Completada']; ?></th>
 					<th><?php echo $strings['Descripcion']; ?></th>
-					<th><?php echo $strings['Prioridad']; ?></th>			
+					<th><?php echo $strings['Categoria']; ?></th>	
+					<th>Ficheros</th>					
 					<th></th>
 				</tr>
 			<?php 
+				
 				while($fila = $this ->datos->fetch_array()){                        
 			?>
 				<tr>
@@ -82,13 +92,33 @@ include '../Views/Header.php';
 						<?php
 							}
 						?>
-						<td style="background-color:<?php echo $fila['color_tarea']; ?>;" ><?php echo $fila[1]; ?></td>
-						<td><?php echo $fila[2]; ?></td>				
+						<td style="background-color:<?php echo $fila['color_tarea']; ?>;" ><button class="tarea" name="action" value="Confirmar_SHOWFASES"><?php echo $fila[1]; ?></button></td>
+						<td><?php echo $fila[6]; ?></td>	
+						<td>
+						<?php
+						/* print_r($this -> archivos); */
+						if($this -> archivos-> num_rows == 0){
+							echo '0';
+						}
+						else{
+							$entra = 0;
+							foreach($this -> archivos2 as $indice => $valor){
+								if($indice == $fila['id_tarea']){
+									$entra = 1;
+									echo $valor;
+								}
+							}
+							if($entra == 0){
+								echo '0';
+							}
+							$entra = 0;
+						}
+						?>
+						</td>
 						<td style="text-align:right">
 							<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>
 							<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>
 							<button class="add" name="action" value="Confirmar_SHOWCURRENT" type="submit"></button>
-							<button class="ver" name="action" value="Confirmar_SHOWFASES" type="submit"></button>
 						</td>
 					</form>
 				</tr>

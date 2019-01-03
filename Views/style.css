@@ -699,3 +699,12 @@ select{
 .closebtn:hover {
   color: black;
 }
+
+
+/*-------------------FILA TAREA ---------------------*/
+
+.tarea{
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
