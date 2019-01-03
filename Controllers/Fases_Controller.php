@@ -140,7 +140,6 @@ switch ($_REQUEST['action']){
 		if($_FILES["archivo"]['size'][0] > 0) {
 			$output_dir = "../Files/";//Path for file upload
 			$fileCount = count($_FILES["archivo"]['name']);
-			die($fileCount);
 			for($i=0; $i < $fileCount; $i++){
 				$RandomNum = time();
 				$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
@@ -207,14 +206,13 @@ switch ($_REQUEST['action']){
 	break;
 	
 	case 'Confirmar_SEARCH':
-		if(count($_REQUEST) < 4 ){
-			
+		if(count($_REQUEST) < 4 ){			
 			new Fases_SEARCH('../Controllers/Fases_Controller.php');
 		}
 		else{
 			$fase = getDataForm();
 			$datos = $fase-> search();
-			new Fases_SHOWALL($datos,'../Controllers/Fases_Controller.php');
+			new Fases_SHOWALL($datos,'','../Controllers/Fases_Controller.php');
 			
 		}
 	break;

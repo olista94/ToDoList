@@ -104,14 +104,19 @@ switch ($_REQUEST['action']){
 
 	case 'Confirmar_EDIT':
 		if(count($_REQUEST) < 4 ){
-			$prioridades = new PRIORIDADES_Model("","","");
-			$p = $prioridades -> search();
-			
-			$categorias = new CATEGORIAS_Model("","");
-			$cat = $categorias -> search();
 			
 			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
 			$datos = $tarea->rellenadatos();
+
+			$array = $datos -> fetch_array();
+			$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"","");
+			$p = $prioridades -> searchById();
+			
+			$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],"");
+			$cat = $categorias -> searchById();
+
+			$datos = $tarea->rellenadatos();
+
 			new Tareas_EDIT($datos,$p,$cat,'../Controllers/Tareas_Controller.php');
 		}
 		else{
@@ -192,8 +197,11 @@ switch ($_REQUEST['action']){
 
 			$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['id_tarea']);
 			$archivo = $archivos -> getArchivosOfTarea();
+			
+			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+			$t = $tarea -> TareasCompleto();
 
-			$respuesta = new Fases_SHOWALL($datos,$archivo,'../Controllers/Fases_Controller.php');				
+			$respuesta = new Fases_SHOWALL($datos,$archivo,$t,'../Controllers/Fases_Controller.php');				
 		}
 	break;
 
@@ -272,22 +280,25 @@ switch ($_REQUEST['action']){
 		
 		
 
-	 default: /*PARA EL SHOWALL */
-	 if(isset($_SESSION['tipo'])){
-		if($_SESSION['tipo']=='ADMIN'){
-			
-		$tarea = new TAREAS_Model('','','','','','','','');
-		
-		$datos = $tarea -> TareasShowAll();
-		$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
-		
-		}else{
-			
-			$tarea = new TAREAS_Model('','','','','','','','');
-			$datos = $tarea -> BuscarTareasUser();
-			/* print_r($datos); */
-			$respuesta = new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
-	}
+	default: /*PARA EL SHOWALL */
+	if(isset($_SESSION['tipo'])){
+	   if($_SESSION['tipo']=='ADMIN'){
+		   
+	   $tarea = new TAREAS_Model('','','','','','','','');
+	   
+	   $datos = $tarea -> TareasShowAll();
+	   
+	   $archivos = $tarea -> ContarArchivos();
+	   $respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
+	   
+	   }else{
+		   
+		   $tarea = new TAREAS_Model('','','','','','','','');
+		   $datos = $tarea -> BuscarTareasUser();
+		   /* print_r($datos); */
+		   $archivos = $tarea -> ContarArchivos();
+		   $respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
+   }
 	 
 }
 }
