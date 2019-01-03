@@ -188,7 +188,10 @@ switch ($_REQUEST['action']){
 		$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['TAREAS_id_TAREAS']);
 		$archivo = $archivos -> getArchivosOfTarea();
 
-		new Fases_SHOWALL($datos,$archivo,'../Controllers/Fases_Controller.php');
+		$tarea = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],'','','','','','','');
+		$t = $tarea -> TareasCompleto();
+
+		new Fases_SHOWALL($datos,$archivo,$t,'../Controllers/Fases_Controller.php');
 		new ALERT($mensaje);
 	break;
 
@@ -201,7 +204,10 @@ switch ($_REQUEST['action']){
 		$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['TAREAS_id_TAREAS']);
 		$archivo = $archivos -> getArchivosOfTarea();
 
-		new Fases_SHOWALL($datos,$archivo,'../Controllers/Fases_Controller.php');
+		$tarea = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],'','','','','','','');
+		$t = $tarea -> TareasCompleto();
+
+		new Fases_SHOWALL($datos,$archivo,$t,'../Controllers/Fases_Controller.php');
 		new ALERT($mensaje);
 	break;
 	

@@ -210,8 +210,9 @@ switch ($_REQUEST['action']){
 
 		$alert = $tarea-> puedeCompletar();
 		$datos = $tarea->TareasShowAll();
+		$archivos = $tarea -> ContarArchivos();
 
-		new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
+		new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
 		new ALERT($alert);
 	break;
 
@@ -220,8 +221,9 @@ switch ($_REQUEST['action']){
 
 		$alert = $tarea-> puedeDescompletar();
 		$datos = $tarea->TareasShowAll();
+		$archivos = $tarea -> ContarArchivos();
 
-		new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
+		new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
 		new ALERT($alert);
 	break;
 	
