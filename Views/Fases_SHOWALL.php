@@ -16,6 +16,9 @@ include_once '../Views/Header.php';
 		$this -> datos = $datos;
 		$this -> archivos = $archivos;
 		$this -> enlace = $enlace;
+		
+		$this -> aux = $this ->datos->fetch_array();
+
 		$this -> mostrar();
 	}
 	
@@ -48,8 +51,9 @@ include_once '../Views/Header.php';
 		<table class="showAllUsers">
 			<tr><th class="title" colspan="8"><?php echo $strings['Fases']; ?>
 			<form class="tableActions" action="../Controllers/Fases_Controller.php" method="">
-			<button class="buscar-little" name="action" value="Confirmar_SEARCH" type="submit"></button>
-			<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
+				<input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $this->aux['TAREAS_id_TAREAS']; ?>">
+				<button class="buscar-little" name="action" value="Confirmar_SEARCH" type="submit"></button>
+				<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
 			</form></th></tr>
 
 			<tr>

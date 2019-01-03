@@ -1,51 +1,83 @@
-<!-- TABLA QUE MUESTRA TODOS LOS DATOS DE UN USUARIO QUE JUEGA LA LOTERIAIU
- CREADO POR mi3ac6 EL 17/11/2018-->
- 
-  <?php
- class Fases_SHOWCURRENT{
-	 
 
-	var $fila;
-	var $prioridades;
-	var $categorias;
-	var $enlace;
+<?php
+
+include_once '../Functions/Authentication.php';
+include_once '../Views/Header.php';
+
+ class Fases_SHOWCURRENT{	 
 	
-	function __construct($fila,$prioridades,$categorias,$enlace){
+	var $fila;
+	var $archivos;
+	var $enlace;	
+	
+	function __construct($fila,$archivos,$enlace){
 		
 		$this -> fila = $fila -> fetch_array();
-		
-		$this -> prioridades = $prioridades -> fetch_array();
-		$this -> categorias = $categorias -> fetch_array();
+		$this -> archivos = $archivos;
 		$this -> enlace = $enlace;
 		$this -> mostrar();
 	}
 	
 	function mostrar(){
 		
-	 include_once "../Views/Header.php";
+		if(!isset($_SESSION['idioma'])){
+            $_SESSION['idioma'] = 'SPANISH';
+        }
 
-	 
-	 
+        include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
+ 
 ?>
-  <article class="tablashowcurrent">
- <table >
- <tr><th colspan="2"><?php echo $GLOBALS['strings']['Datos de la fase seleccionado']; ?></th></tr>
- <tr><td><?php echo $GLOBALS['strings']['Id fase']; ?></td><td><?php echo $this -> fila[0]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Descripcion']; ?></td><td><?php echo $this -> fila[1]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Fecha inicio']; ?></td><td><?php echo $this -> fila[2]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Fecha fin']; ?></td><td><?php echo $this -> fila[3]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Usuario']; ?></td><td><?php echo $this -> fila[4]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Categoria']; ?></td><td><?php echo $this -> categorias[1]; ?></td></tr>
- <tr><td><?php echo $GLOBALS['strings']['Prioridad']; ?></td><td><?php echo $this -> prioridades[1]; ?></td></tr>
 
+	<div class="showall">
 
- </table>
- <a href="../Controllers/Tareas_Controller.php"><i class="fas fa-arrow-left"></i>
- 
- </article>
- 
-   <?php
-	include_once "../Views/Footer.php";
-	}
- }
- ?>
+			
+	<form>
+		<legend>Ficheros de la fase</legend>
+		<?php
+			if($this ->archivos != null){
+				while($fila2 = $this ->archivos->fetch_array()){
+		?>  
+			<li><a href="<?php echo $fila2['url']; ?>" download><?php echo $fila2['nombre']; ?></a></li>
+		<?php
+				}
+			}
+		?>
+	</form> 
+		
+								
+		<div class="show-half">	
+            <table class="showU" style="margin-left: 40%;">
+
+                <tr><th class="title" colspan="4"><?php echo $strings['Detalles de la fase']; ?>
+                    <button onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $this -> fila['TAREAS_id_TAREAS']; ?>';" class="volver"></button></th>
+                </tr>
+                <tr>
+                    <th><?php echo $strings['Descripcion']; ?></th>
+                    <td><?php echo $this -> fila['descripcion']; ?></td>
+                </tr>
+                <tr>
+                    <th><?php echo $strings['Fecha inicio']; ?></th>
+                    <td><?php echo $this -> fila['fecha_inicio']; ?></td>
+                </tr>
+                <tr>
+                    <th><?php echo $strings['Fecha fin']; ?></th>
+                    <td><?php echo $this -> fila['fecha_fin']; ?></td>
+                </tr>
+                <tr>
+                    <th><?php echo $strings['Contacto']; ?></th>
+                    <td><?php echo $this -> fila['CONTACTOS_email']; ?></td>
+                </tr>         
+                                                                        
+            </table>
+
+        </div>
+	</div>
+		
+	<footer>
+		<?php include '../Views/Footer.php'; ?>
+	</footer>
+
+	<?php
+				}
+			}
+		?>

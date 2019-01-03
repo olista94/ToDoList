@@ -77,7 +77,6 @@ if(isset($_SESSION['tipo'])){
 	<div class="menu-bar" id="menu-bar">
 		<li><a href="../Controllers/Tareas_Controller.php"><?php echo $strings['Tareas']; ?></a></li>
 		<li><a href="../Controllers/Prioridades_Controller.php"><?php echo $strings['Prioridades']; ?></a></li>
-		<li><a href="../Controllers/Fases_Controller.php"><?php echo $strings['Fases']; ?></a></li>
 		<li><a href="../Controllers/Usuarios_Controller.php"><?php echo $strings['Usuarios']; ?></a></li>
 		<li><a href="../Controllers/Contactos_Controller.php"><?php echo $strings['Contactos']; ?></a></li>
 		<li><a href="../Controllers/Categorias_Controller.php"><?php echo $strings['Categorias']; ?></a></li>
@@ -136,7 +135,6 @@ if(isset($_SESSION['tipo'])){
 
 	<div class="menu-bar" id="menu-bar">
 		<li><a href="../Controllers/Tareas_Controller.php"><?php echo $strings['Tareas']; ?></a></li>
-		<li><a href="../Controllers/Fases_Controller.php"><?php echo $strings['Fases']; ?></a></li>
 		<li><a href="../Controllers/Contactos_Controller.php"><?php echo $strings['Contactos']; ?></a></li>
 		<a href="javascript:void(0);" class="icon" onclick="responsiveMenu()">
 			<i class="fa fa-bars"></i>
