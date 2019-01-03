@@ -435,7 +435,7 @@ array(
 	'Error en la búsqueda' => 'Error en la búsqueda',
 	'Borrado correctamente' => 'Borrado correctamente',
 	'No existe' => 'No existe',
-	'' => '',
+	'No se puede completar una tarea con fases abiertas' => 'No se puede completar una tarea con fases abiertas',
 	'' => '',
 	'' => '',
 	'' => '',
