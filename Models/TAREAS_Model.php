@@ -168,6 +168,22 @@ function TareasShowAll(){
 	}
 }
 
+function TareasShowAllNormal(){
+	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
+			Fecha_Ini, t.completada AS completa, c.nombre as categoria
+			FROM tareas t,prioridades p, categorias c 
+			WHERE t.PRIORIDADES_nivel = p.nivel && c.id_CATEGORIAS = t.CATEGORIAS_id_CATEGORIAS && `USUARIOS_login` = '".$_SESSION['login']."'";
+	
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		return $result;
+	}
+}
+
 function BuscarID(){
 	$sql = "SELECT id_tarea
 			FROM tareas
@@ -266,9 +282,10 @@ function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario norm
 
 
 function OrdenarFecha(){//Ordena por fecha de inicio
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea, t.completada AS completa
-			FROM tareas t,prioridades p
-			WHERE t.PRIORIDADES_nivel = p.nivel
+	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
+			Fecha_Ini, t.completada AS completa, c.nombre as categoria
+			FROM tareas t,prioridades p,categorias c
+			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS
 			ORDER BY `Fecha_Ini` 
 					";
 	/* echo $sql; */
@@ -285,9 +302,10 @@ function OrdenarFecha(){//Ordena por fecha de inicio
 }
 
 function OrdenarPrioridad(){//Ordena por prioridad
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea, t.completada AS completa
-			FROM tareas t,prioridades p
-			WHERE t.PRIORIDADES_nivel = p.nivel 
+	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
+			Fecha_Ini, t.completada AS completa, c.nombre as categoria
+			FROM tareas t,prioridades p,categorias c
+			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS 
 			ORDER BY `PRIORIDADES_nivel`  
 					";
 	/* echo $sql; */
@@ -304,9 +322,10 @@ function OrdenarPrioridad(){//Ordena por prioridad
 }
 
 function OrdenarCategoria(){//Ordena por categoria
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, p.color AS color_tarea, t.completada AS completa
-			FROM tareas t,prioridades p
-			WHERE t.PRIORIDADES_nivel = p.nivel
+	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
+			Fecha_Ini, t.completada AS completa, c.nombre as categoria
+			FROM tareas t,prioridades p,categorias c
+			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS
 			ORDER BY `CATEGORIAS_id_CATEGORIAS`  
 					";
 	/* echo $sql; */
@@ -324,9 +343,10 @@ function OrdenarCategoria(){//Ordena por categoria
 
 
 function OrdenarFechaNormal(){//Ordena por fecha de inicio
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, t.completada AS completa
-			FROM tareas t,prioridades p
-			WHERE t.PRIORIDADES_nivel = p.nivel && `USUARIOS_login` = '".$_SESSION['login']."'
+	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
+			Fecha_Ini, t.completada AS completa, c.nombre as categoria
+			FROM tareas t,prioridades p,categorias c
+			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS && `USUARIOS_login` = '".$_SESSION['login']."'
 			ORDER BY `Fecha_Ini` 
 					";
 	/* echo $sql; */
@@ -343,10 +363,11 @@ function OrdenarFechaNormal(){//Ordena por fecha de inicio
 }
 
 function OrdenarPrioridadNormal(){//Ordena por prioridad
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, t.completada AS completa
-			FROM tareas t,prioridades p
-			WHERE t.PRIORIDADES_nivel = p.nivel && `USUARIOS_login` = '".$_SESSION['login']."'
-			ORDER BY `PRIORIDADES_nivel`  
+	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
+			Fecha_Ini, t.completada AS completa, c.nombre as categoria
+			FROM tareas t,prioridades p,categorias c
+			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS && `USUARIOS_login` = '".$_SESSION['login']."'
+			ORDER BY `PRIORIDADES_nivel` 
 					";
 	/* echo $sql; */
 	
@@ -362,9 +383,10 @@ function OrdenarPrioridadNormal(){//Ordena por prioridad
 }
 
 function OrdenarCategoriaNormal(){//Ordena por categoria
-	$sql = "SELECT id_tarea,t.descripcion,p.descripcion AS descripcion_prioridad, t.completada AS completa
-			FROM tareas t,prioridades p
-			WHERE t.PRIORIDADES_nivel = p.nivel && `USUARIOS_login` = '".$_SESSION['login']."'
+	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
+			Fecha_Ini, t.completada AS completa, c.nombre as categoria
+			FROM tareas t,prioridades p,categorias c
+			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS && `USUARIOS_login` = '".$_SESSION['login']."'
 			ORDER BY `CATEGORIAS_id_CATEGORIAS`  
 					";
 	/* echo $sql; */
