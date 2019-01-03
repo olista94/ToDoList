@@ -53,6 +53,12 @@
 
       <label for="fecha"><?php echo $strings['Fecha de nacimiento']; ?></label>
       <input id="fecha" type="text" name="fecha" value="<?php echo $this -> fila['fecha']; ?>" size="28" class="tcal" value="" readonly/>
+			
+			<label ><?php echo $strings['Tipo']; ?></label>
+				<select name="tipo" id="tipo">
+				<option value="<?php echo $this -> fila['tipo'];?>" <?php if($this -> fila['tipo'] == 'ADMIN') echo "selected"; ?>><?php echo $strings['Admin']; ?></option>
+				<option value="<?php echo $this -> fila['tipo'];?>" <?php if($this -> fila['tipo'] == 'NORMAL') echo "selected"; ?>><?php echo $strings['Normal']; ?></option>
+			</select>  
       
     </div>
     

@@ -63,6 +63,10 @@
                     <th><?php echo $strings['Fecha de nacimiento']; ?></th>
                     <td><?php echo $this -> fila['fecha']; ?></td>
                 </tr>
+				<tr>
+                    <th><?php echo $strings['Tipo']; ?></th>
+                    <td><?php echo $this -> fila['tipo']; ?></td>
+                </tr>
                                                                         
             </table>
 

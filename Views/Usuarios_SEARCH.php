@@ -55,7 +55,17 @@
                 <label for="telefono"><?php echo $strings['Telefono']; ?></label>
                 <input type="number" id="telefono" name="telefono" maxlength="11"/>
             </div>
-            
+			
+			
+			<div class="form-group">
+			<label for="telefono"><?php echo $strings['Tipo']; ?></label>
+				<select name="tipo" id="tipo">
+				<option value="">---</option>
+				<option value="ADMIN"><?php echo $strings['Admin']; ?></option>
+				<option value="NORMAL"><?php echo $strings['Normal']; ?></option>
+				</select>
+           </div>  
+		   
             <button type="submit" name="action" value="Confirmar_SEARCH" class="buscar"></button>
 
         </form>
