@@ -153,8 +153,10 @@ function delete()
 }
 
 function TareasShowAll(){
-	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion 
-	AS descripcion_prioridad, p.color AS color_tarea, Fecha_Ini, t.completada AS completa FROM tareas t,prioridades p WHERE t.PRIORIDADES_nivel = p.nivel";
+	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
+			Fecha_Ini, t.completada AS completa, c.nombre as categoria
+			FROM tareas t,prioridades p, categorias c 
+			WHERE t.PRIORIDADES_nivel = p.nivel && c.id_CATEGORIAS = t.CATEGORIAS_id_CATEGORIAS";
 	//die($sql);
 	
 	if (!($resultado = $this->mysqli->query($sql))){
@@ -421,6 +423,43 @@ function puedeDescompletar()
 	else{ 
 		return 'La tarea se ha vuelto a abrir'; 
 	}
+}
+
+function TareasCompleto()
+{	
+    $sql = "SELECT T.*,C.nombre,P.descripcion
+			FROM tareas T,categorias C,prioridades P 
+			WHERE T.CATEGORIAS_id_CATEGORIAS = C.id_CATEGORIAS && T.PRIORIDADES_nivel = P.nivel 
+			AND T.id_tarea = '$this->id_tarea' 
+			";
+    
+    $result = $this->mysqli->query($sql);
+    
+    if ($result->num_rows == 1)
+    {
+    	
+       return $result;
+    } 
+    else
+        return 'No existe';
+}
+
+function ContarArchivos()
+{	
+    $sql = "SELECT COUNT(`id_ARCHIVOS`),`FASES_TAREAS_id_TAREAS`
+			FROM archivos
+			GROUP BY `FASES_TAREAS_id_TAREAS`
+			";
+    
+    $result = $this->mysqli->query($sql);
+    
+    if ($result)
+    {
+    	
+       return $result;
+    } 
+    else
+        return 'No existe';
 }
 
 

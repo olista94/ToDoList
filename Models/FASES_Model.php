@@ -147,7 +147,7 @@ function delete()
 }
 
 function getFasesOfTarea() {	
-    $sql = "SELECT * FROM fases WHERE (`TAREAS_id_TAREAS` = '$this->TAREAS_id_TAREAS')";
+	$sql = "SELECT * FROM fases WHERE (`TAREAS_id_TAREAS` = '$this->TAREAS_id_TAREAS')";
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
