@@ -123,16 +123,15 @@ switch ($_REQUEST['action']){
 	
 	case 'Confirmar_CONTINUAR':	
 				
-		$tareas = new TAREAS_Model("","","","","","","","");
+		$tareas = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],"","","","","","","");
 		$t = $tareas -> search();
 		
 		$contactos = new CONTACTOS_Model("","","","");
 		$cont = $contactos -> search();
-		
-		$id_tarea =$tareas -> BuscarMaxID();
-		$descripcion = $tareas -> BuscarID2();
+
+		$descripcion = $tareas -> BuscarDescripcion();
 						
-		new Fases_ADD($id_tarea,$descripcion,$cont,'../Controllers/Fases_Controller.php');
+		new Fases_ADD($_REQUEST['TAREAS_id_TAREAS'],$descripcion,$cont,'../Controllers/Fases_Controller.php');
 		
 		$fase = getDataForm();
 		$mensaje = $fase-> add();
