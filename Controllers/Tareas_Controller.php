@@ -109,11 +109,11 @@ switch ($_REQUEST['action']){
 			$datos = $tarea->rellenadatos();
 
 			$array = $datos -> fetch_array();
-			$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"","");
-			$p = $prioridades -> searchById();
+			$prioridades = new PRIORIDADES_Model("","","");
+			$p = $prioridades -> search();
 			
-			$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],"");
-			$cat = $categorias -> searchById();
+			$categorias = new CATEGORIAS_Model("","");
+			$cat = $categorias -> search();
 
 			$datos = $tarea->rellenadatos();
 
@@ -205,26 +205,55 @@ switch ($_REQUEST['action']){
 		}
 	break;
 
-	case 'Confirmar_COMPLETADA':	
-		$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+	case 'Confirmar_COMPLETADA':
+		
+		if(isset($_SESSION['tipo'])){
+			if($_SESSION['tipo']=='ADMIN'){
+		
+			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
 
-		$alert = $tarea-> puedeCompletar();
-		$datos = $tarea->TareasShowAll();
-		$archivos = $tarea -> ContarArchivos();
+			$alert = $tarea-> puedeCompletar();
+			$datos = $tarea->TareasShowAll();
+			$archivos = $tarea -> ContarArchivos();
 
-		new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
-		new ALERT($alert);
+			new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
+			new ALERT($alert);
+		}else{
+			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+
+			$alert = $tarea-> puedeCompletar();
+			$datos = $tarea->TareasShowAllNormal();
+			$archivos = $tarea -> ContarArchivos();
+
+			new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
+			new ALERT($alert);
+		}
+	}
 	break;
 
 	case 'Confirmar_NO_COMPLETADA':
-		$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
 
-		$alert = $tarea-> puedeDescompletar();
-		$datos = $tarea->TareasShowAll();
-		$archivos = $tarea -> ContarArchivos();
+	if(isset($_SESSION['tipo'])){
+		if($_SESSION['tipo']=='ADMIN'){
+			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
 
-		new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
-		new ALERT($alert);
+			$alert = $tarea-> puedeDescompletar();
+			$datos = $tarea->TareasShowAll();
+			$archivos = $tarea -> ContarArchivos();
+
+			new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
+			new ALERT($alert);
+		}else{
+			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+
+			$alert = $tarea-> puedeDescompletar();
+			$datos = $tarea->TareasShowAllNormal();
+			$archivos = $tarea -> ContarArchivos();
+
+			new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
+			new ALERT($alert);
+		}
+	}
 	break;
 	
 	case 'Ordenar_Fecha':
