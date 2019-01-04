@@ -48,7 +48,7 @@ class Tareas_EDIT{
 							while($categorias=$this->categorias->fetch_array())
 							{
 						?>
-							<option value="<?php echo $categorias[0];?>" <?php if($this -> fila[5] == $categorias[0]) echo "selected"; ?>><?php echo $categorias[1];?>
+							<option value="<?php echo $categorias[0];?>" <?php if($this -> fila[6] == $categorias[0]) echo "selected"; ?>><?php echo $categorias[1];?>
 
 							</option>
 						<?php
@@ -62,7 +62,7 @@ class Tareas_EDIT{
 							while($prioridades=$this->prioridades->fetch_array())
 							{
 						?>
-							<option value="<?php echo $prioridades[0];?>" <?php if($this -> fila[5] == $prioridades[0]) echo "selected"; ?>><?php echo $prioridades[1];?>
+							<option value="<?php echo $prioridades[0];?>" <?php if($this -> fila[7] == $prioridades[0]) echo "selected"; ?>><?php echo $prioridades[1];?>
 
 							</option>
 						<?php
