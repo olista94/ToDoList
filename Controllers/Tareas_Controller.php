@@ -55,8 +55,14 @@ function getDataForm(){
 	else{
 		$completada = "";
 	}
+
+	if(isset($_REQUEST['USUARIOS_login'])){
+		$usuarios_login = $_REQUEST['USUARIOS_login'];
+	}
+	else{
+		$usuarios_login = $_SESSION['login'];
+	}
 	
-	$usuarios_login = $_SESSION['login'];
 	$id_categoria = $_REQUEST['id_categoria'];
 	$nivel_prioridad = $_REQUEST['nivel_prioridad'];		
 	
@@ -128,17 +134,34 @@ switch ($_REQUEST['action']){
 	break;
 
 	
-	case 'Confirmar_SEARCH':
+	case 'Confirmar_SEARCH1':							
+		new Tareas_SEARCH('../Controllers/Tareas_Controller.php');
+	break;
 
-		if(count($_REQUEST) < 4 ){					
-			new Tareas_SEARCH('../Controllers/Tareas_Controller.php');
-		}
-		else{
+	case 'Confirmar_SEARCH2':
+
+	if(isset($_SESSION['tipo'])){
+		if($_SESSION['tipo']=='ADMIN'){
+
 			$tarea = getDataForm();
-			$datos = $tarea-> search();
-			new Tareas_SHOWALL($datos,'../Controllers/Tareas_Controller.php');
-			
+			/* print_r($tarea); */
+			$datos = $tarea-> search1();
+			/* print_r($datos); */
+			$archivos = $tarea -> ContarArchivos();
+			new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
+
+		}else{
+
+			$tarea = getDataForm();
+			/* print_r($tarea); */
+			$datos = $tarea-> search1();
+			/* print_r($datos); */
+			$archivos = $tarea -> ContarArchivos();
+			new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');
 		}
+	}
+
+		
 	break;
 
 	

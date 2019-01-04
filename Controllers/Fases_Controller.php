@@ -219,7 +219,7 @@ switch ($_REQUEST['action']){
 		else{
 			$fase = getDataForm();
 			$datos = $fase-> search();
-			new Fases_SHOWSEARCH($datos,'','../Controllers/Fases_Controller.php');
+			new Fases_SHOWSEARCH($datos,'../Controllers/Fases_Controller.php');
 			
 		}
 	break;
