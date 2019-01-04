@@ -12,7 +12,11 @@ include_once '../Views/Header.php';
 	function __construct($datos,$enlace){
 		
 		$this -> datos = $datos;
-		$this -> enlace = $enlace;
+        $this -> enlace = $enlace;
+        
+        $this -> aux = $this ->datos->fetch_array();
+
+
 		$this -> pinta();
 	}
 		

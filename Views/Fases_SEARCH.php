@@ -12,12 +12,12 @@
 	function __construct($enlace){
 		
 		$this -> enlace = $enlace;
-		$this -> mostrar();
+    $this -> mostrar();    
 	}
 	
 	function mostrar(){
 		
-	 include_once "../Views/Header.php";
+   include_once "../Views/Header.php";
 	 
 	 
 ?>
@@ -31,7 +31,7 @@
  
  <form enctype="multipart/form-data" action="../Controllers/Fases_Controller.php" method="post" id="search" name="search">
  
-
+ <input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $_REQUEST['TAREAS_id_TAREAS']; ?>">
 
    <label>
    <?php echo $GLOBALS['strings']['Descripcion']; ?></label><br>
@@ -45,10 +45,6 @@
   <label>
   <?php echo $GLOBALS['strings']['Fecha fin']; ?></label><br>
   <input type="text" name="fecha_fin"><br>
-  
-  <label>
-   <?php echo $GLOBALS['strings']['Tarea']; ?></label><br>
-  <input type="text" name="TAREAS_id_TAREAS" ><br>
   
   <label>
    <?php echo $GLOBALS['strings']['Contacto']; ?></label><br>

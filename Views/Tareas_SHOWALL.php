@@ -39,7 +39,7 @@ include_once '../Views/Header.php';
             <table class="showAllUsers">
 				<tr><th class="title" colspan="6"><?php echo $strings['Tareas']; ?>
 				<form class="tableActions" action="../Controllers/Tareas_Controller.php" method="">
-					<button class="buscar-little" name="action" value="Confirmar_SEARCH" type="submit"></button>
+					<button class="buscar-little" name="action" value="Confirmar_SEARCH1" type="submit"></button>
 					<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
 				</form>
 
@@ -69,7 +69,7 @@ include_once '../Views/Header.php';
 				
 				while($fila = $this ->datos->fetch_array()){                        
 			?>
-				<tr>
+				<tr style="background-color:<?php echo $fila['color_tarea']; ?>;">
 					<form action="../Controllers/Tareas_Controller.php" method="post" name="id_tarea" >
 						<input type="hidden" name="id_tarea" value="<?php echo $fila['id_tarea']; ?>">
 						<?php
