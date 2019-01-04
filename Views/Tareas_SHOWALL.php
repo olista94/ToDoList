@@ -1,7 +1,7 @@
 <?php
 
 include_once '../Functions/Authentication.php';
-include '../Views/Header.php';
+include_once '../Views/Header.php';
 
 
  class Tareas_SHOWALL{ 
