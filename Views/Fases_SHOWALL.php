@@ -33,8 +33,8 @@ include_once '../Views/Header.php';
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
 ?>
 	
-	<div class="showall">	
-		<table class="showAllUsers" >
+	<div class="showDandF">	
+		<table class="showD" >
 
 			<tr><th class="title" colspan="4"><?php echo $strings['Detalles de la tarea']; ?>
 
@@ -70,12 +70,7 @@ include_once '../Views/Header.php';
 
 		</table>
 
-	</div>
-
-	<div class="showall">
-
-			
-		<form>
+		<form class=showT>
 		<legend>Ficheros de la tarea</legend>
 		<?php
 			if($this ->archivos != null){
@@ -86,8 +81,12 @@ include_once '../Views/Header.php';
 				}
 			}
 		?>
-		</form> 
-								
+		</form>
+
+	</div>
+
+	<div class="showall">
+							
 		<table class="showAllUsers">
 			<tr><th class="title" colspan="8"><?php echo $strings['Fases']; ?>
 			<form class="tableActions" action="../Controllers/Fases_Controller.php" method="">
