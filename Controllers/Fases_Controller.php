@@ -18,6 +18,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 	include_once "../Views/Fases_SEARCH.php";
 	include_once "../Views/Fases_EDIT.php";
 	include_once "../Views/Fases_SHOWCURRENT.php";
+	include_once "../Views/Fases_SHOWSEARCH.php";
 	include_once "../Views/Fases_DELETE.php";
 	include_once "../Models/PRIORIDADES_Model.php";
 	include_once "../Models/CATEGORIAS_Model.php";
@@ -218,7 +219,7 @@ switch ($_REQUEST['action']){
 		else{
 			$fase = getDataForm();
 			$datos = $fase-> search();
-			new Fases_SHOWALL($datos,'','../Controllers/Fases_Controller.php');
+			new Fases_SHOWSEARCH($datos,'','../Controllers/Fases_Controller.php');
 			
 		}
 	break;
