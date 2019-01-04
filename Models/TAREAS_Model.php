@@ -118,6 +118,62 @@ function search(){
 	}
 }
 
+function search1(){ 
+
+	$sql = "
+			   SELECT id_tarea,t.`descripcion`,`Fecha_Ini`,`Fecha_Fin`,`completada` as completa,`USUARIOS_login`,c.nombre as categoria,p.descripcion,p.color AS color_tarea
+			   FROM `tareas` t,categorias c,prioridades p
+			   WHERE `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS && `PRIORIDADES_nivel`=p.nivel &&
+			   
+				(t.`descripcion` LIKE '%$this->descripcion%') &&
+			   (`Fecha_Ini` LIKE '%$this->fecha_ini%') &&
+			   (`Fecha_Fin` LIKE '%$this->fecha_fin%') &&
+			   (`completada` LIKE '%$this->completada%') &&
+			   (`USUARIOS_login` LIKE '%$this->USUARIOS_login%') &&
+			   (c.nombre LIKE '%$this->CATEGORIAS_id_CATEGORIAS%') &&
+			   (p.descripcion LIKE '%$this->PRIORIDADES_nivel%')
+	
+	
+	";
+		   /* echo $sql; */
+
+if (!($resultado = $this->mysqli->query($sql))){
+   return 'Error en la búsqueda';
+   /* return "Error en la consulta"; */
+}
+else{ 
+   return $resultado;
+}
+}
+
+function searchAdmin(){ 
+
+	$sql = "
+			   SELECT id_tarea,t.`descripcion`,`Fecha_Ini`,`Fecha_Fin`,`completada` as completa,`USUARIOS_login`,c.nombre as categoria,p.descripcion,p.color AS color_tarea
+			   FROM `tareas` t,categorias c,prioridades p
+			   WHERE `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS && `PRIORIDADES_nivel`=p.nivel &&
+			   
+				(t.`descripcion` LIKE '%$this->descripcion%') &&
+			   (`Fecha_Ini` LIKE '%$this->fecha_ini%') &&
+			   (`Fecha_Fin` LIKE '%$this->fecha_fin%') &&
+			   (`completada` LIKE '%$this->completada%') &&
+			   (`USUARIOS_login` LIKE '%$this->USUARIOS_login%') &&
+			   (c.nombre LIKE '%$this->CATEGORIAS_id_CATEGORIAS%') &&
+			   (p.descripcion LIKE '%$this->PRIORIDADES_nivel%')
+	
+	
+	";
+		   /* echo $sql; */
+
+if (!($resultado = $this->mysqli->query($sql))){
+   return 'Error en la búsqueda';
+   /* return "Error en la consulta"; */
+}
+else{ 
+   return $resultado;
+}
+}
+
 function delete()
 {	
     $sql = "SELECT * FROM tareas WHERE (`id_tarea` = '$this->id_tarea')";

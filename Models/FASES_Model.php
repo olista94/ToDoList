@@ -94,7 +94,7 @@ function search(){
 
 	     $sql = "SELECT *
        			FROM fases
-    			WHERE
+    			WHERE `TAREAS_id_TAREAS` = '".$_REQUEST['TAREAS_id_TAREAS']."' &&
     				( 
     				
 	 				(`descripcion` LIKE '%$this->descripcion%') &&
@@ -104,7 +104,7 @@ function search(){
 					(`CONTACTOS_email` LIKE '%$this->CONTACTOS_email%')
 					
     				)";
-				/* echo $sql; */
+				echo $sql;
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return "Error en la consulta";
