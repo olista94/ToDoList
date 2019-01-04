@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Archivo php donde manejamos el index
  * Autor: yq5lj9
@@ -13,11 +12,8 @@ include '../Functions/Authentication.php';
 //si no esta autenticado
 if (!IsAuthenticated()){
 	header('Location: ../index.php');
-}
-//esta autenticado
-else{
+}else{
 	include '../Views/index_View.php';
 	new Index();
 }
-
 ?>
