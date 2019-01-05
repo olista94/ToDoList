@@ -246,14 +246,14 @@ function setCompletada()
 				WHERE (`id_FASES` = '$this->id_fase')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return $GLOBALS['strings']['Error en la modificación'];
+			return 'Error en la al cerrar la fase';
 		}
 		else{ 
-			return $GLOBALS['strings']['Modificado correctamente']; 
+			return 'La fase se ha cerrado'; 
 		}
     }
     else 
-    	return $GLOBALS['strings']['No existe'];
+    	return 'No existe';
 } 
 
 function setNoCompletada()
@@ -278,10 +278,10 @@ function setNoCompletada()
 					WHERE (`id_FASES` = '$this->id_fase')";
 
 			if (!($resultado = $this->mysqli->query($sql))){
-				return 'Error en el cierre de la fase';
+				return 'Error al abrir la fase';
 			}
 			else{ 
-				return 'Fase cerrada correctamente'; 
+				return 'La fase se ha vuelto a abrir'; 
 			}
 		}else{
 			return 'No existe';
