@@ -1,6 +1,6 @@
 <!---ARCHIVO QUE REALIZARÁ LA TRADUCCIÓN AL CASTELLANO
  CREADO POR mi3ac6 EL 22/11/2018-->
-<?php 
+ <?php 
 
 $strings = 
 array(
@@ -446,11 +446,40 @@ array(
 	'ID categoria' => 'ID categoria',
 	'Prioridad editada con exito' => 'Prioridad editada con exito',
 	'Editar categoria' => 'Editar categoria',
+	'No se puede abrir una fase de una tarea cerrada' => 'No se puede abrir una fase de una tarea cerrada',
+	'Fase cerrada correctamente' => 'Fase cerrada correctamente',
+	'La fase se ha cerrado' => 'La fase se ha cerrado',
+	'La fase se ha vuelto a abrir' => 'La fase se ha vuelto a abrir',
 	'' => '',
 	'' => '',
 	'' => '',
 	'' => '',
 	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => '',
+	'' => ''
 	
 )
 ;
