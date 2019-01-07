@@ -80,6 +80,13 @@ if(isset($_SESSION['tipo'])){
 		<li><a href="../Controllers/Usuarios_Controller.php"><?php echo $strings['Usuarios']; ?></a></li>
 		<li><a href="../Controllers/Contactos_Controller.php"><?php echo $strings['Contactos']; ?></a></li>
 		<li><a href="../Controllers/Categorias_Controller.php"><?php echo $strings['Categorias']; ?></a></li>
+		<li><a class="dropdownElm" onclick="dropdown()">Tipos</a>
+			<nav class="dropdownContent" id="myDropdown">
+				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_Completas">Completas</a>
+				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_NoCompletas">Sin completar</a>
+			</nav>
+		</li>
+
 		
 		<a href="javascript:void(0);" class="icon" onclick="responsiveMenu()">
 			<i class="fa fa-bars"></i>
