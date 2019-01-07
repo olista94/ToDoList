@@ -91,7 +91,7 @@ if(!IsAuthenticated()){
 		case 'Confirmar_DELETE2':					
 				$contacto = new CONTACTOS_Model($_REQUEST['email'],'','','');
 				$mensaje = $contacto-> delete();
-				new MESSAGE($mensaje,'../Controllers/Contacto_Controller.php');					
+				new MESSAGE($mensaje,'../Controllers/Contactos_Controller.php');					
 		break;
 
 		case 'Confirmar_SHOWCURRENT':
