@@ -24,6 +24,8 @@ if (!IsAuthenticated()){ //si no está autenticado
 	include_once "../Models/CONTACTOS_Model.php";
 	include_once "../Views/Fases_ADD.php";
 	include_once "../Views/Fases_SHOWALL.php";
+	include_once "../Views/Tareas_SHOWCOMPLETE.php";
+	include_once "../Views/Tareas_SHOWUNCOMPLETE.php";
 
 
 	/* RECOGE LOS DATOS DEL FORMULARIO */
@@ -302,7 +304,41 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$respuesta = new Tareas_SHOWALL($datos,$archivos,'../Controllers/Tareas_Controller.php');	
 				}
 			}
-		break;			
+		break;
+		
+		case 'Mostrar_Completas':
+		if(isset($_SESSION['tipo'])){
+			if($_SESSION['tipo']=='ADMIN'){
+				$tarea = new TAREAS_Model('','','','','','','','');					
+				$datos = $tarea -> TareasShowAll();				
+				$archivos = $tarea -> ContarArchivos();
+				$respuesta = new Tareas_SHOWCOMPLETE($datos,$archivos,'../Controllers/Tareas_Controller.php');			
+			}else{
+				$tarea = new TAREAS_Model('','','','','','','','');
+				$datos = $tarea -> TareasShowAllNormal();
+				/* print_r($datos); */
+				$archivos = $tarea -> ContarArchivos();
+				$respuesta = new Tareas_SHOWCOMPLETE($datos,$archivos,'../Controllers/Tareas_Controller.php');	
+			}
+		}
+		break;
+		
+		case 'Mostrar_NoCompletas':
+		if(isset($_SESSION['tipo'])){
+			if($_SESSION['tipo']=='ADMIN'){
+				$tarea = new TAREAS_Model('','','','','','','','');					
+				$datos = $tarea -> TareasShowAll();				
+				$archivos = $tarea -> ContarArchivos();
+				$respuesta = new Tareas_SHOWUNCOMPLETE($datos,$archivos,'../Controllers/Tareas_Controller.php');			
+			}else{
+				$tarea = new TAREAS_Model('','','','','','','','');
+				$datos = $tarea -> TareasShowAllNormal();
+				/* print_r($datos); */
+				$archivos = $tarea -> ContarArchivos();
+				$respuesta = new Tareas_SHOWUNCOMPLETE($datos,$archivos,'../Controllers/Tareas_Controller.php');	
+			}
+		}
+		break;	
 
 		default: /*PARA EL SHOWALL */
 			if(isset($_SESSION['tipo'])){
