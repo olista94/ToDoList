@@ -24,6 +24,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 	include_once "../Models/TAREAS_Model.php";
 	include_once "../Models/CONTACTOS_Model.php";
 	include_once "../Models/ARCHIVOS_Model.php";
+	include_once "../Models/FASES_HAS_CONTACTOS_Model.php";
 
 
 	/* RECOGE LOS DATOS DEL FORMULARIO */
@@ -37,7 +38,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 
 		$descripcion = $_REQUEST['descripcion'];
 
-		$fecha_ini = $_REQUEST['fecha_ini'];
+		$fecha_ini  = date('Y-m-d', time());
 		
 		if(isset($_REQUEST['fecha_fin'])){
 			$fecha_fin = $_REQUEST['fecha_fin'];
@@ -57,9 +58,13 @@ if (!IsAuthenticated()){ //si no está autenticado
 			$TAREAS_id_TAREAS = "";
 		}
 		
-		$CONTACTOS_email = $_REQUEST['CONTACTOS_email'];
-		
-		$fase = new FASES_Model($id_fase,$descripcion,$fecha_ini,$fecha_fin,$completada,$TAREAS_id_TAREAS,$CONTACTOS_email);
+ 		if(isset($_REQUEST['CONTACTOS_email'])){
+			$CONTACTOS_email = $_REQUEST['CONTACTOS_email'];
+		}else{
+			$_REQUEST['CONTACTOS_email'] = "";
+		}
+				
+		$fase = new FASES_Model($id_fase,$descripcion,$fecha_ini,$fecha_fin,$completada,$TAREAS_id_TAREAS);
 		
 		return $fase;
 	}
@@ -103,12 +108,22 @@ if (!IsAuthenticated()){ //si no está autenticado
 						$model -> add();
 					}
 				}
+				print_r("COTACTOOOOOOOOOS---------------------" . $_REQUEST['CONTACTOS_email']);
+				if(($_REQUEST['CONTACTOS_email'] != '') || ($_REQUEST['CONTACTOS_email'] != null)){
+					$idFase = $fase -> BuscarMaxID();
+					for ($i=0;$i<count($_REQUEST['CONTACTOS_email']);$i++){						
+						$ContactosModel = new FASES_HAS_CONTACTOS_Model($idFase,$_REQUEST['TAREAS_id_TAREAS'],$_REQUEST['CONTACTOS_email'][$i]);
+						$ContactosModel -> add();
+					}					
+				}
+				
 				new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');				
 			}			
 		break;
 		
+		
 		case 'Confirmar_CONTINUAR':					
-			$tareas = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],"","","","","","","");
+			$tareas = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],"","","","","","");
 			$t = $tareas -> search();
 			
 			$contactos = new CONTACTOS_Model("","","","");
@@ -148,7 +163,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 				$contactos = new CONTACTOS_Model("","","","");
 				$cont = $contactos -> search();							
 				
-				$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','','');
+				$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
 				$datos = $fase->rellenadatos();			
 				
 				new Fases_EDIT($datos,$cont,'../Controllers/Fases_Controller.php');
@@ -160,7 +175,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 		break;
 
 		case 'Confirmar_COMPLETADA':	
-			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','',$_REQUEST['TAREAS_id_TAREAS'],'');
+			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','',$_REQUEST['TAREAS_id_TAREAS']);
 
 			$mensaje = $fase-> setCompletada();
 			$datos = $fase->getFasesOfTarea();
@@ -176,7 +191,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 		break;
 
 		case 'Confirmar_NO_COMPLETADA':
-			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','',$_REQUEST['TAREAS_id_TAREAS'],'');
+			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','',$_REQUEST['TAREAS_id_TAREAS']);
 
 			$mensaje = $fase-> setNoCompletada();
 			$datos = $fase->getFasesOfTarea();
@@ -208,13 +223,13 @@ if (!IsAuthenticated()){ //si no está autenticado
 			$categorias = new CATEGORIAS_Model("","");
 			$cat = $categorias -> search();
 			
-			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','','');
+			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
 			$datos = $fase->rellenadatos();
 			new Fases_DELETE($datos,$p,$cat,'../Controllers/Fases_Controller.php');
 		break;
 		
 		case 'Confirmar_DELETE2':			
-			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','','','');
+			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','','');
 			$mensaje = $fase-> delete();
 			new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');				
 		break;
@@ -224,14 +239,14 @@ if (!IsAuthenticated()){ //si no está autenticado
 				$archivos = new ARCHIVOS_Model('','','',$_REQUEST['id_fase'],'');
 				$archivo = $archivos -> getArchivosOfFase();
 				
-				$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','','');
+				$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
 				$datos = $fase->rellenadatos();
 				new Fases_SHOWCURRENT($datos,$archivo,'../Controllers/Fases_Controller.php');
 			}
 		break;
 
 		default: /*PARA EL SHOWALL */
-			$fase = new FASES_Model('','','','','','','');
+			$fase = new FASES_Model('','','','','','');
 			$datos = $fase -> FasesShowAll();
 			$respuesta = new Fases_SHOWALL($datos,'','../Controllers/Fases_Controller.php');
 	}
