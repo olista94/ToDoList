@@ -38,8 +38,7 @@ class Fases_ADD{
 					<label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
 					<input type="descripcion" id="descripcion" name="descripcion" size="40" maxlength="60"/>	
 						
-					<label for="fecha_ini"><?php echo $strings['Fecha inicio']; ?></label>
-					<input type="date"  name="fecha_ini" id="fecha_ini" onkeypress="return false;"/>
+					
 					
 					<label>
 					<?php echo $GLOBALS['strings']['Tarea']; ?></label><br>
@@ -49,7 +48,7 @@ class Fases_ADD{
 					
 					<label>
 					<?php echo $strings['Contacto']; ?></label><br>
-					<select name="CONTACTOS_email">
+					<select name="CONTACTOS_email[]" multiple>
 						<?php
 							while($contactos=$this->contactos->fetch_array()){
 						?>

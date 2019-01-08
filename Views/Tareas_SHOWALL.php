@@ -34,6 +34,7 @@ include_once '../Views/Header.php';
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
 ?>
 
+
         <div class="showall">             
 		
             <table class="showAllUsers">

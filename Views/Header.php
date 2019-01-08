@@ -75,17 +75,18 @@ if(isset($_SESSION['tipo'])){
 	</div>
 
 	<div class="menu-bar" id="menu-bar">
-		<li><a href="../Controllers/Tareas_Controller.php"><?php echo $strings['Tareas']; ?></a></li>
-		<li><a href="../Controllers/Prioridades_Controller.php"><?php echo $strings['Prioridades']; ?></a></li>
-		<li><a href="../Controllers/Usuarios_Controller.php"><?php echo $strings['Usuarios']; ?></a></li>
-		<li><a href="../Controllers/Contactos_Controller.php"><?php echo $strings['Contactos']; ?></a></li>
-		<li><a href="../Controllers/Categorias_Controller.php"><?php echo $strings['Categorias']; ?></a></li>
-		<li><a class="dropdownElm" onclick="dropdown()">Tipos</a>
+		<li><a class="dropdownElm" onclick="dropdown()">Tareas</a>
 			<nav class="dropdownContent" id="myDropdown">
+				<a href="../Controllers/Tareas_Controller.php?action=default">Todas</a>
 				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_Completas">Completas</a>
 				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_NoCompletas">Sin completar</a>
 			</nav>
 		</li>
+		<li><a href="../Controllers/Prioridades_Controller.php"><?php echo $strings['Prioridades']; ?></a></li>
+		<li><a href="../Controllers/Usuarios_Controller.php"><?php echo $strings['Usuarios']; ?></a></li>
+		<li><a href="../Controllers/Contactos_Controller.php"><?php echo $strings['Contactos']; ?></a></li>
+		<li><a href="../Controllers/Categorias_Controller.php"><?php echo $strings['Categorias']; ?></a></li>
+		
 
 		
 		<a href="javascript:void(0);" class="icon" onclick="responsiveMenu()">
@@ -141,7 +142,13 @@ if(isset($_SESSION['tipo'])){
 	</div>
 
 	<div class="menu-bar" id="menu-bar">
-		<li><a href="../Controllers/Tareas_Controller.php"><?php echo $strings['Tareas']; ?></a></li>
+		<li><a class="dropdownElm" onclick="dropdown()">Tareas</a>
+			<nav class="dropdownContent" id="myDropdown">
+				<a href="../Controllers/Tareas_Controller.php?action=default">Todas</a>
+				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_Completas">Completas</a>
+				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_NoCompletas">Sin completar</a>
+			</nav>
+		</li>
 		<li><a href="../Controllers/Contactos_Controller.php"><?php echo $strings['Contactos']; ?></a></li>
 		<a href="javascript:void(0);" class="icon" onclick="responsiveMenu()">
 			<i class="fa fa-bars"></i>
