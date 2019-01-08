@@ -35,12 +35,12 @@ function __construct($id_tarea,$descripcion,$fecha_ini,$fecha_fin,$completada,$U
 
 
 function add(){
-				
+				$date = date('Y-m-d', time());
 				$sql = "INSERT INTO tareas
 						VALUES (
 							'$this->id_tarea',
 							'$this->descripcion',
-							'$this->fecha_ini',
+							'$date',
 							'$this->fecha_fin',
 							'$this->completada',
 							'$this->USUARIOS_login',

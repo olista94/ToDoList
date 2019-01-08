@@ -12,21 +12,19 @@ class FASES_Model {
 	var $fecha_fin;
 	var $completada;
 	var $TAREAS_id_TAREAS;
-	var $CONTACTOS_email;
 	
 	/* var $mysqli; */
 
 //Constructor de la clase
 //
 
-function __construct($id_fase,$descripcion,$fecha_ini,$fecha_fin,$completada,$TAREAS_id_TAREAS,$CONTACTOS_email){
+function __construct($id_fase,$descripcion,$fecha_ini,$fecha_fin,$completada,$TAREAS_id_TAREAS){
 	$this->id_fase = $id_fase;
 	$this->descripcion = $descripcion;
 	$this->fecha_ini = $fecha_ini;
 	$this->fecha_fin = $fecha_fin;
 	$this->completada = $completada;
 	$this->TAREAS_id_TAREAS = $TAREAS_id_TAREAS;
-	$this->CONTACTOS_email = $CONTACTOS_email;
 
 	include_once '../Models/Access_DB.php';
 	$this->mysqli = ConnectDB();
@@ -42,8 +40,7 @@ function add(){
 							'$this->fecha_ini',
 							'$this->fecha_fin',
 							'$this->completada',
-							'$this->TAREAS_id_TAREAS',
-							'$this->CONTACTOS_email'
+							'$this->TAREAS_id_TAREAS'
 							)
 						";
 
@@ -73,9 +70,7 @@ function edit()
 		$sql = "UPDATE fases SET
 					`descripcion` = '$this->descripcion',
 					`fecha_inicio` = '$this->fecha_ini',
-					`fecha_fin` = '$this->fecha_fin',
-					`CONTACTOS_email` = '$this->CONTACTOS_email'
-					
+					`fecha_fin` = '$this->fecha_fin'					
 
 				WHERE (`id_FASES` = '$this->id_fase')";
 
@@ -100,8 +95,7 @@ function search(){
 	 				(`descripcion` LIKE '%$this->descripcion%') &&
 					(`fecha_inicio` LIKE '%$this->fecha_ini%') &&
 					(`fecha_fin` LIKE '%$this->fecha_fin%') &&
-					(`TAREAS_id_TAREAS` LIKE '%$this->TAREAS_id_TAREAS%') &&
-					(`CONTACTOS_email` LIKE '%$this->CONTACTOS_email%')
+					(`TAREAS_id_TAREAS` LIKE '%$this->TAREAS_id_TAREAS%')
 					
     				)";
 				echo $sql;
@@ -290,6 +284,23 @@ function setNoCompletada()
 		return 'No se puede abrir una fase de una tarea cerrada';
 	}
 		
+}
+
+function BuscarMaxID(){
+	$sql = "SELECT MAX(id_FASES)
+			FROM fases
+					";
+	/* echo $sql; */
+	
+	if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado->fetch_array()[0];
+		echo $result;
+		print_r($resultado);
+		return $result;
+	}
 } 
 
 
