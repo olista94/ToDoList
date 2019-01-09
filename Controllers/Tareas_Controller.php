@@ -40,7 +40,12 @@ if (!IsAuthenticated()){ //si no está autenticado
 		}
 
 		$descripcion = $_REQUEST['descripcion'];
-		$fecha_ini = $_REQUEST['fecha_ini'];
+
+		if(isset($_REQUEST['fecha_ini'])){
+			$fecha_ini = $_REQUEST['fecha_ini'];
+		}else{
+			$fecha_ini = "";
+		}
 		
 		if(isset($_REQUEST['fecha_fin'])){
 			$fecha_fin = $_REQUEST['fecha_fin'];

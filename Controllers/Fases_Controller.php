@@ -205,7 +205,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 		case 'Confirmar_NO_COMPLETADA':
 			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','',$_REQUEST['TAREAS_id_TAREAS']);
 
-			$mensaje = $fase-> setCompletada();
+			$mensaje = $fase-> setNoCompletada();
 			$datos = $fase->getFasesOfTarea();
 
 			$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['TAREAS_id_TAREAS']);
