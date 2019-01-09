@@ -540,6 +540,41 @@ function ContarArchivos()
         return 'No existe';
 }
 
+function ContarFases()
+{	
+    $sql = "SELECT COUNT(`id_FASES`),`TAREAS_id_TAREAS`
+			FROM fases
+			GROUP BY `TAREAS_id_TAREAS`
+			";
+    
+    $result = $this->mysqli->query($sql);
+    
+    if ($result)
+    {
+    	
+       return $result;
+    } 
+    else
+        return 'No existe';
+}
+
+function ContarContactos()
+{	
+    $sql = "SELECT COUNT(`CONTACTOS_email`),`FASES_TAREAS_id_TAREAS`
+			FROM fases_has_contactos
+			GROUP BY `FASES_TAREAS_id_TAREAS`
+			";
+    
+    $result = $this->mysqli->query($sql);
+    
+    if ($result)
+    {
+    	
+       return $result;
+    } 
+    else
+        return 'No existe';
+}
 
 
 }//fin de clase

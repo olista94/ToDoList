@@ -117,17 +117,21 @@ function delete()
     
     $result = $this->mysqli->query($sql);
     
-    if ($result->num_rows == 1)
-    {
+    if ($result->num_rows == 1){
     	
         $sql = "DELETE FROM prioridades WHERE (`nivel` = '$this->nivel')";
         
-        $this->mysqli->query($sql);
+        if($this->mysqli->query($sql)){
         
-    	return 'Borrado correctamente';
-    } 
-    else
+			return 'Borrado correctamente';
+		}
+		else{
+			return 'Hay tareas asocioadas';
+		}	
+   
+	}  
+	else
         return 'No existe';
-}  
+}
 }//fin de clase
 ?> 

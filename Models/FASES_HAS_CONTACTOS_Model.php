@@ -37,7 +37,7 @@ function add(){
 				'$this->CONTACTOS_email'
 				)
 			";
-echo $sql;
+
 	if (!$this->mysqli->query($sql)) { 
 		return 'Error al insertar';
 		
@@ -45,7 +45,7 @@ echo $sql;
 			
 	}
 	else{ 
-	echo $sql;
+	
 		return 'Insertado correcto'; 
 		
 	}
@@ -123,14 +123,12 @@ function edit()
 function search(){ 
 
 	     $sql = "SELECT *
-       			FROM fases
+       			FROM fases_has_contactos
     			WHERE
     				( 
     				
-	 				(`descripcion` LIKE '%$this->descripcion%') &&
-					(`fecha_inicio` LIKE '%$this->fecha_ini%') &&
-					(`fecha_fin` LIKE '%$this->fecha_fin%') &&
-					(`TAREAS_id_TAREAS` LIKE '%$this->TAREAS_id_TAREAS%') &&
+	 				(`FASES_id_FASES` LIKE '%$this->FASES_id_FASES%') &&
+					(`FASES_TAREAS_id_TAREAS` LIKE '%$this->FASES_TAREAS_id_TAREAS%') &&
 					(`CONTACTOS_email` LIKE '%$this->CONTACTOS_email%')
 					
     				)";
@@ -147,14 +145,18 @@ function search(){
 
 function delete()
 {	
-    $sql = "SELECT * FROM fases WHERE (`id_FASES` = '$this->id_fase')";
+    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
+					(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
+					(`CONTACTOS_email` = '$this->CONTACTOS_email')";
     
     $result = $this->mysqli->query($sql);
     
     if ($result->num_rows == 1)
     {
     	
-        $sql = "DELETE FROM fases WHERE (`id_FASES` = '$this->id_fase')";
+        $sql = "DELETE FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
+					(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
+					(`CONTACTOS_email` = '$this->CONTACTOS_email')";
         
         $this->mysqli->query($sql);
         
@@ -165,7 +167,9 @@ function delete()
 }
 
 	function rellenadatos() {	
-    $sql = "SELECT * FROM archivos WHERE (`FASES_id_FASES` = '$this->id_fase')";
+    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
+					(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
+					(`CONTACTOS_email` = '$this->CONTACTOS_email')";
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
