@@ -8,12 +8,14 @@ include_once '../Views/Header.php';
 	
 	var $fila;
 	var $archivos;
+	var $contactos;
 	var $enlace;	
 	
-	function __construct($fila,$archivos,$enlace){
+	function __construct($fila,$archivos,$contactos,$enlace){
 		
 		$this -> fila = $fila -> fetch_array();
 		$this -> archivos = $archivos;
+		$this -> contactos = $contactos;
 		$this -> enlace = $enlace;
 		$this -> mostrar();
 	}
@@ -36,6 +38,7 @@ include_once '../Views/Header.php';
 		<?php
 			if($this ->archivos != null){
 				while($fila2 = $this ->archivos->fetch_array()){
+					
 		?>  
 			<li><a href="<?php echo $fila2['url']; ?>" download><?php echo $fila2['nombre']; ?></a></li>
 		<?php
@@ -43,7 +46,22 @@ include_once '../Views/Header.php';
 			}
 		?>
 	</form> 
-		
+	</div>
+	<div class="showall">
+	
+	<form >
+		<legend>Contactos de la tarea</legend>
+		<?php
+			if($this ->contactos != null){
+				while($fila3 = $this ->contactos->fetch_array()){
+		?>  
+			<li><a><?php echo $fila3['CONTACTOS_email']; ?></a></li>
+		<?php
+				}
+			}
+		?>
+		</form>
+		</div>
 								
 		<div class="show-half">	
             <table class="showU" style="margin-left: 30%;">
@@ -63,6 +81,7 @@ include_once '../Views/Header.php';
                     <th><?php echo $strings['Fecha fin']; ?></th>
                     <td><?php echo $this -> fila['fecha_fin']; ?></td>
                 </tr>
+                       
                                                                         
             </table>
 

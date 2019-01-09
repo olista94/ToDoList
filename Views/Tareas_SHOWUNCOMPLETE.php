@@ -9,9 +9,13 @@ include_once '../Views/Header.php';
 	var $datos;
 	var $archivos;
 	var $archivos2;
+	var $fases;
+	var $fases2;
+	var $contactos;
+	var $contactos2;
 	var $enlace;	
 	
-	function __construct($datos,$archivos,$enlace){
+	function __construct($datos,$archivos,$fases,$contactos,$enlace){
 		
 		$this -> datos = $datos;
 		$this -> archivos = $archivos;
@@ -21,6 +25,23 @@ include_once '../Views/Header.php';
 						$this -> archivos2[$archi[1]] = $archi[0];	
 							}
 		}
+				
+		$this -> fases = $fases;
+		$this -> fases2 = [];
+		if($this -> fases -> num_rows > 0){
+			while($fas = $this -> fases -> fetch_array()){
+						$this -> fases2[$fas[1]] = $fas[0];	
+							}
+		}
+		
+		$this -> contactos = $contactos;
+		$this -> contactos2 = [];
+		if($this -> contactos -> num_rows > 0){
+			while($cont = $this -> contactos -> fetch_array()){
+						$this -> contactos2[$cont[1]] = $cont[0];	
+							}
+		}
+		
 		$this -> enlace = $enlace;
 		$this -> pinta();
 	}
@@ -37,32 +58,16 @@ include_once '../Views/Header.php';
         <div class="showall">             
 		
             <table class="showAllUsers">
-				<tr><th class="title" colspan="6"><?php echo $strings['Tareas']; ?>
-				<form class="tableActions" action="../Controllers/Tareas_Controller.php" method="">
-					<button class="buscar-little" name="action" value="Confirmar_SEARCH1" type="submit"></button>
-					<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>
-				</form>
-
-				<form class="tableActions" action="../Controllers/Tareas_Controller.php" method="">
-					<div>
-						<label class="lblSearch" for="action">Ordenar por:</label>
-						<select class="slcSearch" name="action" id="action" onchange="this.form.submit()">
-							<option value="">Seleccionar</option>
-							<option value="Ordenar_Fecha"><?php echo $strings['Fecha']; ?></option>
-							<option value="Ordenar_Prioridad"><?php echo $strings['Prioridad']; ?></option>
-							<option value="Ordenar_Categoria"><?php echo $strings['Categoria']; ?></option>
-						</select>
-
-					</div>
-				</form>
-				
+				<tr><th class="title" colspan="6">Tareas incompletas
 				</th></tr>
 		
 				<tr>
 					<th><?php echo $strings['Completada']; ?></th>
 					<th><?php echo $strings['Descripcion']; ?></th>
 					<th><?php echo $strings['Categoria']; ?></th>	
-					<th>Ficheros</th>					
+					<th>Ficheros</th>
+					<th>Fases</th>
+					<th>Contactos</th>					
 					<th></th>
 				</tr>
 			<?php 
@@ -118,6 +123,52 @@ include_once '../Views/Header.php';
 						}
 						?>
 						</td>
+						
+						<td>
+						<?php
+						/* print_r($this -> archivos); */
+						if($this -> fases-> num_rows == 0){
+							echo '0';
+						}
+						else{
+							$entra = 0;
+							foreach($this -> fases2 as $indice => $valor){
+								if($indice == $fila['id_tarea']){
+									$entra = 1;
+									echo $valor;
+								}
+							}
+							if($entra == 0){
+								echo '0';
+							}
+							$entra = 0;
+						}
+						?>
+						</td>
+						
+						
+							<td>
+						<?php
+						/* print_r($this -> archivos); */
+						if($this -> contactos-> num_rows == 0){
+							echo '0';
+						}
+						else{
+							$entra = 0;
+							foreach($this -> contactos2 as $indice => $valor){
+								if($indice == $fila['id_tarea']){
+									$entra = 1;
+									echo $valor;
+								}
+							}
+							if($entra == 0){
+								echo '0';
+							}
+							$entra = 0;
+						}
+						?>
+						</td>
+						
 						<td style="text-align:right">
 							<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>
 							<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>

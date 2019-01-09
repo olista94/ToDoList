@@ -52,10 +52,7 @@
                         <th><?php echo $strings['Fecha fin']; ?></th>
                         <td><?php echo $this -> fila['fecha_fin']; ?></td>
                     </tr>
-                    <tr>
-                        <th><?php echo $strings['Contacto']; ?></th>
-                        <td><?php echo $this -> fila['CONTACTOS_email']; ?></td>
-                    </tr>
+                  
 
                     <tr>
                         <th><button class="borrar-si" type="submit" name="action" value="Confirmar_DELETE2"></button></th>

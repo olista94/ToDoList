@@ -7,16 +7,17 @@ include_once '../Views/Header.php';
  
  class Fases_EDIT{
 	 
+	var $idtarea;
 	var $datos;
 	var $contactos;
 	var $currentcontactos;
 	var $enlace;
 	
 	
-	function __construct($datos,$contactos,$currentcontactos,$enlace){
+	function __construct($idtarea,$datos,$contactos,$currentcontactos,$enlace){
 		
+		$this -> idtarea = $idtarea;
 		$this -> datos = $datos -> fetch_array();
-		
 		$this -> contactos = $contactos;
 		$this -> currentcontactos = $currentcontactos;
 		$this -> enlace = $enlace;
@@ -35,28 +36,19 @@ include_once '../Views/Header.php';
 
 
 <div class="form">
-
+	<button class="volver" onclick="location.href='../Controllers/Tareas_Controller.php'"> </button>
 <form name="registerForm" id="registerForm" method="post" action="../Controllers/Fases_Controller.php" enctype="multipart/form-data">
-	<legend><?php echo $strings['Editar categoria'];?>
-	<button onclick="location.href='../Controllers/Fases_Controller.php';" class="volver"></button>
+<legend>Editar fase
+	
 	</legend>
  
 	<input hidden type="text" name="id_fase"  value="<?php echo $this -> datos[0]; ?>" readonly><br>
- 
+ <input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $this->idtarea; ?>">
 
 	<label>
 	<?php echo $strings['Descripcion']; ?></label><br>
 	<input type="text" rows="4" cols="50" name="descripcion" value="<?php echo $this -> datos[1]; ?>" onblur= "return !comprobarVacio(this)">
-	
-	
-	<label>
-	<?php echo $strings['Fecha inicio']; ?></label><br>
-	<input type="date" name="fecha_ini"   value="<?php echo $this -> datos[2]; ?>" onblur=" return !comprobarVacio(this)"><br>
-	
-	<label>
-	<?php echo $strings['Fecha fin']; ?></label><br>
-	<input type="date" name="fecha_fin"   value="<?php echo $this -> datos[3]; ?>" onblur=" return !comprobarVacio(this)"><br>
-  
+
 		
 	<label>
 	<?php echo $strings['Añadir contacto']; ?></label><br>
@@ -72,9 +64,10 @@ include_once '../Views/Header.php';
 		?>
 	</select>
 
+
 	<label>
 	<?php echo $strings['Quitar contacto']; ?></label><br>
-	<select name="CONTACTOS_email[]" multiple>
+	<select name="CONTACTOS_email1[]" multiple>
 		<?php
 			while($currentcontactos=$this->currentcontactos->fetch_array()){
 		?>
@@ -85,14 +78,14 @@ include_once '../Views/Header.php';
 			}
 		?>
 	</select>
-  
+
   
   
 
 
  <!-- BOTONES DE CONFIRMAR O CANCELAR NUEVO USUARIO -->
   
- <button type="submit" name="action" value="Confirmar_EDIT" value="Submit" class="aceptar"></button>
+ <button type="submit" name="action" value="Confirmar_EDIT" class="aceptar"></button>
 				<button type="reset" value="Reset" class="cancelar"></button>
 
 			</form> 

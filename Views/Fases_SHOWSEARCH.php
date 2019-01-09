@@ -78,7 +78,7 @@ include_once '../Views/Header.php';
 					?>
 					<td><?php echo $fila['descripcion']; ?></td>
 					<td><?php echo $fila['fecha_inicio']; ?></td>
-					<td><?php echo $fila['CONTACTOS_email']; ?></td>				
+								
 					<td style="text-align:right">
 						<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>
 						<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>

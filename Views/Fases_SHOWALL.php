@@ -18,7 +18,11 @@ include_once '../Views/Header.php';
 		$this -> datos = $datos;
 		$this -> archivos = $archivos;
 		$this -> contactos = $contactos;
-		$this -> tareas = $tareas -> fetch_array();
+		if(is_string($tareas)){
+			$this -> tareas = array();
+		}else{
+			$this -> tareas = $tareas -> fetch_array();
+		}
 		$this -> enlace = $enlace;
 		
 		$this -> aux = $this ->datos->fetch_array();
@@ -47,7 +51,7 @@ include_once '../Views/Header.php';
 			</tr>
 			<tr>
 				<th><?php echo $strings['Descripcion']; ?></th>
-				<td><?php echo $this -> tareas['descripcion']; ?></td>
+				<td><?php echo $this -> tareas[1]; ?></td>
 			</tr>
 			<tr>
 				<th><?php echo $strings['Fecha inicio']; ?></th>
