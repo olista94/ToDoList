@@ -1,4 +1,4 @@
-Tareas:
+Tareas:  	
 - Manual de Usuario  
 - Traducciones  
 - Pruebas  
@@ -7,7 +7,7 @@ Tareas:
 - Mover carpetas css  
 - Validaciones Javascript  
 
-Corregir:      
+Corregir:	
  -  
  -  
  -  
