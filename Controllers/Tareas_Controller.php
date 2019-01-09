@@ -26,6 +26,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 	include_once "../Views/Fases_SHOWALL.php";
 	include_once "../Views/Tareas_SHOWCOMPLETE.php";
 	include_once "../Views/Tareas_SHOWUNCOMPLETE.php";
+	include_once "../Models/FASES_HAS_CONTACTOS_Model.php";
 
 
 	/* RECOGE LOS DATOS DEL FORMULARIO */
@@ -190,11 +191,14 @@ if (!IsAuthenticated()){ //si no está autenticado
 
 				$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['id_tarea']);
 				$archivo = $archivos -> getArchivosOfTarea();
+
+				$contactos = new FASES_HAS_CONTACTOS_Model('',$_REQUEST['id_tarea'],'');
+				$contacto = $contactos -> getContactosOfTarea();
 				
 				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
 				$t = $tarea -> TareasCompleto();
 
-				$respuesta = new Fases_SHOWALL($datos,$archivo,$t,'../Controllers/Fases_Controller.php');				
+				$respuesta = new Fases_SHOWALL($datos,$archivo,$contacto,$t,'../Controllers/Fases_Controller.php');				
 			}
 		break;
 

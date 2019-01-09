@@ -108,7 +108,6 @@ if (!IsAuthenticated()){ //si no está autenticado
 						$model -> add();
 					}
 				}
-				print_r("COTACTOOOOOOOOOS---------------------" . $_REQUEST['CONTACTOS_email']);
 				if(($_REQUEST['CONTACTOS_email'] != '') || ($_REQUEST['CONTACTOS_email'] != null)){
 					$idFase = $fase -> BuscarMaxID();
 					for ($i=0;$i<count($_REQUEST['CONTACTOS_email']);$i++){						
@@ -123,7 +122,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 		
 		
 		case 'Confirmar_CONTINUAR':					
-			$tareas = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],"","","","","","");
+			$tareas = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],"","","","","","","");
 			$t = $tareas -> search();
 			
 			$contactos = new CONTACTOS_Model("","","","");
@@ -154,6 +153,13 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idFase,$_REQUEST['TAREAS_id_TAREAS']);
 					$model -> add();
 				}
+			}
+			if(($_REQUEST['CONTACTOS_email'] != '') || ($_REQUEST['CONTACTOS_email'] != null)){
+				$idFase = $fase -> BuscarMaxID();
+				for ($i=0;$i<count($_REQUEST['CONTACTOS_email']);$i++){						
+					$ContactosModel = new FASES_HAS_CONTACTOS_Model($idFase,$_REQUEST['TAREAS_id_TAREAS'],$_REQUEST['CONTACTOS_email'][$i]);
+					$ContactosModel -> add();
+				}					
 			}			
 			new ALERT($mensaje);
 		break;
@@ -161,12 +167,15 @@ if (!IsAuthenticated()){ //si no está autenticado
 		case 'Confirmar_EDIT':
 			if(count($_REQUEST) < 4 ){				
 				$contactos = new CONTACTOS_Model("","","","");
-				$cont = $contactos -> search();							
+				$cont = $contactos -> search();
+				
+				$currentcontactos = new FASES_HAS_CONTACTOS_Model($_REQUEST['id_fase'],"","");
+				$cucont = $currentcontactos -> getContactosOfFase();		
 				
 				$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
-				$datos = $fase->rellenadatos();			
+				$datos = $fase->rellenadatos();	
 				
-				new Fases_EDIT($datos,$cont,'../Controllers/Fases_Controller.php');
+				new Fases_EDIT($datos,$cont,$cucont,'../Controllers/Fases_Controller.php');
 			}else{			
 				$fase = getDataForm();
 				$mensaje = $fase-> edit();
@@ -183,26 +192,32 @@ if (!IsAuthenticated()){ //si no está autenticado
 			$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['TAREAS_id_TAREAS']);
 			$archivo = $archivos -> getArchivosOfTarea();
 
+			$contactos = new FASES_HAS_CONTACTOS_Model('',$_REQUEST['TAREAS_id_TAREAS'],'');
+			$contacto = $contactos -> getContactosOfTarea();
+
 			$tarea = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],'','','','','','','');
 			$t = $tarea -> TareasCompleto();
 
-			new Fases_SHOWALL($datos,$archivo,$t,'../Controllers/Fases_Controller.php');
+			new Fases_SHOWALL($datos,$archivo,$contacto,$t,'../Controllers/Fases_Controller.php');
 			new ALERT($mensaje);
 		break;
 
 		case 'Confirmar_NO_COMPLETADA':
 			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','',$_REQUEST['TAREAS_id_TAREAS']);
 
-			$mensaje = $fase-> setNoCompletada();
+			$mensaje = $fase-> setCompletada();
 			$datos = $fase->getFasesOfTarea();
 
 			$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['TAREAS_id_TAREAS']);
 			$archivo = $archivos -> getArchivosOfTarea();
 
+			$contactos = new FASES_HAS_CONTACTOS_Model('',$_REQUEST['TAREAS_id_TAREAS'],'');
+			$contacto = $contactos -> getContactosOfTarea();
+
 			$tarea = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],'','','','','','','');
 			$t = $tarea -> TareasCompleto();
 
-			new Fases_SHOWALL($datos,$archivo,$t,'../Controllers/Fases_Controller.php');
+			new Fases_SHOWALL($datos,$archivo,$contacto,$t,'../Controllers/Fases_Controller.php');
 			new ALERT($mensaje);
 		break;
 		
@@ -245,10 +260,25 @@ if (!IsAuthenticated()){ //si no está autenticado
 			}
 		break;
 
+		case 'Confirmar_VOLVER':
+		if(count($_REQUEST) < 4 ){
+			$fase = new FASES_Model('','','','','',$_REQUEST['TAREAS_id_TAREAS'],'');
+			$datos = $fase->getFasesOfTarea();
+
+			$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['TAREAS_id_TAREAS']);
+			$archivo = $archivos -> getArchivosOfTarea();
+			
+			$tarea = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],'','','','','','','');
+			$t = $tarea -> TareasCompleto();
+
+			new Fases_SHOWALL($datos,$archivo,$t,'../Controllers/Fases_Controller.php');		
+		}
+	break;
+
 		default: /*PARA EL SHOWALL */
 			$fase = new FASES_Model('','','','','','');
 			$datos = $fase -> FasesShowAll();
-			$respuesta = new Fases_SHOWALL($datos,'','../Controllers/Fases_Controller.php');
+			$respuesta = new Fases_SHOWALL($datos,'','','../Controllers/Fases_Controller.php');
 	}
 }
 ?>
