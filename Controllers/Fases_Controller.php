@@ -63,6 +63,12 @@ if (!IsAuthenticated()){ //si no está autenticado
 		}else{
 			$_REQUEST['CONTACTOS_email'] = "";
 		}
+		
+		if(isset($_REQUEST['CONTACTOS_email1'])){
+			$CONTACTOS_email1 = $_REQUEST['CONTACTOS_email1'];
+		}else{
+			$_REQUEST['CONTACTOS_email1'] = "";
+		}
 				
 		$fase = new FASES_Model($id_fase,$descripcion,$fecha_ini,$fecha_fin,$completada,$TAREAS_id_TAREAS);
 		
@@ -172,16 +178,47 @@ if (!IsAuthenticated()){ //si no está autenticado
 				$currentcontactos = new FASES_HAS_CONTACTOS_Model($_REQUEST['id_fase'],"","");
 				$cucont = $currentcontactos -> getContactosOfFase();		
 				
+				$idtarea = $_REQUEST['TAREAS_id_TAREAS'];
+				
 				$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
 				$datos = $fase->rellenadatos();	
 				
-				new Fases_EDIT($datos,$cont,$cucont,'../Controllers/Fases_Controller.php');
+				new Fases_EDIT($idtarea,$datos,$cont,$cucont,'../Controllers/Fases_Controller.php');
 			}else{			
+			
+				$idtarea = $_REQUEST['TAREAS_id_TAREAS'];
+				$idfase = $_REQUEST['id_fase'];
+				
 				$fase = getDataForm();
 				$mensaje = $fase-> edit();
-				new MESSAGE($mensaje,'../Controllers/Fases_Controller.php');
+				
+				if(isset($_REQUEST['CONTACTOS_email']) && !empty($_REQUEST['CONTACTOS_email']) ){
+					$contactos1 = $_REQUEST['CONTACTOS_email'];
+					
+				}else{
+					$contactos1 = array();
+				}
+				
+				if(isset($_REQUEST['CONTACTOS_email1']) && !empty($_REQUEST['CONTACTOS_email1'])){
+					$contactos2 = $_REQUEST['CONTACTOS_email1'];
+					
+				}else{
+					$contactos2 = array();
+				}
+				
+				for ($i=0;$i<count($contactos1);$i++){//Añade					
+					$ContactosModel = new FASES_HAS_CONTACTOS_Model($idfase,$idtarea,$contactos1[$i]);
+					$ContactosModel -> add();
+				}
+				for ($i=0;$i<count($contactos2);$i++){//Borra						
+					$ContactosModel = new FASES_HAS_CONTACTOS_Model($idfase,$idtarea,$contactos2[$i]);
+					$ContactosModel -> delete();
+				}
+				new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');
 			}
 		break;
+		
+		
 
 		case 'Confirmar_COMPLETADA':	
 			$fase = new FASES_Model($_REQUEST['id_fase'],'','','','',$_REQUEST['TAREAS_id_TAREAS']);
@@ -256,7 +293,12 @@ if (!IsAuthenticated()){ //si no está autenticado
 				
 				$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
 				$datos = $fase->rellenadatos();
-				new Fases_SHOWCURRENT($datos,$archivo,'../Controllers/Fases_Controller.php');
+				
+				
+				$contactos = new FASES_HAS_CONTACTOS_Model($_REQUEST['id_fase'],$_REQUEST['TAREAS_id_TAREAS'],'');
+				$contacto = $contactos -> search();
+				
+				new Fases_SHOWCURRENT($datos,$archivo,$contacto,'../Controllers/Fases_Controller.php');
 			}
 		break;
 
@@ -278,7 +320,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 		default: /*PARA EL SHOWALL */
 			$fase = new FASES_Model('','','','','','');
 			$datos = $fase -> FasesShowAll();
-			$respuesta = new Fases_SHOWALL($datos,'','','../Controllers/Fases_Controller.php');
+			$respuesta = new Fases_SHOWALL($datos,'','','','../Controllers/Fases_Controller.php');
 	}
 }
 ?>
