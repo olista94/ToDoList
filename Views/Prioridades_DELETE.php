@@ -29,7 +29,7 @@
         <div class="show-half">
 			<form class="formShow" enctype="multipart/form-data" action="../Controllers/Prioridades_Controller.php">
             <input type="hidden" name="nivel" value= "<?php echo $this -> fila['nivel'] ?>">	
-            <table class="showU" style="margin-left: 40%;">
+            <table class="showU" style="margin-left: 30%;">
 
                 <tr><th class="title" colspan="4"><?php echo $strings['Borrar prioridad']; ?>
                     <button onclick="location.href='../Controllers/Prioridades_Controller.php';" class="volver"></button></th>

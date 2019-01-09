@@ -32,7 +32,7 @@
 
         <div class="show-half">
             <form class="formShow" enctype="multipart/form-data" action="../Controllers/Loteria_Controller.php" method="post"> 
-            <table class="showU" style="margin-left: 40%;">
+            <table class="showU" style="margin-left: 30%;">
                 
                 <input type="hidden" name="email" value="<?php echo $loteria['lot.email']; ?>">
                 

@@ -28,7 +28,7 @@
 			<div class="show-half">
             <form class="formShow" enctype="multipart/form-data" action="../Controllers/Usuarios_Controller.php">
                 <input type="hidden" name="login" value= "<?php echo $this -> fila['login'] ?>">
-                <table class="showU" style="margin-left: 40%;">
+                <table class="showU" style="margin-left: 30%;">
 
                 <tr><th class="title" colspan="4"><?php echo $strings['Detalles del usuario']; ?>
                     <button onclick="location.href='../Controllers/Usuarios_Controller.php';" class="volver"></button></th>

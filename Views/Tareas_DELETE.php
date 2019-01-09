@@ -37,7 +37,7 @@
 		<div class="show-half">
             <form class="formShow" enctype="multipart/form-data" action="../Controllers/Tareas_Controller.php">
                 <input type="hidden" name="id_tarea" value= "<?php echo $this -> fila['id_tarea'] ?>">
-                <table class="showU" style="margin-left: 40%;">
+                <table class="showU" style="margin-left: 30%;">
 
                     <tr><th class="title" colspan="4"><?php echo $strings['Borrar tarea']; ?>
                         <button onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button></th>

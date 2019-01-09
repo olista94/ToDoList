@@ -28,7 +28,7 @@
 			<div class="show-half">
 				<form class="formShow" enctype="multipart/form-data" action="../Controllers/Contactos_Controller.php">
             	<input type="hidden" name="email" value= "<?php echo $this -> fila['email'] ?>">	
-            	<table class="showU" style="margin-left: 40%;">	
+            	<table class="showU" style="margin-left: 30%;">	
 
                 <tr><th class="title" colspan="4"><?php echo $strings['Detalles del contacto']; ?>
                     <button onclick="location.href='../Controllers/Contactos_Controller.php';" class="volver"></button></th>

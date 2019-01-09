@@ -34,7 +34,7 @@
             <form class="formShow" enctype="multipart/form-data" action="../Controllers/Fases_Controller.php">
                 <input type="hidden" name="id_fase" value= "<?php echo $this -> fila['id_FASES'] ?>">
                 <input type="hidden" name="TAREAS_id_TAREAS" value= "<?php echo $this -> fila['TAREAS_id_TAREAS'] ?>">
-                <table class="showU" style="margin-left: 40%;">
+                <table class="showU" style="margin-left: 30%;">
 
                     <tr><th class="title" colspan="4"><?php echo $strings['Borrar fase']; ?>
                         <button class="volver" type="submit" name="action" value="Confirmar_VOLVER"></button></th>

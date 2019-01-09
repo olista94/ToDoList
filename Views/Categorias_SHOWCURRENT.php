@@ -29,7 +29,7 @@
         <div class="show-half">
 			<form class="formShow" enctype="multipart/form-data" action="../Controllers/Categorias_Controller.php">
             <input type="hidden" name="id_CATEGORIAS" value= "<?php echo $this -> fila['id_CATEGORIAS'] ?>">	
-            <table class="showU" style="margin-left: 40%;">
+            <table class="showU" style="margin-left: 30%;">
 
                 <tr><th class="title" colspan="2"><?php echo $strings['Detalles']; ?>
                     <button onclick="location.href='../Controllers/Categorias_Controller.php';" class="volver"></button></th>

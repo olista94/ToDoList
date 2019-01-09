@@ -265,7 +265,7 @@ input {
 .showAllUsers {	
 	font-size:14px;
 	color:#2b2b2b;
-	width:52%;	
+	width:60%;	
 	margin-left:auto;
 	margin-right:auto;	
   margin-top:30px;
@@ -717,8 +717,8 @@ select{
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-  margin-left: 24%;
-  margin-right: 24%;
+  margin-left: 20%;
+  margin-right: 20%;
   width: 75%;
 }
 
@@ -727,7 +727,7 @@ select{
   font-size: 14px;
   color: #2b2b2b;
   width: auto;
-  margin-right: 50px;
+  margin-right: 4%;
   margin-top: 50px;
   padding: 13px 20px 20px 20px;
   box-shadow: 2px 3px 18px -5px rgba(0,0,0,0.75);
@@ -738,8 +738,8 @@ select{
 .showT{
   font-size: 14px;
   color: #2b2b2b;
-  margin-left: 0px;
-  margin-right: 50px;
+  margin-left: 0;
+  margin-right: 4%;
   margin-top: 50px;
   padding: 20px 20px 20px 20px;
   box-shadow: 2px 3px 18px -5px rgba(0,0,0,0.75);

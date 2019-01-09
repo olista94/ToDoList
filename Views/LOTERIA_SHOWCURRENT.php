@@ -31,7 +31,7 @@
         ?>
             
         <div class="show-half">	
-            <table class="showU" style="margin-left: 40%;">
+            <table class="showU" style="margin-left: 30%;">
 
                 <tr><th class="title" colspan="4"><?php echo $strings['Ver Participación']; ?>
                     <button onclick="location.href='../Controllers/Loteria_Controller.php';" class="volver"></button></th>

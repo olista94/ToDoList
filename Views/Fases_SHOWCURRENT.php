@@ -46,7 +46,7 @@ include_once '../Views/Header.php';
 		
 								
 		<div class="show-half">	
-            <table class="showU" style="margin-left: 40%;">
+            <table class="showU" style="margin-left: 30%;">
 
                 <tr><th class="title" colspan="2"><?php echo $strings['Detalles de la fase']; ?>
                     <button onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $this -> fila['TAREAS_id_TAREAS']; ?>';" class="volver"></button></th>
@@ -63,10 +63,6 @@ include_once '../Views/Header.php';
                     <th><?php echo $strings['Fecha fin']; ?></th>
                     <td><?php echo $this -> fila['fecha_fin']; ?></td>
                 </tr>
-                <tr>
-                    <th><?php echo $strings['Contacto']; ?></th>
-                    <td><?php echo $this -> fila['CONTACTOS_email']; ?></td>
-                </tr>         
                                                                         
             </table>
 

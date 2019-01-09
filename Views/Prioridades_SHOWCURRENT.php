@@ -27,7 +27,7 @@
         ?>
             
         <div class="show-half">	
-            <table class="showU" style="margin-left: 40%;">
+            <table class="showU" style="margin-left: 30%;">
 
                 <tr><th class="title" colspan="4"><?php echo $strings['Detalles de la prioridad']; ?>
                     <button onclick="location.href='../Controllers/Prioridades_Controller.php';" class="volver"></button></th>
