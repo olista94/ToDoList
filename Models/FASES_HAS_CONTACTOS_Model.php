@@ -52,10 +52,23 @@ echo $sql;
 
 }
 
-function getArchivosOfTarea() {	
-    $sql = "SELECT * FROM archivos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS')";
+function getContactosOfTarea() {	
+    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS')";
    
     if (!($resultado = $this->mysqli->query($sql))){
+		return 'No existe'; 
+	}
+    else{ 
+		$result = $resultado;
+		return $result;
+	
+	}
+}
+
+function getContactosOfFase() {	
+    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES')";
+
+	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
 	}
     else{ 
