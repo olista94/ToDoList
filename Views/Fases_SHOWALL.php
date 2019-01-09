@@ -9,13 +9,15 @@ include_once '../Views/Header.php';
 	
 	var $datos;
 	var $archivos;
+	var $contactos;
 	var $tareas;
 	var $enlace;	
 	
-	function __construct($datos,$archivos,$tareas,$enlace){
+	function __construct($datos,$archivos,$contactos,$tareas,$enlace){
 		
 		$this -> datos = $datos;
 		$this -> archivos = $archivos;
+		$this -> contactos = $contactos;
 		$this -> tareas = $tareas -> fetch_array();
 		$this -> enlace = $enlace;
 		
@@ -83,6 +85,19 @@ include_once '../Views/Header.php';
 		?>
 		</form>
 
+		<form class=showT>
+		<legend>Contactos de la tarea</legend>
+		<?php
+			if($this ->contactos != null){
+				while($fila3 = $this ->contactos->fetch_array()){
+		?>  
+			<li><a><?php echo $fila3['CONTACTOS_email']; ?></a></li>
+		<?php
+				}
+			}
+		?>
+		</form>
+
 	</div>
 
 	<div class="showall">
@@ -98,8 +113,7 @@ include_once '../Views/Header.php';
 			<tr>
 				<th><?php echo $strings['Completada']; ?></th>
 				<th><?php echo $strings['Descripcion']; ?></th>
-				<th><?php echo $strings['Fecha inicio']; ?></th>
-				<th><?php echo $strings['Contacto']; ?></th>			
+				<th><?php echo $strings['Fecha inicio']; ?></th>		
 				<th></th>
 			</tr>
 		<?php
@@ -133,8 +147,7 @@ include_once '../Views/Header.php';
 						}
 					?>
 					<td><?php echo $fila['descripcion']; ?></td>
-					<td><?php echo $fila['fecha_inicio']; ?></td>
-					<td><?php echo $fila['CONTACTOS_email']; ?></td>				
+					<td><?php echo $fila['fecha_inicio']; ?></td>			
 					<td style="text-align:right">
 						<button class="editar" name="action" value="Confirmar_EDIT" type="submit"></button>
 						<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>

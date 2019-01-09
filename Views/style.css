@@ -727,7 +727,7 @@ select{
   font-size: 14px;
   color: #2b2b2b;
   width: auto;
-  margin-right: 2%;
+  margin-right: 50px;
   margin-top: 50px;
   padding: 13px 20px 20px 20px;
   box-shadow: 2px 3px 18px -5px rgba(0,0,0,0.75);
@@ -738,13 +738,13 @@ select{
 .showT{
   font-size: 14px;
   color: #2b2b2b;
-  margin-left: 10px;
-  margin-right: auto;
+  margin-left: 0px;
+  margin-right: 50px;
   margin-top: 50px;
   padding: 20px 20px 20px 20px;
   box-shadow: 2px 3px 18px -5px rgba(0,0,0,0.75);
-  width: 30%;
-  min-width: 24%;
+  width: auto;
+  min-width: auto;
   height: 234px;
 }
 

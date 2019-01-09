@@ -29,14 +29,15 @@
 
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
 	?>
-            
+                   
 		<div class="show-half">
             <form class="formShow" enctype="multipart/form-data" action="../Controllers/Fases_Controller.php">
                 <input type="hidden" name="id_fase" value= "<?php echo $this -> fila['id_FASES'] ?>">
+                <input type="hidden" name="TAREAS_id_TAREAS" value= "<?php echo $this -> fila['TAREAS_id_TAREAS'] ?>">
                 <table class="showU" style="margin-left: 40%;">
 
                     <tr><th class="title" colspan="4"><?php echo $strings['Borrar fase']; ?>
-                        <button onclick="location.href='../Controllers/Fases_Controller.php';" class="volver"></button></th>
+                        <button class="volver" type="submit" name="action" value="Confirmar_VOLVER"></button></th>
                     </tr>
 
                     <tr>

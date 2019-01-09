@@ -1,78 +1,90 @@
 <!-- FORMULARIO PARA REGISTRAR UN NUEVO USUARIO EN LA APLICACIÓN
  CREADO POR mi3ac6 EL 21/11/2018-->
- <?php
- include_once '../Locales/Strings_'.$_SESSION['idioma'].'.php';
+<?php
+
+include_once '../Functions/Authentication.php';
+include_once '../Views/Header.php';
  
  class Fases_EDIT{
 	 
 	var $datos;
 	var $contactos;
+	var $currentcontactos;
 	var $enlace;
 	
 	
-	function __construct($datos,$contactos,$enlace){
+	function __construct($datos,$contactos,$currentcontactos,$enlace){
 		
 		$this -> datos = $datos -> fetch_array();
 		
 		$this -> contactos = $contactos;
+		$this -> currentcontactos = $currentcontactos;
 		$this -> enlace = $enlace;
 		$this -> mostrar();
-		 /* print_r($datos[0]);
-		 print_r($datos[1]);
-		 print_r($datos[2]);
-		 print_r($datos[3]);
-		 print_r($datos[4]);
-		 print_r($datos[5]); */
 	}
 	
 	function mostrar(){
-		
-	 include_once "../Views/Header.php";
-	
-	 
+
+		if(!isset($_SESSION['idioma'])){
+            $_SESSION['idioma'] = 'SPANISH';
+        }
+
+        include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
 	 
 ?>
- <link rel="stylesheet" href="../Views/css/estilos.css" type="text/css">
- <script type="text/javascript" src="../Views/js/validaciones.js"></script>
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
- 
- <article class="edit">
- 
- <h3><?php echo $GLOBALS['strings']['Formulario para editar fase'];?></h3>
- 
- <form action="../Controllers/Fases_Controller.php" method="post" id="edit" name="edit" onsubmit="return validarformAddUser(this);">
+
+
+<div class="form">
+
+<form name="registerForm" id="registerForm" method="post" action="../Controllers/Fases_Controller.php" enctype="multipart/form-data">
+	<legend><?php echo $strings['Editar categoria'];?>
+	<button onclick="location.href='../Controllers/Fases_Controller.php';" class="volver"></button>
+	</legend>
  
 	<input hidden type="text" name="id_fase"  value="<?php echo $this -> datos[0]; ?>" readonly><br>
  
 
-   <label>
-   <?php echo $GLOBALS['strings']['Descripcion']; ?></label><br>
-  <textarea rows="4" cols="50" name="descripcion" onblur= "return !comprobarVacio(this)"><?php echo $this -> datos[1]; ?></textarea><br>
-  
-  
-  <label>
-  <?php echo $GLOBALS['strings']['Fecha inicio']; ?></label><br>
-  <input type="date" name="fecha_ini"   value="<?php echo $this -> datos[2]; ?>" onblur=" return !comprobarVacio(this)"><br>
-  
-  <label>
-  <?php echo $GLOBALS['strings']['Fecha fin']; ?></label><br>
-  <input type="date" name="fecha_fin"   value="<?php echo $this -> datos[3]; ?>" onblur=" return !comprobarVacio(this)"><br>
+	<label>
+	<?php echo $strings['Descripcion']; ?></label><br>
+	<input type="text" rows="4" cols="50" name="descripcion" value="<?php echo $this -> datos[1]; ?>" onblur= "return !comprobarVacio(this)">
+	
+	
+	<label>
+	<?php echo $strings['Fecha inicio']; ?></label><br>
+	<input type="date" name="fecha_ini"   value="<?php echo $this -> datos[2]; ?>" onblur=" return !comprobarVacio(this)"><br>
+	
+	<label>
+	<?php echo $strings['Fecha fin']; ?></label><br>
+	<input type="date" name="fecha_fin"   value="<?php echo $this -> datos[3]; ?>" onblur=" return !comprobarVacio(this)"><br>
   
 		
-<label>
-					<?php echo $GLOBALS['strings']['Contacto']; ?></label><br>
-					<select name="CONTACTOS_email">
-						<?php
-							while($contactos=$this->contactos->fetch_array())
-							{
-						?>
-							<option value="<?php echo $contactos[0];?>" <?php if($this -> datos[5] == $contactos[0]) echo "selected"; ?>><?php echo $contactos[0];?>
+	<label>
+	<?php echo $strings['Añadir contacto']; ?></label><br>
+	<select name="CONTACTOS_email[]" multiple>
+		<?php
+			while($contactos=$this->contactos->fetch_array()){
+		?>
+				<option value="<?php echo $contactos[0];?>"><?php echo $contactos[0];?>
 
-							</option>
-						<?php
-							}
-						?>
-					</select><br>
+				</option>
+		<?php
+			}
+		?>
+	</select>
+
+	<label>
+	<?php echo $strings['Quitar contacto']; ?></label><br>
+	<select name="CONTACTOS_email[]" multiple>
+		<?php
+			while($currentcontactos=$this->currentcontactos->fetch_array()){
+		?>
+				<option value="<?php echo $currentcontactos[2];?>"><?php echo $currentcontactos[2];?>
+
+				</option>
+		<?php
+			}
+		?>
+	</select>
   
   
   
@@ -80,10 +92,11 @@
 
  <!-- BOTONES DE CONFIRMAR O CANCELAR NUEVO USUARIO -->
   
-  <button type="submit" title="<?php echo $GLOBALS['strings']['Añadir usuario']; ?>" value="Confirmar_EDIT" name="action" class="confirmar"><i class="fas fa-edit"></i></button>
-<a href="<?php echo $this -> enlace;?>"><button type="button" title="<?php echo $GLOBALS['strings']['Cancelar']; ?>" class="cancelar"><i class="fas fa-times"></i></button></a>
-  
-</form>
+ <button type="submit" name="action" value="Confirmar_EDIT" value="Submit" class="aceptar"></button>
+				<button type="reset" value="Reset" class="cancelar"></button>
+
+			</form> 
+		</div> 
  
  
  </article>
