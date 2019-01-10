@@ -53,8 +53,10 @@ function add(){
 }
 
 function getContactosOfTarea() {	
-    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS')";
+    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') GROUP BY `CONTACTOS_email`";
    
+	print_r($sql);
+
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
 	}

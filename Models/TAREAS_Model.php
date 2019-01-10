@@ -560,7 +560,7 @@ function ContarFases()
 
 function ContarContactos()
 {	
-    $sql = "SELECT COUNT(`CONTACTOS_email`),`FASES_TAREAS_id_TAREAS`
+    $sql = "SELECT COUNT(DISTINCT  `CONTACTOS_email`),`FASES_TAREAS_id_TAREAS`
 			FROM fases_has_contactos
 			GROUP BY `FASES_TAREAS_id_TAREAS`
 			";
