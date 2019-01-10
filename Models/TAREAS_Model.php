@@ -575,6 +575,20 @@ function ContarContactos()
         return 'No existe';
 }
 
+function getEstado(){
+	$sql = "SELECT completada FROM tareas WHERE id_tarea = '$this->id_tarea'";
+
+	$result = $this->mysqli->query($sql);
+
+	$estado = $result->fetch_array()[0];
+    
+    if ($estado == 0){	
+       	return 'No';
+    }else{
+		return 'No se puede añadir una fase a una tarea cerrada';
+	}
+}
+
 
 }//fin de clase
 
