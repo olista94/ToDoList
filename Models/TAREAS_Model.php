@@ -532,8 +532,7 @@ function ContarArchivos()
     $result = $this->mysqli->query($sql);
     
     if ($result)
-    {
-    	
+    {    	
        return $result;
     } 
     else

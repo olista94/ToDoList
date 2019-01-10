@@ -138,14 +138,14 @@ function search(){
 
 function delete()
 {	
-    $sql = "SELECT * FROM fases WHERE (`id_FASES` = '$this->id_fase')";
+    $sql = "SELECT * FROM archivos WHERE (`url` = '$this->url')";
     
     $result = $this->mysqli->query($sql);
     
     if ($result->num_rows == 1)
     {
     	
-        $sql = "DELETE FROM fases WHERE (`id_FASES` = '$this->id_fase')";
+        $sql = "DELETE FROM archivos WHERE (`url` = '$this->url')";
         
         $this->mysqli->query($sql);
         
