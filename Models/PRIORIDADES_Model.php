@@ -126,7 +126,7 @@ function delete()
 			return 'Borrado correctamente';
 		}
 		else{
-			return 'Hay tareas asocioadas';
+			return 'No se puede borrar.Hay tareas asociadas a esta prioridad';
 		}	
    
 	}  

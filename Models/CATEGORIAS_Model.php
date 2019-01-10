@@ -123,12 +123,19 @@ function delete()
     	
         $sql = "DELETE FROM categorias WHERE (`id_CATEGORIAS` = '$this->id_CATEGORIAS')";
         
-        $this->mysqli->query($sql);
+        if($this->mysqli->query($sql)){
         
-    	return 'Borrado correctamente';
+			return 'Borrado correctamente';
+		}
+		else{
+			return 'No se puede borrar.Hay tareas asociadas a esta categoria';
+		}
     } 
     else
         return 'No existe';
-}  
+} 
+
+
+ 
 }//fin de clase
 ?> 

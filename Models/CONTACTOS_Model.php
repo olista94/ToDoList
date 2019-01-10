@@ -95,9 +95,13 @@ function delete()
     	
         $sql = "DELETE FROM contactos WHERE (`email` = '$this->email')";
         
-        $this->mysqli->query($sql);
+        if($this->mysqli->query($sql)){
         
-    	return 'Borrado correctamente';
+			return 'Borrado correctamente';
+		}
+		else{
+			return 'No se puede borrar.Hay fases asociadas a este contacto';
+		}
     } 
     else
         return 'No existe';
