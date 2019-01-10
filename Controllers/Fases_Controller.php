@@ -69,7 +69,13 @@ if (!IsAuthenticated()){ //si no está autenticado
 		}else{
 			$_REQUEST['CONTACTOS_email1'] = "";
 		}
-				
+
+		if(isset($_REQUEST['archivos_delete'])){
+			$archivos_delete = $_REQUEST['archivos_delete'];
+		}else{
+			$_REQUEST['archivos_delete'] = "";
+		}
+
 		$fase = new FASES_Model($id_fase,$descripcion,$fecha_ini,$fecha_fin,$completada,$TAREAS_id_TAREAS);
 		
 		return $fase;
@@ -176,14 +182,17 @@ if (!IsAuthenticated()){ //si no está autenticado
 				$cont = $contactos -> search();
 				
 				$currentcontactos = new FASES_HAS_CONTACTOS_Model($_REQUEST['id_fase'],"","");
-				$cucont = $currentcontactos -> getContactosOfFase();		
+				$cucont = $currentcontactos -> getContactosOfFase();
+				
+				$currentarchivos = new ARCHIVOS_Model('','','',$_REQUEST['id_fase'],'');
+				$cuarch = $currentarchivos -> getArchivosOfFase();	
 				
 				$idtarea = $_REQUEST['TAREAS_id_TAREAS'];
 				
 				$fase = new FASES_Model($_REQUEST['id_fase'],'','','','','');
 				$datos = $fase->rellenadatos();	
 				
-				new Fases_EDIT($idtarea,$datos,$cont,$cucont,'../Controllers/Fases_Controller.php');
+				new Fases_EDIT($idtarea,$datos,$cont,$cucont,$cuarch,'../Controllers/Fases_Controller.php');
 			}else{			
 			
 				$idtarea = $_REQUEST['TAREAS_id_TAREAS'];
@@ -214,6 +223,39 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$ContactosModel = new FASES_HAS_CONTACTOS_Model($idfase,$idtarea,$contactos2[$i]);
 					$ContactosModel -> delete();
 				}
+
+				if($_FILES["archivo"]['size'][0] > 0) {
+					$output_dir = "../Files/";//Path for file upload
+					$fileCount = count($_FILES["archivo"]['name']);
+					for($i=0; $i < $fileCount; $i++){
+						$RandomNum = time();
+						$ImageName = str_replace(' ','-',strtolower($_FILES['archivo']['name'][$i]));
+						$ImageType = $_FILES['archivo']['type'][$i]; //"image/png", image/jpeg etc.
+						$ImageExt = substr($ImageName, strrpos($ImageName, '.'));
+						$ImageExt = str_replace('.','',$ImageExt);
+						$ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
+						$NewImageName = $ImageName.'-'.$RandomNum.'.'.$ImageExt;
+						$ruta= $output_dir.$NewImageName;
+						move_uploaded_file($_FILES["archivo"]["tmp_name"][$i],$output_dir."/".$NewImageName );
+	
+						$model = new ARCHIVOS_Model('',$ImageName,$ruta,$idfase,$idtarea);
+						$model -> add();
+					}
+				}
+
+				if(count($_REQUEST['archivos_delete'])>0){
+					for ($i=0;$i<count($_REQUEST['archivos_delete']);$i++){//Borra						
+						$ArchivosModel = new ARCHIVOS_Model('','',$_REQUEST['archivos_delete'][$i],$idfase,$idtarea);
+						$ArchivosModel -> delete();
+						$path = $_REQUEST['archivos_delete'][$i];
+						if (file_exists($path)) {
+							unlink($path);
+						} else {
+							return "El archivo ya ha sido borrado";
+						}					
+					}
+				}
+
 				new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');
 			}
 		break;
