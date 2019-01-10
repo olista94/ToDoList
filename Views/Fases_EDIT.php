@@ -11,15 +11,17 @@ include_once '../Views/Header.php';
 	var $datos;
 	var $contactos;
 	var $currentcontactos;
+	var $currentarchivos;
 	var $enlace;
 	
 	
-	function __construct($idtarea,$datos,$contactos,$currentcontactos,$enlace){
+	function __construct($idtarea,$datos,$contactos,$currentcontactos,$currentarchivos,$enlace){
 		
 		$this -> idtarea = $idtarea;
 		$this -> datos = $datos -> fetch_array();
 		$this -> contactos = $contactos;
 		$this -> currentcontactos = $currentcontactos;
+		$this -> currentarchivos = $currentarchivos;
 		$this -> enlace = $enlace;
 		$this -> mostrar();
 	}
@@ -79,7 +81,22 @@ include_once '../Views/Header.php';
 		?>
 	</select>
 
-  
+	<label for="archivo"><?php echo $strings['Añadir archivos']; ?></label>
+	<input type="file" name="archivo[]" id="archivo" size="40" multiple="multiple"/>
+
+	<label>
+	<?php echo $strings['Quitar archivos']; ?></label><br>
+	<select name="archivos_delete[]" multiple>
+		<?php
+			while($currentarchivos=$this->currentarchivos->fetch_array()){
+		?>
+				<option value="<?php echo $currentarchivos[2];?>"><?php echo $currentarchivos[1];?>
+
+				</option>
+		<?php
+			}
+		?>
+	</select>
   
 
 

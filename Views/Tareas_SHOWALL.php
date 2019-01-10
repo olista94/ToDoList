@@ -56,7 +56,7 @@ include_once '../Views/Header.php';
 ?>
 
 
-        <div class="showall">             
+        <div class="showall">           
 		
             <table class="showAllUsers">
 				<tr><th class="title" colspan="6"><?php echo $strings['Tareas']; ?>
@@ -120,7 +120,6 @@ include_once '../Views/Header.php';
 						<td><?php echo $fila[6]; ?></td>	
 						<td>
 						<?php
-						/* print_r($this -> archivos); */
 						if($this -> archivos-> num_rows == 0){
 							echo '0';
 						}
@@ -143,7 +142,6 @@ include_once '../Views/Header.php';
 						
 						<td>
 						<?php
-						/* print_r($this -> archivos); */
 						if($this -> fases-> num_rows == 0){
 							echo '0';
 						}
@@ -166,7 +164,6 @@ include_once '../Views/Header.php';
 						
 							<td>
 						<?php
-						/* print_r($this -> archivos); */
 						if($this -> contactos-> num_rows == 0){
 							echo '0';
 						}
