@@ -243,7 +243,19 @@ if (!IsAuthenticated()){ //si no está autenticado
 					}
 				}
 
-				if(count($_REQUEST['archivos_delete'])>0){
+if(isset($_REQUEST['archivos_delete']) && !empty($_REQUEST['archivos_delete'])){
+					$ar = $_REQUEST['archivos_delete'];
+					
+				}else{
+					$ar = array();
+				}
+				
+				for ($i=0;$i<count($ar);$i++){//Borra					
+					$ArchivosModel = new ARCHIVOS_Model('','',$ar[$i],$idfase,$idtarea);
+					$ArchivosModel -> delete();
+				}
+
+				/* if(count($_REQUEST['archivos_delete'])>0){
 					for ($i=0;$i<count($_REQUEST['archivos_delete']);$i++){//Borra						
 						$ArchivosModel = new ARCHIVOS_Model('','',$_REQUEST['archivos_delete'][$i],$idfase,$idtarea);
 						$ArchivosModel -> delete();
@@ -254,7 +266,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 							return "El archivo ya ha sido borrado";
 						}					
 					}
-				}
+				} */
 
 				new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');
 			}
