@@ -746,6 +746,7 @@ select{
   width: auto;
   min-width: auto;
   height: 234px;
+  overflow: scroll;
 }
 
 .login_body{
