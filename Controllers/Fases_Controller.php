@@ -390,7 +390,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 			$tarea = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],'','','','','','','');
 			$t = $tarea -> TareasCompleto();
 
-			new Fases_SHOWALL($datos,$archivo,$t,'../Controllers/Fases_Controller.php');		
+			new Fases_SHOWALL($datos,$archivo,$t,'','../Controllers/Fases_Controller.php');		
 		}
 	break;
 
