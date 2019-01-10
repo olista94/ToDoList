@@ -38,8 +38,11 @@ class Fases_ADD{
 					<label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
 					<input type="descripcion" id="descripcion" name="descripcion" size="40" maxlength="60"/>	
 						
+					<label>
+					<?php echo $GLOBALS['strings']['Tarea']; ?></label>
+					<input type="text" name="descripcion_tarea" readonly value="<?php echo $this -> descripcion;?>">
 					<input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $this -> id_tarea;?>">
-					
+
 					<label>
 					<?php echo $strings['Contacto']; ?></label>
 					<select name="CONTACTOS_email[]" multiple>
