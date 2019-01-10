@@ -21,7 +21,7 @@
 ?>
 
   <form name="Form" id="registerForm" action="../Controllers/Categorias_Controller.php" method="post"  >
-    <legend><?php echo $strings['Formulario para anadir categoria']; ?>
+    <legend><?php echo $strings['Formulario para añadir categoria']; ?>
     <button onclick="location.href='../Controllers/Categorias_Controller.php';" class="volver"></button>
     </legend>
 
