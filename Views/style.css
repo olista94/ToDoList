@@ -203,7 +203,7 @@ body {
 
 /*--------- Formulario--------*/
 
-form {	
+.form {	
 	font-size:14px;
 	color:#2b2b2b;
 	width:50%;	
@@ -755,4 +755,8 @@ select{
 
 .login_form{
   background-color: whitesmoke;
+}
+
+.show-half{
+  margin: 2% 41% 0% 30%;
 }

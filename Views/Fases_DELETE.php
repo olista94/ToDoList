@@ -29,15 +29,14 @@
 
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
 	?>
-                   
 		<div class="show-half">
+            <button onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $this -> fila['TAREAS_id_TAREAS'] ?>';" class="volver"></button>
             <form class="formShow" enctype="multipart/form-data" action="../Controllers/Fases_Controller.php">
                 <input type="hidden" name="id_fase" value= "<?php echo $this -> fila['id_FASES'] ?>">
-                <input type="hidden" name="TAREAS_id_TAREAS" value= "<?php echo $this -> fila['TAREAS_id_TAREAS'] ?>">
+                <input type="hidden" name="id_tarea" value= "<?php echo $this -> fila['TAREAS_id_TAREAS'] ?>">
                 <table class="showU" style="margin-left: 30%;">
 
-                    <tr><th class="title" colspan="4"><?php echo $strings['Borrar fase']; ?>
-                        <button class="volver" type="submit" name="action" value="Confirmar_VOLVER"></button></th>
+                    <tr><th class="title" colspan="4"><?php echo $strings['Borrar fase']; ?>                    
                     </tr>
 
                     <tr>
@@ -51,8 +50,7 @@
                     <tr>
                         <th><?php echo $strings['Fecha fin']; ?></th>
                         <td><?php echo $this -> fila['fecha_fin']; ?></td>
-                    </tr>
-                  
+                    </tr>                  
 
                     <tr>
                         <th><button class="borrar-si" type="submit" name="action" value="Confirmar_DELETE2"></button></th>

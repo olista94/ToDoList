@@ -33,7 +33,7 @@ include_once '../Views/Header.php';
 	<div class="showall">
 
 			
-	<form>
+	<form class="form">
 		<legend>Ficheros de la fase</legend>
 		<?php
 			if($this ->archivos != null){
@@ -49,7 +49,7 @@ include_once '../Views/Header.php';
 	</div>
 	<div class="showall">
 	
-	<form >
+	<form class="form">
 		<legend>Contactos de la tarea</legend>
 		<?php
 			if($this ->contactos != null){

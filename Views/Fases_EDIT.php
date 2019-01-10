@@ -37,15 +37,15 @@ include_once '../Views/Header.php';
 ?>
 
 
-<div class="form">
-	<button class="volver" onclick="location.href='../Controllers/Tareas_Controller.php'"> </button>
-<form name="registerForm" id="registerForm" method="post" action="../Controllers/Fases_Controller.php" enctype="multipart/form-data">
-<legend>Editar fase
-	
-	</legend>
+<div class="form">	
+
+	<button onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $this->idtarea; ?>';" class="volver"></button>
+
+	<form name="registerForm" id="registerForm" method="post" action="../Controllers/Fases_Controller.php" enctype="multipart/form-data">
+	<legend>Editar fase</legend>
  
 	<input hidden type="text" name="id_fase"  value="<?php echo $this -> datos[0]; ?>" readonly><br>
- <input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $this->idtarea; ?>">
+ 	<input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $this->idtarea; ?>">
 
 	<label>
 	<?php echo $strings['Descripcion']; ?></label><br>
