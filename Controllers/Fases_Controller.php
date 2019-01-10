@@ -90,13 +90,36 @@ if (!IsAuthenticated()){ //si no está autenticado
 		case 'Confirmar_ADD':
 			if(count($_REQUEST) < 4 ){
 				$tarea = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],"","","","","","","");
-				$id_tarea =$tarea -> BuscarMaxID();
-				$descripcion = $tarea -> BuscarDescripcion();
-				
-				$contactos = new CONTACTOS_Model("","","","");
-				$cont = $contactos -> search();
-				
-				new Fases_ADD($_REQUEST['TAREAS_id_TAREAS'],$descripcion,$cont,'../Controllers/Tareas_Controller.php');				
+
+				$completada = $tarea -> getEstado();
+
+				if($completada == 'No'){
+
+					$id_tarea =$tarea -> BuscarMaxID();
+					$descripcion = $tarea -> BuscarDescripcion();
+					
+					$contactos = new CONTACTOS_Model("","","","");
+					$cont = $contactos -> search();
+					
+					new Fases_ADD($_REQUEST['TAREAS_id_TAREAS'],$descripcion,$cont,'../Controllers/Tareas_Controller.php');	
+				}else{
+
+					$fase = new FASES_Model('','','','','',$_REQUEST['TAREAS_id_TAREAS'],'');
+					$datos = $fase->getFasesOfTarea();
+	
+					$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['TAREAS_id_TAREAS']);
+					$archivo = $archivos -> getArchivosOfTarea();
+	
+					$contactos = new FASES_HAS_CONTACTOS_Model('',$_REQUEST['TAREAS_id_TAREAS'],'');
+					$contacto = $contactos -> getContactosOfTarea();
+					
+					$tarea = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],'','','','','','','');
+					$t = $tarea -> TareasCompleto();
+	
+					new Fases_SHOWALL($datos,$archivo,$contacto,$t,'../Controllers/Fases_Controller.php');	
+
+					new ALERT($completada);
+				}			
 			}else{
 				$fase = getDataForm();
 				$mensaje = $fase-> add();				
@@ -243,7 +266,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 					}
 				}
 
-if(isset($_REQUEST['archivos_delete']) && !empty($_REQUEST['archivos_delete'])){
+				if(isset($_REQUEST['archivos_delete']) && !empty($_REQUEST['archivos_delete'])){
 					$ar = $_REQUEST['archivos_delete'];
 					
 				}else{
