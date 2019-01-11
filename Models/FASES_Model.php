@@ -215,7 +215,6 @@ function BuscarIDFase(){
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
 		
 		return $result;
 	}
@@ -295,7 +294,6 @@ function BuscarMaxID(){
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
 		
 		return $result;
 	}

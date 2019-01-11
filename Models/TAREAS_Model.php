@@ -257,7 +257,6 @@ function BuscarID(){
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
 		
 		return $result;
 	}
@@ -276,7 +275,6 @@ function BuscarID2(){
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
 		
 		return $result;
 	}
@@ -293,7 +291,6 @@ function BuscarMaxID(){
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
 		
 		return $result;
 	}
@@ -311,7 +308,6 @@ function BuscarDescripcion(){
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
 		
 		return $result;
 	}
