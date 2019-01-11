@@ -7,6 +7,8 @@ Tareas:
 - Informe Individual  
 - Install.sh  
 - Mover carpetas css  
+- Crear acceso login BD
+- Crear fichero READMELogin.txt
 
 
 Corregir:  
