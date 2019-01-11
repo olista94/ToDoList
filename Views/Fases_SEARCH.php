@@ -1,7 +1,5 @@
-<!-- FORMULARIO PARA REGISTRAR UN NUEVO USUARIO EN LA APLICACIĂ“N
- CREADO POR mi3ac6 EL 21/11/2018-->
+
  <?php
- include_once '../Locales/Strings_'.$_SESSION['idioma'].'.php';
  
  class Fases_SEARCH{
 	 
@@ -17,20 +15,19 @@
 	
 	function mostrar(){
 		
-   include_once "../Views/Header.php";
-	 
-	 
+    if(!isset($_SESSION['idioma'])){
+      $_SESSION['idioma'] = 'SPANISH';
+  }
+
+  include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
+
 ?>
- <link rel="stylesheet" href="../Views/css/estilos.css" type="text/css">
- <script type="text/javascript" src="../Views/js/validaciones.js"></script>
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
  
- <article class="search">
- 
- <h3><?php echo $GLOBALS['strings']['Formulario para buscar fase/s'];?></h3>
- 
- <form enctype="multipart/form-data" action="../Controllers/Fases_Controller.php" method="post" id="search" name="search">
- 
+ <form class="formB" enctype="multipart/form-data" action="../Controllers/Fases_Controller.php" method="post" id="search" name="search">
+ <legend><?php echo $strings['Buscar fase'];?>
+  <button onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button>
+  </legend>
+
  <input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $_REQUEST['TAREAS_id_TAREAS']; ?>">
 
    <label>
@@ -54,9 +51,7 @@
 
 
  <!-- BOTONES DE CONFIRMAR O CANCELAR BUSQUEDA -->
-  
-  <button type="submit" title="<?php echo $GLOBALS['strings']['Buscar fase']; ?>" value="Confirmar_SEARCH" name="action" class="confirmar"><i class="fas fa-search"></i></button>
-<a href="<?php echo $this -> enlace;?>"><button type="button" title="<?php echo $GLOBALS['strings']['Cancelar']; ?>" class="cancelar"><i class="fas fa-times"></i></button></a>
+ <button type="submit" name="action" value="Confirmar_SEARCH" class="buscar"></button>
   
 </form>
  
