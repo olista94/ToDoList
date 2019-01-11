@@ -10,6 +10,8 @@ Tareas:
 - Crear acceso login BD
 - Crear fichero READMELogin.txt
 - Comentar codigo
+- Traducir js
+- Manueal de usuario
 
 Corregir:  
 - Botones volver atras, goma borrar por cancelar
