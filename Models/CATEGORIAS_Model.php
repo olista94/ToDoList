@@ -84,7 +84,7 @@ function search(){
 	 				(`nombre` LIKE '%$this->nombre%')
 					
     				)";
-				/* echo $sql; */
+				
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';
@@ -103,7 +103,7 @@ function searchById(){
 				(`id_CATEGORIAS` LIKE '%$this->id_CATEGORIAS%')
 			   
 			   )";
-		   /* echo $sql; */
+		   
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';
 		/* return "Error en la consulta"; */

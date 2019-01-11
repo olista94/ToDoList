@@ -44,7 +44,7 @@ function add(){
 
 				if (!$this->mysqli->query($sql)) { 
 					return 'Error al insertar';
-					/* echo $sql; */
+					
 				}
 				else{ 
 					return 'Insertado correcto'; 
@@ -74,7 +74,7 @@ function search(){
 					(`descripcion` LIKE '%$this->descripcion%') &&
 					(`telefono` LIKE '%$this->telefono%')
     				)";
-				/* echo $sql; */
+				
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';

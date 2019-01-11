@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-01-2019 a las 15:59:19
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 08-01-2019 a las 16:38:07
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,15 +21,15 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `todolist`
 --
-
 DROP SCHEMA IF EXISTS `todolist` ;
 
 -- -----------------------------------------------------
 -- Schema todolist
 -- -----------------------------------------------------
-
 CREATE SCHEMA IF NOT EXISTS `todolist` DEFAULT CHARACTER SET utf8 ;
 USE `todolist` ;
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `archivos`
@@ -42,6 +42,12 @@ CREATE TABLE `archivos` (
   `FASES_id_FASES` int(11) NOT NULL,
   `FASES_TAREAS_id_TAREAS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `archivos`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -58,11 +64,7 @@ CREATE TABLE `categorias` (
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`id_CATEGORIAS`, `nombre`) VALUES
-(1, 'Clases'),
-(2, 'Casa'),
-(3, 'Trabajo'),
-(4, 'Amigos');
+
 
 -- --------------------------------------------------------
 
@@ -81,9 +83,6 @@ CREATE TABLE `contactos` (
 -- Volcado de datos para la tabla `contactos`
 --
 
-INSERT INTO `contactos` (`email`, `nombre`, `descripcion`, `telefono`) VALUES
-('iago@gmail.com', 'Yago', 'AcadÃ©mico', '678214596'),
-('sergio@gmail.com', 'Sergio', 'Coordinador', '685235478');
 
 -- --------------------------------------------------------
 
@@ -99,6 +98,11 @@ CREATE TABLE `fases` (
   `completada` tinyint(4) NOT NULL DEFAULT '0',
   `TAREAS_id_TAREAS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `fases`
+--
+
 
 -- --------------------------------------------------------
 
@@ -128,9 +132,6 @@ CREATE TABLE `prioridades` (
 -- Volcado de datos para la tabla `prioridades`
 --
 
-INSERT INTO `prioridades` (`nivel`, `descripcion`, `color`) VALUES
-(0, 'Muy poco importante', '#88ffa6'),
-(1, 'Poco importante', '#4ff0e0');
 
 -- --------------------------------------------------------
 
@@ -148,6 +149,12 @@ CREATE TABLE `tareas` (
   `CATEGORIAS_id_CATEGORIAS` int(11) NOT NULL,
   `PRIORIDADES_nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tareas`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -170,9 +177,6 @@ CREATE TABLE `usuarios` (
 --
 -- Volcado de datos para la tabla `usuarios`
 --
-
-INSERT INTO `usuarios` (`login`, `password`, `dni`, `nombre`, `apellidos`, `telefono`, `email`, `fecha`, `tipo`) VALUES
-('admin', 'admin', '77464946A', 'Admin', 'Adminez Adminez', '666123456', 'admin@admin.com', '2019-01-06', 'ADMIN');
 
 --
 -- Índices para tablas volcadas
@@ -253,25 +257,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id_ARCHIVOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_ARCHIVOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_CATEGORIAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_CATEGORIAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT de la tabla `fases`
 --
 ALTER TABLE `fases`
-  MODIFY `id_FASES` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_FASES` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- Restricciones para tablas volcadas

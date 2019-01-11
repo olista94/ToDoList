@@ -107,7 +107,7 @@ function search(){
 					(`PRIORIDADES_nivel` LIKE '%$this->PRIORIDADES_nivel%')
 					
     				)";
-				/* echo $sql; */
+				
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';
@@ -135,7 +135,7 @@ function search1(){
 	
 	
 	";
-		   /* echo $sql; */
+		   
 
 if (!($resultado = $this->mysqli->query($sql))){
    return 'Error en la búsqueda';
@@ -163,7 +163,7 @@ function searchAdmin(){
 	
 	
 	";
-		   /* echo $sql; */
+		   
 
 if (!($resultado = $this->mysqli->query($sql))){
    return 'Error en la búsqueda';
@@ -195,13 +195,13 @@ function delete()
 
 	function rellenadatos() {	
 	$sql = "SELECT * FROM tareas WHERE (`id_tarea` = '$this->id_tarea')";
-   /* echo $sql; */
+   
     if (!($resultado = $this->mysqli->query($sql))){
-		/* echo $sql; */
+		
 		return 'No existe'; 
 	}
     else{ 
-	/* echo $sql; */
+	
 		$result = $resultado;
 		return $result;
 		
@@ -250,7 +250,7 @@ function BuscarID(){
 					`CATEGORIAS_id_CATEGORIAS` = '$this->CATEGORIAS_id_CATEGORIAS' &&
 					`PRIORIDADES_nivel` = '$this->PRIORIDADES_nivel'
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -258,7 +258,7 @@ function BuscarID(){
     else{ 
 		$result = $resultado->fetch_array()[0];
 		echo $result;
-		print_r($resultado);
+		
 		return $result;
 	}
 }
@@ -269,7 +269,7 @@ function BuscarID2(){
 			WHERE id_tarea = (SELECT MAX(id_tarea)
 							 FROM tareas) ";
 					
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -277,7 +277,7 @@ function BuscarID2(){
     else{ 
 		$result = $resultado->fetch_array()[0];
 		echo $result;
-		print_r($resultado);
+		
 		return $result;
 	}
 }
@@ -286,7 +286,7 @@ function BuscarMaxID(){
 	$sql = "SELECT MAX(id_tarea)
 			FROM tareas
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -294,7 +294,7 @@ function BuscarMaxID(){
     else{ 
 		$result = $resultado->fetch_array()[0];
 		echo $result;
-		print_r($resultado);
+		
 		return $result;
 	}
 }
@@ -304,7 +304,7 @@ function BuscarDescripcion(){
 			FROM tareas
 			WHERE id_tarea = '$this->id_tarea' ";
 					
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -312,7 +312,7 @@ function BuscarDescripcion(){
     else{ 
 		$result = $resultado->fetch_array()[0];
 		echo $result;
-		print_r($resultado);
+		
 		return $result;
 	}
 }
@@ -323,15 +323,15 @@ function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario norm
 			FROM tareas t,prioridades p
 			WHERE `USUARIOS_login` = '".$_SESSION['login']."' && t.PRIORIDADES_nivel = p.nivel
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
-		/* echo $result; */
-		/* print_r($resultado); */
+		
+		
 		return $result;
 	}
 }
@@ -344,7 +344,7 @@ function OrdenarFecha(){//Ordena por fecha de inicio
 			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS
 			ORDER BY `Fecha_Ini` 
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -352,7 +352,7 @@ function OrdenarFecha(){//Ordena por fecha de inicio
     else{ 
 		$result = $resultado;
 		
-		/* print_r($resultado); */
+		
 		return $result;
 	}
 }
@@ -364,7 +364,7 @@ function OrdenarPrioridad(){//Ordena por prioridad
 			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS 
 			ORDER BY `PRIORIDADES_nivel`  
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -372,7 +372,7 @@ function OrdenarPrioridad(){//Ordena por prioridad
     else{ 
 		$result = $resultado;
 		
-		/* print_r($resultado); */
+		
 		return $result;
 	}
 }
@@ -384,7 +384,7 @@ function OrdenarCategoria(){//Ordena por categoria
 			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS
 			ORDER BY `CATEGORIAS_id_CATEGORIAS`  
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -392,7 +392,7 @@ function OrdenarCategoria(){//Ordena por categoria
     else{ 
 		$result = $resultado;
 		
-		/* print_r($resultado); */
+		
 		return $result;
 	}
 }
@@ -405,7 +405,7 @@ function OrdenarFechaNormal(){//Ordena por fecha de inicio
 			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS && `USUARIOS_login` = '".$_SESSION['login']."'
 			ORDER BY `Fecha_Ini` 
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -413,7 +413,7 @@ function OrdenarFechaNormal(){//Ordena por fecha de inicio
     else{ 
 		$result = $resultado;
 		
-		/* print_r($resultado); */
+		
 		return $result;
 	}
 }
@@ -425,7 +425,7 @@ function OrdenarPrioridadNormal(){//Ordena por prioridad
 			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS && `USUARIOS_login` = '".$_SESSION['login']."'
 			ORDER BY `PRIORIDADES_nivel` 
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -433,7 +433,7 @@ function OrdenarPrioridadNormal(){//Ordena por prioridad
     else{ 
 		$result = $resultado;
 		
-		/* print_r($resultado); */
+		
 		return $result;
 	}
 }
@@ -445,7 +445,7 @@ function OrdenarCategoriaNormal(){//Ordena por categoria
 			WHERE t.PRIORIDADES_nivel = p.nivel && `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS && `USUARIOS_login` = '".$_SESSION['login']."'
 			ORDER BY `CATEGORIAS_id_CATEGORIAS`  
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -453,7 +453,7 @@ function OrdenarCategoriaNormal(){//Ordena por categoria
     else{ 
 		$result = $resultado;
 		
-		/* print_r($resultado); */
+		
 		return $result;
 	}
 }

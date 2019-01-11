@@ -101,11 +101,11 @@ function registrar(){
 					)";
 			
 		if (!$this->mysqli->query($sql)) {
-			/* echo $sql; */
+			
 			return $GLOBALS['strings']['Error al insertar'];
 		}
 		else{
-			/* echo $sql; */
+			
 			return  $GLOBALS['strings']['Insercion correcta']; //operacion de insertado correcta
 		}		
 	}
@@ -172,7 +172,7 @@ function search(){
 					(`tipo` LIKE '%$this->tipo%')
 					
     				)";
-				/* echo $sql; */
+				
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return $GLOBALS['strings']['Error en la búsqueda'];

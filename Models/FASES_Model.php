@@ -175,15 +175,14 @@ function BuscarID(){
 					`CATEGORIAS_id_CATEGORIAS` = '$this->CATEGORIAS_id_CATEGORIAS' &&
 					`PRIORIDADES_nivel` = '$this->PRIORIDADES_nivel'
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
-		print_r($resultado);
+		
 		return $result;
 	}
 }
@@ -194,15 +193,14 @@ function BuscarID2(){
 			WHERE id_tarea = (SELECT MAX(id_tarea)
 							 FROM tareas) ";
 					
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
-		print_r($resultado);
+		
 		return $result;
 	}
 }
@@ -210,7 +208,7 @@ function BuscarID2(){
 function BuscarIDFase(){
 	$sql = "SELECT MAX(id_FASES) FROM fases";
 					
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -218,7 +216,7 @@ function BuscarIDFase(){
     else{ 
 		$result = $resultado->fetch_array()[0];
 		echo $result;
-		print_r($resultado);
+		
 		return $result;
 	}
 }
@@ -290,7 +288,7 @@ function BuscarMaxID(){
 	$sql = "SELECT MAX(id_FASES)
 			FROM fases
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
@@ -298,7 +296,7 @@ function BuscarMaxID(){
     else{ 
 		$result = $resultado->fetch_array()[0];
 		echo $result;
-		print_r($resultado);
+		
 		return $result;
 	}
 } 

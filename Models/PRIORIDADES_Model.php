@@ -28,7 +28,7 @@ function add(){
 					)";
 			
 		if (!$this->mysqli->query($sql)) {
-			/* echo $sql; */
+			
 			return 'Error en la inserción';
 		}
 		else{
@@ -67,7 +67,7 @@ function edit()
 			return 'Error en la inserción';
 		}
 		else{ 
-			/* echo $sql; */
+			
 			return 'Inserción realizada con éxito';
 		}
     }
@@ -84,7 +84,7 @@ function search(){
 					(`color` LIKE '%$this->color%')
 					
     				)";
-				/* echo $sql; */
+				
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';
@@ -102,7 +102,7 @@ function searchById(){
 			   (`nivel` LIKE '%$this->nivel%')
 			   
 			   )";
-		   /* echo $sql; */
+		   
 if (!($resultado = $this->mysqli->query($sql))){
    return 'Error en la búsqueda';
    /* return "Error en la consulta"; */

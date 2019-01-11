@@ -125,7 +125,7 @@ function search(){
 					(`CONTACTOS_email` LIKE '%$this->CONTACTOS_email%')
 					
     				)";
-				/* echo $sql; */
+				
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';
@@ -203,15 +203,15 @@ function BuscarID(){
 					`CATEGORIAS_id_CATEGORIAS` = '$this->CATEGORIAS_id_CATEGORIAS' &&
 					`PRIORIDADES_nivel` = '$this->PRIORIDADES_nivel'
 					";
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
-		print_r($resultado);
+		
+		
 		return $result;
 	}
 }
@@ -222,15 +222,14 @@ function BuscarID2(){
 			WHERE id_tarea = (SELECT MAX(id_tarea)
 							 FROM tareas) ";
 					
-	/* echo $sql; */
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado->fetch_array()[0];
-		echo $result;
-		print_r($resultado);
+		
 		return $result;
 	}
 }
