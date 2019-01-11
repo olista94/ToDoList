@@ -23,12 +23,12 @@ class Categorias_EDIT{
 
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
 ?>	 
-<button onclick="location.href='../Controllers/Categorias_Controller.php';" class="volver"></button>
+
 		<div class="form">
 
 			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Categorias_Controller.php" enctype="multipart/form-data" onsubmit="return comprobarCategoria(this);">
 				<legend><?php echo $strings['Editar categoria'];?>
-				
+				<button type="button" onclick="location.href='../Controllers/Categorias_Controller.php';" class="volver"></button>
 				</legend>
 
 				<input hidden type="text" name="id_CATEGORIAS"  value="<?php echo $this -> fila[0]; ?>" readonly><br>	

@@ -19,10 +19,10 @@
   include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
 	 	 
 ?>
-<button onclick="location.href='../Controllers/Contactos_Controller.php';" class="volver"></button>
+
   <form name="Form" id="registerForm" action="../Controllers/Contactos_Controller.php" method="post" enctype="multipart/form-data" onsubmit="return comprobarContacto(this)">
     <legend><?php echo $strings['Añadir contacto']; ?>
-    
+    <button type="button" onclick="location.href='../Controllers/Contactos_Controller.php';" class="volver"></button>
     </legend>
 
     <div>	

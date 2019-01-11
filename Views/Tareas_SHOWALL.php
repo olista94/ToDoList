@@ -59,7 +59,7 @@ include_once '../Views/Header.php';
         <div class="showall">           
 		
             <table class="showAllUsers">
-				<tr><th class="title" colspan="6"><?php echo $strings['Tareas']; ?>
+				<tr><th class="title" colspan="7"><?php echo $strings['Tareas']; ?>
 				<form class="tableActions" action="../Controllers/Tareas_Controller.php" method="">
 					<button class="buscar-little" name="action" value="Confirmar_SEARCH1" type="submit"></button>
 					<button class="anadir-little"  name="action" value="Confirmar_ADD" type="submit"></button>

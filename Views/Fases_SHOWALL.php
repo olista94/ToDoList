@@ -77,7 +77,7 @@ include_once '../Views/Header.php';
 		</table>
 
 		<form class=showT>
-		<legend>Ficheros de la tarea</legend>
+		<legend><?php echo $strings['Ficheros de la tarea']; ?></legend>
 		<?php
 			if($this ->archivos != null){
 				while($fila2 = $this ->archivos->fetch_array()){
@@ -90,7 +90,7 @@ include_once '../Views/Header.php';
 		</form>
 
 		<form class=showT>
-		<legend>Contactos de la tarea</legend>
+		<legend><?php echo $strings['Contactos de la tarea']; ?></legend>
 		<?php
 			if($this ->contactos != null){
 				while($fila3 = $this ->contactos->fetch_array()){

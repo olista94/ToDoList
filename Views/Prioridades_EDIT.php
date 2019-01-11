@@ -25,10 +25,10 @@ class Prioridades_EDIT{
 ?>	 
 
 		<div class="form">
-<button onclick="location.href='../Controllers/Prioridades_Controller.php';" class="volver"></button>
+
 			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Prioridades_Controller.php" enctype="multipart/form-data" onsubmit="return comprobarPrioridad(this)">
 				<legend><?php echo $strings['Editar prioridad'];?>
-				
+				<button type="button" onclick="location.href='../Controllers/Prioridades_Controller.php';" class="volver"></button>
 				</legend>
 
 				<div>

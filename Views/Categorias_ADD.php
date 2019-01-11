@@ -19,10 +19,9 @@
   include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
 	 	 
 ?>
-<button onclick="location.href='../Controllers/Categorias_Controller.php';" class="volver"></button>
   <form name="Form" id="registerForm" action="../Controllers/Categorias_Controller.php" method="post" onsubmit="return comprobarCategoria(this);" >
-    <legend><?php echo $strings['Formulario para anadir categoria']; ?>
-    
+    <legend><?php echo $strings['Añadir categoria']; ?>
+    <button type="button" onclick="location.href='../Controllers/Categorias_Controller.php';" class="volver"></button>
     </legend>
 
     <div>	

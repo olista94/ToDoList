@@ -27,10 +27,10 @@ class Tareas_EDIT{
         ?>	 
 
 		<div class="form">
-<button onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button>
+			
 			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Tareas_Controller.php" enctype="multipart/form-data" onsubmit="return comprobarTarea(this)">
 				<legend><?php echo $strings['Editar tarea']; ?>
-				
+				<button type="button" onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button>
 				</legend>
 
 				<div>

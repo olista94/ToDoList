@@ -27,7 +27,7 @@ class Fases_ADD{
 
 			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Fases_Controller.php" enctype="multipart/form-data" onsubmit="return comprobarTarea(this)">
 				<legend><?php echo $strings['Añadir fase a '];?><?php echo $this -> descripcion;?>
-				
+				<button type="button" onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $this->id_tarea; ?>';" class="volver"></button>
 				</legend>
 
 				<div>
