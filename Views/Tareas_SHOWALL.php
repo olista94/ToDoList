@@ -69,7 +69,7 @@ include_once '../Views/Header.php';
 					<div>
 						<label class="lblSearch" for="action">Ordenar por:</label>
 						<select class="slcSearch" name="action" id="action" onchange="this.form.submit()">
-							<option value="">Seleccionar</option>
+							<option value=""><?php echo $strings['Seleccionar']; ?></option>
 							<option value="Ordenar_Fecha"><?php echo $strings['Fecha']; ?></option>
 							<option value="Ordenar_Prioridad"><?php echo $strings['Prioridad']; ?></option>
 							<option value="Ordenar_Categoria"><?php echo $strings['Categoria']; ?></option>
@@ -84,9 +84,9 @@ include_once '../Views/Header.php';
 					<th><?php echo $strings['Completada']; ?></th>
 					<th><?php echo $strings['Descripcion']; ?></th>
 					<th><?php echo $strings['Categoria']; ?></th>	
-					<th>Ficheros</th>	
-					<th>Fases</th>
-					<th>Contactos</th>
+					<th><?php echo $strings['Archivos']; ?></th>	
+					<th><?php echo $strings['Fases']; ?></th>
+					<th><?php echo $strings['Contactos']; ?></th>
 					<th></th>
 				</tr>
 			<?php 
