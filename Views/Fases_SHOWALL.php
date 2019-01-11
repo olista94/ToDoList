@@ -38,10 +38,9 @@ include_once '../Views/Header.php';
 
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
 ?>
-	
 	<button onclick="location.href='../Controllers/Tareas_Controller.php?action=default';" class="volver"></button>
 	<div class="showDandF">	
-			<table class="showD" >
+		<table class="showD" >
 
 			<tr><th class="title" colspan="4"><?php echo $strings['Detalles de la tarea']; ?>
 
@@ -101,8 +100,9 @@ include_once '../Views/Header.php';
 				}
 			}
 		?>
-		</form>		
-	</div>	
+		</form>
+
+	</div>
 
 	<div class="showall">
 							

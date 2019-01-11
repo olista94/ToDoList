@@ -41,7 +41,7 @@ include_once '../Views/Header.php';
 
 	<button onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $this->idtarea; ?>';" class="volver"></button>
 
-	<form name="registerForm" id="registerForm" method="post" action="../Controllers/Fases_Controller.php" enctype="multipart/form-data">
+	<form name="registerForm" id="registerForm" method="post" action="../Controllers/Fases_Controller.php" enctype="multipart/form-data" onsubmit="return comprobarTarea(this)">
 	<legend>Editar fase</legend>
  
 	<input hidden type="text" name="id_fase"  value="<?php echo $this -> datos[0]; ?>" readonly><br>
@@ -49,7 +49,7 @@ include_once '../Views/Header.php';
 
 	<label>
 	<?php echo $strings['Descripcion']; ?></label><br>
-	<input type="text" rows="4" cols="50" name="descripcion" value="<?php echo $this -> datos[1]; ?>" onblur= "return !comprobarVacio(this)">
+	<input type="text" rows="4" cols="50" name="descripcion" value="<?php echo $this -> datos[1]; ?>" onblur=" return !comprobarVacio(this) && comprobarTamano(this,45)">
 
 		
 	<label>

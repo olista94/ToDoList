@@ -19,25 +19,25 @@
   include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
 	 	 
 ?>
-
-  <form name="Form" id="registerForm" action="../Controllers/Contactos_Controller.php" method="post" enctype="multipart/form-data" onsubmit="return comprobarRegistro(this)">
+<button onclick="location.href='../Controllers/Contactos_Controller.php';" class="volver"></button>
+  <form name="Form" id="registerForm" action="../Controllers/Contactos_Controller.php" method="post" enctype="multipart/form-data" onsubmit="return comprobarContacto(this)">
     <legend><?php echo $strings['Añadir contacto']; ?>
-    <button onclick="location.href='../Controllers/Contactos_Controller.php';" class="volver"></button>
+    
     </legend>
 
     <div>	
       
       <label for="nombre"><?php echo $strings['Nombre']; ?></label>
-      <input type="text" name="nombre" id="nombre" size="40" maxlength="30" onchange="comprobarAlfabetico(this,30)" required/>
+      <input type="text" name="nombre" id="nombre" size="40"  onblur=" return !comprobarVacio(this) && comprobarTexto(this,45);"/>
       
       <label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
-      <input type="text" name="descripcion" id="descripcion" size="40" maxlength="50" onchange="comprobarAlfabetico(this,50)" required/>
+      <input type="text" name="descripcion" id="descripcion" size="40"  onblur=" return !comprobarVacio(this) && comprobarTamano(this,45)" />
 
       <label for="telefono"><?php echo $strings['Teléfono']; ?></label>
-      <input type="text" name="telefono" id="telefono" size="40" maxlength="13" onchange="comprobarTelf(this)" required/>
+      <input type="text" name="telefono" id="telefono" size="40"  onblur=" return !comprobarVacio(this) && comprobarTelf(this);" />
 
       <label for="email"><?php echo $strings['Correo electrónico']; ?></label>
-      <input type="email" id="email" name="email" size="40" maxlength="50" onchange="comprobarEmail(this,50)" required/>	
+      <input type="text" id="email" name="email" size="65"  onblur=" return !comprobarVacio(this) && comprobarEmail(this,60);" />	
       
     </div>
     

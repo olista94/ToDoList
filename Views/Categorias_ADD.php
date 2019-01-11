@@ -19,15 +19,15 @@
   include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
 	 	 
 ?>
-
-  <form name="Form" id="registerForm" action="../Controllers/Categorias_Controller.php" method="post"  >
-    <legend><?php echo $strings['Formulario para añadir categoria']; ?>
-    <button onclick="location.href='../Controllers/Categorias_Controller.php';" class="volver"></button>
+<button onclick="location.href='../Controllers/Categorias_Controller.php';" class="volver"></button>
+  <form name="Form" id="registerForm" action="../Controllers/Categorias_Controller.php" method="post" onsubmit="return comprobarCategoria(this);" >
+    <legend><?php echo $strings['Formulario para anadir categoria']; ?>
+    
     </legend>
 
     <div>	
       <label ><?php echo $strings['Nombre']; ?></label>
-      <input type="text" id="nombre" name="nombre" size="50" >
+      <input type="text" id="nombre" name="nombre" size="50" onblur=" return !comprobarVacio(this) && comprobarTexto(this,45);">
       
       
       

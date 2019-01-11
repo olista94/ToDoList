@@ -1,5 +1,4 @@
 <?php
-
 class Fases_ADD{
 	 
 	var $id_tarea;
@@ -14,7 +13,6 @@ class Fases_ADD{
 		$this -> contactos = $contactos;
 		$this -> enlace = $enlace;		
 		$this -> mostrar();
-
 	}
 	
 	function mostrar(){
@@ -22,21 +20,20 @@ class Fases_ADD{
 		if(!isset($_SESSION['idioma'])){
             $_SESSION['idioma'] = 'SPANISH';
         }
-
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
 ?>	 
 
 		<div class="form">
 
-			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Fases_Controller.php" enctype="multipart/form-data">
+			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Fases_Controller.php" enctype="multipart/form-data" onsubmit="return comprobarTarea(this)">
 				<legend><?php echo $strings['Añadir fase a '];?><?php echo $this -> descripcion;?>
-				<button onclick="location.href='../Controllers/Fases_Controller.php';" class="volver"></button>
+				
 				</legend>
 
 				<div>
 
 					<label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
-					<input type="descripcion" id="descripcion" name="descripcion" size="40" maxlength="60"/>	
+					<input type="descripcion" id="descripcion" name="descripcion" size="50"  onblur=" return !comprobarVacio(this) && comprobarTamano(this,45)"/>	
 						
 					<label>
 					<?php echo $GLOBALS['strings']['Tarea']; ?></label>

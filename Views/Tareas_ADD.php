@@ -25,16 +25,16 @@ class Tareas_ADD{
 ?>	 
 
 		<div class="form">
-
-			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Tareas_Controller.php" enctype="multipart/form-data">
+<button onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button>
+			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Tareas_Controller.php" enctype="multipart/form-data" onsubmit="return comprobarTarea(this)">
 				<legend><?php echo $strings['Añadir tarea'];?>
-				<button onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button>
+				
 				</legend>
 
 				<div>
 
 					<label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
-					<input type="descripcion" id="descripcion" name="descripcion" size="40" maxlength="60"/>	
+					<input type="descripcion" id="descripcion" name="descripcion" size="40" onblur=" return !comprobarVacio(this) && comprobarTamano(this,45)"/>	
 						
 					
 					

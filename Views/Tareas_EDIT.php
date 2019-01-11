@@ -27,17 +27,17 @@ class Tareas_EDIT{
         ?>	 
 
 		<div class="form">
-
-			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Tareas_Controller.php" enctype="multipart/form-data">
+<button onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button>
+			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Tareas_Controller.php" enctype="multipart/form-data" onsubmit="return comprobarTarea(this)">
 				<legend><?php echo $strings['Editar tarea']; ?>
-				<button onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button>
+				
 				</legend>
 
 				<div>
 					<input hidden type="text" name="id_tarea"  value="<?php echo $this -> fila[0]; ?>" readonly><br>
 
 					<label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
-					<input type="descripcion" id="descripcion" name="descripcion" size="40" value="<?php echo $this -> fila['descripcion']; ?>" maxlength="60"/>	
+					<input type="descripcion" id="descripcion" name="descripcion" size="50" value="<?php echo $this -> fila['descripcion']; ?>" onblur=" return !comprobarVacio(this) && comprobarTamano(this,45)"/>	
 						
 					<label for="fecha_ini"><?php echo $strings['Fecha inicio']; ?></label>
 					<input type="date"  name="fecha_ini" id="fecha_ini" value="<?php echo $this -> fila['Fecha_Ini']; ?>" onkeypress="return false;" />

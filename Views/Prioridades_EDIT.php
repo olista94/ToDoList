@@ -25,19 +25,19 @@ class Prioridades_EDIT{
 ?>	 
 
 		<div class="form">
-
-			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Prioridades_Controller.php" enctype="multipart/form-data">
+<button onclick="location.href='../Controllers/Prioridades_Controller.php';" class="volver"></button>
+			<form name="registerForm" id="registerForm" method="post" action="../Controllers/Prioridades_Controller.php" enctype="multipart/form-data" onsubmit="return comprobarPrioridad(this)">
 				<legend><?php echo $strings['Editar prioridad'];?>
-				<button onclick="location.href='../Controllers/Prioridades_Controller.php';" class="volver"></button>
+				
 				</legend>
 
 				<div>
 
 					<label for="nivel"><?php echo $strings['Nivel']; ?></label>
-					<input type="nivel" id="nivel" name="nivel" size="40" value="<?php echo $this -> fila['nivel']; ?>" maxlength="60" readonly/>	
+					<input type="nivel" id="nivel" name="nivel" size="" value="<?php echo $this -> fila['nivel']; ?>"  readonly/>	
 						
 					<label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
-					<input type="text" name="descripcion" id="descripcion" value="<?php echo $this -> fila['descripcion']; ?>" size="40" maxlength="30"/>
+					<input type="text" name="descripcion" id="descripcion" value="<?php echo $this -> fila['descripcion']; ?>" size="50" onblur=" return !comprobarVacio(this) && comprobarTamano(this,45)"/>
           						
 					<label for="color"><?php echo $strings['Color']; ?></label>
 					<input type="color" name="color" id="color" value="<?php echo $this -> fila['color']; ?>">
