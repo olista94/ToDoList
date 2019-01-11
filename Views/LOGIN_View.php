@@ -18,20 +18,21 @@
 ?>
 			
 				 
-	<form class="login_form" name = 'Form' action='../Controllers/Login_Controller.php' method='post'>
+	<form class="login_form" name = 'FormLogin' action='../Controllers/Login_Controller.php' method='post'>
 			
 		<div>	
 			<legend><?php echo $strings['Inicia sesión']; ?></legend>
 
 			<label for="login"><?php echo $strings['Login']; ?></label>
-			<input type ="text" id="login" name="login" placeholder="Login" maxlength="15" value = '' ><br>
+			<input type ="text" id="login" name="login" placeholder="Login"  value = '' onblur=" return !comprobarVacio(this) && comprobarAlfabetico(this,15)"><br>
 			
 			<label for="password"><?php echo $strings['Contraseña']; ?></label>
-			<input type = 'password' id="password" name = 'password' placeholder ="<?php echo $strings['Contraseña']; ?>" maxlength="128" value = '' ><br>
+			<input type = 'password' id="password" name = 'password' placeholder ="<?php echo $strings['Contraseña']; ?>"  value = '' onblur=" return !comprobarVacio(this) && comprobarAlfabetico(this,15)"><br>
 
 		</div>
 		
-		<button type="submit" title="<?php echo $strings['Iniciar sesion']; ?>" value="Confirmar_LOGIN" name="action" class="aceptar"></button>
+		<button type="submit" title="<?php echo $strings['Iniciar sesion']; ?>" value="Confirmar_LOGIN" name="action" class="aceptar" onclick="if (validarLogin(document.forms['FormLogin'])) document.forms['FormLogin'].submit();else return false;"></button>
+		
 		<button type="submit" title="<?php echo $strings['Registrar nuevo usuario']; ?>" class="registrarse" name="action" value="Confirmar_REGISTRO"></button>
 
 	</form>							
