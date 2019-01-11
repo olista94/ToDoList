@@ -148,7 +148,7 @@ function edit()
 			return $GLOBALS['strings']['Error en la modificación'];
 		}
 		else{ 
-			echo $sql;
+			
 			return $GLOBALS['strings']['Modificado correctamente']; 
 		}
     }

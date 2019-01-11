@@ -28,7 +28,7 @@ function add(){
 					)";
 			
 		if (!$this->mysqli->query($sql)) {
-			echo $sql;
+			
 			return 'Error al insertar';
 		}
 		else{
@@ -67,12 +67,12 @@ function edit()
 			return 'Error en la modificación';
 		}
 		else{ 
-			echo $sql;
+			
 			return 'Modificado correctamente'; 
 		}
     }
     else 
-		echo $sql;
+		
     	return 'No existe';
 } 
 function search(){ 

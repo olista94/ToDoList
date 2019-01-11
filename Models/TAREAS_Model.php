@@ -51,7 +51,7 @@ function add(){
 				if (!$this->mysqli->query($sql)) { 
 					return 'Error al insertar';
 					
-					echo $sql;
+					
 						
 				}
 				else{ 

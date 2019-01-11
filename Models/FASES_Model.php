@@ -47,11 +47,11 @@ function add(){
 				if (!$this->mysqli->query($sql)) { 
 					return 'Error al insertar';
 					
-					echo $sql;
+					
 						
 				}
 				else{ 
-				echo $sql;
+				
 					return 'Insertado correcto'; 
 					
 				}
@@ -98,7 +98,7 @@ function search(){
 					(`TAREAS_id_TAREAS` LIKE '%$this->TAREAS_id_TAREAS%')
 					
     				)";
-				echo $sql;
+				
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return "Error en la consulta";
