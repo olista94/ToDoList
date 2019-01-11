@@ -462,6 +462,7 @@ array(
 	'Detalles de la categoria' => 'Detalles de la categoria',
 	'Contactos de la tarea' => 'Contactos de la tarea',
 	'Ficheros de la tarea' => 'Ficheros de la tarea',
+	'Iniciar sesion' => 'Iniciar sesión',
 	'' => '',
 	'' => '',
 	'' => '',

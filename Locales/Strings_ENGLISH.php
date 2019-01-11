@@ -452,7 +452,7 @@ array(
 	'Completadas' => 'Completed',
 	'Sin completar' => 'Uncompleted',
 	'Detalles de la categoria' => 'Task details',
-	'' => '',
+	'Iniciar sesion' => 'Log on',
 	'' => '',
 	'' => '',
 	'' => '',

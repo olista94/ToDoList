@@ -453,6 +453,7 @@ array(
 	'Completadas' => 'Completadas',
 	'Sin completar' => 'Sen completadar',
 	'Detalles de la categoria' => 'Detalles da categoria',
+	'Iniciar sesion' => 'Iniciar sesión',
 	'' => '',
 	'' => '',
 	'' => '',
