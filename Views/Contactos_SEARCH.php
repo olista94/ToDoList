@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label for="telefono"><?php echo $strings['Telefono']; ?></label>
-                <input type="number" id="telefono" name="telefono" maxlength="11"/>
+                <input type="text" id="telefono" name="telefono" maxlength="11"/>
             </div>
             
             <button type="submit" name="action" value="Confirmar_SEARCH" class="buscar"></button>
