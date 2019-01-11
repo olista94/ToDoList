@@ -278,7 +278,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$archivos = $tarea -> ContarArchivos();
 					$fases = $tarea -> ContarFases();
 				$contactos = $tarea -> ContarContactos();
-					/* print_r($datos); */
+					
 					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');			
 			
 				}else{
@@ -287,7 +287,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$archivos = $tarea -> ContarArchivos();
 					$fases = $tarea -> ContarFases();
 				$contactos = $tarea -> ContarContactos();
-					/* print_r($datos); */
+					
 					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
 				}
 			}
@@ -302,7 +302,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$archivos = $tarea -> ContarArchivos();
 					$fases = $tarea -> ContarFases();
 				$contactos = $tarea -> ContarContactos();
-					/* print_r($datos); */
+					
 					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');				
 				}else{
 					$tarea = new TAREAS_Model('','','','','','','','');
@@ -310,7 +310,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$archivos = $tarea -> ContarArchivos();
 					$fases = $tarea -> ContarFases();
 				$contactos = $tarea -> ContarContactos();
-					/* print_r($datos); */
+					
 					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
 				}
 			}			
@@ -324,7 +324,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$archivos = $tarea -> ContarArchivos();
 					$fases = $tarea -> ContarFases();
 				$contactos = $tarea -> ContarContactos();
-					/* print_r($datos); */
+					
 					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');			
 				
 				}else{
@@ -333,7 +333,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$archivos = $tarea -> ContarArchivos();
 					$fases = $tarea -> ContarFases();
 				$contactos = $tarea -> ContarContactos();
-					/* print_r($datos); */
+					
 					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
 				}
 			}
@@ -351,7 +351,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 			}else{
 				$tarea = new TAREAS_Model('','','','','','','','');
 				$datos = $tarea -> TareasShowAllNormal();
-				/* print_r($datos); */
+				
 				$archivos = $tarea -> ContarArchivos();
 				$fases = $tarea -> ContarFases();
 				$contactos = $tarea -> ContarContactos();
@@ -372,7 +372,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 			}else{
 				$tarea = new TAREAS_Model('','','','','','','','');
 				$datos = $tarea -> TareasShowAllNormal();
-				/* print_r($datos); */
+				
 				$archivos = $tarea -> ContarArchivos();
 				$fases = $tarea -> ContarFases();
 				$contactos = $tarea -> ContarContactos();
@@ -399,7 +399,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 				}else{		   
 					$tarea = new TAREAS_Model('','','','','','','','');
 					$datos = $tarea -> TareasShowAllNormal();
-					/* print_r($datos); */
+					
 					$archivos = $tarea -> ContarArchivos();
 					$fases = $tarea -> ContarFases();
 					$contactos = $tarea -> ContarContactos();

@@ -41,7 +41,7 @@ if(!isset($_REQUEST['action'])){
 }
 
 $titulos =  array('login','password','dni','nombre','apellidos','telefono','email','fecha','tipo');
-/* print_r($_REQUEST); */
+
 switch ($_REQUEST['action']){
 	
 	case 'Confirmar_REGISTRO':		
