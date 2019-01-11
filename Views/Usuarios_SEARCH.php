@@ -54,12 +54,10 @@
             <div class="form-group">
                 <label for="telefono"><?php echo $strings['Telefono']; ?></label>
                 <input type="text" id="telefono" name="telefono" maxlength="11"/>
-            </div>
-			
-			
-			<div class="form-group">
-			<label for="tipo"><?php echo $strings['Tipo']; ?></label>
-				<input type="text" id="tipo" name="tipo"/>
+            </div>	
+		<div class="form-group">
+		<label for="tipo"><?php echo $strings['Tipo']; ?></label>
+		<input type="text" id="tipo" name="tipo"/>
            </div>  
 		   
             <button type="submit" name="action" value="Confirmar_SEARCH" class="buscar"></button>
