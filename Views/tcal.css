@@ -12,6 +12,7 @@
 .tcalInput {
 	background: url('../img/cal.gif') 100% 50% no-repeat;
 	cursor: pointer;
+	background-color: white;
 }
 
 /* additional properties for input boxe in activated state, above still applies unless in conflict */

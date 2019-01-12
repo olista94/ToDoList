@@ -419,18 +419,13 @@ button {
   background-color: #4CAF50;
 }
 
-.registrarse {
-  background-image: url(../img/register.png);
-  background-color: rgb(46, 91, 173);
-}
-
 .continuar {
   background-image: url(../img/continuar.png);
   background-color: #4CAF50;
 }
 
 .cancelar {
-  background-image: url(../img/cancelar.png);
+  background-image: url(../img/erase.png);
   background-color: rgb(175, 76, 76);
 }
 
@@ -762,3 +757,31 @@ select{
 .show-half{
   margin: 2% 41% 0% 30%;
 }
+
+.welcome{
+  width: 100%;
+  text-align: center;
+  margin-top: 3%;
+}
+
+.registerForm{
+  background-color: whitesmoke;
+}
+
+.signin {
+  background-image: url(../img/signin.png);
+  background-color: rgb(46, 91, 173);
+  /*display: table-caption;*/
+  float: right;
+  margin-top: 0;
+  margin-right: 0;
+}
+
+.registrarse {
+  background-image: url(../img/register.png);
+  background-color: rgb(46, 91, 173);
+  float: right;
+  margin-top: 0;
+  margin-right: 0;
+}
+

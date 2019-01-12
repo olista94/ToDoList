@@ -21,10 +21,14 @@
   include '../Locales/Strings_'. $_SESSION['idioma'] .'.php'; 
 	 	 
 ?>
-<button onclick="location.href='../index.php';" class="volver"></button>
-  <form name="Form" id="registerForm" action="../Controllers/Registro_Controller.php" method="post" enctype="multipart/form-data" onsubmit="return comprobarRegistro(this)">
+
+  <div class="welcome">		
+	<img src="../img/logo.png" alt="Logo" width="60" height="60"> <h1>ToDoList</h1>
+	</div>
+
+  <form class="registerForm" name="Form" id="registerForm" action="../Controllers/Registro_Controller.php" method="post" enctype="multipart/form-data" onsubmit="return comprobarRegistro(this)">
     <legend><?php echo $strings['Regístrate']; ?>
-    
+    <button type="button" onclick="location.href='../index.php';" class="signin"></button>
     </legend>
 
     <div>	
@@ -66,6 +70,7 @@
  
  
  <?php
+ include '../Views/Footer.php';
   }
 }
  ?>

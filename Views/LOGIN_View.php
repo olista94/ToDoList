@@ -17,11 +17,16 @@
 			include_once '../Views/Header.php'; 
 ?>
 			
-				 
+	<div class="welcome">		
+	<img src="../img/logo.png" alt="Logo" width="60" height="60"> <h1>ToDoList</h1>
+	</div>	
+
 	<form class="login_form" name = 'FormLogin' action='../Controllers/Login_Controller.php' method='post'>
 			
 		<div>	
-			<legend><?php echo $strings['Inicia sesión']; ?></legend>
+			<legend><?php echo $strings['Inicia sesión']; ?>
+			<button type="submit" title="<?php echo $strings['Registrar nuevo usuario']; ?>" class="registrarse" name="action" value="Confirmar_REGISTRO"></button>
+			</legend>
 
 			<label for="login"><?php echo $strings['Login']; ?></label>
 			<input type ="text" id="login" name="login" placeholder="Login"  value = '' onblur=" return !comprobarVacio(this) && comprobarAlfabetico(this,15)"><br>
@@ -32,9 +37,7 @@
 		</div>
 		
 		<button type="submit" title="<?php echo $strings['Iniciar sesion']; ?>" value="Confirmar_LOGIN" name="action" class="aceptar" onclick="if (validarLogin(document.forms['FormLogin'])) document.forms['FormLogin'].submit();else return false;"></button>
-		
-		<button type="submit" title="<?php echo $strings['Registrar nuevo usuario']; ?>" class="registrarse" name="action" value="Confirmar_REGISTRO"></button>
-
+				
 	</form>							
 <?php
 			include '../Views/Footer.php';
