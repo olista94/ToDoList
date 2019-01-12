@@ -16,6 +16,10 @@
 	include '../Locales/Strings_' . $_SESSION['idioma'] . '.php';
 ?>
 
+<script>
+idioma = "<?php echo $_SESSION['idioma']; ?>"; //Variable global que permite pasar el idioma seleccionado al archivo JavaScript
+</script>
+
 <html>
 <head>
 	<title>ET4</title>
