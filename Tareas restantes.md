@@ -10,7 +10,7 @@ Tareas:
 - Crear acceso login BD
 - Crear fichero READMELogin.txt
 - Comentar codigo
-- Traducir js
+
 
 
 Corregir:  
