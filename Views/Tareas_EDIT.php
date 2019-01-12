@@ -38,9 +38,6 @@ class Tareas_EDIT{
 
 					<label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
 					<input type="descripcion" id="descripcion" name="descripcion" size="50" value="<?php echo $this -> fila['descripcion']; ?>" onblur=" return !comprobarVacio(this) && comprobarTamano(this,45)"/>	
-						
-					<label for="fecha_ini"><?php echo $strings['Fecha inicio']; ?></label>
-					<input type="date"  name="fecha_ini" id="fecha_ini" value="<?php echo $this -> fila['Fecha_Ini']; ?>" onkeypress="return false;" />
 					
 					<label for="categoria"><?php echo $strings['Categoria']; ?></label>
 					<select name="id_categoria">

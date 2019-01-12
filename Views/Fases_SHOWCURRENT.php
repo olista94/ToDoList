@@ -34,7 +34,7 @@ include_once '../Views/Header.php';
 
 			
 	<form class="form">
-		<legend>Ficheros de la fase</legend>
+		<legend><?php echo $strings['Ficheros de la fase']; ?></legend>
 		<?php
 			if($this ->archivos != null){
 				while($fila2 = $this ->archivos->fetch_array()){
@@ -50,7 +50,7 @@ include_once '../Views/Header.php';
 	<div class="showall">
 	
 	<form class="form">
-		<legend>Contactos de la tarea</legend>
+		<legend><?php echo $strings['Contactos de la fase']; ?></legend>
 		<?php
 			if($this ->contactos != null){
 				while($fila3 = $this ->contactos->fetch_array()){

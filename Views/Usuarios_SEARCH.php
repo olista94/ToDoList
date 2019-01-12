@@ -22,7 +22,7 @@
         ?>
         
         <form class="formB" id="searchForm" enctype="multipart/form-data" method="post" action="../Controllers/Usuarios_Controller.php">
-            <legend><?php echo $strings['Buscar prioridad'];?>
+            <legend><?php echo $strings['Buscar usuario'];?>
             <button onclick="location.href='../Controllers/Usuarios_Controller.php';" class="volver"></button>
             </legend>
 
@@ -44,7 +44,7 @@
                 <input type="text" id="dni" name="dni" />
             </div>	
             <div class="form-group">
-                <label for="email"><?php echo $strings['Correo electrÃ³nico']; ?></label>
+                <label for="email"><?php echo $strings['Correo electrónico']; ?></label>
                 <input type="text" id="email" name="email" maxlength="50" size="40"/>
             </div>
             <div class="form-group">

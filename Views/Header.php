@@ -18,7 +18,7 @@
 
 <html>
 <head>
-	<title>Entrega 4</title>
+	<title>ET4</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 	<link rel="stylesheet" type="text/css" href="../Views/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -75,11 +75,11 @@ if(isset($_SESSION['tipo'])){
 	</div>
 
 	<div class="menu-bar" id="menu-bar">
-		<li><a class="dropdownElm" onclick="dropdown()">Tareas</a>
+		<li><a class="dropdownElm" onclick="dropdown()"><?php echo $strings['Tareas']; ?></a>
 			<nav class="dropdownContent" id="myDropdown">
-				<a href="../Controllers/Tareas_Controller.php?action=default">Todas</a>
-				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_Completas">Completas</a>
-				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_NoCompletas">Sin completar</a>
+				<a href="../Controllers/Tareas_Controller.php?action=default"><?php echo $strings['Todas']; ?></a>
+				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_Completas"><?php echo $strings['Completas']; ?></a>
+				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_NoCompletas"><?php echo $strings['Sin completar']; ?></a>
 			</nav>
 		</li>
 		<li><a href="../Controllers/Prioridades_Controller.php"><?php echo $strings['Prioridades']; ?></a></li>
@@ -142,11 +142,11 @@ if(isset($_SESSION['tipo'])){
 	</div>
 
 	<div class="menu-bar" id="menu-bar">
-		<li><a class="dropdownElm" onclick="dropdown()">Tareas</a>
+		<li><a class="dropdownElm" onclick="dropdown()"><?php echo $strings['Tareas']; ?></a>
 			<nav class="dropdownContent" id="myDropdown">
-				<a href="../Controllers/Tareas_Controller.php?action=default">Todas</a>
-				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_Completas">Completas</a>
-				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_NoCompletas">Sin completar</a>
+				<a href="../Controllers/Tareas_Controller.php?action=default"><?php echo $strings['Todas']; ?></a>
+				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_Completas"><?php echo $strings['Completas']; ?></a>
+				<a href="../Controllers/Tareas_Controller.php?action=Mostrar_NoCompletas"><?php echo $strings['Sin completar']; ?></a>
 			</nav>
 		</li>
 		<li><a href="../Controllers/Contactos_Controller.php"><?php echo $strings['Contactos']; ?></a></li>

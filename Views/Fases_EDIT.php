@@ -66,7 +66,7 @@ include_once '../Views/Header.php';
 
 
 	<label>
-	<?php echo $strings['Quitar contacto']; ?></label><br>
+	<?php echo $strings['Borrar contacto']; ?></label><br>
 	<select name="CONTACTOS_email1[]" multiple>
 		<?php
 			while($currentcontactos=$this->currentcontactos->fetch_array()){

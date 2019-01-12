@@ -21,7 +21,7 @@
 ?>
 
   <form name="Form" id="registerForm" action="../Controllers/Usuarios_Controller.php" method="post" enctype="multipart/form-data" onsubmit="return comprobarUsuario(this)">
-    <legend><?php echo $strings['Regístrate']; ?>
+    <legend><?php echo $strings['Añadir usuario']; ?>
     <button type="button" onclick="location.href='../Controllers/Usuarios_Controller.php';" class="volver"></button>
     </legend>
 

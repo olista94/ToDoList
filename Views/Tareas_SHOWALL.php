@@ -67,7 +67,7 @@ include_once '../Views/Header.php';
 
 				<form class="tableActions" action="../Controllers/Tareas_Controller.php" method="">
 					<div>
-						<label class="lblSearch" for="action">Ordenar por:</label>
+						<label class="lblSearch" for="action"><?php echo $strings['Ordenar por']; ?>:</label>
 						<select class="slcSearch" name="action" id="action" onchange="this.form.submit()">
 							<option value=""><?php echo $strings['Seleccionar']; ?></option>
 							<option value="Ordenar_Fecha"><?php echo $strings['Fecha']; ?></option>

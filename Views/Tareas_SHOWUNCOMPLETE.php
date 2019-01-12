@@ -58,16 +58,16 @@ include_once '../Views/Header.php';
         <div class="showall">             
 		
             <table class="showAllUsers">
-				<tr><th class="title" colspan="6">Tareas incompletas
+				<tr><th class="title" colspan="6"><?php echo $strings['Tareas incompletas'];?>
 				</th></tr>
 		
 				<tr>
 					<th><?php echo $strings['Completada']; ?></th>
 					<th><?php echo $strings['Descripcion']; ?></th>
 					<th><?php echo $strings['Categoria']; ?></th>	
-					<th>Ficheros</th>
-					<th>Fases</th>
-					<th>Contactos</th>					
+					<th><?php echo $strings['Archivos']; ?></th>	
+					<th><?php echo $strings['Fases']; ?></th>
+					<th><?php echo $strings['Contactos']; ?></th>
 					<th></th>
 				</tr>
 			<?php 
