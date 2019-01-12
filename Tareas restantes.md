@@ -2,7 +2,7 @@
 Tareas:  
 - Probar MV
 - Manual de Usuario  
-- Traducciones (Vistas y Nodel(categorias, prioridades, contactos))  
+- Traducciones (Model(categorias, prioridades, contactos))  
 - Pruebas  
 - Informe Individual  
 - Install.sh  
@@ -11,14 +11,14 @@ Tareas:
 - Crear fichero READMELogin.txt
 - Comentar codigo
 - Traducir js
-- Manueal de usuario
+
 
 Corregir:  
-- Botones volver atras, goma borrar por cancelar
+- Goma borrar por cancelar
 - Banderas
 	
 Completar:  
-- Validaciones Javascript  (login)
+
 
 Añadidos:  
 -  
