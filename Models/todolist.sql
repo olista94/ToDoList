@@ -63,7 +63,13 @@ CREATE TABLE `categorias` (
 -- Volcado de datos para la tabla `categorias`
 --
 
-
+INSERT INTO `categorias` (`id_CATEGORIAS`, `nombre`) VALUES
+(1, 'Clases'),
+(2, 'Familia'),
+(3, 'Casa'),
+(4, 'Ocio'),
+(5, 'Amigos'),
+(6, 'Trabajo');
 
 -- --------------------------------------------------------
 
@@ -82,6 +88,12 @@ CREATE TABLE `contactos` (
 -- Volcado de datos para la tabla `contactos`
 --
 
+INSERT INTO `contactos` (`email`, `nombre`, `descripcion`, `telefono`) VALUES
+('crcalvo@gmail.com', 'Carlota Romero', 'Monitora Fitness', '634589674'),
+('daguilar@gmail.com', 'Daniel Aguilar', 'Responsable', '632978541'),
+('improfe@gmail.com', 'Isa Montero', 'Profesora InglÃ©s', '674259312'),
+('javirc@gmail.com', 'Javi Roca', 'Jefe Proyecto', '683257496'),
+('ldcrespo@gmail.com', 'Lidia Crespo', 'CompaÃ±ero clase', '699875231');
 
 -- --------------------------------------------------------
 
@@ -102,6 +114,11 @@ CREATE TABLE `fases` (
 -- Volcado de datos para la tabla `fases`
 --
 
+INSERT INTO `fases` (`id_FASES`, `descripcion`, `fecha_inicio`, `fecha_fin`, `completada`, `TAREAS_id_TAREAS`) VALUES
+(1, 'AnÃ¡lisis', '2019-01-13', '0000-00-00', 0, 1),
+(2, 'Implementacion 1', '2019-01-13', '0000-00-00', 0, 1),
+(3, 'Implementacion 2', '2019-01-13', '0000-00-00', 0, 1),
+(4, 'Reunion de Seguimiento', '2019-01-13', '0000-00-00', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -118,6 +135,18 @@ CREATE TABLE `fases_has_contactos` (
 -- --------------------------------------------------------
 
 --
+-- Volcado de datos para la tabla `fases_has_contactos`
+--
+
+INSERT INTO `fases_has_contactos` (`FASES_id_FASES`, `FASES_TAREAS_id_TAREAS`, `CONTACTOS_email`) VALUES
+(1, 1, 'javirc@gmail.com'),
+(2, 1, 'javirc@gmail.com'),
+(3, 1, 'crcalvo@gmail.com'),
+(4, 1, 'crcalvo@gmail.com'),
+(4, 1, 'daguilar@gmail.com'),
+(4, 1, 'javirc@gmail.com');
+
+--
 -- Estructura de tabla para la tabla `prioridades`
 --
 
@@ -131,6 +160,13 @@ CREATE TABLE `prioridades` (
 -- Volcado de datos para la tabla `prioridades`
 --
 
+INSERT INTO `prioridades` (`nivel`, `descripcion`, `color`) VALUES
+(10, 'Muy baja', '#12a8e0'),
+(20, 'Baja', '#29c018'),
+(30, 'Normal', '#deda27'),
+(40, 'Importante', '#e9961b'),
+(50, 'Muy importante', '#dc3434'),
+(60, 'Urgente', '#a02394');
 
 -- --------------------------------------------------------
 
@@ -153,7 +189,8 @@ CREATE TABLE `tareas` (
 -- Volcado de datos para la tabla `tareas`
 --
 
-
+INSERT INTO `tareas` (`id_tarea`, `descripcion`, `Fecha_Ini`, `Fecha_Fin`, `completada`, `USUARIOS_login`, `CATEGORIAS_id_CATEGORIAS`, `PRIORIDADES_nivel`) VALUES
+(1, 'Proyecto Empresa', '2019-01-13', '0000-00-00', 0, 'admin', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -176,6 +213,13 @@ CREATE TABLE `usuarios` (
 --
 -- Volcado de datos para la tabla `usuarios`
 --
+
+INSERT INTO `usuarios` (`login`, `password`, `dni`, `nombre`, `apellidos`, `telefono`, `email`, `fecha`, `tipo`) VALUES
+('admin', 'admin', '11111111H', 'Admin', 'Adminez Adminez', '666666666', 'admin@admin.com', '1991-06-04', 'ADMIN'),
+('ascarrasco', 'ascarrasco', '17714948A', 'Alberto', 'Santos Carrasco', '652314789', 'ascarrasco@gmail.com', '1995-01-18', 'NORMAL'),
+('brsaez', 'brsaez', '94813697S', 'Blanca', 'Roca Saez', '654823657', 'brsaez@gmail.com', '1987-06-25', 'NORMAL'),
+('milopez', 'milopez', '55691509E', 'Marc', 'IbÃ¡Ã±ez LÃ³pez', '632145696', 'milopez@gmail.com', '1989-09-28', 'NORMAL'),
+('sscarmona', 'sscarmona', '72479940V', 'Silvia', 'Soler Carmona', '699547832', 'sscarmona@gmail.com', '1998-06-03', 'NORMAL');
 
 --
 -- Índices para tablas volcadas
