@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 08-01-2019 a las 16:38:07
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.3.0
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -28,6 +19,14 @@ DROP SCHEMA IF EXISTS `todolist` ;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `todolist` DEFAULT CHARACTER SET utf8 ;
 USE `todolist` ;
+
+-- --------------------------------------------------------
+
+-- -----------------------------------------------------
+-- User todolist
+-- -----------------------------------------------------
+
+GRANT ALL PRIVILEGES ON todolist.* TO todolist@localhost IDENTIFIED BY "todolist";
 
 -- --------------------------------------------------------
 

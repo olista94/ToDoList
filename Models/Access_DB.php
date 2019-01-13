@@ -14,7 +14,7 @@
 
 function ConnectDB()
 {
-    $mysqli = new mysqli("localhost", "root", "", "todolist");
+    $mysqli = new mysqli("localhost", "todolist", "todolist", "todolist");
     	
 	if ($mysqli->connect_errno) {
 		include './MESSAGE.php';
