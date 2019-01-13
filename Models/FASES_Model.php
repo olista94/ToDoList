@@ -68,12 +68,11 @@ function edit()
     if ($result->num_rows == 1)
     {	
 		$sql = "UPDATE fases SET
-					`descripcion` = '$this->descripcion',
-					`fecha_inicio` = '$this->fecha_ini',
-					`fecha_fin` = '$this->fecha_fin'					
+					`descripcion` = '$this->descripcion'
+										
 
 				WHERE (`id_FASES` = '$this->id_fase')";
-
+echo $sql;
         if (!($resultado = $this->mysqli->query($sql))){
 			return 'Error en la modificación';
 		}
