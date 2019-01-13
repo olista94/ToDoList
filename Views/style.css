@@ -70,7 +70,7 @@ body {
 
 .menu-bar {
   width: 100%; 
-  border-top: 50px solid; 
+  border-top: 135px solid; 
   height: 55px;
   line-height: 100%;
   background: #8B8B8B;
@@ -151,11 +151,15 @@ body {
 /******** Footer ********/
 
 .footer{
+  font-size: 14;
   background-color: #333;
   position: fixed;  
   left: 0;
   bottom: 0;
   width: 100%;
+  height: auto;
+  display: grid;
+  text-align: center;
 }
 
 .footer li{
@@ -783,5 +787,11 @@ select{
   float: right;
   margin-top: 0;
   margin-right: 0;
+}
+
+@supports (display:contents) {
+  .menu-bar{
+    border-top: 50px solid;
+  }
 }
 
