@@ -21,7 +21,7 @@
 	<img src="../img/logo.png" alt="Logo" width="60" height="60"> <h1>ToDoList</h1>
 	</div>	
 
-	<form class="login_form" name = 'FormLogin' action='../Controllers/Login_Controller.php' method='post' onsubmit="return validarLogin(this)">
+	<form class="login_form" name = 'FormLogin' action='../Controllers/Login_Controller.php' method='post'>
 			
 		<div>	
 			<legend><?php echo $strings['Inicia sesión']; ?>
@@ -36,7 +36,7 @@
 
 		</div>
 		
-		<button type="submit" title="<?php echo $strings['Iniciar sesion']; ?>" value="Confirmar_LOGIN" name="action" class="aceptar"></button>
+		<button type="submit" title="<?php echo $strings['Iniciar sesion']; ?>" value="Confirmar_LOGIN" name="action" class="aceptar" onclick="if (validarLogin(document.forms['FormLogin'])) document.forms['FormLogin'].submit();else return false;"></button>
 				
 	</form>							
 <?php
