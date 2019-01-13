@@ -24,8 +24,8 @@
 ?>
  
  <form class="formB" enctype="multipart/form-data" action="../Controllers/Fases_Controller.php" method="post" id="search" name="search">
- <legend><?php echo $strings['Buscar fase'];?>
-  <button onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button>
+  <legend><?php echo $strings['Buscar fase'];?>
+  <button type="button" onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $_REQUEST['TAREAS_id_TAREAS']; ?>';" class="volver"></button>
   </legend>
 
  <input type="hidden" name="TAREAS_id_TAREAS" value="<?php echo $_REQUEST['TAREAS_id_TAREAS']; ?>">
