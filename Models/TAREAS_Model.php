@@ -72,9 +72,6 @@ function edit()
     {	
 		$sql = "UPDATE tareas SET
 					`descripcion` = '$this->descripcion',
-					`fecha_ini` = '$this->fecha_ini',
-					`fecha_fin` = '$this->fecha_fin',
-					`USUARIOS_login` = '$this->USUARIOS_login',
 					`CATEGORIAS_id_CATEGORIAS` = '$this->CATEGORIAS_id_CATEGORIAS',
 					`PRIORIDADES_nivel` = '$this->PRIORIDADES_nivel'
 					
