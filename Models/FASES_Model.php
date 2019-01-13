@@ -72,7 +72,7 @@ function edit()
 										
 
 				WHERE (`id_FASES` = '$this->id_fase')";
-echo $sql;
+
         if (!($resultado = $this->mysqli->query($sql))){
 			return 'Error en la modificación';
 		}
