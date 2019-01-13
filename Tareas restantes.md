@@ -11,10 +11,7 @@ Tareas:
 - Crear fichero READMELogin.txt
 - Comentar codigo
 
-
-
 Corregir:  
-- Goma borrar por cancelar
 - Banderas
 	
 Completar:  
