@@ -49,6 +49,7 @@ body {
 .topnav-right {
   float: right;
   display: flex;
+  text-align: center;
 }
 
 /* Responsive navigation menu (for mobile devices) */
@@ -70,7 +71,7 @@ body {
 
 .menu-bar {
   width: 100%; 
-  border-top: 135px solid; 
+  border-top: 50px solid; 
   height: 55px;
   line-height: 100%;
   background: #8B8B8B;
@@ -788,10 +789,3 @@ select{
   margin-top: 0;
   margin-right: 0;
 }
-
-@supports (display:contents) {
-  .menu-bar{
-    border-top: 50px solid;
-  }
-}
-
