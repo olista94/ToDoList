@@ -11,7 +11,7 @@ if(!IsAuthenticated()){
 	new MESSAGE('No puedes ver nada sin loguearte','../index.php');
 }else{
 
-	include_once "../Models/Contactos_Model.php";
+	include_once "../Models/CONTACTOS_Model.php";
 	include_once "../Views/Contactos_SHOWALL.php";
 	include_once "../Views/Contactos_ADD.php";
 	include_once "../Views/Contactos_SEARCH.php";

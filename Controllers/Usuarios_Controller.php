@@ -14,7 +14,7 @@ if(isset($_SESSION['tipo'])){
 
 		}else{ //si lo está
 
-			include_once "../Models/Usuarios_Model.php";
+			include_once "../Models/USUARIOS_Model.php";
 			include_once "../Views/Usuarios_SHOWALL.php";
 			include_once "../Views/Usuarios_ADD.php";
 			include_once "../Views/Usuarios_SEARCH.php";
