@@ -1,13 +1,11 @@
 
 Tareas:  
-- Probar MV
+
 - Manual de Usuario  
 - Traducciones (Model(categorias, prioridades, contactos))  
-- Pruebas  
+- Pruebas (en la MV a partir de ahora)
 - Informe Individual  
-- Install.sh  
-- Mover carpetas css  
-- Crear acceso login BD
+- Mover carpetas css   
 - Crear fichero READMELogin.txt
 - Comentar codigo
 
