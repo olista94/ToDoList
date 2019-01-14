@@ -8,6 +8,14 @@ Tareas:
 - Mover carpetas css,js e img  
 - Crear fichero READMELogin.txt
 - Comentar codigo
+Alex:
+Controllers
+Models
+Alert.php
+
+Iago:
+Vistas
+JS
 
 Corregir:  
 
