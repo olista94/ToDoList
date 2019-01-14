@@ -466,6 +466,8 @@ array(
 	'Ordenar por' => 'Ordenar por',
 	'Tareas completadas' => 'Tarefas completadas',
 	'Tareas incompletas' => 'Tarefas incompletas',
+	'ID fase' => 'ID fase',
+	'ID tarea' => 'ID tarefa',
 	'' => '',
 	'' => '',
 	'' => '',
