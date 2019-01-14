@@ -127,14 +127,14 @@ function search1(){
 			   (`Fecha_Ini` LIKE '%$this->fecha_ini%') &&
 			   (`Fecha_Fin` LIKE '%$this->fecha_fin%') &&
 			   (`completada` LIKE '%$this->completada%') &&
-			   (`USUARIOS_login` LIKE '".$_SESSION['login']."') &&
+			   (`USUARIOS_login` = '".$_SESSION['login']."') &&
 			   (c.nombre LIKE '%$this->CATEGORIAS_id_CATEGORIAS%') &&
 			   (p.descripcion LIKE '%$this->PRIORIDADES_nivel%')
 	
 	
 	";
 		   
-echo $sql;
+
 if (!($resultado = $this->mysqli->query($sql))){
    return 'Error en la búsqueda';
    /* return "Error en la consulta"; */
@@ -150,7 +150,7 @@ function searchAdmin(){
 			   SELECT id_tarea,t.`descripcion`,`Fecha_Ini`,`Fecha_Fin`,`completada` as completa,`USUARIOS_login`,c.nombre as categoria,p.descripcion,p.color AS color_tarea
 			   FROM `tareas` t,categorias c,prioridades p
 			   WHERE `CATEGORIAS_id_CATEGORIAS`= c.id_CATEGORIAS && `PRIORIDADES_nivel`=p.nivel &&
-			   (`id_tarea` LIKE '%$this->id_tarea%') &&
+			   
 				(t.`descripcion` LIKE '%$this->descripcion%') &&
 			   (`Fecha_Ini` LIKE '%$this->fecha_ini%') &&
 			   (`Fecha_Fin` LIKE '%$this->fecha_fin%') &&
