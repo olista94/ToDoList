@@ -30,6 +30,7 @@
         ?>
          <!--Tabla con los datos de la categoria-->   
         <div class="show-half">
+		<!--ID de la categoria que se pasa como hidden al model-->
 			<form class="formShow" enctype="multipart/form-data" action="../Controllers/Categorias_Controller.php">
             <input type="hidden" name="id_CATEGORIAS" value= "<?php echo $this -> fila['id_CATEGORIAS'] ?>">	
             <table class="showU" style="margin-left: 30%;">

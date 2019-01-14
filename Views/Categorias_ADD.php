@@ -39,7 +39,7 @@
     </div>
     <!--Boton de confirmar inserción-->
     <button type="submit" name="action" value="Confirmar_ADD2" class="aceptar"></button>
-	<!--Boton de borrado-->
+	<!--Boton de borrado de texto-->
     <button type="reset" value="Reset" class="cancelar"></button>
 
 	</form>

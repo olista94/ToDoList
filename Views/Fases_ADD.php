@@ -1,11 +1,15 @@
 <?php
+ //Declaracion de la clase 
 class Fases_ADD{
-	 
+	 //Id de la tarea a la que pertenece la fase a añadir
 	var $id_tarea;
+	//Descripcion de la tarea a la que pertenece la fase a añadir
 	var $descripcion;
+	//Contactos que participaran en la tarea
 	var $contactos;
+	//Variable con el enlace al form de ADD categoria
 	var $enlace;	
-	
+	//Constructor de la clase
 	function __construct($id_tarea,$descripcion,$contactos,$enlace){
 				
 		$this -> id_tarea = $id_tarea;
@@ -14,12 +18,13 @@ class Fases_ADD{
 		$this -> enlace = $enlace;		
 		$this -> mostrar();
 	}
-	
+	//Funcion que "muestra" el contenido de la página
 	function mostrar(){
-		
+		//Variable de idioma
 		if(!isset($_SESSION['idioma'])){
             $_SESSION['idioma'] = 'SPANISH';
         }
+		//Archivo del idioma
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
 ?>	 
 

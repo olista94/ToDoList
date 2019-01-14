@@ -1,5 +1,5 @@
 <?php
-
+//Comprobamos que está autenticado
 include_once '../Functions/Authentication.php';
 //Header
 include '../Views/Header.php';
@@ -42,6 +42,7 @@ include '../Views/Header.php';
 					<th></th>
 				</tr>
 			<?php 
+			//Mientras haya filas en la bd
 				while($fila = $this ->datos->fetch_array()){                        
 			?>
 				<tr>
@@ -50,7 +51,7 @@ include '../Views/Header.php';
 						<td><?php echo $fila['nombre']; ?></td>
 									
 						<td style="text-align:right">
-						<!--Botones para editar,borrar o ver en detall-->
+						<!--Botones para editar,borrar o ver en detalle-->
 							<button class="editar" name="action" value="Confirmar_EDIT1" type="submit"></button>
 							<button class="borrar" name="action" value="Confirmar_DELETE1" type="submit"></button>
 							<button class="add" name="action" value="Confirmar_SHOWCURRENT" type="submit"></button>
