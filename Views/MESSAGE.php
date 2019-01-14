@@ -19,7 +19,10 @@ class MESSAGE{
 	}
 
 	function render(){
-
+  //Variable de idioma
+  if(!isset($_SESSION['idioma'])){
+    $_SESSION['idioma'] = 'SPANISH';
+  }
 		include_once '../Locales/Strings_'.$_SESSION['idioma'].'.php';
 		include_once '../Views/Header.php';
 ?>
