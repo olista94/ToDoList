@@ -740,11 +740,10 @@ select{
 
 .showDandF{
   float: initial;
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-  margin-left: 15%;
-  margin-right: 15%;
+  display: flex;  
+  flex-wrap: wrap;  
+  text-align: center;  
+  margin-left: auto;
   width: 77%;
 }
 
