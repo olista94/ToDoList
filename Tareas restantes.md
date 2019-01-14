@@ -5,12 +5,12 @@ Tareas:
 - Traducciones (Model(categorias, prioridades, contactos))  
 - Pruebas (en la MV a partir de ahora)
 - Informe Individual  
-- Mover carpetas css   
+- Mover carpetas css,js e img  
 - Crear fichero READMELogin.txt
 - Comentar codigo
 
 Corregir:  
-- Banderas
+
 	
 Completar:  
 
