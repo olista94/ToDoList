@@ -1,12 +1,7 @@
 <?php
 
-/*
- * Clase : Header 
- * Contiene la vista del header de la pagina
- * Autor: yq5lj9
- * Fecha: 30/11/2018
- */
-
+ 
+ //Comprueba si esta autenticado
 	include_once '../Functions/Authentication.php';
 	if (!isset($_SESSION['idioma'])) {
 		$_SESSION['idioma'] = 'SPANISH';

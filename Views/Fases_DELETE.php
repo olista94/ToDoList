@@ -42,25 +42,35 @@
                 <table class="showU" style="margin-left: 30%;">
 
                     <tr><th class="title" colspan="4"><?php echo $strings['Borrar fase']; ?>
-                    <button type="button" onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $this -> fila['TAREAS_id_TAREAS'] ?>';" class="volver"></button></th>                    
+                    <!--Boton para volver atrás -->
+					<button type="button" onclick="location.href='../Controllers/Tareas_Controller.php?action=Confirmar_SHOWFASES&id_tarea=<?php echo $this -> fila['TAREAS_id_TAREAS'] ?>';" class="volver"></button></th>                    
                     </tr>
-
+				<!--Campo ID de la fase-->
+					<tr>
+                        <th><?php echo $strings['ID fase']; ?></th>
+                        <td><?php echo $this -> fila['id_FASES']; ?></td>
+                    </tr>
+					<!--Campo descripcion de la fase-->
                     <tr>
                         <th><?php echo $strings['Descripcion']; ?></th>
                         <td><?php echo $this -> fila['descripcion']; ?></td>
                     </tr>
+					<!--Campo fecha inicio de la fase-->
                     <tr>
                         <th><?php echo $strings['Fecha inicio']; ?></th>
                         <td><?php echo $this -> fila['fecha_inicio']; ?></td>
                     </tr>
+					<!--Campo fecha fin de la fase-->
                     <tr>
                         <th><?php echo $strings['Fecha fin']; ?></th>
                         <td><?php echo $this -> fila['fecha_fin']; ?></td>
                     </tr>                  
 
                     <tr>
+					<!--Boton de confirmar borrado-->
                         <th><button class="borrar-si" type="submit" name="action" value="Confirmar_DELETE2"></button></th>
-                        <td><button class="borrar-no" type="submit" name="action" value=""></button></td>
+                      <!--Boton de cancelar borrado-->
+					   <td><button class="borrar-no" type="submit" name="action" value=""></button></td>
                     </tr>            
                                                                             
                 </table>
