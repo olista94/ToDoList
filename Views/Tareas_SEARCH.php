@@ -26,7 +26,12 @@
             <legend><?php echo $strings['Buscar tarea'];?>
             <button onclick="location.href='../Controllers/Tareas_Controller.php';" class="volver"></button>
             </legend>
-
+			
+			<div class="form-group">
+			<label for="id_tarea"><?php echo $strings['ID tarea']; ?></label>
+				<input type="text" name="id_tarea"  size="5" >
+			</div>
+			
             <div class="form-group">
                 <label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
                 <input type="text" id="descripcion" name="descripcion" maxlength="50" size="40"/>

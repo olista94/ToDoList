@@ -53,8 +53,8 @@
 	  <label for="tipo"><?php echo $strings['Tipo']; ?></label>
 	  
       <select name="tipo" id="tipo">
-		<option value="ADMIN"><?php echo $strings['Admin']; ?></option>
 		<option value="NORMAL"><?php echo $strings['Normal']; ?></option>
+		<option value="ADMIN"><?php echo $strings['Admin']; ?></option>
 	  </select>
       
     </div>

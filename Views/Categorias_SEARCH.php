@@ -29,6 +29,10 @@
             
             </legend>
 
+			<!--Campo ID de la categoria-->
+                <label ><?php echo $strings['ID categoria']; ?></label>
+                <input type="text"  name="id_CATEGORIAS" size="5"/>
+	
             <!--Campo nombre de la categoria-->
                 <label ><?php echo $strings['Nombre']; ?></label>
                 <input type="text"  name="nombre" size="45"/>

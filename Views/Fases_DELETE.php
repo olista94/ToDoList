@@ -2,15 +2,16 @@
  CREADO POR mi3ac6 EL 17/11/2018-->
  
   <?php
-  	 
+  	 //Comprueba que esta autenticado
 	include_once '../Functions/Authentication.php';
-
+  //Declaracion de la clase
  class Fases_DELETE{
 
 
 	var $fila;
+	//Variable con el enlace al DELETE fase
 	var $enlace;
-	
+	//Constructor de la clase
 	function __construct($fila,$enlace){
 		
 		$this -> fila = $fila -> fetch_array();
@@ -26,15 +27,18 @@
         if(!isset($_SESSION['idioma'])){
             $_SESSION['idioma'] = 'SPANISH';
         }
-
+//Archivo del idioma
         include '../Locales/Strings_'. $_SESSION['idioma'] .'.php';
 	?>
+	
+	<!--Tabla con los datos de la fase-->
 		<div class="show-half">
             
             <form class="formShow" enctype="multipart/form-data" action="../Controllers/Fases_Controller.php">
-            
+				<!--Clave de la fase que se pasa como hidden al model-->
                 <input type="hidden" name="id_fase" value= "<?php echo $this -> fila['id_FASES'] ?>">
-                <input type="hidden" name="id_tarea" value= "<?php echo $this -> fila['TAREAS_id_TAREAS'] ?>">
+                <!--Clave de la tarea que se pasa como hidden al model-->
+				<input type="hidden" name="id_tarea" value= "<?php echo $this -> fila['TAREAS_id_TAREAS'] ?>">
                 <table class="showU" style="margin-left: 30%;">
 
                     <tr><th class="title" colspan="4"><?php echo $strings['Borrar fase']; ?>

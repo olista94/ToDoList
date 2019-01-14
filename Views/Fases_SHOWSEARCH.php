@@ -43,7 +43,7 @@ include_once '../Views/Header.php';
 				<th><?php echo $strings['Completada']; ?></th>
 				<th><?php echo $strings['Descripcion']; ?></th>
 				<th><?php echo $strings['Fecha inicio']; ?></th>
-				<th><?php echo $strings['Contacto']; ?></th>			
+							
 				<th></th>
 			</tr>
 		<?php
