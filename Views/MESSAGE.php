@@ -20,7 +20,7 @@ class MESSAGE{
 
 	function render(){
 
-		include '../Locales/Strings_'.$_SESSION['idioma'].'.php';
+		include_once '../Locales/Strings_'.$_SESSION['idioma'].'.php';
 		include_once '../Views/Header.php';
 ?>
 		<br>

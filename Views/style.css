@@ -3,6 +3,13 @@ Creado por: on7s94
 Fecha de creacion: 28/10/2018
 */
 
+.flags1{
+		display:flex;
+		float:right;
+		padding:10px;
+		width:5%;
+	}
+
 body {
   font-family: 'Montserrat', sans-serif, 'Arial', sans-serif !important;  
 }

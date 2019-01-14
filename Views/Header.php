@@ -49,14 +49,9 @@ if(isset($_SESSION['tipo'])){
 			<a><button class="logo"></button></a>
 
 			<div class="topnav-right">
-			<form name='idiomaform' action="../Functions/CambioIdioma.php" method="post" style="display: contents;">
-				<select class="idioma" name="idioma" onChange='this.form.submit()'>
-					<option value="SPANISH"> </option>
-					<option value="ENGLISH"><?php echo $strings['Ingles']; ?></option>
-					<option value="SPANISH"><?php echo $strings['Español']; ?></option>
-					<option value="GALLAECIAN"><?php echo $strings['Gallego']; ?></option>
-				</select>
-			</form>
+			
+			
+			
                 <?php	
                     if (IsAuthenticated()){
                 ?>
@@ -75,7 +70,26 @@ if(isset($_SESSION['tipo'])){
                 ?>
 				
 			</div>
+			<div class="flags1" >
+				<form name='idioma' action="../Functions/CambioIdioma.php" method="POST" style="display: inline-block; margin:0; padding:0;">
+					<input type="hidden" name='idioma' value="ENGLISH">
+					<input type="image" src="../img/uk.png"  width="45px">
+				</form>
+				</div>
+				<div class="flags1" >
+				<form name='idioma' action="../Functions/CambioIdioma.php" method="POST" style="display: inline-block; margin:0; padding:0;">
+					<input type="hidden" name='idioma' value="SPANISH" >
+					<input type="image"  src="../img/spain.png"  width="35px" >
+				</form>
+				</div>
+				<div class="flags1" >
+				<form name='idioma' action="../Functions/CambioIdioma.php" method="POST" style="display: inline-block; margin:0; padding:0;">
+					<input type="hidden" name='idioma' value="GALLAECIAN" >
+					<input type="image"  src="../img/galicia.png" width="35px">	
+				</form>
+			</div>
 		</div>
+		
 	</div>
 
 	<div class="menu-bar" id="menu-bar">
