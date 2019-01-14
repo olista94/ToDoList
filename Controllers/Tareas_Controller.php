@@ -139,6 +139,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 					$archivos = $tarea -> ContarArchivos();
 					$fases = $tarea -> ContarFases();
 				$contactos = $tarea -> ContarContactos();
+				print_r($_REQUEST['id_tarea']);
 					new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');
 				}else{
 					$tarea = getDataForm();
