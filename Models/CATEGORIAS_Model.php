@@ -86,7 +86,9 @@ function search(){
        			FROM categorias
     			WHERE
     				( 
-	 				(`nombre` LIKE '%$this->nombre%')					
+					(`id_CATEGORIAS` LIKE '%$this->id_CATEGORIAS%')	&&
+	 				(`nombre` LIKE '%$this->nombre%')
+									
     				)";
 				
    //Si se produce un error

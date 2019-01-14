@@ -32,7 +32,7 @@ function __construct($id_fase,$descripcion,$fecha_ini,$fecha_fin,$completada,$TA
 
 
 function add(){
-				
+				$fecha_ini = date('Y-m-d', time());
 				$sql = "INSERT INTO fases
 						VALUES (
 							'$this->id_fase',
@@ -69,8 +69,6 @@ function edit()
     {	
 		$sql = "UPDATE fases SET
 					`descripcion` = '$this->descripcion'
-										
-
 				WHERE (`id_FASES` = '$this->id_fase')";
 
         if (!($resultado = $this->mysqli->query($sql))){
@@ -90,14 +88,14 @@ function search(){
        			FROM fases
     			WHERE `TAREAS_id_TAREAS` = '".$_REQUEST['TAREAS_id_TAREAS']."' &&
     				( 
-    				
+    				(`id_FASES` LIKE '%$this->id_fase%') &&
 	 				(`descripcion` LIKE '%$this->descripcion%') &&
 					(`fecha_inicio` LIKE '%$this->fecha_ini%') &&
 					(`fecha_fin` LIKE '%$this->fecha_fin%') &&
 					(`TAREAS_id_TAREAS` LIKE '%$this->TAREAS_id_TAREAS%')
 					
     				)";
-				
+		
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return "Error en la consulta";

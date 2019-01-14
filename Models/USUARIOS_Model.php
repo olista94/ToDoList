@@ -46,7 +46,7 @@ function login(){
 
 	$resultado = $this->mysqli->query($sql);
 	if ($resultado->num_rows == 0){
-		return $GLOBALS['strings']['El login no existe'];
+		return 'El login no existe';
 	}
 	else{
 		$tupla = $resultado->fetch_array();
