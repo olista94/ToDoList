@@ -4,11 +4,15 @@ Fecha de creacion: 28/10/2018
 */
 
 .flags1{
-		display:flex;
+		display:inline-flex;
 		float:right;
 		padding:10px;
-		width:5%;
-	}
+    width: auto;
+}
+  
+.flags1 form{
+  box-shadow: none;
+}
 
 body {
   font-family: 'Montserrat', sans-serif, 'Arial', sans-serif !important;  
@@ -61,6 +65,12 @@ body {
 
 /* Responsive navigation menu (for mobile devices) */
 @media screen and (max-width: 680px) {
+
+  
+  .alogo{
+    display: none !important;
+  }
+
   .topnav a, .topnav-right {
     float: none;
     display: block;
@@ -72,6 +82,11 @@ body {
     left: 0;
     transform: none;
   }
+
+  .flags1{
+    width: 80%;
+  }
+
 }
 
 /********* Menu *********/
@@ -151,7 +166,7 @@ body {
 
 @media screen and (max-width: 680px) {
   input {
-      width: 100%;
+      /*width: 100%;*/
       margin-top: 0;
   }
 }
@@ -248,7 +263,8 @@ input {
 	padding:2px;
 	border:2px solid #f2f2f2;
 	border-radius:4px;
-	background-color:#fff;
+  background-color:#fff;
+  margin-top: 7;
 	
 	font-size:16px;
 }

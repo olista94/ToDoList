@@ -46,7 +46,7 @@ if(isset($_SESSION['tipo'])){
 				<a><h2><?php echo $strings['ToDoList']; ?></h2></a>
 			</div>
 
-			<a><button class="logo"></button></a>
+			<a class="alogo"><button class="logo"></button></a>
 
 			<div class="topnav-right">
 			
@@ -75,20 +75,15 @@ if(isset($_SESSION['tipo'])){
 					<input type="hidden" name='idioma' value="ENGLISH">
 					<input type="image" src="../img/uk.png"  width="45px">
 				</form>
-				</div>
-				<div class="flags1" >
 				<form name='idioma' action="../Functions/CambioIdioma.php" method="POST" style="display: inline-block; margin:0; padding:0;">
 					<input type="hidden" name='idioma' value="SPANISH" >
 					<input type="image"  src="../img/spain.png"  width="35px" >
 				</form>
-				</div>
-				<div class="flags1" >
 				<form name='idioma' action="../Functions/CambioIdioma.php" method="POST" style="display: inline-block; margin:0; padding:0;">
 					<input type="hidden" name='idioma' value="GALLAECIAN" >
 					<input type="image"  src="../img/galicia.png" width="35px">	
 				</form>
 			</div>
-		</div>
 		
 	</div>
 
@@ -127,7 +122,7 @@ if(isset($_SESSION['tipo'])){
 				<a><h2><?php echo $strings['ToDoList']; ?></h2></a>
 			</div>
 
-			<a><button class="logo"></button></a>
+			<a class="alogo"><button class="logo"></button></a>
 
 			<div class="topnav-right">
 			<form name='idiomaform' action="../Functions/CambioIdioma.php" method="post" style="display: contents;">
