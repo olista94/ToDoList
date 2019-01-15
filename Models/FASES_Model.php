@@ -52,7 +52,7 @@ function add(){
 				}
 				else{ 
 				
-					return 'Insertado correcto'; 
+					return 'Insercion correcta'; 
 					
 				}
 
@@ -98,7 +98,7 @@ function search(){
 		
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return "Error en la consulta";
+		return "Error en la búsqueda";
 	}
     else{ 
 		return $resultado;
@@ -154,7 +154,7 @@ function FasesShowAll(){
 	$sql = "SELECT * FROM fases ";
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
@@ -234,7 +234,7 @@ function setCompletada()
 				WHERE (`id_FASES` = '$this->id_fase')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error en la al cerrar la fase';
+			return 'Error al cerrar la fase';
 		}
 		else{ 
 			return 'La fase se ha cerrado'; 

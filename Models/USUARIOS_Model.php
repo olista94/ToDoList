@@ -54,7 +54,7 @@ function login(){
 			return true;
 		}
 		else{
-			return $GLOBALS['strings']['La password para este usuario no es correcta'];
+			return 'La password para este usuario no es correcta';
 		}
 	}
 }//fin metodo login
@@ -66,7 +66,7 @@ function Register(){
 
 		$result = $this->mysqli->query($sql);
 		if ($result->num_rows == 1){  // existe el usuario
-				return $GLOBALS['strings']['El usuario ya existe'];
+				return 'El usuario ya existe';
 			}
 		else{
 	    		return true; //no existe el usuario
@@ -102,11 +102,11 @@ function registrar(){
 			
 		if (!$this->mysqli->query($sql)) {
 			
-			return $GLOBALS['strings']['Error al insertar'];
+			return 'Error al insertar';
 		}
 		else{
 			
-			return  $GLOBALS['strings']['Insercion correcta']; //operacion de insertado correcta
+			return  'Insercion correcta'; //operacion de insertado correcta
 		}		
 	}
 	
@@ -115,7 +115,7 @@ function registrar(){
     $sql = "SELECT * FROM usuarios WHERE (`login` = '$this->login')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['No existe']; 
+		return 'No existe'; 
 	}
     else{ 
 		$result = $resultado;
@@ -145,15 +145,15 @@ function edit()
 				WHERE (`login` = '$this->login')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return $GLOBALS['strings']['Error en la modificación'];
+			return 'Error en la modificación';
 		}
 		else{ 
 			
-			return $GLOBALS['strings']['Modificado correctamente']; 
+			return 'Modificado correctamente'; 
 		}
     }
     else 
-    	return $GLOBALS['strings']['No existe'];
+    	return 'No existe';
 } 
 
 function search(){ 
@@ -175,8 +175,8 @@ function search(){
 				
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return $GLOBALS['strings']['Error en la búsqueda'];
-		/* return "Error en la consulta"; */
+		return 'Error en la búsqueda';
+		
 	}
     else{ 
 		return $resultado;
@@ -196,10 +196,10 @@ function delete()
         
         $this->mysqli->query($sql);
         
-    	return $GLOBALS['strings']['Borrado correctamente'];
+    	return 'Borrado correctamente';
     } 
     else
-        return $GLOBALS['strings']['No existe'];
+        return 'No existe';
 }  
 
 function DevolverTipo()
@@ -213,7 +213,7 @@ function DevolverTipo()
     	return $result -> fetch_array()[0];
     } 
     else
-        return $GLOBALS['strings']['No existe'];
+        return 'No existe';
 }  
 
 }//fin de clase

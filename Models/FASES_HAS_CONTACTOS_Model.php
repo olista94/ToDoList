@@ -43,7 +43,7 @@ function add(){
 	}
 	else{ 
 	
-		return 'Insertado correcto'; 
+		return 'Insercion correcta'; 
 		
 	}
 
@@ -133,7 +133,7 @@ function search(){
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';
-		/* return "Error en la consulta"; */
+		
 	}
     else{ 
 		return $resultado;

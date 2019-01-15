@@ -1,5 +1,4 @@
-<!---MODELO DE LOS USUARIOS QUE ADMINISTRARÁN LA LOTERIAIU,DONDE SE REALIZARÁ LA OPERACION DE INSERCIÓN EN LA BD
- CREADO POR mi3ac6 EL 23/11/2018-->
+
 <?php
 
 
@@ -50,7 +49,7 @@ function add(){
 				}
 				else{ 
 				
-					return 'Insertado correcto'; 
+					return 'Insercion correcta'; 
 					
 				}
 
@@ -129,7 +128,7 @@ function search(){
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';
-		/* return "Error en la consulta"; */
+		
 	}
     else{ 
 		return $resultado;

@@ -55,7 +55,7 @@ function add(){
 						
 				}
 				else{ 
-					return 'Insertado correcto'; 
+					return 'Insercion correcta'; 
 					
 				}
 
@@ -137,7 +137,7 @@ function search1(){
 
 if (!($resultado = $this->mysqli->query($sql))){
    return 'Error en la búsqueda';
-   /* return "Error en la consulta"; */
+
 }
 else{ 
    return $resultado;
@@ -165,7 +165,7 @@ function searchAdmin(){
 
 if (!($resultado = $this->mysqli->query($sql))){
    return 'Error en la búsqueda';
-   /* return "Error en la consulta"; */
+   
 }
 else{ 
    return $resultado;
@@ -211,7 +211,7 @@ function TareasShowAll(){
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
 			FROM tareas t,prioridades p, categorias c 
 			WHERE t.PRIORIDADES_nivel = p.nivel && c.id_CATEGORIAS = t.CATEGORIAS_id_CATEGORIAS";
-	//die($sql);
+	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'No existe'; 

@@ -114,7 +114,7 @@ function searchById(){
 		//No la encuentra   
 	if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';
-		/* return "Error en la consulta"; */
+		
 	}
 	else{ //Busqueda positiva
 		return $resultado;

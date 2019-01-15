@@ -29,10 +29,10 @@ function add(){
 			
 		if (!$this->mysqli->query($sql)) {
 			
-			return 'Error en la inserción';
+			return 'Error al insertar';
 		}
 		else{
-			return 'Inserción realizada con éxito'; //operacion de insertado correcta
+			return 'Insercion correcta'; //operacion de insertado correcta
 		}		
 	}
 	
@@ -64,11 +64,11 @@ function edit()
 					
 				WHERE (`nivel` = '$this->nivel')";
         if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error en la inserción';
+			return 'Error en la modificación';
 		}
 		else{ 
 			
-			return 'Inserción realizada con éxito';
+			return 'Modificado correctamente';
 		}
     }
     else 
@@ -88,7 +88,7 @@ function search(){
    
     if (!($resultado = $this->mysqli->query($sql))){
 		return 'Error en la búsqueda';
-		/* return "Error en la consulta"; */
+		
 	}
     else{ 
 		return $resultado;
@@ -105,7 +105,7 @@ function searchById(){
 		   
 if (!($resultado = $this->mysqli->query($sql))){
    return 'Error en la búsqueda';
-   /* return "Error en la consulta"; */
+
 }
 else{ 
    return $resultado;
