@@ -1,8 +1,5 @@
-/*
-Creado por: zdfcy6
-Fecha de creacion: 3/10/2018
-*/
 
+//Hace que el menú sea responsive
 function responsiveMenu() {
     var x = document.getElementById("menu-bar");
     if (x.className === "menu-bar") {
@@ -12,6 +9,7 @@ function responsiveMenu() {
     }
 }
 
+//Para abrir desplegables
 function dropdown() {
     document.getElementById("myDropdown").classList.toggle("show");    
 }
