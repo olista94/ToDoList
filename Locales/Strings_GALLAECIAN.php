@@ -15,7 +15,7 @@ array(
 	'Español' => 'Español',
 	'El login no existe' => 'O login non existe',
 	'Volver' => 'Volver',
-	'La password para este usuario no es correcta' => 'A password para este usuario non é correcta',
+	
 	'Registro' => 'Rexistro',
 	'Inserción realizada con éxito' => 'Inserción realizada con éxito',
 	'Error en la inserción' => 'Erro na inserción',
@@ -165,9 +165,9 @@ array(
 	'Confirmar' => 'Confirmar',
 	
 	'El login no existe' => 'O login non existe',
-	'La password para este usuario no es correcta' => 'O contrasinal para este usuario non é correcta',
+	'La password para este usuario no es correcta' => 'O contrasinal para este usuario non é correcto',
 	'El usuario ya existe' => 'O usuario xa existe',
-	'Error al insertar' => 'Erro o insertar',
+	
 	'Insercion correcta' => 'Inserción correcta',
 	
 	
@@ -349,13 +349,11 @@ array(
 	'Confirmar' => 'Confirmar',
 	
 	'El login no existe' => 'O login non existe',
-	'La password para este usuario no es correcta' => 'O contrasinal para este usuario non é correcto',
+	
 	'El usuario ya existe' => 'O usuario xa existe',
 	'Error al insertar' => 'Erro ao insertar',
 	'Insercion correcta' => 'Inserción correcta',
 	
-	
-	'No se ha podido conectar con la base de datos' => 'Non se ha puido conectar ca base de datos',
 	'Insertado correcto' => 'Insertado correcto',
 	'Introduzca un valor para la clave' => 'Introduza un valor para a clave',
 	'Error en la búsqueda' => 'Erro na búsqueda',
@@ -429,9 +427,7 @@ array(
 	'Normal' => 'Normal',
 	'Seleccionar' => 'Seleccionar',
 	'El login no existe' => 'O login non existe',
-	'La password para este usuario no es correcta' => 'A password para este usuario non é correcta',
-	'Error al insertar' => 'Erro ó insertar',
-	'Insercion correcta' => 'Insercion correcta',
+
 	'No existe' => 'Non existe',
 	'Error en la modificación' => 'Erro na modificación',
 	'Modificado correctamente' => 'Modificado correctamente',
@@ -468,6 +464,18 @@ array(
 	'Tareas incompletas' => 'Tarefas incompletas',
 	'ID fase' => 'ID fase',
 	'ID tarea' => 'ID tarefa',
+	
+	'No se puede borrar.Hay tareas asociadas a esta categoria' => 'Non se pode borrar.Hai tarefas asociadas a esta categoria',
+	'No se puede borrar.Hay fases asociadas a este contacto' => 'Non se pode borrar.Hai fases asociadas a este contacto',
+	'Error al cerrar la fase' => 'Erro ao pechar a fase',
+	'La fase se ha cerrado' => 'A fase pechouse',
+	'Error al abrir la fase' => 'Erro ao abrir a fase',
+	'La fase se ha vuelto a abrir' => 'A fase volveuse a abrir',
+	'No se puede abrir una fase de una tarea cerrada' => 'Non se pode abrir unha fase dunha tarefa pechada',
+	'No se puede borrar.Hay tareas asociadas a esta prioridad' => 'Non se pode borrar.Hai tarefas asociadas a esta prioridade',
+	'Error al cerrar la tarea' => 'Erro ao pechar a tarefa',
+	'Error al abrir la tarea' => 'Erro ao abrir a tarefa',
+	'No se puede añadir una fase a una tarea cerrada' => 'Non se pode engadir unha fase a unha tarefa pechada',
 	'' => '',
 	'' => '',
 	'' => '',

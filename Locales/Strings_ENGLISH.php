@@ -13,9 +13,9 @@ array(
 	'Otro' => 'Other',
 	'Ingles' => 'English',
 	'Español' => 'Spanish',
-	'El login no existe' => 'The login does not exist',
+	
 	'Volver' => 'Back',
-	'La password para este usuario no es correcta' => 'The password for this user is not correct',
+	'La password para este usuario no es correcta' => 'The password for this user is incorrect',
 	'Registro' => 'Registry',
 	'Inserción realizada con éxito' => 'Insertion made successfully',
 	'Error en la inserción' => 'Insertion error',
@@ -162,23 +162,21 @@ array(
 	'Confirmar borrado' => 'Confirm delete',
 	'Confirmar' => 'Confirm',
 	
-	'El login no existe' => 'Login does not exist',
-	'La password para este usuario no es correcta' => 'Password for this user is not correct',
+
 	'El usuario ya existe' => 'User already exist',
-	'Error al insertar' => 'Insertion error',
-	'Insercion correcta' => 'Correct insertion',
+	'Error al insertar' => 'Add error',
+	'Insercion correcta' => 'Add successfull',
 	
 	
-	'No se ha podido conectar con la base de datos' => 'Failed to connect database',
+	
 	'Insertado correcto' => 'Correct insertion',
-	'Introduzca un valor para la clave' => 'Enter value for key',
 	'Error en la búsqueda' => 'Search error',
-	'Borrado correctamente' => 'Correctly deleted',
+	'Borrado correctamente' => 'Delete successfull',
 	'No existe' => 'Does not exist',
-	'Error en la modificación' => 'Modification error',
+	'Error en la modificación' => 'Edit error',
 	
 	'Modificado' => 'Modifified',
-	'Modificado correctamente' => 'Correctle modified',
+	'Modificado correctamente' => 'Edit successfull',
 	'Fallo al conectar a MySQL: (' => 'Failed to connect with MySQL: (',
 	
 	
@@ -343,23 +341,22 @@ array(
 	'Confirmar borrado' => 'Delete confirmation',
 	'Confirmar' => 'Confirm',
 	
-	'El login no existe' => 'Login does not exist',
-	'La password para este usuario no es correcta' => 'Password for this user isnt correct',
+	'El login no existe' => 'Login doesn´t exists',
+	
 	'El usuario ya existe' => 'User already exists',
-	'Error al insertar' => 'Insertion error',
-	'Insercion correcta' => 'Correct insertion',
 	
 	
-	'No se ha podido conectar con la base de datos' => 'Failed to connect database',
+	
+	'No se ha podido conectar con la base de datos' => 'Failed to connect with database',
 	'Insertado correcto' => 'Correct insertion',
 	'Introduzca un valor para la clave' => 'Enter value for the key',
 	'Error en la búsqueda' => 'Search error',
-	'Borrado correctamente' => 'Correctly erased',
+	
 	'No existe' => 'Does not exist',
-	'Error en la modificación' => 'Modification error',
+	
 	
 	'Modificado' => 'Modified',
-	'Modificado correctamente' => 'Correctly modified',
+	
 	'Fallo al conectar a MySQL: (' => 'Failed to connect to MySQL: (',
 	
 	
@@ -422,20 +419,18 @@ array(
 	'Normal' => 'Normal',
 	'Seleccionar' => 'Select',
 	'El login no existe' => 'The login does not exist',
-	'La password para este usuario no es correcta' => 'The password for this user is not correct',
-	'Error al insertar' => 'Error al insertar',
-	'Insercion correcta' => 'Error inserting',
+	
 	'No existe' => 'Does not exist',
-	'Error en la modificación' => 'Error in the modification',
-	'Modificado correctamente' => 'Modified correctly',
+	
+	
 	'Usuario no existe' => 'User does not exist',
 	'Error en la búsqueda' => 'Search error',
-	'Borrado correctamente' => 'Correctly deleted',
+	
 	'No existe' => 'Does not exist',
 	'No se puede completar una tarea con fases abiertas' => 'Unable to complete a task with open phases',
 	'La tarea se ha cerrado' => 'The task has been closed',
 	'La tarea se ha vuelto a abrir' => 'The task is open again',
-	'No se puede cerrar una tarea con fases abiertas' => 'You cannot open a task whit open phases',
+	'No se puede cerrar una tarea con fases abiertas' => 'You cannot close a task whit open phases',
 	'Fase abierta' => 'Open phase',
 	'Fase cerrada' => 'Close phase',
 	'Borrar categoria' => 'Delete category',
@@ -460,7 +455,18 @@ array(
 	'Tareas incompletas' => 'Uncompleted tasks',
 	'ID fase' => 'Phase ID',
 	'ID tarea' => 'Taske ID',
-	'' => '',
+	
+	'No se puede borrar.Hay tareas asociadas a esta categoria' => 'You can´t delete this.There are asociated tasks to this category',
+	'No se puede borrar.Hay fases asociadas a este contacto' => 'You can´t delete this.There are asociated phases to this contact',
+	'Error al cerrar la fase' => 'Close phase fail',
+	'La fase se ha cerrado' => 'Phase closed',
+	'Error al abrir la fase' => 'Open phase fail',
+	'La fase se ha vuelto a abrir' => 'Phase reopened',
+	'No se puede abrir una fase de una tarea cerrada' => 'You can´t open a phase of a closed task',
+	'No se puede borrar.Hay tareas asociadas a esta prioridad' => 'You can´t delete this.There are asociated tasks to this priority',
+	'Error al cerrar la tarea' => 'Close task fail',
+	'Error al abrir la tarea' => 'Open task fail',
+	'No se puede añadir una fase a una tarea cerrada' => 'You can´t add a phase to a closed task',
 	'' => '',
 	'' => '',
 	'' => '',
