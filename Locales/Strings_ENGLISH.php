@@ -467,6 +467,7 @@ array(
 	'Error al cerrar la tarea' => 'Close task fail',
 	'Error al abrir la tarea' => 'Open task fail',
 	'No se puede añadir una fase a una tarea cerrada' => 'You can´t add a phase to a closed task',
+	'No puedes ver esto si no eres administrador' => 'You can´t see this if you aren´t an admin',
 	'' => '',
 	'' => '',
 	'' => '',

@@ -479,7 +479,7 @@ array(
 	'No se puede borrar.Hay tareas asociadas a esta prioridad' => 'No se puede borrar.Hay tareas asociadas a esta prioridad',
 	'Error al cerrar la tarea' => 'Error al cerrar la tarea',
 	'Error al abrir la tarea' => 'Error al abrir la tarea',
-	'' => '',
+	'No puedes ver esto si no eres administrador' => 'No puedes ver esto si no eres administrador',
 	'' => '',
 	'' => '',
 	'' => '',

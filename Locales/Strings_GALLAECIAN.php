@@ -476,6 +476,7 @@ array(
 	'Error al cerrar la tarea' => 'Erro ao pechar a tarefa',
 	'Error al abrir la tarea' => 'Erro ao abrir a tarefa',
 	'No se puede añadir una fase a una tarea cerrada' => 'Non se pode engadir unha fase a unha tarefa pechada',
+	'No puedes ver esto si no eres administrador' => 'Non podes ver isto senon eres administrador',
 	'' => '',
 	'' => '',
 	'' => '',
