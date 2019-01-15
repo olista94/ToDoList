@@ -426,11 +426,34 @@ if (!IsAuthenticated()){ //si no está autenticado
 			}
 		break;
 
-		//Este caso no deberia darse nunca
+		
 		default: /*PARA EL SHOWALL */
-			$fase = new FASES_Model('','','','','',''); //Objeto fase
-			$datos = $fase -> FasesShowAll(); //Datos
-			$respuesta = new Fases_SHOWALL($datos,'','','','../Controllers/Fases_Controller.php'); //Vista showall
+			//Comprobamos el tipo de usuario
+			if(isset($_SESSION['tipo'])){
+				//Si el usuario es de tipo admin
+				if($_SESSION['tipo']=='ADMIN'){		   
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
+					
+					$datos = $tarea -> TareasShowAll();//Recuperamos todas las tareas y las guardamos en datos						
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
+					
+					//Creamos una vista de todas las tareas completas con los datos
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
+				//Si es usuario normal
+				}else{		   
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
+					
+					$datos = $tarea -> TareasShowAllNormal();//Recuperamos las tareas del usuario y las guardamos en datos						
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
+					
+					//Creamos una vista de todas las tareas completas con los datos
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
+				}	 
+			}
 	}
 }
 ?>
