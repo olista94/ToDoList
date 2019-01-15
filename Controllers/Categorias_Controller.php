@@ -1,4 +1,4 @@
-<!---CONTROLADOR DE LA Categorias
+<!---CONTROLADOR DE CATEGORIAS
  CREADO POR mi3ac6 EL 19/11/2018-->
 
 <?php
@@ -9,8 +9,6 @@ session_start();
 
 include_once "../Views/MESSAGE.php";
 include_once "../Functions/Authentication.php";
-
-
 
 if(isset($_SESSION['tipo'])){
 	//Si se loguea como ADMIN
@@ -25,15 +23,6 @@ if(isset($_SESSION['tipo'])){
 		include_once "../Views/Categorias_DELETE.php";
 		include_once "../Views/MESSAGE.php";
 		include_once "../Functions/Authentication.php";
-	//Variable de idioma
-		if (!isset($_SESSION['idioma'])) {
-			$_SESSION['idioma'] = 'SPANISH';
-			$idioma = 'SPANISH';
-		}else{
-			$idioma = $_SESSION['idioma'];
-		}
-		
-		include_once '../Locales/Strings_'.$idioma.'.php';
 
 		/* RECOGE LOS DATOS DEL FORMULARIO */
 		function getDataForm(){

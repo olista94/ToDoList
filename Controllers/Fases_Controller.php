@@ -1,8 +1,11 @@
-<!---CONTROLADOR DE LA Fases
+<!---CONTROLADOR DE FASES
  CREADO POR mi3ac6 EL 19/11/2018-->
 <?php
 
+//Inicia una nueva sesión
 session_start();
+
+//Incluye la funciones que se encuentran en los siguientes ficheros:
 include_once "../Views/MESSAGE.php";
 include_once "../Views/ALERT.php";
 include_once "../Functions/Authentication.php";
@@ -11,6 +14,7 @@ if (!IsAuthenticated()){ //si no está autenticado
     new MESSAGE('No puedes ver esto si no estás logueado', '../Controllers/Login_Controller.php'); //muestra el mensaje
 }else{ //si lo está
 
+	//Incluye la funciones que se encuentran en los siguientes ficheros:
 	include_once "../Models/FASES_Model.php";
 	include_once "../Views/Fases_SHOWALL.php";
 	include_once "../Views/Fases_ADD.php";

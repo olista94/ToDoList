@@ -150,7 +150,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 			if(isset($_SESSION['tipo'])){
 				if($_SESSION['tipo']=='ADMIN'){
 					$tarea = getDataForm(); //Se llena el objeto tarea con los datos del formulario
-					$datos = $tarea-> searchAdmin(); //Se busca la tarea y se guardan los datos
+					$datos = $tarea-> searchAdmin(); //Se busca en todas las tareas y se guardan los datos
 					$archivos = $tarea -> ContarArchivos(); //Se cuentan los archivos de la tarea
 					$fases = $tarea -> ContarFases(); //Se cuentan las fases de la tarea
 					$contactos = $tarea -> ContarContactos(); //Se cuentan los contactos de la tarea
@@ -158,269 +158,313 @@ if (!IsAuthenticated()){ //si no está autenticado
 					new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php'); //Se muestran las tareas encontradas en un showall
 				//En otro caso el usuario es un usuario normal
 				}else{
-					$tarea = getDataForm();
-					$datos = $tarea-> search1();
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
-					new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');
+					$tarea = getDataForm(); //Se llena el objeto tarea con los datos del formulario
+					$datos = $tarea-> search1(); //Se busca en las tareas del usuario y seguardan los datos
+					$archivos = $tarea -> ContarArchivos(); //se cuentan los archivos de la tarea
+					$fases = $tarea -> ContarFases(); //se cuentan las fases de la tarea
+					$contactos = $tarea -> ContarContactos(); // se cuentan los contactos de la tarea
+					new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php'); //Se muestran las tareas encontradas en un showall
 				}
 			}		
 		break;
 
-		
+		//Si se le da a borrar desde la vista del showall
 		case 'Confirmar_DELETE1':		
-			$prioridades = new PRIORIDADES_Model("","","");
+			$prioridades = new PRIORIDADES_Model("","",""); //Se crea un modelo de prioridades
 			if(count($_REQUEST) < 4 ){			
-				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
-				$datos = $tarea->rellenadatos();
+				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','',''); //Se crea un modelo de tarea con el id que se le pasa
+				$datos = $tarea->rellenadatos(); //Se rellena datos con los datos de la tarea
 				
-				$array = $datos -> fetch_array();
-				$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"","");
-				$p = $prioridades -> searchById();
+				$array = $datos -> fetch_array(); //Creamos el array con los datos
+				$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"",""); //Creamos un modelo de prioridad con el nivel de prioridad
+				$p = $prioridades -> searchById(); //Buscamos la prioridad por nivel
 				
-				$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],"");
-				$cat = $categorias -> searchById();
-				$datos = $tarea->rellenadatos();
+				$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],""); //Creamos una categoria con el modelo y el id de la categoria
+				$cat = $categorias -> searchById(); //Buscamos la categoria por nivel
+				$datos = $tarea->rellenadatos(); //Volvemos rellenar los datos de la tarea
 				
-				new Tareas_DELETE($datos,$p,$cat,'../Controllers/Tareas_Controller.php');
+				new Tareas_DELETE($datos,$p,$cat,'../Controllers/Tareas_Controller.php'); //Creamos una vista de delete con los datos obtenidos
 			}
 		break;
 		
+		// Si queremos borrar desde la vista de borrar
 		case 'Confirmar_DELETE2':		
-			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
-			$mensaje = $tarea-> delete();
-			new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php');			
+			$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','',''); //Creamos un objeto tarea con el id de la tarea a borrar
+			$mensaje = $tarea-> delete(); //Llamamos a delete y guardamos el mensaje que devuelve
+			new MESSAGE($mensaje,'../Controllers/Tareas_Controller.php'); //Mostramos el mensaje	
 		break;
 
+		//Si queremos mostrar los datos de una tarea en concreto
 		case 'Confirmar_SHOWCURRENT':
-			if(count($_REQUEST) < 4 ){			
-				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
-				$datos = $tarea->rellenadatos();
+			//Si no se le pasan argumentos por request
+			if(count($_REQUEST) < 4 ){	
+
+				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','',''); //Creamos un objeto tarea con el id de la tarea a ver
+				$datos = $tarea->rellenadatos(); //Se rellena datos con los datos de la tarea
 				
-				$array = $datos -> fetch_array();
-				$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"","");
-				$p = $prioridades -> searchById();
+				$array = $datos -> fetch_array(); //Creamos el array con los datos
+				$prioridades = new PRIORIDADES_Model($array['PRIORIDADES_nivel'],"",""); //Creamos un modelo de prioridad con el nivel de prioridad
+				$p = $prioridades -> searchById(); //Buscamos la prioridad por nivel
 				
-				$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],"");
-				$cat = $categorias -> searchById();
-				$datos = $tarea->rellenadatos();
+				$categorias = new CATEGORIAS_Model($array['CATEGORIAS_id_CATEGORIAS'],""); //Creamos una categoria con el modelo y el id de la categoria
+				$cat = $categorias -> searchById(); //Buscamos la categoria por nivel
+				$datos = $tarea->rellenadatos(); //Volvemos rellenar los datos de la tarea
 				
-				new Tareas_SHOWCURRENT($datos,$p,$cat,'../Controllers/Tareas_Controller.php');
+				new Tareas_SHOWCURRENT($datos,$p,$cat,'../Controllers/Tareas_Controller.php'); //Creamos una vista de delete con los datos obtenidos
 			}
 		break;
 
+		//Si queremos mostrar el detalle de una tarea en concreto
 		case 'Confirmar_SHOWFASES':
+		//Si no se le pasan argumentos por request
 			if(count($_REQUEST) < 4 ){			
-				$fase = new FASES_Model('','','','','',$_REQUEST['id_tarea'],'');
-				$datos = $fase->getFasesOfTarea();
+				$fase = new FASES_Model('','','','','',$_REQUEST['id_tarea'],''); //Creamos un objeto fase con el id de la tarea a ver
+				$datos = $fase->getFasesOfTarea(); //Se rellena datos con las fases de la tarea
 
-				$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['id_tarea']);
-				$archivo = $archivos -> getArchivosOfTarea();
+				$archivos = new ARCHIVOS_Model('','','','',$_REQUEST['id_tarea']); //Creamos un objeto archivos con el id de la tarea a ver
+				$archivo = $archivos -> getArchivosOfTarea(); //Se rellena archivo con los archivos de la tarea
 
-				$contactos = new FASES_HAS_CONTACTOS_Model('',$_REQUEST['id_tarea'],'');
-				$contacto = $contactos -> getContactosOfTarea();
+				$contactos = new FASES_HAS_CONTACTOS_Model('',$_REQUEST['id_tarea'],''); //Creamos un objeto contactos con el id de la tarea a ver
+				$contacto = $contactos -> getContactosOfTarea(); //Se rellena contacto con los contactos de la tarea
 				
-				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
-				$t = $tarea -> TareasCompleto();
+				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','',''); //Creamos un objeto tarea con el id de la tarea a ver
+				$t = $tarea -> TareasCompleto(); //Se rellena t con los datos de la tarea
 
-				$respuesta = new Fases_SHOWALL($datos,$archivo,$contacto,$t,'../Controllers/Fases_Controller.php');				
+				$respuesta = new Fases_SHOWALL($datos,$archivo,$contacto,$t,'../Controllers/Fases_Controller.php'); //Creamos una vista de showall con los datos obtenidos	
 			}
 		break;
 
-		case 'Confirmar_COMPLETADA':		
+		//Si queremos marcar una tarea como completada
+		case 'Confirmar_COMPLETADA':	
+			//Comprobamos el tipo de usuario	
 			if(isset($_SESSION['tipo'])){
+				//Si el usuario es de tipo admin
 				if($_SESSION['tipo']=='ADMIN'){		
-					$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+					$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','',''); //Creamos un objeto tarea con el id de la tarea a completar
 
-					$alert = $tarea-> puedeCompletar();
-					$datos = $tarea->TareasShowAll();
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
+					$alert = $tarea-> puedeCompletar(); //Comprobamos si se puede completar la tarea (y completamos si se puede) y guardamos el mensaje que devuelve
+					$datos = $tarea->TareasShowAll(); //Recuperamos todas las tareas y las guardamos en datos
+					$archivos = $tarea -> ContarArchivos(); //Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases(); //Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos(); //Recuperamos el numero de contactos de las tareas y los guardamos
 				
-					new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');
-					new ALERT($alert);
+					new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php'); //Creamos una vista de showall con los datos actualizados
+					new ALERT($alert); //Mostramos el mensaje de retorno
+				// Si es un usuario normal
 				}else{
-					$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+					$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');//Creamos un objeto tarea con el id de la tarea a completar
 
-					$alert = $tarea-> puedeCompletar();
-					$datos = $tarea->TareasShowAllNormal();
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
+					$alert = $tarea-> puedeCompletar();//Comprobamos si se puede completar la tarea (y completamos si se puede) y guardamos el mensaje que devuelve
+					$datos = $tarea->TareasShowAllNormal();//Recuperamos las tareas del usuario y las guardamos en datos
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
 
-					new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');
-					new ALERT($alert);
+					new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');//Creamos una vista de showall con los datos actualizados
+					new ALERT($alert);//Mostramos el mensaje de retorno
 				}
 			}
 		break;
 
+		//Si queremos marcar una tarea como no completada
 		case 'Confirmar_NO_COMPLETADA':
-
+		//Comprobamos el tipo de usuario	
 		if(isset($_SESSION['tipo'])){
+			//Si el usuario es de tipo admin
 			if($_SESSION['tipo']=='ADMIN'){
-				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');//Creamos un objeto tarea con el id de la tarea a descompletar
 
-				$alert = $tarea-> puedeDescompletar();
-				$datos = $tarea->TareasShowAll();
-				$archivos = $tarea -> ContarArchivos();
-				$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
+				$alert = $tarea-> puedeDescompletar();//Descompletamos la tarea (y completamos si se puede) y guardamos el mensaje que devuelve
+				$datos = $tarea->TareasShowAll();//Recuperamos las tareas y las guardamos en datos
+				$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+				$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+				$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
 
-				new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');
-				new ALERT($alert);
+				new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');//Creamos una vista de showall con los datos actualizados
+				new ALERT($alert);//Mostramos el mensaje de retorno
+			// Si es un usuario normal
 			}else{
-				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');
+				$tarea = new TAREAS_Model($_REQUEST['id_tarea'],'','','','','','','');//Creamos un objeto tarea con el id de la tarea a descompletar
 
-				$alert = $tarea-> puedeDescompletar();
-				$datos = $tarea->TareasShowAllNormal();
-				$archivos = $tarea -> ContarArchivos();
-				$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
+				$alert = $tarea-> puedeDescompletar();//Descompletamos la tarea (y completamos si se puede) y guardamos el mensaje que devuelve
+				$datos = $tarea->TareasShowAllNormal();//Recuperamos las tareas del usuario y las guardamos en datos
+				$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+				$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+				$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
 
-				new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');
-				new ALERT($alert);
+				new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');//Creamos una vista de showall con los datos actualizados
+				new ALERT($alert);//Mostramos el mensaje de retorno
 			}
 		}
 		break;
 		
+		//Si queremos ordenar por fecha
 		case 'Ordenar_Fecha':
+			//Comprobamos el tipo de usuario	
 			if(isset($_SESSION['tipo'])){
+				//Si el usuario es de tipo admin
 				if($_SESSION['tipo']=='ADMIN'){
 				
-					$tarea = new TAREAS_Model('','','','','','','','');
-					$datos = $tarea -> OrdenarFecha();
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
+					$datos = $tarea -> OrdenarFecha(); //Guardamos los datos ordenados por fecha
 					
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
 					
-					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');			
-			
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');//Creamos una vista de showall con los datos actualizados			
+				// Si es un usuario normal
 				}else{
-					$tarea = new TAREAS_Model('','','','','','','','');
-					$datos = $tarea -> OrdenarFechaNormal();
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
+					$datos = $tarea -> OrdenarFechaNormal();//Guardamos los datos ordenados por fecha
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
 					
-					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	//Creamos una vista de showall con los datos actualizados
 				}
 			}
 		break;
 
+		//Si queremos ordenar por prioridad
 		case 'Ordenar_Prioridad':
+			//Comprobamos el tipo de usuario	
 			if(isset($_SESSION['tipo'])){
+				//Si el usuario es de tipo admin
 				if($_SESSION['tipo']=='ADMIN'){
+				
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
+					$datos = $tarea -> OrdenarPrioridad(); //Guardamos los datos ordenados por prioridad
 					
-					$tarea = new TAREAS_Model('','','','','','','','');
-					$datos = $tarea -> OrdenarPrioridad();
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
 					
-					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');				
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');//Creamos una vista de showall con los datos actualizados			
+				// Si es un usuario normal
 				}else{
-					$tarea = new TAREAS_Model('','','','','','','','');
-					$datos = $tarea -> OrdenarPrioridadNormal();
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
+					$datos = $tarea -> OrdenarPrioridadNormal();//Guardamos los datos ordenados por prioridad
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
 					
-					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	//Creamos una vista de showall con los datos actualizados
 				}
-			}			
+			}
 		break;
-		
+
+		//Si queremos ordenar por categoria
 		case 'Ordenar_Categoria':
+			//Comprobamos el tipo de usuario	
 			if(isset($_SESSION['tipo'])){
+				//Si el usuario es de tipo admin
 				if($_SESSION['tipo']=='ADMIN'){
-					$tarea = new TAREAS_Model('','','','','','','','');
-					$datos = $tarea -> OrdenarCategoria();
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
-					
-					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');			
 				
-				}else{
-					$tarea = new TAREAS_Model('','','','','','','','');
-					$datos = $tarea -> OrdenarCategoriaNormal();
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
+					$datos = $tarea -> OrdenarCategoria(); //Guardamos los datos ordenados por categoria
 					
-					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
+					
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');//Creamos una vista de showall con los datos actualizados			
+				// Si es un usuario normal
+				}else{
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
+					$datos = $tarea -> OrdenarPrioridadNormal();//Guardamos los datos ordenados por categoria
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
+					
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	//Creamos una vista de showall con los datos actualizados
 				}
 			}
 		break;
 		
+		//Si queremos mostrar las tareas completas
 		case 'Mostrar_Completas':
-		if(isset($_SESSION['tipo'])){
-			if($_SESSION['tipo']=='ADMIN'){
-				$tarea = new TAREAS_Model('','','','','','','','');					
-				$datos = $tarea -> TareasShowAll();				
-				$archivos = $tarea -> ContarArchivos();
-				$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
-				$respuesta = new Tareas_SHOWCOMPLETE($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');			
-			}else{
-				$tarea = new TAREAS_Model('','','','','','','','');
-				$datos = $tarea -> TareasShowAllNormal();
-				
-				$archivos = $tarea -> ContarArchivos();
-				$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
-				$respuesta = new Tareas_SHOWCOMPLETE($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');		
+			//Comprobamos el tipo de usuario
+			if(isset($_SESSION['tipo'])){
+				//Si el usuario es de tipo admin
+				if($_SESSION['tipo']=='ADMIN'){
+					$tarea = new TAREAS_Model('','','','','','','','');	//Creamos un objeto tarea				
+					$datos = $tarea -> TareasShowAll();//Recuperamos las tareas y las guardamos en datos				
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
+
+					//Creamos una vista de las tareas completas con los datos
+					$respuesta = new Tareas_SHOWCOMPLETE($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');
+							
+				}else{
+					$tarea = new TAREAS_Model('','','','','','','','');	//Creamos un objeto tarea	
+
+					$datos = $tarea -> TareasShowAllNormal();//Recuperamos las tareas y las guardamos en datos				
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
+
+					//Creamos una vista de las tareas del usuario completas con los datos
+					$respuesta = new Tareas_SHOWCOMPLETE($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');		
+				}
 			}
-		}
 		break;
 		
+		//Si queremos mostrar las tareas incompletas
 		case 'Mostrar_NoCompletas':
-		if(isset($_SESSION['tipo'])){
-			if($_SESSION['tipo']=='ADMIN'){
-				$tarea = new TAREAS_Model('','','','','','','','');					
-				$datos = $tarea -> TareasShowAll();				
-				$archivos = $tarea -> ContarArchivos();
-				$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
-				$respuesta = new Tareas_SHOWUNCOMPLETE($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');				
-			}else{
-				$tarea = new TAREAS_Model('','','','','','','','');
-				$datos = $tarea -> TareasShowAllNormal();
-				
-				$archivos = $tarea -> ContarArchivos();
-				$fases = $tarea -> ContarFases();
-				$contactos = $tarea -> ContarContactos();
-				
-				$respuesta = new Tareas_SHOWUNCOMPLETE($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');		
+			//Comprobamos el tipo de usuario
+			if(isset($_SESSION['tipo'])){
+				//Si el usuario es de tipo admin
+				if($_SESSION['tipo']=='ADMIN'){
+					$tarea = new TAREAS_Model('','','','','','','','');	//Creamos un objeto tarea				
+					$datos = $tarea -> TareasShowAll();//Recuperamos las tareas y las guardamos en datos				
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
+
+					//Creamos una vista de las tareas completas con los datos
+					$respuesta = new Tareas_SHOWUNCOMPLETE($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');
+				//Si es usuario normal			
+				}else{
+					$tarea = new TAREAS_Model('','','','','','','','');	//Creamos un objeto tarea	
+
+					$datos = $tarea -> TareasShowAllNormal();//Recuperamos las tareas del usuario y las guardamos en datos				
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
+
+					//Creamos una vista de las tareas del usuario completas con los datos
+					$respuesta = new Tareas_SHOWUNCOMPLETE($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');		
+				}
 			}
-		}
 		break;	
 
 		default: /*PARA EL SHOWALL */
+			//Comprobamos el tipo de usuario
 			if(isset($_SESSION['tipo'])){
+				//Si el usuario es de tipo admin
 				if($_SESSION['tipo']=='ADMIN'){		   
-					$tarea = new TAREAS_Model('','','','','','','','');
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
 					
-					$datos = $tarea -> TareasShowAll();
+					$datos = $tarea -> TareasShowAll();//Recuperamos todas las tareas y las guardamos en datos						
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
 					
-					$archivos = $tarea -> ContarArchivos();
-					
-					$fases = $tarea -> ContarFases();
-					
-					$contactos = $tarea -> ContarContactos();
-					
-					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');				
+					//Creamos una vista de todas las tareas completas con los datos
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
+				//Si es usuario normal
 				}else{		   
-					$tarea = new TAREAS_Model('','','','','','','','');
-					$datos = $tarea -> TareasShowAllNormal();
+					$tarea = new TAREAS_Model('','','','','','','','');//Creamos un objeto tarea
 					
-					$archivos = $tarea -> ContarArchivos();
-					$fases = $tarea -> ContarFases();
-					$contactos = $tarea -> ContarContactos();
-					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');
+					$datos = $tarea -> TareasShowAllNormal();//Recuperamos las tareas del usuario y las guardamos en datos						
+					$archivos = $tarea -> ContarArchivos();//Recuperamos el numero de archivos de las tareas y los guardamos
+					$fases = $tarea -> ContarFases();//Recuperamos el numero de fases de las tareas y los guardamos
+					$contactos = $tarea -> ContarContactos();//Recuperamos el numero de contactos de las tareas y los guardamos
+					
+					//Creamos una vista de todas las tareas completas con los datos
+					$respuesta = new Tareas_SHOWALL($datos,$archivos,$fases,$contactos,'../Controllers/Tareas_Controller.php');	
 				}	 
 			}
 	}
