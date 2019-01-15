@@ -12,6 +12,7 @@ if(isset($_SESSION['tipo'])){
  class Contactos_SHOWALL{	 
 	//Datos de los contactos
 	var $datos;
+	//Variable con el enlace al showall
 	var $enlace;	
 	//Constructor de la clase
 	function __construct($datos,$enlace){
@@ -54,6 +55,7 @@ if(isset($_SESSION['tipo'])){
 			<tr>
 				<form action="../Controllers/Contactos_Controller.php" method="post" name="action" >
 					<input type="hidden" name="email" value="<?php echo $fila['email']; ?>">
+					<!--Datos-->
 					<td><?php echo $fila['email']; ?></td>
 					<td><?php echo $fila['nombre']; ?></td>
 					<td><?php echo $fila['descripcion']; ?></td>		

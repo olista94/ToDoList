@@ -168,6 +168,7 @@ include_once '../Views/Header.php';
 					<?php
 						}
 					?>
+					<!--Datos-->
 					<td><?php echo $fila['descripcion']; ?></td>
 					<td><?php echo $fila['fecha_inicio']; ?></td>			
 					<td style="text-align:right">

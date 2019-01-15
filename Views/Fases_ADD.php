@@ -39,7 +39,7 @@ class Fases_ADD{
 				<!--Campo descripcion de la fase-->
 					<label for="descripcion"><?php echo $strings['Descripcion']; ?></label>
 					<input type="descripcion" id="descripcion" name="descripcion" size="50"  onblur=" return !comprobarVacio(this) && comprobarTamano(this,45)"/>	
-						<!--Tarea de la fase-->
+						<!--Tarea a la que pertenece la fase-->
 					<label>
 					<?php echo $GLOBALS['strings']['Tarea']; ?></label>
 					<input type="text" name="descripcion_tarea" readonly value="<?php echo $this -> descripcion;?>">
