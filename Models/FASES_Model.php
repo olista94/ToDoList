@@ -32,12 +32,12 @@ function __construct($id_fase,$descripcion,$fecha_ini,$fecha_fin,$completada,$TA
 
 
 function add(){
-				$fecha_ini = date('Y-m-d', time());
+				$date = date('Y-m-d', time());
 				$sql = "INSERT INTO fases
 						VALUES (
 							'$this->id_fase',
 							'$this->descripcion',
-							'$this->fecha_ini',
+							'$date',
 							'$this->fecha_fin',
 							'$this->completada',
 							'$this->TAREAS_id_TAREAS'
