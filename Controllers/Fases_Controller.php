@@ -29,6 +29,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 	include_once "../Models/CONTACTOS_Model.php";
 	include_once "../Models/ARCHIVOS_Model.php";
 	include_once "../Models/FASES_HAS_CONTACTOS_Model.php";
+	include_once "../Views/Tareas_SHOWALL.php";
 
 
 	/* RECOGE LOS DATOS DEL FORMULARIO */
