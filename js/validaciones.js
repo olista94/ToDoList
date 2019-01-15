@@ -1,8 +1,10 @@
-/* FICHERO JS EN EL QUE SE MUESTRAN LAS FUNCIONES DE VALIDACION DE LOS FORMULARIOS DE LA ET3 */
+/* FICHERO JS EN EL QUE SE MUESTRAN LAS FUNCIONES DE VALIDACION DE LOS FORMULARIOS DE LA ET4 */
 /*-- CREADO POR mi3ac6 EL 17/11/2018 */
+
+//Array para las traducciones de los alerts
 var traduce = new Array();
 
-
+//Traducción al español
 traduce['SPANISH']=new Array();
 traduce['SPANISH']['El tamaño del campo nombre es incorrecto']='El tamaño del campo nombre es incorrecto';
 traduce['SPANISH']['El tamaño del campo descripcion es incorrecto']='El tamaño del campo descripción es incorrecto';
@@ -23,6 +25,7 @@ traduce['SPANISH']['El formato del campo email es erróneo (ejemplo@ejemplo.com)
 traduce['SPANISH']['El campo fecha no puede estar vacío']='El campo fecha no puede estar vacío';
 traduce['SPANISH']['El campo nivel solo puede llevar numeros']='El campo nivel solo puede llevar números';
 
+//Traducción al gallego
 traduce['GALLAECIAN']=new Array();
 traduce['GALLAECIAN']['El tamaño del campo nombre es incorrecto']='O tamaño do campo nome é incorrecto';
 traduce['GALLAECIAN']['El tamaño del campo descripcion es incorrecto']='O tamaño do campo descrición é incorrecto';
@@ -43,6 +46,7 @@ traduce['GALLAECIAN']['El formato del campo email es erróneo (ejemplo@ejemplo.c
 traduce['GALLAECIAN']['El campo fecha no puede estar vacío']='O campo data non pode ir baleiro';
 traduce['GALLAECIAN']['El campo nivel solo puede llevar numeros']='O campo nivel só pode levar números';
 
+//Traducción al inglés
 traduce['ENGLISH']=new Array();
 traduce['ENGLISH']['El tamaño del campo nombre es incorrecto']='Incorrect size at name field';
 traduce['ENGLISH']['El tamaño del campo descripcion es incorrecto']='Incorrect size at description field';
@@ -79,9 +83,9 @@ function comprobarVacio(campo){
 	return false;
 }
 
-//Comprueba el tamaño de un campo que acepta cualquie expresion regular
+//Comprueba el tamaño de un campo que acepta cualquie expresion regular (descriciones)
 function comprobarTamano(campo,size){
-	
+	//Comprobamos el tamaño del dato introducido en el campo
 	if(campo.value.length > size){
 		/* Si el valor introducido es erróneo,mostrará el campo con un borde rojo */
 		campo.style.border = "2px solid red";
@@ -291,11 +295,12 @@ function comprobarEmail(campo,size){
 
 /* Función que comprueba si el campo fecha está o no vacío */
 function comprobarFecha(campo){
-	
+	//Si está vacía
 	if(campo.value.length == 0){
 		campo.style.border = "2px solid red";
 		return false;
 	}
+	//Si se ha insertado
 	else{
 		campo.style.border = "2px solid green";
 		return true;
@@ -318,75 +323,75 @@ function comprobarRegistro(formAdd){
 		alert(traduce[idioma]['El campo login no puede llevar espacios en blanco']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formAdd.password.value.length == 0 || formAdd.password.value.length > 20){
 		alert(traduce[idioma]['El tamaño del campo password es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarAlfabetico(formAdd.password) ==  false){
 		alert(traduce[idioma]['El campo password no puede llevar espacios en blanco']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formAdd.DNI.value.length == 0 || formAdd.DNI.value.length > 9){
 		alert(traduce[idioma]['El tamaño del campo DNI es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarDni(formAdd.DNI) ==  false){
 		alert(traduce[idioma]['Formato o letra del campo DNI erróneo (Ej:44657079K)']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formAdd.nombre.value.length == 0 || formAdd.nombre.value.length > 30){
 		alert(traduce[idioma]['El tamaño del campo nombre es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarTexto(formAdd.nombre) ==  false){
 		alert(traduce[idioma]['El campo nombre solo puede llevar texto o empezar por una letra']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formAdd.apellidos.value.length == 0 || formAdd.apellidos.value.length > 50){
 		alert(traduce[idioma]['El tamaño del campo apellidos es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarTexto(formAdd.apellidos) ==  false){
 		alert(traduce[idioma]['El campo apellidos solo puede llevar texto o empezar por una letra']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formAdd.telefono.value.length == 0 || formAdd.telefono.value.length > 11){
 		alert(traduce[idioma]['El tamaño del campo telefono es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarTelf(formAdd.telefono) ==  false){
 		
 		alert(traduce[idioma]['Formato del campo telefono erróneo (Ej:34668952356)']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formAdd.email.value.length == 0 || formAdd.email.value.length > 60){
 		alert(traduce[idioma]['El tamaño del campo email es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarEmail(formAdd.email) ==  false){
 		alert(traduce[idioma]['El formato del campo email es erróneo (ejemplo@ejemplo.com)']);
 		return false;
 	}
 	
-	
+	//Comprueba que la fecha no esté vacia
 	else if(comprobarFecha(formAdd.FechaNacimiento) == false){
 		alert(traduce[idioma]['El campo fecha no puede estar vacío']);
 		return false;
 	}
 	
 	
-	else{
+	else{//Si todo está correcto
 		return true;
 	}
 }
 
-function comprobarCategoria(formu){//Comprueba añadir y editar categoria
+function comprobarCategoria(formu){//Comprueba añadir y editar categoria (submit)
 	
 	/* En cada campo comprobrará,primero su tamaño y si es incorrecto mostrará una ventana de error */
 	if(formu.nombre.value.length == 0 || formu.nombre.value.length > 45){
@@ -401,7 +406,7 @@ function comprobarCategoria(formu){//Comprueba añadir y editar categoria
 		return false;
 	}
 	
-	else{
+	else{//Si todo está correcto
 		return true;
 	}
 	
@@ -420,32 +425,32 @@ function comprobarContacto(formu){//Comprueba añadir y editar contacto
 		alert(traduce[idioma]['El campo nombre solo puede llevar texto o empezar por una letra']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formu.descripcion.value.length == 0 || formu.descripcion.value.length > 45){
 		alert(traduce[idioma]['El tamaño del campo descripcion es incorrecto']);
 		return false;
 	}
 		
-	
+	//Comprueba el tamaño
 	else if(formu.telefono.value.length == 0 || formu.telefono.value.length > 11){
 		alert(traduce[idioma]['El tamaño del campo telefono es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarTelf(formu.telefono) ==  false){
 		alert(traduce[idioma]['Formato del campo telefono erróneo (Ej:34668952356)']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formu.email.value.length == 0 || formu.email.value.length > 60){
 		alert(traduce[idioma]['El tamaño del campo email es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarEmail(formu.email) ==  false){
 		alert(traduce[idioma]['El formato del campo email es erróneo (ejemplo@ejemplo.com)']);
 		return false;
 	}
 	
-	else{
+	else{//Si todo está correcto
 		return true;
 	}
 	
@@ -453,7 +458,7 @@ function comprobarContacto(formu){//Comprueba añadir y editar contacto
 
 
 
-function comprobarUsuario(formu){//Comprueba añadir y editar usuario
+function comprobarUsuario(formu){//Comprueba añadir y editar usuario en el submit
 	
 	/* En cada campo comprobrará,primero su tamaño y si es incorrecto mostrará una ventana de error */
 	if(formu.login.value.length == 0 || formu.login.value.length > 15){
@@ -465,62 +470,62 @@ function comprobarUsuario(formu){//Comprueba añadir y editar usuario
 		alert(traduce[idioma]['El campo login no puede llevar espacios en blanco']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formu.password.value.length == 0 || formu.password.value.length > 20){
 		alert(traduce[idioma]['El tamaño del campo password es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarAlfabetico(formu.password) ==  false){
 		alert(traduce[idioma]['El campo password no puede llevar espacios en blanco']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formu.dni.value.length == 0 || formu.dni.value.length > 9){
 		alert(traduce[idioma]['El tamaño del campo DNI es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarDni(formu.dni) ==  false){
 		alert(traduce[idioma]['Formato o letra del campo DNI erróneo (Ej:44657079K)']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formu.nombre.value.length == 0 || formu.nombre.value.length > 30){
 		alert(traduce[idioma]['El tamaño del campo nombre es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarTexto(formu.nombre) ==  false){
 		alert(traduce[idioma]['El campo nombre solo puede llevar texto o empezar por una letra']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formu.apellidos.value.length == 0 || formu.apellidos.value.length > 50){
 		alert(traduce[idioma]['El tamaño del campo apellidos es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarTexto(formu.apellidos) ==  false){
 		alert(traduce[idioma]['El campo apellidos solo puede llevar texto o empezar por una letra']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formu.telefono.value.length == 0 || formu.telefono.value.length > 11){
 		alert(traduce[idioma]['El tamaño del campo telefono es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarTelf(formu.telefono) ==  false){
 		alert(traduce[idioma]['Formato del campo telefono erróneo (Ej:34668952356)']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formu.email.value.length == 0 || formu.email.value.length > 60){
 		alert(traduce[idioma]['El tamaño del campo email es incorrecto']);
 		return false;
-	}
+	}/* Y además comprobará que el formato introducido sea el correcto (mostrando una ventana en caso contrario) */
 	else if(comprobarEmail(formu.email) ==  false){
 		alert(traduce[idioma]['El formato del campo email es erróneo (ejemplo@ejemplo.com)']);
 		return false;
 	}
 	
-	
+	//Comrpueba que la fecha no esté vacía 
 	else if(comprobarFecha(formu.fecha) == false){
 		
 		alert(traduce[idioma]['El campo fecha no puede estar vacío']);
@@ -528,7 +533,7 @@ function comprobarUsuario(formu){//Comprueba añadir y editar usuario
 	}
 	
 	
-	else{
+	else{//Si todo está correcto
 		return true;
 	}
 }
@@ -545,13 +550,13 @@ function comprobarPrioridad(formu){//Comprueba añadir y editar contacto
 		alert(traduce[idioma]['El campo nivel solo puede llevar numeros']);
 		return false;
 	}
-	
+	//Comprueba el tamaño
 	else if(formu.descripcion.value.length == 0 || formu.descripcion.value.length > 45){
 		alert(traduce[idioma]['El tamaño del campo descripcion es incorrecto']);
 		return false;
 	}
 		
-	else{
+	else{//Si todo está correcto
 		return true;
 	}
 	
@@ -559,35 +564,32 @@ function comprobarPrioridad(formu){//Comprueba añadir y editar contacto
 }
 
 function comprobarTarea(formu){//Comprueba añadir y editar tarea y fase
-	
+	//Comprueba el tamaño
 	 if(formu.descripcion.value.length == 0 || formu.descripcion.value.length > 45){
 		alert(traduce[idioma]['El tamaño del campo descripcion es incorrecto']);
 		return false;
 	}
 		
-	else{
+	else{//Si todo está correcto
 		return true;
 	}
 	
 	
 }
 
-
-
-
-
 //Comprueba que ni el login,ni la password del login esten vacíos
  function validarLogin(formLogin){
-	
+	//Comprueba el tamaño
 	if(formLogin.login.value.length == 0 ||  formLogin.login.value.length > 15){
 		alert(traduce[idioma]['El tamaño del campo login es incorrecto']);
 		return false;
 	}
+	//Comprueba el tamaño
 	else if(formLogin.password.value.length == 0 ){
 		alert(traduce[idioma]['El tamaño del campo password es incorrecto']);
 		return false;
 	}
-	else{
+	else{//Si todo está correcto
 		return true;
 	}
 } 
