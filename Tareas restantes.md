@@ -13,9 +13,6 @@ Controllers
 Models
 Alert.php
 
-Iago:
-Vistas
-JS
 
 Corregir:  
 
