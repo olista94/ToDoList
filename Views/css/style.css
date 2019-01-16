@@ -180,9 +180,10 @@ body {
   bottom: 0;
   width: 100%;
   height: auto;
-  display: grid;
+  display: inline-table;
   text-align: center;
   z-index: 999;
+  color: white
 }
 
 .footer li{
