@@ -16,7 +16,7 @@ Fecha: 27/12/2018-->
 ?>
 			
 	<div class="welcome">		
-	<img src="../img/logo.png" alt="Logo" width="60" height="60"> <h1>ToDoList</h1>
+	<img src="../Views/img/logo.png" alt="Logo" width="60" height="60"> <h1>ToDoList</h1>
 	</div>
 		<!--Form del login-->	
 	<form class="login_form" name = 'FormLogin' action='../Controllers/Login_Controller.php' method='post'>
