@@ -1,19 +1,10 @@
+<!---ARCHIVO CON LA FUNCION PARA VALIDAR SI EXISTE LA SESION LOGIN (SI ESTA O NO LOGUEADO)
+ Creado por: Los Cangrejas
+ Fecha: 20/12/2018-->
 <?php
 
-/*
- Archivo php donde validamos si existe la variable de session login
- Autor: yq5lj9
- Fecha: 30/11/2018
-*/
-
-/*
-function IsAuthenticated()
-jrodeiro
-15/10/2016
-Esta función valida si existe la variable de session login
-Si no existe redirige a la pagina de login
-Si existe comprueba si el usuario tiene permisos para ejecutar la accion de ese controlador
-*/
+/*Si no existe la sesion login redirige a la pagina de login
+Si existe comprueba si el usuario tiene permisos para ejecutar la accion de ese controlador*/
 function IsAuthenticated(){
 	if (!isset($_SESSION['login'])){
 		//header('Location:USUARIOS_Controller.php?accion=Login');	
@@ -26,6 +17,6 @@ function IsAuthenticated(){
 		//header('Location:USUARIOS_Controller.php');
 		return true;
 	}
-} //end of function IsAuthenticated()
+} //Fin de la función
 ?>
 

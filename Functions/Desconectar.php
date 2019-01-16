@@ -1,13 +1,13 @@
+<!---ARCHIVO CON LA FUNCION DESCONECTARSE (DESTRUYE LA SESSION)
+ Creado por: Los Cangrejas
+ Fecha: 20/12/2018-->
+
 <?php
-
-/*
- Archivo php donde destruimos la sesion
- Autor: yq5lj9
- Fecha: 30/11/2018
-*/
-
+//Creamos la session
 session_start();
+//Destruimos la session
 session_destroy();
+//Redirige al index (nos mandara al login)
 header('Location:../index.php');
 
 ?>
