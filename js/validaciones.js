@@ -1,5 +1,6 @@
 /* FICHERO JS EN EL QUE SE MUESTRAN LAS FUNCIONES DE VALIDACION DE LOS FORMULARIOS DE LA ET4 */
-/*-- CREADO POR mi3ac6 EL 17/11/2018 */
+/*-- CREADO POR:Los Cangrejas
+Fecha: 05/01/2019 */
 
 //Array para las traducciones de los alerts
 var traduce = new Array();

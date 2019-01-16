@@ -1,3 +1,6 @@
+//Archivo que controla el menu y cabecera de la aplicacion
+//Creado por: Los Cangrejas
+//Fecha: 28/12/2018
 
 //Hace que el menu sea responsive
 function responsiveMenu() {

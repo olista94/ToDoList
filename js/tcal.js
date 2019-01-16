@@ -1,6 +1,6 @@
-// Tigra Calendar v5.2 (11/20/2011)
-// http://www.softcomplex.com/products/tigra_calendar/
-// License: Public Domain... You're welcome.
+//Archivo js que controla el tcal
+//Creado por: Los Cangrejas
+//Fecha: 20/12/2018
 
 // default settins - this structure can be moved in separate file in multilangual applications
 var A_TCALCONF = {
