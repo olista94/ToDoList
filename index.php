@@ -1,3 +1,8 @@
+<!-- Fiechero que indica a donde debe redireccionarse al entrar en la aplicacion
+CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
+
+
 <?php
 //entrada a la aplicacion
 

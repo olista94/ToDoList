@@ -1,3 +1,7 @@
+#Fichero para instalar la BD en la MV
+#Creado por: Los Cangrejas
+#Fecha:13/01/2019
+
 #Comando para crear la BD
 mysql -uroot -piu -e "CREATE DATABASE todolist;";
 #Comando para los privilegios en la BD
