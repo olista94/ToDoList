@@ -57,7 +57,7 @@ Fecha: 20/12/2018-->
       <label for="telefono"><?php echo $strings['Teléfono']; ?></label>
       <input type="text" name="telefono" id="telefono" value="<?php echo $this -> fila['telefono']; ?>" size="20"  onblur=" return !comprobarVacio(this) && comprobarTelf(this);" />
 		<!--Campo email del usuario-->
-      <label for="email"><?php echo $strings['Correo electrónico']; ?></label>
+      <label for="email"><?php echo $strings['Correo electronico']; ?></label>
       <input type="email" id="email" name="email" value="<?php echo $this -> fila['email']; ?>" size="65"  onblur=" return !comprobarVacio(this) && comprobarEmail(this,60);" />	
 		<!--Campo fecha de nacimiento del usuario-->
       <label for="fecha"><?php echo $strings['Fecha de nacimiento']; ?></label>

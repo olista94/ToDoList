@@ -56,7 +56,7 @@ Fecha: 20/12/2018-->
             </div>	
 			<!--Campo email del usuario-->
             <div class="form-group">
-                <label for="email"><?php echo $strings['Correo electrónico']; ?></label>
+                <label for="email"><?php echo $strings['Correo electronico']; ?></label>
                 <input type="text" id="email" name="email" maxlength="50" size="40"/>
             </div>
 			<!--Campo fecha de nacimiento del usuario-->
