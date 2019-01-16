@@ -22,13 +22,13 @@ if(isset($_SESSION['tipo'])){
 		}else{ //si lo está
 
 			//Incluimos las vistas y modelo necesarios
-			include_once "../Models/USUARIOS_Model.php";
-			include_once "../Views/Usuarios_SHOWALL.php";
-			include_once "../Views/Usuarios_ADD.php";
-			include_once "../Views/Usuarios_SEARCH.php";
-			include_once "../Views/Usuarios_EDIT.php";
-			include_once "../Views/Usuarios_SHOWCURRENT.php";
-			include_once "../Views/Usuarios_DELETE.php";
+			include_once "../Models/Usuarios_Model.php";
+			include_once "../Views/Usuarios_SHOWALL_View.php";
+			include_once "../Views/Usuarios_ADD_View.php";
+			include_once "../Views/Usuarios_SEARCH_View.php";
+			include_once "../Views/Usuarios_EDIT_View.php";
+			include_once "../Views/Usuarios_SHOWCURRENT_View.php";
+			include_once "../Views/Usuarios_DELETE_View.php";
 
 			/* RECOGE LOS DATOS DEL FORMULARIO */
 			function getDataForm(){

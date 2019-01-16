@@ -15,13 +15,13 @@ if(isset($_SESSION['tipo'])){
 	//Si se loguea como ADMIN
 	if($_SESSION['tipo']=='ADMIN'){
 		//Incluye la funciones que se encuentran en los siguientes ficheros:
-		include_once "../Models/CATEGORIAS_Model.php";
-		include_once "../Views/Categorias_SHOWALL.php";
-		include_once "../Views/Categorias_ADD.php";
-		include_once "../Views/Categorias_SEARCH.php";
-		include_once "../Views/Categorias_EDIT.php";
-		include_once "../Views/Categorias_SHOWCURRENT.php";
-		include_once "../Views/Categorias_DELETE.php";
+		include_once "../Models/Categorias_Model.php";
+		include_once "../Views/Categorias_SHOWALL_View.php";
+		include_once "../Views/Categorias_ADD_View.php";
+		include_once "../Views/Categorias_SEARCH_View.php";
+		include_once "../Views/Categorias_EDIT_View.php";
+		include_once "../Views/Categorias_SHOWCURRENT_View.php";
+		include_once "../Views/Categorias_DELETE_View.php";
 		include_once "../Views/MESSAGE.php";
 		include_once "../Functions/Authentication.php";
 

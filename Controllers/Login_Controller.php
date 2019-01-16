@@ -18,10 +18,10 @@ if(!isset($_SESSION['idioma'])){
 
 //Include de las funciones que necesitamos
 include_once '../Locales/Strings_'.$idioma.'.php';
-include_once "../Models/USUARIOS_Model.php";
+include_once "../Models/Usuarios_Model.php";
 include_once "../Views/LOGIN_View.php";
 include_once "../Views/REGISTRO_View.php";
-include_once "../Views/Usuarios_ADD.php";
+include_once "../Views/Usuarios_ADD_View.php";
 include_once "../Views/MESSAGE.php";
 
 /* RECOGE LOS DATOS DEL FORMULARIO */

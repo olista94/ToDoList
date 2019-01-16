@@ -17,7 +17,7 @@ if(!isset($_POST['login'])){
 //Si no
 }else{
 	//Incluimos el modelo de usurio		
-	include '../Models/USUARIOS_Model.php';
+	include '../Models/Usuarios_Model.php';
 	$usuario = new USUARIOS_Model($_REQUEST['login'],$_REQUEST['password'],$_REQUEST['DNI'],
 									$_REQUEST['nombre'],$_REQUEST['apellidos'],$_REQUEST['telefono'],$_REQUEST['email'],
 									$_REQUEST['FechaNacimiento'],$_REQUEST['tipo']); //Creamos el objeto usuario con los datos

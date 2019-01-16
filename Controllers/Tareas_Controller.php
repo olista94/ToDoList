@@ -12,23 +12,23 @@ if (!IsAuthenticated()){ //si no está autenticado
 }else{ //si lo está
 
 //Incluimos las vistas y modelo necesarios
-	include_once "../Models/TAREAS_Model.php";
-	include_once "../Models/FASES_Model.php";
-	include_once "../Models/ARCHIVOS_Model.php";
-	include_once "../Views/Tareas_SHOWALL.php";
-	include_once "../Views/Tareas_ADD.php";
-	include_once "../Views/Tareas_SEARCH.php";
-	include_once "../Views/Tareas_EDIT.php";
-	include_once "../Views/Tareas_SHOWCURRENT.php";
-	include_once "../Views/Tareas_DELETE.php";
-	include_once "../Models/PRIORIDADES_Model.php";
-	include_once "../Models/CATEGORIAS_Model.php";
-	include_once "../Models/CONTACTOS_Model.php";
-	include_once "../Views/Fases_ADD.php";
-	include_once "../Views/Fases_SHOWALL.php";
-	include_once "../Views/Tareas_SHOWCOMPLETE.php";
-	include_once "../Views/Tareas_SHOWUNCOMPLETE.php";
-	include_once "../Models/FASES_HAS_CONTACTOS_Model.php";
+	include_once "../Models/Tareas_Model.php";
+	include_once "../Models/Fases_Model.php";
+	include_once "../Models/Archivos_Model.php";
+	include_once "../Views/Tareas_SHOWALL_View.php";
+	include_once "../Views/Tareas_ADD_View.php";
+	include_once "../Views/Tareas_SEARCH_View.php";
+	include_once "../Views/Tareas_EDIT_View.php";
+	include_once "../Views/Tareas_SHOWCURRENT_View.php";
+	include_once "../Views/Tareas_DELETE_View.php";
+	include_once "../Models/Prioridades_Model.php";
+	include_once "../Models/Categorias_Model.php";
+	include_once "../Models/Contactos_Model.php";
+	include_once "../Views/Fases_ADD_View.php";
+	include_once "../Views/Fases_SHOWALL_View.php";
+	include_once "../Views/Tareas_SHOWCOMPLETE_View.php";
+	include_once "../Views/Tareas_SHOWUNCOMPLETE_View.php";
+	include_once "../Models/Fases_has_contactos_Model.php";
 
 
 	/* RECOGE LOS DATOS DEL FORMULARIO */

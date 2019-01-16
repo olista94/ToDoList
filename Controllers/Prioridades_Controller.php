@@ -19,15 +19,15 @@ if(isset($_SESSION['tipo'])){
 			new MESSAGE('No puedes ver esto si no estás logueado', '../Controllers/Login_Controller.php'); //muestra el mensaje
 		}else{ //si lo está
 			//Incluimos todas las funciones necesarias
-			include_once "../Models/PRIORIDADES_Model.php";
-			include_once "../Views/Prioridades_SHOWALL.php";
-			include_once "../Views/Prioridades_ADD.php";
-			include_once "../Views/Prioridades_SEARCH.php";
-			include_once "../Views/Prioridades_EDIT.php";
-			include_once "../Views/Prioridades_SHOWCURRENT.php";
-			include_once "../Views/Prioridades_DELETE.php";
-			include_once "../Models/TAREAS_Model.php";
-			include_once "../Models/CATEGORIAS_Model.php";
+			include_once "../Models/Prioridades_Model.php";
+			include_once "../Views/Prioridades_SHOWALL_View.php";
+			include_once "../Views/Prioridades_ADD_View.php";
+			include_once "../Views/Prioridades_SEARCH_View.php";
+			include_once "../Views/Prioridades_EDIT_View.php";
+			include_once "../Views/Prioridades_SHOWCURRENT_View.php";
+			include_once "../Views/Prioridades_DELETE_View.php";
+			include_once "../Models/Tareas_Model.php";
+			include_once "../Models/Categorias_Model.php";
 
 			/* RECOGE LOS DATOS DEL FORMULARIO */
 			function getDataForm(){

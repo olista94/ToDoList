@@ -16,13 +16,13 @@ if(!IsAuthenticated()){
 	new MESSAGE('No puedes ver nada sin loguearte','../index.php');
 }else{
 	//Incluye la funciones que se encuentran en los siguientes ficheros:
-	include_once "../Models/CONTACTOS_Model.php";
-	include_once "../Views/Contactos_SHOWALL.php";
-	include_once "../Views/Contactos_ADD.php";
-	include_once "../Views/Contactos_SEARCH.php";
-	include_once "../Views/Contactos_EDIT.php";
-	include_once "../Views/Contactos_SHOWCURRENT.php";
-	include_once "../Views/Contactos_DELETE.php";
+	include_once "../Models/Contactos_Model.php";
+	include_once "../Views/Contactos_SHOWALL_View.php";
+	include_once "../Views/Contactos_ADD_View.php";
+	include_once "../Views/Contactos_SEARCH_View.php";
+	include_once "../Views/Contactos_EDIT_View.php";
+	include_once "../Views/Contactos_SHOWCURRENT_View.php";
+	include_once "../Views/Contactos_DELETE_View.php";
 
 	/* RECOGE LOS DATOS DEL FORMULARIO */
 	function getDataForm(){
