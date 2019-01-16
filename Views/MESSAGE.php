@@ -1,5 +1,8 @@
-<?php
+ <!-- ARCHIVO QUE MUESTRA UN MENSAJE Y UN ENLACE PARA REGRESAR
+ CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
 
+<?php
 
  //Declaracion de la clase 
 class MESSAGE{

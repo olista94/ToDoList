@@ -1,5 +1,6 @@
-<!-- TABLA QUE MUESTRA TODOS LOS DATOS DE UNA FASE A BORRAR
- CREADO POR mi3ac6 EL 17/11/2018-->
+<!-- TABLA QUE MUESTRA LOS DATOS DE UNA FASE A BORRAR
+CREADO POR: Los Cangrejas
+Fecha: 26/12/2018-->
  
   <?php
   	 //Comprueba que esta autenticado

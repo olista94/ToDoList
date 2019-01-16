@@ -1,6 +1,8 @@
+<!-- FORMULARIO PARA EDITAR UNA CATEGORIA A LA QUE PERTENEZCA UNA TAREA
+CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
+
 <?php
-
-
  //Declaracion de la clase 
 class Categorias_EDIT{
 	 

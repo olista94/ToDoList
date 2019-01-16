@@ -1,5 +1,8 @@
-<?php
+<!-- VISTA DEL LOGIN
+CREADO POR: Los Cangrejas
+Fecha: 27/12/2018-->
 
+<?php
 
  //Declaracion de la clase 
 	class Login_View{

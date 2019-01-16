@@ -1,3 +1,7 @@
+<!-- TABLA QUE MUESTRA TODAS LAS CATEGORIAS
+CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
+
 <?php
 //Comprobamos que está autenticado
 include_once '../Functions/Authentication.php';

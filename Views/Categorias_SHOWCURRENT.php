@@ -1,3 +1,7 @@
+<!-- TABLA QUE MUESTRA LOS DATOS DE UNA CATEGORIA
+CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
+
 <?php
 
     include_once '../Functions/Authentication.php';    

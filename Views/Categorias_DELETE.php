@@ -1,3 +1,7 @@
+<!-- TABLA QUE MUESTRA LOS DATOS DE UNA CATEGORIA A BORRAR
+CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
+
 <?php
 //Incluimos el archivo para comprobar la autenticacion del usuario
     include_once '../Functions/Authentication.php';    

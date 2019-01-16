@@ -1,3 +1,7 @@
+<!---Mensaje que se muestra al cerrar o abrir fases/tareas.Tambien si se intentan añadir fases a una tarea cerrada...
+CREADO POR: Los Cangrejas
+Fecha: 03/01/2019-->
+
 <?php
 
  //Declaracion de la clase

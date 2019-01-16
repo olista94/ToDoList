@@ -1,3 +1,6 @@
+<!-- TABLA QUE MUESTRA LOS DATOS DE UNA FASE
+CREADO POR: Los Cangrejas
+Fecha: 26/12/2018-->
 
 <?php
   	 //Comprueba que esta autenticado

@@ -1,3 +1,7 @@
+<!-- VISTA QUE MUESTRA LAS FASES DE UNA TAREA QUE COINCIDAN CON LOS CRITERIOS DE BUSQUEDA DEL FORMULARIO SEARCH
+CREADO POR: Los Cangrejas
+Fecha: 07/01/2018-->
+
 <?php
 //Comprueba si esta autenticado
 include_once '../Functions/Authentication.php';

@@ -1,3 +1,7 @@
+<!-- FORMULARIO PARA BUSCAR TAREAS
+CREADO POR: Los Cangrejas
+Fecha: 28/12/2018-->
+
 <?php
  //Declaracion de la clase
     class Tareas_SEARCH {

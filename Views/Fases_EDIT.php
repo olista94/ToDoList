@@ -1,5 +1,6 @@
-<!-- FORMULARIO PARA REGISTRAR UN NUEVO USUARIO EN LA APLICACIÓN
- CREADO POR mi3ac6 EL 21/11/2018-->
+<!-- FORMULARIO PARA EDITAR UNA FASE DE UNA TAREA
+CREADO POR: Los Cangrejas
+Fecha: 26/12/2018-->
 <?php
 //Comprueba que este autenticado
 include_once '../Functions/Authentication.php';

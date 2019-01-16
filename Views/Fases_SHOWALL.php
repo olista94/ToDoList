@@ -1,5 +1,6 @@
-<!-- TABLA QUE MUESTRA TODOS LOS fases QUE JUEGAN LA LOTERIAIU
- CREADO POR mi3ac6 EL 17/11/2018-->
+<!-- TABLA QUE MUESTRA TODAS LAS FASES DE UNA TAREA
+CREADO POR: Los Cangrejas
+Fecha: 26/12/2018-->
 <?php
 //Comprueba si esta autenticado
 include_once '../Functions/Authentication.php';

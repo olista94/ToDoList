@@ -1,5 +1,9 @@
-<?php
+<!-- FORMULARIO PARA EDITAR UNA TAREA
+CREADO POR: Los Cangrejas
+Fecha: 27/12/2018-->
 
+<?php
+//Declaracion de la clase
 class Tareas_EDIT{
 	//Datos de la tarea	 
 	var $fila;

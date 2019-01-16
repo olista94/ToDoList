@@ -1,3 +1,7 @@
+<!-- FORMULARIO PARA BUSCAR PRIORIDADES
+CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
+
 <?php
   //Declaracion de la clase
     class Prioridades_SEARCH {

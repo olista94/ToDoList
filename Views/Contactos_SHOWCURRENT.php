@@ -1,6 +1,6 @@
-<!-- TABLA QUE MUESTRA TODOS LOS DATOS DE UN CONTACTO
- CREADO POR mi3ac6 EL 17/11/2018-->
- 
+<!-- TABLA QUE MUESTRA LOS DATOS DE UN CONTACTO
+CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
  <?php
  //Declaracion de la clase
  class Contactos_SHOWCURRENT{

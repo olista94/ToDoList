@@ -1,3 +1,7 @@
+<!-- FORMULARIO PARA EDITAR UN CONTACTO
+CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
+
 <?php
    //Declaracion de la clase
 class Contactos_EDIT{	 

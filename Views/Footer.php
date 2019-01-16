@@ -1,3 +1,6 @@
+<!-- PIE DE PAGINA DE LA APLICACION
+CREADO POR: Los Cangrejas
+Fecha: 20/12/2018-->
 
 	 <!--Pie-->
 <div class="footer" id="footer">
