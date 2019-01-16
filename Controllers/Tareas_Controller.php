@@ -102,7 +102,7 @@ if (!IsAuthenticated()){ //si no está autenticado
 				$mensaje = $tarea-> add(); //Llama al modelo para añadirla y le pasa la respuesta a MESSAGE
 				
 				//Si el insertado es correcto
-				if($mensaje == "Insertado correcto"){
+				if($mensaje == "Insercion correcta"){
 					$id_tarea =$tarea -> BuscarMaxID(); //Se busca el id de la tarea que se acaba de insertar
 					$descripcion = $tarea -> BuscarID2(); //Se busca la descripcion de la tarea
 					
