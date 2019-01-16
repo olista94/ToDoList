@@ -1,5 +1,5 @@
 
-//Hace que el menú sea responsive
+//Hace que el menu sea responsive
 function responsiveMenu() {
     var x = document.getElementById("menu-bar");
     if (x.className === "menu-bar") {
