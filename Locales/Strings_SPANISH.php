@@ -459,7 +459,7 @@ array(
 	'No se puede añadir una fase a una tarea cerrada' => 'No se puede añadir una fase a una tarea cerrada',
 	'Todas' => 'Todas',
 	'Completadas' => 'Completadas',
-	'Sin completar' => 'Sin completar',
+	'Sin completar' => 'Incompletas',
 	'Detalles de la categoria' => 'Detalles de la categoria',
 	'Contactos de la tarea' => 'Contactos de la tarea',
 	'Contactos de la fase' => 'Contactos de la fase',

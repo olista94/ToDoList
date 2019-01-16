@@ -449,7 +449,7 @@ array(
 	'Añadir fase a ' => 'Engadir fase a ',
 	'Todas' => 'Todas',
 	'Completadas' => 'Completadas',
-	'Sin completar' => 'Sen completar',
+	'Sin completar' => 'Incompletas',
 	'Detalles de la categoria' => 'Detalles da categoria',
 	'Iniciar sesion' => 'Iniciar sesión',
 	'Añadir archivos' => 'Engadir arquivos',
