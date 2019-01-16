@@ -1,6 +1,7 @@
-<!---CONTROLADOR DE CATEGORIAS
- CREADO POR mi3ac6 EL 19/11/2018-->
-
+<!---CONTROLADOR DE LAS CATEGORIAS
+ Creado por: Los Cangrejas
+ Fecha: 20/12/2018-->
+ 
 <?php
 //Variable de sesion
 session_start();

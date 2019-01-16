@@ -1,5 +1,6 @@
-<!---CONTROLADOR DE TAREAS
- CREADO POR mi3ac6 EL 19/12/2018-->
+<!---CONTROLADOR DE LAS TAREAS
+ Creado por: Los Cangrejas
+ Fecha: 20/12/2018-->
 <?php
 session_start();
 include_once "../Views/MESSAGE.php";

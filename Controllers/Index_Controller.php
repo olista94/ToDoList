@@ -1,9 +1,8 @@
+<!---CONTROLADOR PARA MANEJAR EL INDEX
+ Creado por: Los Cangrejas
+ Fecha: 23/12/2018-->
+
 <?php
-/*
- * Archivo php donde manejamos el index
- * Autor: yq5lj9
- * Fecha: 30/11/2018
- */
 
 //Creamos la session
 session_start();

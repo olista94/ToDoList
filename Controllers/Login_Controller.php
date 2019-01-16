@@ -1,5 +1,6 @@
 <!---CONTROLADOR DEL LOGIN
- CREADO POR mi3ac6 EL 19/11/2018-->
+ Creado por: Los Cangrejas
+ Fecha: 23/12/2018-->
 
 <?php
 

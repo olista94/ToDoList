@@ -1,10 +1,8 @@
-<?php
-/*
- * Archivo php donde manejamos las acciones para el registro
- * Autor: yq5lj9
- * Fecha: 30/11/2018
- */
+<!---CONTROLADOR DEL REGISTRO DE USUARIOS
+ Creado por: Los Cangrejas
+ Fecha: 27/12/2018-->
 
+<?php
 //Creamos la sesion
 session_start();
 

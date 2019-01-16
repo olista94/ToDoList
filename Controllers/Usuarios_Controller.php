@@ -1,5 +1,6 @@
-<!---CONTROLADOR DE LA Usuarios
- CREADO POR mi3ac6 EL 19/11/2018-->
+<!---CONTROLADOR DE LOS USUARIOS
+ Creado por: Los Cangrejas
+ Fecha: 22/12/2018-->
 <?php
 
 //Creamos la sesion

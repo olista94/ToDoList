@@ -1,5 +1,6 @@
-<!---CONTROLADOR DE FASES
- CREADO POR mi3ac6 EL 19/12/2018-->
+<!---CONTROLADOR DE LAS FASES
+ Creado por: Los Cangrejas
+ Fecha: 20/12/2018-->
 <?php
 
 //Inicia una nueva sesión

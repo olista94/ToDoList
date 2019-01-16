@@ -1,5 +1,6 @@
-<!---CONTROLADOR DE LA Prioridades
- CREADO POR mi3ac6 EL 19/11/2018-->
+<!---CONTROLADOR DE LAS PRIORIDADES
+ Creado por: Los Cangrejas
+ Fecha: 21/12/2018-->
 <?php
 
 //Creamos la sesion

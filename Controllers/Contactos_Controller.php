@@ -1,5 +1,6 @@
-<!---CONTROLADOR DE CONTACTOS
- CREADO POR mi3ac6 EL 19/11/2018-->
+<!---CONTROLADOR DE LOS CONTACTOS
+ Creado por: Los Cangrejas
+ Fecha: 20/12/2018-->
 
 <?php
 
