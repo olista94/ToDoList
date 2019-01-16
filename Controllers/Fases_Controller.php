@@ -181,16 +181,17 @@ if (!IsAuthenticated()){ //si no está autenticado
 			}			
 		break;
 		
-		
+		//Si se pulsa para añadir más fases
 		case 'Confirmar_CONTINUAR':					
-			$tareas = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],"","","","","","","");
-			$t = $tareas -> search();
+			$tareas = new TAREAS_Model($_REQUEST['TAREAS_id_TAREAS'],"","","","","","","");//Se crea un objeto tarea con la id pertinente
+			$t = $tareas -> search();//Se buscan las tareas
 			
-			$contactos = new CONTACTOS_Model("","","","");
-			$cont = $contactos -> search();
+			$contactos = new CONTACTOS_Model("","","","");//Se crea un objeto contacto
+			$cont = $contactos -> search();//Se buscan los contactos
 
-			$descripcion = $tareas -> BuscarDescripcion();
-							
+			$descripcion = $tareas -> BuscarDescripcion();//Busca la descripcion de la tarea a la que pertenece la fase
+			
+			//Muestra el form para añadir fase con la tarea a la que se añadirá			
 			new Fases_ADD($_REQUEST['TAREAS_id_TAREAS'],$descripcion,$cont,'../Controllers/Fases_Controller.php');
 			
 			$fase = getDataForm(); //Se recogen los datos de la fase

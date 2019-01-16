@@ -10,6 +10,7 @@ if (!IsAuthenticated()){ //si no está autenticado
     new MESSAGE('No puedes ver esto si no estás logueado', '../Controllers/Login_Controller.php'); //muestra el mensaje
 }else{ //si lo está
 
+//Incluimos las vistas y modelo necesarios
 	include_once "../Models/TAREAS_Model.php";
 	include_once "../Models/FASES_Model.php";
 	include_once "../Models/ARCHIVOS_Model.php";
