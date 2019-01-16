@@ -49,7 +49,7 @@ array(
 	'Inicia sesión' => 'Sing in',
 	'Login' => 'Login',
 	'Contraseña' => 'Password',
-	'Correo electrónico' => 'Email',
+	'Correo electronico' => 'Email',
 	'Participation' => 'Participation',
 	'Si' => 'Yes',
 	'No' => 'No',

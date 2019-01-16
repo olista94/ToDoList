@@ -48,7 +48,7 @@ array(
 	'Inicia sesión' => 'Inicia sesión',
 	'Login' => 'Login',
 	'Contraseña' => 'Contraseña',
-	'Correo electrónico' => 'Correo electrónico',
+	'Correo electronico' => 'Correo electrónico',
 	'Participación' => 'Participación',
 	'Si' => 'Si',
 	'No' => 'No',
