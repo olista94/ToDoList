@@ -1,7 +1,8 @@
-
+<!---MODELO DE ARCHIVOS,DONDE SE REALIZARÁN LAS OPERACIONES DE INSERCIÓN,BÚSQUEDA,BORRADO... EN LA BD
+CREADO POR: Los Cangrejas
+Fecha: 30/12/2018-->
+ 
 <?php
-
-
 
 class ARCHIVOS_Model {
 
@@ -14,8 +15,6 @@ class ARCHIVOS_Model {
 	/* var $mysqli; */
 
 //Constructor de la clase
-//
-
 function __construct($id_ARCHIVOS, $nombre, $url, $FASES_id_FASES,$FASES_TAREAS_id_TAREAS){
 
 	$this->id_ARCHIVOS = $id_ARCHIVOS;

@@ -1,10 +1,8 @@
-<?php
+<!---ARCHIVO QUE REALIZARÁ LA CONEXION CON LA BASE DE DATOS
+ CREADO POR: Los Cangrejas
+ Fecha: 26/12/2018-->
 
-/*
- * Clase : Access_DB donde se realiza la conexion a la BD
- * Autor: yq5lj9
- * Fecha: 30/11/2018
- */
+<?php
 
 //----------------------------------------------------
 // DB connection function

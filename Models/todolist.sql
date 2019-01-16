@@ -1,3 +1,7 @@
+--Archivo SQL para instalar la bd con volcado de datos,creación de tablas...
+--Creado por: Los Cangrejas
+--Fecha: 08/01/2019
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
