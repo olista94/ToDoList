@@ -1,5 +1,6 @@
-<!---ARCHIVO QUE REALIZARÁ LA TRADUCCIÓN AL GALLEGO
- CREADO POR mi3ac6 EL 22/11/2018-->
+<!---ARCHIVO QUE REALIZARÁ LA TRADUCCIÓN AL INGLES
+ CREADO POR: Los Cangrejas
+ Fecha: 22/12/2018-->
 <?php 
 
 //Traducciones al inglés
