@@ -36,7 +36,7 @@ Fecha: 20/12/2018-->
 				<input type="hidden" name="email" value= "<?php echo $this -> fila['email'] ?>">	
             	<table class="showU" style="margin-left: 30%;">	
 
-                <tr><th class="title" colspan="4"><?php echo $strings['Detalles del contacto']; ?>
+                <tr><th class="title" colspan="4"><?php echo $strings['Borrar contacto']; ?>
                    <!--Boton para volver atrás -->
 				   <button onclick="location.href='../Controllers/Contactos_Controller.php';" class="volver"></button></th>
                 </tr>
