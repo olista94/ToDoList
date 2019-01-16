@@ -27,7 +27,7 @@ Fecha:03/01/2019-->
 ?>
 
   <div class="welcome">		
-	<img src="../img/logo.png" alt="Logo" width="60" height="60"> <h1>ToDoList</h1>
+	<img src="../Views/img/logo.png" alt="Logo" width="60" height="60"> <h1>ToDoList</h1>
 	</div>
  <!--Form para registrar un nuevo usuario-->
   <form class="registerForm" name="Form" id="registerForm" action="../Controllers/Registro_Controller.php" method="post" enctype="multipart/form-data" onsubmit="return comprobarRegistro(this)">
@@ -56,7 +56,7 @@ Fecha:03/01/2019-->
       <label for="telefono"><?php echo $strings['Teléfono']; ?></label>
       <input type="text" name="telefono" id="telefono" size="25"  onblur=" return !comprobarVacio(this) && comprobarTelf(this);" />
 	<!--Campo email del usuario-->
-      <label for="email"><?php echo $strings['Correo electrónico']; ?></label>
+      <label for="email"><?php echo $strings['Correo electronico']; ?></label>
       <input type="text" id="email" name="email" size="65"  onblur=" return !comprobarVacio(this) && comprobarEmail(this,60);" />	
 	<!--Campo fecha de nacimiento del usuario-->
       <label for="fecha"><?php echo $strings['Fecha de nacimiento']; ?></label>
