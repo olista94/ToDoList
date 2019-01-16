@@ -1,6 +1,5 @@
-<!---MODELO DE USUARIOS,DONDE SE REALIZARÁN LAS OPERACIONES DE INSERCIÓN,BÚSQUEDA,BORRADO... EN LA BD
-CREADO POR: Los Cangrejas
-Fecha: 20/12/2018-->
+<!---MODELO DE LOS USUARIOS
+ CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
 
 class USUARIOS_Model {
@@ -14,11 +13,8 @@ class USUARIOS_Model {
 	var $email;
 	var $fecha;
 	var $tipo;
-	/* var $mysqli; */
 
 //Constructor de la clase
-//
-
 function __construct($login,$password,$dni,$nombre,$apellidos,$telefono,$email,$fecha,$tipo){
 	$this->login = $login;
 	$this->password = $password;
@@ -30,13 +26,13 @@ function __construct($login,$password,$dni,$nombre,$apellidos,$telefono,$email,$
 	$this->fecha = $fecha;
 	$this->tipo = $tipo;
 
-	include_once '../Models/Access_DB.php';
+	//Incluimos el archivo de acceso a la bd
+	include_once 'Access_DB.php';
+	//Funcion de conexion a la bd
 	$this->mysqli = ConnectDB();
 }
 
-
-
-
+//Funcion para hacer login
 function login(){
 
 	$sql = "SELECT *
@@ -45,29 +41,29 @@ function login(){
 				(login = '$this->login') 
 			)";
 
-	$resultado = $this->mysqli->query($sql);
+	$resultado = $this->mysqli->query($sql);//Guarda el resultado
 	if ($resultado->num_rows == 0){
-		return 'El login no existe';
+		return 'El login no existe';//Devuelve mensaje de error	
 	}
 	else{
 		$tupla = $resultado->fetch_array();
 		if ($tupla['password'] == $this->password){
-			return true;
+			return true; //Exito
 		}
 		else{
-			return 'La password para este usuario no es correcta';
+			return 'La password para este usuario no es correcta';//Devuelve mensaje de error	
 		}
 	}
 }//fin metodo login
 
-//
+//Funcion que comprueba la validez del registro
 function Register(){
 
 		$sql = "select * from usuarios where login = '".$this->login."'";
 
-		$result = $this->mysqli->query($sql);
+		$result = $this->mysqli->query($sql);//Guarda el resultado
 		if ($result->num_rows == 1){  // existe el usuario
-				return 'El usuario ya existe';
+				return 'El usuario ya existe';//Devuelve mensaje de error	
 			}
 		else{
 	    		return true; //no existe el usuario
@@ -75,6 +71,7 @@ function Register(){
 
 	}
 
+//Funcion que realiza el registro
 function registrar(){
 
 			
@@ -103,7 +100,7 @@ function registrar(){
 			
 		if (!$this->mysqli->query($sql)) {
 			
-			return 'Error al insertar';
+			return 'Error al insertar';//Devuelve mensaje de error	
 		}
 		else{
 			
@@ -116,14 +113,15 @@ function registrar(){
     $sql = "SELECT * FROM usuarios WHERE (`login` = '$this->login')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error	
 	}
     else{ 
 		$result = $resultado;
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
+//Funcion que edita un usuario
 function edit()
 {
 	
@@ -146,17 +144,18 @@ function edit()
 				WHERE (`login` = '$this->login')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error en la modificación';
+			return 'Error en la modificación';//Devuelve mensaje de error	
 		}
 		else{ 
 			
-			return 'Modificado correctamente'; 
+			return 'Modificado correctamente'; //Exito
 		}
     }
     else 
-    	return 'No existe';
+    	return 'No existe';//Devuelve mensaje de error	
 } 
 
+//Funcion para buscar un usuario
 function search(){ 
 
 	     $sql = "SELECT *
@@ -176,19 +175,20 @@ function search(){
 				
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return 'Error en la búsqueda';
+		return 'Error en la búsqueda';//Devuelve mensaje de error	
 		
 	}
     else{ 
-		return $resultado;
+		return $resultado;//Se devuelve el resultado de la consulta
 	}
 }
 
+//Funcion para borrar un usuario
 function delete()
 {	
     $sql = "SELECT * FROM usuarios WHERE (`login` = '$this->login')";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Guarda el resultado
     
     if ($result->num_rows == 1)
     {
@@ -197,24 +197,25 @@ function delete()
         
         $this->mysqli->query($sql);
         
-    	return 'Borrado correctamente';
+    	return 'Borrado correctamente';//Exito
     } 
     else
-        return 'No existe';
+        return 'No existe';//Devuelve mensaje de error	
 }  
 
+//Funcion que devuelve el tipo de usuario
 function DevolverTipo()
 {	
     $sql = "SELECT tipo FROM usuarios WHERE (`login` = '$this->login')";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Guarda el resultado
     
     if ($result->num_rows == 1)
     {    
-    	return $result -> fetch_array()[0];
+    	return $result -> fetch_array()[0];//Guarda el resultado (El tipo de usuario)
     } 
     else
-        return 'No existe';
+        return 'No existe';//Devuelve mensaje de error	
 }  
 
 }//fin de clase

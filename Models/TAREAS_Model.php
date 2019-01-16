@@ -1,6 +1,5 @@
-<!---MODELO DE TAREAS,DONDE SE REALIZARÁN LAS OPERACIONES DE INSERCIÓN,BÚSQUEDA,BORRADO... EN LA BD
-CREADO POR: Los Cangrejas
-Fecha: 26/12/2018-->
+<!---MODELO DE LAS TAREAS
+ CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
 $login = $_SESSION['login'];
 
@@ -13,13 +12,9 @@ class TAREAS_Model {
 	var $completada;
 	var $USUARIOS_login;
 	var $CATEGORIAS_id_CATEGORIAS;
-	var $PRIORIDADES_nivel;
-	/* var $mysqli; */
-	
+	var $PRIORIDADES_nivel;	
 	
 //Constructor de la clase
-//
-
 function __construct($id_tarea,$descripcion,$fecha_ini,$fecha_fin,$completada,$USUARIOS_login,$CATEGORIAS_id_CATEGORIAS,$PRIORIDADES_nivel){
 	$this->id_tarea = $id_tarea;
 	$this->descripcion = $descripcion;
@@ -30,44 +25,49 @@ function __construct($id_tarea,$descripcion,$fecha_ini,$fecha_fin,$completada,$U
 	$this->CATEGORIAS_id_CATEGORIAS = $CATEGORIAS_id_CATEGORIAS;
 	$this->PRIORIDADES_nivel = $PRIORIDADES_nivel;
 
-	include_once '../Models/Access_DB.php';
-	$this->mysqli = ConnectDB();
+		//Incluimos el archivo de acceso a la bd
+		include_once 'Access_DB.php';
+		//Funcion de conexion a la bd
+		$this->mysqli = ConnectDB();
 }
 
-
+//Funcion para añadir una tarea
 function add(){
-				$date = date('Y-m-d', time());
-				$sql = "INSERT INTO tareas
-						VALUES (
-							'$this->id_tarea',
-							'$this->descripcion',
-							'$date',
-							'$this->fecha_fin',
-							'$this->completada',
-							'$this->USUARIOS_login',
-							'$this->CATEGORIAS_id_CATEGORIAS',
-							'$this->PRIORIDADES_nivel')
-						";
 
-				if (!$this->mysqli->query($sql)) { 
-					return 'Error al insertar';
-					
-					
-						
-				}
-				else{ 
-					return 'Insercion correcta'; 
-					
-				}
+	//Fecha actual para la fecha de insercion
+	$date = date('Y-m-d', time());
+	$sql = "INSERT INTO tareas
+			VALUES (
+				'$this->id_tarea',
+				'$this->descripcion',
+				'$date',
+				'$this->fecha_fin',
+				'$this->completada',
+				'$this->USUARIOS_login',
+				'$this->CATEGORIAS_id_CATEGORIAS',
+				'$this->PRIORIDADES_nivel')
+			";
+
+	if (!$this->mysqli->query($sql)) { 
+		return 'Error al insertar';//Devuelve mensaje de error
+		
+		
+			
+	}
+	else{ 
+		return 'Insercion correcta'; //Devuelve mensaje de exito
+		
+	}
 
 } 
 
+//Funcion para editar una tarea
 function edit()
 {
 	
     $sql = "SELECT * FROM tareas WHERE (id_tarea = '$this->id_tarea')";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Guarda el resultado
     
     if ($result->num_rows == 1)
     {	
@@ -80,16 +80,17 @@ function edit()
 				WHERE (`id_tarea` = '$this->id_tarea')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error en la modificación';
+			return 'Error en la modificación';//Devuelve mensaje de error
 		}
 		else{ 
-			return 'Modificado correctamente'; 
+			return 'Modificado correctamente'; //Devuelve mensaje de exito
 		}
     }
     else 
-    	return 'No existe';
+    	return 'No existe';//Devuelve mensaje de error
 } 
 
+//Funcion para buscar una tarea
 function search(){ 
 
 	     $sql = "SELECT *
@@ -108,15 +109,16 @@ function search(){
 				
 				
     if (!($resultado = $this->mysqli->query($sql))){
-		return 'Error en la búsqueda';
+		return 'Error en la búsqueda'; //Devuelve mensaje de error
 	
 	}
     else{ 
 	
-		return $resultado;
+		return $resultado;//Se devuelve el resultado de la consulta
 	}
 }
 
+//Funcion para buscar las tareas de un usuario
 function search1(){ 
 
 	$sql = "
@@ -133,18 +135,18 @@ function search1(){
 			   (p.descripcion LIKE '%$this->PRIORIDADES_nivel%')
 	
 	
-	";
-		   
+	";		   
 
-if (!($resultado = $this->mysqli->query($sql))){
-   return 'Error en la búsqueda';
+	if (!($resultado = $this->mysqli->query($sql))){
+	return 'Error en la búsqueda';//Devuelve mensaje de error
 
-}
-else{ 
-   return $resultado;
-}
+	}
+	else{ 
+	return $resultado;//Se devuelve el resultado de la consulta
+	}
 }
 
+//Funcion para buscar todas las tareas
 function searchAdmin(){ 
 
 	$sql = "
@@ -161,52 +163,54 @@ function searchAdmin(){
 			   (p.descripcion LIKE '%$this->PRIORIDADES_nivel%')
 	
 	
-	";
-		   
+	";		   
 
-if (!($resultado = $this->mysqli->query($sql))){
-   return 'Error en la búsqueda';
-   
-}
-else{ 
-   return $resultado;
-}
+	if (!($resultado = $this->mysqli->query($sql))){
+	return 'Error en la búsqueda';//Devuelve mensaje de error
+	
+	}
+	else{ 
+	return $resultado;//Se devuelve el resultado de la consulta
+	}
 }
 
+//Funcion para borrar una tarea
 function delete()
 {	
     $sql = "SELECT * FROM tareas WHERE (`id_tarea` = '$this->id_tarea')";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Se guarda el resultado de la consulta sql
     
     if ($result->num_rows == 1)
     {
     	
         $sql = "DELETE FROM tareas WHERE (`id_tarea` = '$this->id_tarea')";
         
-        $this->mysqli->query($sql);
+        $this->mysqli->query($sql);//Guarda el resultado
         
-    	return 'Borrado correctamente';
+    	return 'Borrado correctamente';//Devuelve mensaje de exito
     } 
     else
-        return 'No existe';
+        return 'No existe';//Devuelve mensaje de error
 }
 
-	function rellenadatos() {	
+//Funcion que devuelve los datos de una tarea
+function rellenadatos() {	
 	$sql = "SELECT * FROM tareas WHERE (`id_tarea` = '$this->id_tarea')";
    
     if (!($resultado = $this->mysqli->query($sql))){
 		
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
 	
-		$result = $resultado;
-		return $result;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
+		return $result;//Se devuelve el resultado de la consulta
 		
 	}
 }
 
+//Funcion que devuelve todas las tareas
 function TareasShowAll(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
@@ -215,14 +219,15 @@ function TareasShowAll(){
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado;
-		return $result;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
+//Funcion que devuelve todas la tareas de un usuario
 function TareasShowAllNormal(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
@@ -231,14 +236,15 @@ function TareasShowAllNormal(){
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado;
-		return $result;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
+//Funcion para buscar el ID de una tarea
 function BuscarID(){
 	$sql = "SELECT id_tarea
 			FROM tareas
@@ -252,15 +258,16 @@ function BuscarID(){
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado->fetch_array()[0];
+		$result = $resultado->fetch_array()[0];//Se guarda el resultado de la consulta sql
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
+//Funcion para buscar la descripcion de la ultima tarea insertada
 function BuscarID2(){
 	$sql = "SELECT descripcion
 			FROM tareas
@@ -270,15 +277,16 @@ function BuscarID2(){
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado->fetch_array()[0];
+		$result = $resultado->fetch_array()[0];//Se guarda el resultado de la consulta sql
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
+// Funcion para buscar la ultima tarea insertada
 function BuscarMaxID(){
 	$sql = "SELECT MAX(id_tarea)
 			FROM tareas
@@ -286,15 +294,16 @@ function BuscarMaxID(){
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado->fetch_array()[0];
+		$result = $resultado->fetch_array()[0];//Se guarda el resultado de la consulta sql
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
+//Funcion para buscar la descripcion de una tarea
 function BuscarDescripcion(){
 	$sql = "SELECT descripcion
 			FROM tareas
@@ -303,16 +312,17 @@ function BuscarDescripcion(){
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado->fetch_array()[0];
+		$result = $resultado->fetch_array()[0];//Se guarda el resultado de la consulta sql
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
-function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario normal
+//Busca las tareas que pertenezcan a un usuario normal
+function BuscarTareasUser(){
 	$sql = " SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion 
 	AS descripcion_prioridad, p.color AS color_tarea, Fecha_Ini, t.completada AS completa
 			FROM tareas t,prioridades p
@@ -321,18 +331,18 @@ function BuscarTareasUser(){//Busca las tareas que pertenezcan a un usuario norm
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
 		
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
-
-function OrdenarFecha(){//Ordena por fecha de inicio
+//Ordena por fecha de inicio
+function OrdenarFecha(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
 			FROM tareas t,prioridades p,categorias c
@@ -342,17 +352,18 @@ function OrdenarFecha(){//Ordena por fecha de inicio
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
 		
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
-function OrdenarPrioridad(){//Ordena por prioridad
+//Ordena por prioridad
+function OrdenarPrioridad(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
 			FROM tareas t,prioridades p,categorias c
@@ -362,17 +373,18 @@ function OrdenarPrioridad(){//Ordena por prioridad
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
 		
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
-function OrdenarCategoria(){//Ordena por categoria
+//Ordena por categoria
+function OrdenarCategoria(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
 			FROM tareas t,prioridades p,categorias c
@@ -382,18 +394,18 @@ function OrdenarCategoria(){//Ordena por categoria
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
 		
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
-
-function OrdenarFechaNormal(){//Ordena por fecha de inicio
+//Ordena por fecha de inicio
+function OrdenarFechaNormal(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
 			FROM tareas t,prioridades p,categorias c
@@ -403,17 +415,18 @@ function OrdenarFechaNormal(){//Ordena por fecha de inicio
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
 		
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
-function OrdenarPrioridadNormal(){//Ordena por prioridad
+//Ordena por prioridad
+function OrdenarPrioridadNormal(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
 			FROM tareas t,prioridades p,categorias c
@@ -423,17 +436,18 @@ function OrdenarPrioridadNormal(){//Ordena por prioridad
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe';//Devuelve mensaje de error 
 	}
     else{ 
-		$result = $resultado;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
 		
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
-function OrdenarCategoriaNormal(){//Ordena por categoria
+//Ordena por categoria
+function OrdenarCategoriaNormal(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
 			FROM tareas t,prioridades p,categorias c
@@ -443,16 +457,17 @@ function OrdenarCategoriaNormal(){//Ordena por categoria
 	
 	
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
-		$result = $resultado;
+		$result = $resultado;//Se guarda el resultado de la consulta sql
 		
 		
-		return $result;
+		return $result;//Se devuelve el resultado de la consulta
 	}
 }
 
+//Funcion que determina si se puede completar una tarea
 function puedeCompletar()
 {
 	
@@ -460,7 +475,7 @@ function puedeCompletar()
 								   && (completada = '0')";
 
 	    
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Guarda el resultado
     
     if ($result->num_rows == 0)
     {	
@@ -472,16 +487,17 @@ function puedeCompletar()
 				WHERE (`id_tarea` = '$this->id_tarea')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error al cerrar la tarea';
+			return 'Error al cerrar la tarea';//Devuelve mensaje de error
 		}
 		else{ 
-			return 'La tarea se ha cerrado'; 
+			return 'La tarea se ha cerrado'; //Devuelve mensaje de exito
 		}
     }else{ 
-		return 'No se puede cerrar una tarea con fases abiertas';
+		return 'No se puede cerrar una tarea con fases abiertas';//Devuelve mensaje de error
 	}
 }
 
+//Funcion que descompleta una tarea
 function puedeDescompletar()
 {	
 	$sql = "UPDATE tareas SET
@@ -491,13 +507,14 @@ function puedeDescompletar()
 			WHERE (`id_tarea` = '$this->id_tarea')";
 
 	if (!($resultado = $this->mysqli->query($sql))){
-		return 'Error al abrir la tarea';
+		return 'Error al abrir la tarea';//Devuelve mensaje de error
 	}
 	else{ 
-		return 'La tarea se ha vuelto a abrir'; 
+		return 'La tarea se ha vuelto a abrir'; //Devuelve mensaje de exito
 	}
 }
 
+//Funcion que devuelve una tarea completa
 function TareasCompleto()
 {	
     $sql = "SELECT T.*,C.nombre,P.descripcion
@@ -506,17 +523,18 @@ function TareasCompleto()
 			AND T.id_tarea = '$this->id_tarea' 
 			";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Se guarda el resultado de la consulta sql
     
     if ($result->num_rows == 1)
     {
     	
-       return $result;
+       return $result;//Se devuelve el resultado de la consulta
     } 
     else
-        return 'No existe';
+        return 'No existe';//Devuelve mensaje de error
 }
 
+//Funcion que cuenta los archivos de una tarea
 function ContarArchivos()
 {	
     $sql = "SELECT COUNT(`id_ARCHIVOS`),`FASES_TAREAS_id_TAREAS`
@@ -524,16 +542,17 @@ function ContarArchivos()
 			GROUP BY `FASES_TAREAS_id_TAREAS`
 			";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Se guarda el resultado de la consulta sql
     
     if ($result)
     {    	
-       return $result;
+       return $result;//Se devuelve el resultado de la consulta
     } 
     else
-        return 'No existe';
+        return 'No existe';//Devuelve mensaje de error
 }
 
+//Funcion que cuenta las fases de una tarea
 function ContarFases()
 {	
     $sql = "SELECT COUNT(`id_FASES`),`TAREAS_id_TAREAS`
@@ -541,17 +560,18 @@ function ContarFases()
 			GROUP BY `TAREAS_id_TAREAS`
 			";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Se guarda el resultado de la consulta sql
     
     if ($result)
     {
     	
-       return $result;
+       return $result;//Se devuelve el resultado de la consulta
     } 
     else
-        return 'No existe';
+        return 'No existe';//Devuelve mensaje de error
 }
 
+//Funcion que cuenta los contactos de una tarea
 function ContarContactos()
 {	
     $sql = "SELECT COUNT(DISTINCT  `CONTACTOS_email`),`FASES_TAREAS_id_TAREAS`
@@ -559,28 +579,29 @@ function ContarContactos()
 			GROUP BY `FASES_TAREAS_id_TAREAS`
 			";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Se guarda el resultado de la consulta sql
     
     if ($result)
     {
     	
-       return $result;
+       return $result;//Se devuelve el resultado de la consulta
     } 
     else
-        return 'No existe';
+        return 'No existe';//Devuelve mensaje de error
 }
 
+//Funcion que devuelve el estado de una tarea (completada o sin completar)
 function getEstado(){
 	$sql = "SELECT completada FROM tareas WHERE id_tarea = '$this->id_tarea'";
 
-	$result = $this->mysqli->query($sql);
+	$result = $this->mysqli->query($sql);//Se guarda el resultado de la consulta sql
 
-	$estado = $result->fetch_array()[0];
+	$estado = $result->fetch_array()[0];//Guarda el resultado (el estado de la tarea)
     
     if ($estado == 0){	
-       	return 'No';
+       	return 'No'; //Devuelve el estado de la tarea
     }else{
-		return 'No se puede añadir una fase a una tarea cerrada';
+		return 'No se puede añadir una fase a una tarea cerrada';//Devuelve mensaje de error
 	}
 }
 

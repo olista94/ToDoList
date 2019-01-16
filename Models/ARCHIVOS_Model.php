@@ -1,7 +1,5 @@
-<!---MODELO DE ARCHIVOS,DONDE SE REALIZARÁN LAS OPERACIONES DE INSERCIÓN,BÚSQUEDA,BORRADO... EN LA BD
-CREADO POR: Los Cangrejas
-Fecha: 30/12/2018-->
- 
+<!---MODELO DE LOS ARCHIVOS
+ CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
 
 class ARCHIVOS_Model {
@@ -12,226 +10,107 @@ class ARCHIVOS_Model {
 	var $FASES_id_FASES;
 	var $FASES_TAREAS_id_TAREAS;
 	
-	/* var $mysqli; */
+	//Constructor de la clase
+	function __construct($id_ARCHIVOS, $nombre, $url, $FASES_id_FASES,$FASES_TAREAS_id_TAREAS){
 
-//Constructor de la clase
-function __construct($id_ARCHIVOS, $nombre, $url, $FASES_id_FASES,$FASES_TAREAS_id_TAREAS){
+		$this->id_ARCHIVOS = $id_ARCHIVOS;
+		$this->nombre = $nombre;
+		$this->url = $url;
+		$this->FASES_id_FASES = $FASES_id_FASES;
+		$this->FASES_TAREAS_id_TAREAS = $FASES_TAREAS_id_TAREAS;
+		
+		include_once '../Models/Access_DB.php';
+		$this->mysqli = ConnectDB();
+	}
 
-	$this->id_ARCHIVOS = $id_ARCHIVOS;
-    $this->nombre = $nombre;
-    $this->url = $url;
-	$this->FASES_id_FASES = $FASES_id_FASES;
-	$this->FASES_TAREAS_id_TAREAS = $FASES_TAREAS_id_TAREAS;
-    
-	include_once '../Models/Access_DB.php';
-	$this->mysqli = ConnectDB();
-}
+	//Funcion para insertar archivos
+	function add(){
+					
+		$sql = "INSERT INTO archivos
+				VALUES (
+					'$this->id_ARCHIVOS',
+					'$this->nombre',
+					'$this->url',
+					'$this->FASES_id_FASES',
+					'$this->FASES_TAREAS_id_TAREAS'
+					)
+				";
 
-
-function add(){
+		if (!$this->mysqli->query($sql)) { 
+			return 'Error al insertar';//Devuelve mensaje de error
+			
+			
 				
-				$sql = "INSERT INTO archivos
-						VALUES (
-							'$this->id_ARCHIVOS',
-							'$this->nombre',
-							'$this->url',
-							'$this->FASES_id_FASES',
-							'$this->FASES_TAREAS_id_TAREAS'
-							)
-						";
-
-				if (!$this->mysqli->query($sql)) { 
-					return 'Error al insertar';
-					
-					
-						
-				}
-				else{ 
-				
-					return 'Insercion correcta'; 
-					
-				}
-
-}
-
-function getArchivosOfTarea() {	
-    $sql = "SELECT * FROM archivos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS')";
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	
-	}
-}
-
-function getArchivosOfFase() {	
-    $sql = "SELECT * FROM archivos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES')";
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	
-	}
-}
-
-function edit()
-{
-	
-    $sql = "SELECT * FROM fases WHERE (id_FASES = '$this->id_fase')";
-    
-    $result = $this->mysqli->query($sql);
-    
-    if ($result->num_rows == 1)
-    {	
-		$sql = "UPDATE fases SET
-					`descripcion` = '$this->descripcion',
-					`fecha_inicio` = '$this->fecha_ini',
-					`fecha_fin` = '$this->fecha_fin',
-					`CONTACTOS_email` = '$this->CONTACTOS_email'
-					
-
-				WHERE (`id_FASES` = '$this->id_fase')";
-
-        if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error en la modificación';
 		}
 		else{ 
-			return 'Modificado correctamente'; 
+		
+			return 'Insercion correcta'; //Devuelve mensaje de exito
+			
 		}
-    }
-    else 
-    	return 'No existe';
-} 
 
-function search(){ 
+	}
 
-	     $sql = "SELECT *
-       			FROM fases
-    			WHERE
-    				( 
-    				
-	 				(`descripcion` LIKE '%$this->descripcion%') &&
-					(`fecha_inicio` LIKE '%$this->fecha_ini%') &&
-					(`fecha_fin` LIKE '%$this->fecha_fin%') &&
-					(`TAREAS_id_TAREAS` LIKE '%$this->TAREAS_id_TAREAS%') &&
-					(`CONTACTOS_email` LIKE '%$this->CONTACTOS_email%')
-					
-    				)";
-				
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'Error en la búsqueda';
+	//Funcion para obtener los archivos de una tarea concreta
+	function getArchivosOfTarea() {	
+		$sql = "SELECT * FROM archivos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS')";
+	
+		if (!($resultado = $this->mysqli->query($sql))){
+			return 'No existe'; //Devuelve mensaje de error
+		}
+		else{ 
+			$result = $resultado;//Se guarda el resultado de la consulta sql
+			return $result;//Se devuelve el resultado de la consulta
 		
+		}
 	}
-    else{ 
-		return $resultado;
+
+	//Funcion para obtener los archivos de una fase concreta
+	function getArchivosOfFase() {	
+		$sql = "SELECT * FROM archivos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES')";
+	
+		if (!($resultado = $this->mysqli->query($sql))){
+			return 'No existe'; //Devuelve mensaje de error
+		}
+		else{ 
+			$result = $resultado;//Se guarda el resultado de la consulta sql
+			return $result;//Se devuelve el resultado de la consulta
+		
+		}
 	}
-}
 
-function delete()
-{	
-    $sql = "SELECT * FROM archivos WHERE (`url` = '$this->url')";
-    
-    $result = $this->mysqli->query($sql);
-    
-    if ($result->num_rows == 1)
-    {
-    	
-        $sql = "DELETE FROM archivos WHERE (`url` = '$this->url')";
-        
-        $this->mysqli->query($sql);
-        
-    	return 'Borrado correctamente';
-    } 
-    else
-        return 'No existe';
-}
+	//Funcion para borrar un archivo
+	function delete()
+	{	
+		$sql = "SELECT * FROM archivos WHERE (`url` = '$this->url')";
+		
+		$result = $this->mysqli->query($sql);//Guarda el resultado
+		
+		if ($result->num_rows == 1)
+		{
+			
+			$sql = "DELETE FROM archivos WHERE (`url` = '$this->url')";
+			
+			$this->mysqli->query($sql);
+			
+			return 'Borrado correctamente';//Devuelve mensaje de exito
+		} 
+		else
+			return 'No existe';//Devuelve mensaje de error
+	}
 
+	//Funcion que devuelve todos los archivos de una fase
 	function rellenadatos() {	
-    $sql = "SELECT * FROM archivos WHERE (`FASES_id_FASES` = '$this->id_fase')";
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
+		$sql = "SELECT * FROM archivos WHERE (`FASES_id_FASES` = '$this->id_fase')";
 	
-	}
-}
-
-function getFasesOfTarea() {	
-    $sql = "SELECT * FROM fases WHERE (`TAREAS_id_TAREAS` = '$this->TAREAS_id_TAREAS')";
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	
-	}
-}
-
-function FasesShowAll(){
-	$sql = "SELECT * FROM fases ";
-	
-	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	}
-}
-
-function BuscarID(){
-	$sql = "SELECT id_tarea
-			FROM tareas
-			WHERE `descripcion` = '$this->descripcion' &&
-					`fecha_ini` = '$this->fecha_ini' &&
-					`fecha_fin` = '$this->fecha_fin' &&
-					`USUARIOS_login` = '$this->USUARIOS_login' &&
-					`CATEGORIAS_id_CATEGORIAS` = '$this->CATEGORIAS_id_CATEGORIAS' &&
-					`PRIORIDADES_nivel` = '$this->PRIORIDADES_nivel'
-					";
-	
-	
-	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado->fetch_array()[0];
+		if (!($resultado = $this->mysqli->query($sql))){
+			return 'No existe'; //Devuelve mensaje de error
+		}
+		else{ 
+			$result = $resultado;//Se guarda el resultado de la consulta sql
+			return $result;//Se devuelve el resultado de la consulta
 		
-		
-		return $result;
+		}
 	}
-}
-
-function BuscarID2(){
-	$sql = "SELECT descripcion
-			FROM tareas
-			WHERE id_tarea = (SELECT MAX(id_tarea)
-							 FROM tareas) ";
-					
-	
-	
-	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado->fetch_array()[0];
-		
-		return $result;
-	}
-}
-
 
 }//fin de clase
 

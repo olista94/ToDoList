@@ -1,140 +1,150 @@
-<!---MODELO DE PRIORIDADES,DONDE SE REALIZARÁN LAS OPERACIONES DE INSERCIÓN,BÚSQUEDA,BORRADO... EN LA BD
-CREADO POR: Los Cangrejas
-Fecha: 20/12/2018-->
+<!---MODELO DE LAS PRIORIDADES
+ CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
 class PRIORIDADES_Model {
 	var $nivel;
 	var $descripcion;
 	var $color;
 	
-//Constructor de la clase
-//
-function __construct($nivel,$descripcion,$color){
-	$this->nivel = $nivel;
-	$this->descripcion = $descripcion;
-	$this->color = $color;
-	include_once 'Access_DB.php';
-	$this->mysqli = ConnectDB();
-}
-function add(){
-			
-		$sql = "INSERT INTO prioridades (
-			nivel,
-			descripcion,
-			color
-			) 
-				VALUES (
-					'$this->nivel',
-					'$this->descripcion',
-					'$this->color'
-					
-					)";
-			
-		if (!$this->mysqli->query($sql)) {
-			
-			return 'Error al insertar';
-		}
-		else{
-			return 'Insercion correcta'; //operacion de insertado correcta
-		}		
+	//Constructor de la clase
+	function __construct($nivel,$descripcion,$color){
+		$this->nivel = $nivel;
+		$this->descripcion = $descripcion;
+		$this->color = $color;
+		//Incluimos el archivo de acceso a la bd
+		include_once 'Access_DB.php';
+		//Funcion de conexion a la bd
+		$this->mysqli = ConnectDB();
 	}
-	
-	function rellenadatos() 
-{	
-    $sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	}
-}
-function edit()
-{
-	
-    $sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";
-    
-    $result = $this->mysqli->query($sql);
-    
-    if ($result->num_rows == 1)
-    {	
-		$sql = "UPDATE prioridades SET
-					
-					`descripcion` = '$this->descripcion',
-					`color` = '$this->color'
-					
-				WHERE (`nivel` = '$this->nivel')";
-        if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error en la modificación';
+
+	//Funcion para añadir una prioridad
+	function add(){
+				
+			$sql = "INSERT INTO prioridades (
+				nivel,
+				descripcion,
+				color
+				) 
+					VALUES (
+						'$this->nivel',
+						'$this->descripcion',
+						'$this->color'
+						
+						)";
+				
+			if (!$this->mysqli->query($sql)) {
+				
+				return 'Error al insertar';//Devuelve mensaje de error
+			}
+			else{
+				return 'Insercion correcta'; //operacion de insertado correcta
+			}		
 		}
-		else{ 
-			
-			return 'Modificado correctamente';
+		
+		//Funcion que devuelve los datos de una prioridad
+		function rellenadatos() 
+		{	
+			$sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";
+		
+			if (!($resultado = $this->mysqli->query($sql))){
+				return 'No existe'; //Devuelve mensaje de error
+			}
+			else{ 
+				$result = $resultado;
+				return $result;
+			}
 		}
-    }
-    else 
-    	return 'No existe';
-} 
-function search(){ 
-	     $sql = "SELECT *
-       			FROM prioridades
-    			WHERE
-    				( 
-    				(`nivel` LIKE '%$this->nivel%') &&
-	 				(`descripcion` LIKE '%$this->descripcion%') &&
+
+	//Funcion para editar una prioridad
+	function edit()
+	{
+		
+		$sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";
+		
+		$result = $this->mysqli->query($sql);//Guarda el resultado
+		
+		if ($result->num_rows == 1)
+		{	
+			$sql = "UPDATE prioridades SET
+						
+						`descripcion` = '$this->descripcion',
+						`color` = '$this->color'
+						
+					WHERE (`nivel` = '$this->nivel')";
+			if (!($resultado = $this->mysqli->query($sql))){
+				return 'Error en la modificación';//Devuelve mensaje de error
+			}
+			else{ 
+				
+				return 'Modificado correctamente';//Devuelve mensaje de exito
+			}
+		}
+		else 
+			return 'No existe';//Devuelve mensaje de error
+	} 
+
+	//Funcion para buscar una prioridad
+	function search(){ 
+		$sql = "SELECT *
+				FROM prioridades
+				WHERE
+					( 
+					(`nivel` LIKE '%$this->nivel%') &&
+					(`descripcion` LIKE '%$this->descripcion%') &&
 					(`color` LIKE '%$this->color%')
 					
-    				)";
-				
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'Error en la búsqueda';
-		
-	}
-    else{ 
-		return $resultado;
-	}
-}
-function searchById(){ 
-	$sql = "SELECT *
-			  FROM prioridades
-		   WHERE
-			   ( 
-			   (`nivel` LIKE '%$this->nivel%')
-			   
-			   )";
-		   
-if (!($resultado = $this->mysqli->query($sql))){
-   return 'Error en la búsqueda';
-
-}
-else{ 
-   return $resultado;
-}
-}
-function delete()
-{	
-    $sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";
-    
-    $result = $this->mysqli->query($sql);
-    
-    if ($result->num_rows == 1){
-    	
-        $sql = "DELETE FROM prioridades WHERE (`nivel` = '$this->nivel')";
-        
-        if($this->mysqli->query($sql)){
-        
-			return 'Borrado correctamente';
+					)";					
+	
+		if (!($resultado = $this->mysqli->query($sql))){
+			return 'Error en la búsqueda';//Devuelve mensaje de error
+			
 		}
-		else{
-			return 'No se puede borrar.Hay tareas asociadas a esta prioridad';
-		}	
-   
-	}  
-	else
-        return 'No existe';
-}
+		else{ 
+			return $resultado;
+		}
+	}
+
+	//Funcion para buscar una prioridad por ID
+	function searchById(){ 
+		$sql = "SELECT *
+				FROM prioridades
+			WHERE
+				( 
+				(`nivel` LIKE '%$this->nivel%')
+				
+				)";
+			
+		if (!($resultado = $this->mysqli->query($sql))){
+		return 'Error en la búsqueda';//Devuelve mensaje de error
+
+		}
+		else{ 
+		return $resultado;
+		}
+	}
+
+	//Funcion para borrar una prioridad
+	function delete()
+	{	
+		$sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";
+		
+		$result = $this->mysqli->query($sql);//Guarda el resultado
+		
+		if ($result->num_rows == 1){
+			
+			$sql = "DELETE FROM prioridades WHERE (`nivel` = '$this->nivel')";
+			
+			if($this->mysqli->query($sql)){
+			
+				return 'Borrado correctamente';//Devuelve mensaje de exito
+			}
+			else{
+				return 'No se puede borrar.Hay tareas asociadas a esta prioridad';//Devuelve mensaje de error
+			}	
+	
+		}  
+		else
+			return 'No existe';//Devuelve mensaje de error
+	}
 }//fin de clase
 ?> 

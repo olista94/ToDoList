@@ -1,6 +1,5 @@
-<!---MODELO DE CONTACTOS,DONDE SE REALIZARÁN LAS OPERACIONES DE INSERCIÓN,BÚSQUEDA,BORRADO... EN LA BD
-CREADO POR: Los Cangrejas
-Fecha: 20/12/2018-->
+<!---MODELO DE LOS CONTACTOS
+ CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
 
 class CONTACTOS_Model{
@@ -17,8 +16,9 @@ class CONTACTOS_Model{
 		$this -> descripcion = $descripcion;
 		$this -> telefono = $telefono;
 
-		
-		include_once '../Models/Access_DB.php';
+		//Incluimos el archivo de acceso a la bd
+		include_once 'Access_DB.php';
+		//Funcion de conexion a la bd
 		$this->mysqli = ConnectDB();
 		}
 		
@@ -29,7 +29,7 @@ function add(){
 		
         $sql = "SELECT * FROM contactos WHERE (`email` = '$this->email')";
 		if (!$result = $this->mysqli->query($sql)){ 
-			return 'No se ha podido conectar con la base de datos'; 
+			return 'No se ha podido conectar con la base de datos'; //Devuelve mensaje de error
 		}
 		else { 
 			if ($result->num_rows == 0 ){ 
@@ -44,21 +44,21 @@ function add(){
 						";
 
 				if (!$this->mysqli->query($sql)) { 
-					return 'Error al insertar';
+					return 'Error al insertar';//Devuelve mensaje de error
 					
 				}
 				else{ 
-					return 'Insercion correcta'; 
+					return 'Insercion correcta'; //Devuelve mensaje de exito
 					
 				}
 
 			}
 			else 
-				return 'El usuario ya existe'; 
+				return 'El usuario ya existe'; //Devuelve mensaje de error
 		}
     }
     else{ 
-         return 'Introduzca un valor para la clave'; 
+         return 'Introduzca un valor para la clave';//Devuelve mensaje de error 
 		
 	}
 } 
@@ -89,7 +89,7 @@ function delete()
 {	
     $sql = "SELECT * FROM contactos WHERE (`email` = '$this->email')";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql);//Guarda el resultado
     
     if ($result->num_rows == 1)
     {
@@ -98,10 +98,10 @@ function delete()
         
         if($this->mysqli->query($sql)){
         
-			return 'Borrado correctamente';
+			return 'Borrado correctamente';//Devuelve mensaje de exito
 		}
 		else{
-			return 'No se puede borrar.Hay fases asociadas a este contacto';
+			return 'No se puede borrar.Hay fases asociadas a este contacto';//Devuelve mensaje de error
 		}
     } 
     else
@@ -114,7 +114,7 @@ function rellenadatos()
     $sql = "SELECT * FROM contactos WHERE (`email` = '$this->email')";
    
     if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
+		return 'No existe'; //Devuelve mensaje de error
 	}
     else{ 
 		$result = $resultado;
@@ -127,7 +127,7 @@ function edit()
 	
     $sql = "SELECT * FROM contactos WHERE (`email` = '$this->email')";
     
-    $result = $this->mysqli->query($sql);
+    $result = $this->mysqli->query($sql); //Guarda el resultado
     
     if ($result->num_rows == 1)
     {	
@@ -139,14 +139,14 @@ function edit()
 				WHERE (`email` = '$this->email')";
 
         if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error en la modificación';
+			return 'Error en la modificación';//Devuelve mensaje de error
 		}
 		else{ 
-			return 'Modificado correctamente'; 
+			return 'Modificado correctamente'; //Devuelve mensaje de exito
 		}
     }
     else 
-    	return 'No existe';
+    	return 'No existe';//Devuelve mensaje de error
 }
 }
 ?>

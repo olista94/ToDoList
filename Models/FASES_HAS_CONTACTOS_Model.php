@@ -1,9 +1,6 @@
-<!---MODELO DE LOS CONTACTOS QUE PERTENECEN A UNA FASE,DONDE SE REALIZARÁN LAS OPERACIONES DE INSERCIÓN,BÚSQUEDA,BORRADO... EN LA BD
-CREADO POR: Los Cangrejas
-Fecha: 10/01/2019-->
+<!---MODELO DE LAS FASES_HAS_CONTACTOS
+ CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
-
-
 
 class FASES_HAS_CONTACTOS_Model {
 
@@ -11,239 +8,123 @@ class FASES_HAS_CONTACTOS_Model {
 	var $FASES_TAREAS_id_TAREAS;
     var $CONTACTOS_email;
 	
-	
-	/* var $mysqli; */
+	//Constructor de la clase
+	function __construct($FASES_id_FASES, $FASES_TAREAS_id_TAREAS, $CONTACTOS_email){
 
-//Constructor de la clase
-//
-
-function __construct($FASES_id_FASES, $FASES_TAREAS_id_TAREAS, $CONTACTOS_email){
-
-	$this->FASES_id_FASES = $FASES_id_FASES;
-    $this->FASES_TAREAS_id_TAREAS = $FASES_TAREAS_id_TAREAS;
-    $this->CONTACTOS_email = $CONTACTOS_email;
-
-    
-	include_once '../Models/Access_DB.php';
-	$this->mysqli = ConnectDB();
-}
-
-
-function add(){
-				
-	$sql = "INSERT INTO fases_has_contactos
-			VALUES (
-				'$this->FASES_id_FASES',
-				'$this->FASES_TAREAS_id_TAREAS',
-				'$this->CONTACTOS_email'
-				)
-			";
-
-	if (!$this->mysqli->query($sql)) { 
-		return 'Error al insertar';			
-	}
-	else{ 
-	
-		return 'Insercion correcta'; 
+		$this->FASES_id_FASES = $FASES_id_FASES;
+		$this->FASES_TAREAS_id_TAREAS = $FASES_TAREAS_id_TAREAS;
+		$this->CONTACTOS_email = $CONTACTOS_email;
 		
+		//Incluimos el archivo de acceso a la bd
+		include_once 'Access_DB.php';
+		//Funcion de conexion a la bd
+		$this->mysqli = ConnectDB();
 	}
 
-}
-
-function getContactosOfTarea() {	
-    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') GROUP BY `CONTACTOS_email`";
-
-	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	
-	}
-}
-
-function getContactosOfFase() {	
-    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES')";
-
-	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	
-	}
-}
-
-function getArchivosOfFase() {	
-    $sql = "SELECT * FROM archivos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES')";
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	
-	}
-}
-
-function edit()
-{
-	
-    $sql = "SELECT * FROM fases WHERE (id_FASES = '$this->id_fase')";
-    
-    $result = $this->mysqli->query($sql);
-    
-    if ($result->num_rows == 1)
-    {	
-		$sql = "UPDATE fases SET
-					`descripcion` = '$this->descripcion',
-					`fecha_inicio` = '$this->fecha_ini',
-					`fecha_fin` = '$this->fecha_fin',
-					`CONTACTOS_email` = '$this->CONTACTOS_email'
+	//Funcion para añadir un contacto a una fase
+	function add(){
 					
+		$sql = "INSERT INTO fases_has_contactos
+				VALUES (
+					'$this->FASES_id_FASES',
+					'$this->FASES_TAREAS_id_TAREAS',
+					'$this->CONTACTOS_email'
+					)
+				";
 
-				WHERE (`id_FASES` = '$this->id_fase')";
-
-        if (!($resultado = $this->mysqli->query($sql))){
-			return 'Error en la modificación';
-		}
-		else{ 
-			return 'Modificado correctamente'; 
-		}
-    }
-    else 
-    	return 'No existe';
-} 
-
-function search(){ 
-
-	     $sql = "SELECT *
-       			FROM fases_has_contactos
-    			WHERE
-    				( 
-    				
-	 				(`FASES_id_FASES` LIKE '%$this->FASES_id_FASES%') &&
-					(`FASES_TAREAS_id_TAREAS` LIKE '%$this->FASES_TAREAS_id_TAREAS%') &&
-					(`CONTACTOS_email` LIKE '%$this->CONTACTOS_email%')
-					
-    				)";
-				
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'Error en la búsqueda';
+		if (!$this->mysqli->query($sql)) { 
+			return 'Error al insertar';		//Devuelve mensaje de error	
+		}else{ 
 		
-	}
-    else{ 
-		return $resultado;
-	}
-}
+			return 'Insercion correcta'; //Devuelve mensaje de exito
+			
+		}
 
-function delete()
-{	
-    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
-					(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
-					(`CONTACTOS_email` = '$this->CONTACTOS_email')";
-    
-    $result = $this->mysqli->query($sql);
-    
-    if ($result->num_rows == 1)
-    {
-    	
-        $sql = "DELETE FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
-					(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
-					(`CONTACTOS_email` = '$this->CONTACTOS_email')";
-        
-        $this->mysqli->query($sql);
-        
-    	return 'Borrado correctamente';
-    } 
-    else
-        return 'No existe';
-}
+	}
 
+	//Funcion que devuelve los contactos de una tarea
+	function getContactosOfTarea() {	
+		$sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') GROUP BY `CONTACTOS_email`";
+
+		if (!($resultado = $this->mysqli->query($sql))){
+			return 'No existe'; //Devuelve mensaje de error
+		}else{ 
+			$result = $resultado;//Se guarda el resultado de la consulta sql
+			return $result;//Se devuelve el resultado de la consulta
+		
+		}
+	}
+
+	//Funcion que devuelve los contactos de una fase
+	function getContactosOfFase() {	
+		$sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES')";
+
+		if (!($resultado = $this->mysqli->query($sql))){
+			return 'No existe'; //Devuelve mensaje de error
+		}else{ 
+			$result = $resultado;//Se guarda el resultado de la consulta sql
+			return $result;//Se devuelve el resultado de la consulta
+		
+		}
+	}
+
+	//Funcion que busca los contactos de una fase
+	function search(){ 
+
+			$sql = "SELECT *
+					FROM fases_has_contactos
+					WHERE
+						( 
+						
+						(`FASES_id_FASES` LIKE '%$this->FASES_id_FASES%') &&
+						(`FASES_TAREAS_id_TAREAS` LIKE '%$this->FASES_TAREAS_id_TAREAS%') &&
+						(`CONTACTOS_email` LIKE '%$this->CONTACTOS_email%')
+						
+						)";
+					
+	
+		if (!($resultado = $this->mysqli->query($sql))){
+			return 'Error en la búsqueda';//Devuelve mensaje de error		
+		}else{ 
+			return $resultado;//Se devuelve el resultado de la consulta
+		}
+	}
+
+	//Funcion que borra un contacto de una fase
+	function delete(){	
+		$sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
+						(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
+						(`CONTACTOS_email` = '$this->CONTACTOS_email')";
+		
+		$result = $this->mysqli->query($sql);//Se guarda el resultado de la consulta sql
+		
+		if ($result->num_rows == 1){
+			
+			$sql = "DELETE FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
+						(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
+						(`CONTACTOS_email` = '$this->CONTACTOS_email')";
+			
+			$this->mysqli->query($sql);
+			
+			return 'Borrado correctamente';//Devuelve mensaje de exito
+		}else{
+			return 'No existe';//Devuelve mensaje de error
+		}
+	}
+
+	//Funcion que devuelve los contactos de una fase
 	function rellenadatos() {	
-    $sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
-					(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
-					(`CONTACTOS_email` = '$this->CONTACTOS_email')";
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
+		$sql = "SELECT * FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
+						(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
+						(`CONTACTOS_email` = '$this->CONTACTOS_email')";
 	
+		if (!($resultado = $this->mysqli->query($sql))){
+			return 'No existe'; //Devuelve mensaje de error
+		}else{ 
+			$result = $resultado;//Se guarda el resultado de la consulta sql
+			return $result;	//Se devuelve el resultado de la consulta
+		}
 	}
-}
-
-function getFasesOfTarea() {	
-    $sql = "SELECT * FROM fases WHERE (`TAREAS_id_TAREAS` = '$this->TAREAS_id_TAREAS')";
-   
-    if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	
-	}
-}
-
-function FasesShowAll(){
-	$sql = "SELECT * FROM fases ";
-	
-	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado;
-		return $result;
-	}
-}
-
-function BuscarID(){
-	$sql = "SELECT id_tarea
-			FROM tareas
-			WHERE `descripcion` = '$this->descripcion' &&
-					`fecha_ini` = '$this->fecha_ini' &&
-					`fecha_fin` = '$this->fecha_fin' &&
-					`USUARIOS_login` = '$this->USUARIOS_login' &&
-					`CATEGORIAS_id_CATEGORIAS` = '$this->CATEGORIAS_id_CATEGORIAS' &&
-					`PRIORIDADES_nivel` = '$this->PRIORIDADES_nivel'
-					";
-	
-	
-	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado->fetch_array()[0];
-		
-		return $result;
-	}
-}
-
-function BuscarID2(){
-	$sql = "SELECT descripcion
-			FROM tareas
-			WHERE id_tarea = (SELECT MAX(id_tarea)
-							 FROM tareas) ";
-					
-	
-	
-	if (!($resultado = $this->mysqli->query($sql))){
-		return 'No existe'; 
-	}
-    else{ 
-		$result = $resultado->fetch_array()[0];
-	
-		return $result;
-	}
-}
-
 
 }//fin de clase
 
