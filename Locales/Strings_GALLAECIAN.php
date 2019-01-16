@@ -1,7 +1,7 @@
 <!---ARCHIVO QUE REALIZARÁ LA TRADUCCIÓN AL GALLEGO
  CREADO POR mi3ac6 EL 22/11/2018-->
 <?php 
-
+//Traducciones al gallego
 $strings = 
 array(
 	'Portal de Gestión' => 'Portal de Xestión',

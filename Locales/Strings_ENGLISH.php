@@ -2,6 +2,7 @@
  CREADO POR mi3ac6 EL 22/11/2018-->
 <?php 
 
+//Traducciones al inglés
 $strings = 
 array(
 	'Portal de Gestión' => 'Management',

@@ -1,7 +1,7 @@
 <!---ARCHIVO QUE REALIZARÁ LA TRADUCCIÓN AL CASTELLANO
  CREADO POR mi3ac6 EL 22/11/2018-->
  <?php 
-
+//Traducciones al castellano
 $strings = 
 array(
 	'Portal de Gestión' => 'Portal de Gestión',
