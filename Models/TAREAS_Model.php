@@ -89,7 +89,7 @@ function edit()
     	return 'No existe';
 } 
 
-/* function search(){ 
+function search(){ 
 
 	     $sql = "SELECT *
        			FROM tareas
@@ -115,7 +115,7 @@ function edit()
 		return $resultado;
 	}
 }
- */
+
 function search1(){ 
 
 	$sql = "
