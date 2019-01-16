@@ -41,7 +41,7 @@ Fecha: 20/12/2018-->
 		  <label for="telefono"><?php echo $strings['Teléfono']; ?></label>
 		  <input type="text" name="telefono" id="telefono" size="40"  onblur=" return !comprobarVacio(this) && comprobarTelf(this);" />
 		  <!--Campo email del contacto-->
-		  <label for="email"><?php echo $strings['Correo electrónico']; ?></label>
+		  <label for="email"><?php echo $strings['Correo electronico']; ?></label>
 		  <input type="text" id="email" name="email" size="65"  onblur=" return !comprobarVacio(this) && comprobarEmail(this,60);" />	
       
     </div>

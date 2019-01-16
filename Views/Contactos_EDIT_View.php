@@ -47,7 +47,7 @@ class Contactos_EDIT{
 			<label for="telefono"><?php echo $strings['Teléfono']; ?></label>
 			<input type="text" name="telefono" id="telefono"  value="<?php echo $this -> fila['telefono']; ?>"  size="40"  onblur=" return !comprobarVacio(this) && comprobarTelf(this);" />
 		<!--Campo email del contacto-->
-			<label for="email"><?php echo $strings['Correo electrónico']; ?></label>
+			<label for="email"><?php echo $strings['Correo electronico']; ?></label>
 			<input type="text" id="email" name="email" size="65"  value="<?php echo $this -> fila['email']; ?>" onblur=" return !comprobarVacio(this) && comprobarEmail(this,60);" readonly/>	
 		
 		</div>
