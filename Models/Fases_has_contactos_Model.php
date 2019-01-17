@@ -1,11 +1,13 @@
-<!---MODELO DE LAS FASES_HAS_CONTACTOS
+<!---MODELO DE LAS FASES_HAS_CONTACTOS (CONTACTOS QUE REALIZAN UNA FASE)
  CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
-
+//Declaracion de la clase
 class FASES_HAS_CONTACTOS_Model {
-
+	//Id de la fase
 	var $FASES_id_FASES;
+	//Id de la tarea a la que pertenece la fase
 	var $FASES_TAREAS_id_TAREAS;
+	//Email de los contactos que realizan una fase
     var $CONTACTOS_email;
 	
 	//Constructor de la clase
@@ -23,7 +25,7 @@ class FASES_HAS_CONTACTOS_Model {
 
 	//Funcion para añadir un contacto a una fase
 	function add(){
-					
+			//Sentencia sql para insertar
 		$sql = "INSERT INTO fases_has_contactos
 				VALUES (
 					'$this->FASES_id_FASES',
@@ -70,7 +72,7 @@ class FASES_HAS_CONTACTOS_Model {
 
 	//Funcion que busca los contactos de una fase
 	function search(){ 
-
+			//Sentencia sql para buscar
 			$sql = "SELECT *
 					FROM fases_has_contactos
 					WHERE
@@ -99,7 +101,7 @@ class FASES_HAS_CONTACTOS_Model {
 		$result = $this->mysqli->query($sql);//Se guarda el resultado de la consulta sql
 		
 		if ($result->num_rows == 1){
-			
+			//Sentencia sql para borrar
 			$sql = "DELETE FROM fases_has_contactos WHERE (`FASES_id_FASES` = '$this->FASES_id_FASES') &&
 						(`FASES_TAREAS_id_TAREAS` = '$this->FASES_TAREAS_id_TAREAS') &&
 						(`CONTACTOS_email` = '$this->CONTACTOS_email')";

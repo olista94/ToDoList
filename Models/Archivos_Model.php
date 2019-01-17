@@ -1,13 +1,17 @@
 <!---MODELO DE LOS ARCHIVOS
  CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
-
+//Declaracion de la clase
 class ARCHIVOS_Model {
-
+	//Id del archivo
 	var $id_ARCHIVOS;
+	//Nombre del archivo
 	var $nombre;
+	//URL del archivo
     var $url;
+	//Fase a la que pertenece el archivo
 	var $FASES_id_FASES;
+	//Tarea a la que pertenece el archivo
 	var $FASES_TAREAS_id_TAREAS;
 	
 	//Constructor de la clase
@@ -19,13 +23,14 @@ class ARCHIVOS_Model {
 		$this->FASES_id_FASES = $FASES_id_FASES;
 		$this->FASES_TAREAS_id_TAREAS = $FASES_TAREAS_id_TAREAS;
 		
+		//Conexion a la BD
 		include_once '../Models/Access_DB.php';
 		$this->mysqli = ConnectDB();
 	}
 
 	//Funcion para insertar archivos
 	function add(){
-					
+			//Sentencia sql que insetara archivos	
 		$sql = "INSERT INTO archivos
 				VALUES (
 					'$this->id_ARCHIVOS',

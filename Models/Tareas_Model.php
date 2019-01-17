@@ -1,17 +1,25 @@
 <!---MODELO DE LAS TAREAS
  CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
+//Login del usuario conectado
 $login = $_SESSION['login'];
-
+//Declaracion de la clase
 class TAREAS_Model {
-
+	//Id de la tarea
 	var $id_tarea;
+	//Descripcion de la tarea
 	var $descripcion;
+	//Fecha de inicio de la tarea
 	var $fecha_ini;
+	//Fecha fin de la tarea
 	var $fecha_fin;
+	//Marca si una tarea esta o no completa
 	var $completada;
+	//Usuario que crea la tarea
 	var $USUARIOS_login;
+	//Categoria de la tarea
 	var $CATEGORIAS_id_CATEGORIAS;
+	//Prioridad de la tarea
 	var $PRIORIDADES_nivel;	
 	
 //Constructor de la clase
@@ -36,6 +44,7 @@ function add(){
 
 	//Fecha actual para la fecha de insercion
 	$date = date('Y-m-d', time());
+	//Sentencia sql para insertar
 	$sql = "INSERT INTO tareas
 			VALUES (
 				'$this->id_tarea',
@@ -71,6 +80,7 @@ function edit()
     
     if ($result->num_rows == 1)
     {	
+		//Sentencia sql para editar
 		$sql = "UPDATE tareas SET
 					`descripcion` = '$this->descripcion',
 					`CATEGORIAS_id_CATEGORIAS` = '$this->CATEGORIAS_id_CATEGORIAS',
@@ -92,7 +102,7 @@ function edit()
 
 //Funcion para buscar una tarea
 function search(){ 
-
+			//Sentencia sql para buscar
 	     $sql = "SELECT *
        			FROM tareas
     			WHERE
@@ -118,7 +128,7 @@ function search(){
 	}
 }
 
-//Funcion para buscar las tareas de un usuario
+//Funcion para buscar las tareas si es un usuario normal (no ADMIN)
 function search1(){ 
 
 	$sql = "
@@ -146,7 +156,7 @@ function search1(){
 	}
 }
 
-//Funcion para buscar todas las tareas
+//Funcion para buscar todas las tareas si es ADMIN
 function searchAdmin(){ 
 
 	$sql = "
@@ -183,7 +193,7 @@ function delete()
     
     if ($result->num_rows == 1)
     {
-    	
+    	//Sentencia sql para borrar
         $sql = "DELETE FROM tareas WHERE (`id_tarea` = '$this->id_tarea')";
         
         $this->mysqli->query($sql);//Guarda el resultado
@@ -227,7 +237,7 @@ function TareasShowAll(){
 	}
 }
 
-//Funcion que devuelve todas la tareas de un usuario
+//Funcion que devuelve todas la tareas de un usuario normal
 function TareasShowAllNormal(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
@@ -404,7 +414,7 @@ function OrdenarCategoria(){
 	}
 }
 
-//Ordena por fecha de inicio
+//Ordena por fecha de inicio si es un usuario normal
 function OrdenarFechaNormal(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
@@ -425,7 +435,7 @@ function OrdenarFechaNormal(){
 	}
 }
 
-//Ordena por prioridad
+//Ordena por prioridad si es un usuario normal
 function OrdenarPrioridadNormal(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria
@@ -446,7 +456,7 @@ function OrdenarPrioridadNormal(){
 	}
 }
 
-//Ordena por categoria
+//Ordena por categoria si es un usuario normal
 function OrdenarCategoriaNormal(){
 	$sql = "SELECT id_tarea,t.descripcion AS descripcion_tarea ,p.descripcion AS descripcion_prioridad, p.color AS color_tarea,
 			Fecha_Ini, t.completada AS completa, c.nombre as categoria

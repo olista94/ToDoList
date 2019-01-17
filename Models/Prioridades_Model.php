@@ -1,9 +1,13 @@
 <!---MODELO DE LAS PRIORIDADES
  CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
+//Declaracion de la clase
 class PRIORIDADES_Model {
+	//Nivel de la prioridad
 	var $nivel;
+	//Descripcion de la prioridad
 	var $descripcion;
+	//Color de la prioridad
 	var $color;
 	
 	//Constructor de la clase
@@ -19,7 +23,7 @@ class PRIORIDADES_Model {
 
 	//Funcion para añadir una prioridad
 	function add(){
-				
+			//Sentencia sql para insertar	
 			$sql = "INSERT INTO prioridades (
 				nivel,
 				descripcion,
@@ -44,12 +48,13 @@ class PRIORIDADES_Model {
 		//Funcion que devuelve los datos de una prioridad
 		function rellenadatos() 
 		{	
+			//Sentencia sql que muestra los datos de una prioridad
 			$sql = "SELECT * FROM prioridades WHERE (`nivel` = '$this->nivel')";
 		
 			if (!($resultado = $this->mysqli->query($sql))){
 				return 'No existe'; //Devuelve mensaje de error
 			}
-			else{ 
+			else{ //Devuelve el resultado
 				$result = $resultado;
 				return $result;
 			}
@@ -65,6 +70,7 @@ class PRIORIDADES_Model {
 		
 		if ($result->num_rows == 1)
 		{	
+	//Sentencia sql para editar
 			$sql = "UPDATE prioridades SET
 						
 						`descripcion` = '$this->descripcion',
@@ -85,6 +91,7 @@ class PRIORIDADES_Model {
 
 	//Funcion para buscar una prioridad
 	function search(){ 
+	//Sentencia sql para buscar
 		$sql = "SELECT *
 				FROM prioridades
 				WHERE
@@ -131,7 +138,7 @@ class PRIORIDADES_Model {
 		$result = $this->mysqli->query($sql);//Guarda el resultado
 		
 		if ($result->num_rows == 1){
-			
+			//Sentencia sql para borrar
 			$sql = "DELETE FROM prioridades WHERE (`nivel` = '$this->nivel')";
 			
 			if($this->mysqli->query($sql)){

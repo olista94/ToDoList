@@ -1,14 +1,20 @@
 <!---MODELO DE LAS FASES
  CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
-
+//Declaracion de la clase
 class FASES_Model {
 
+	//Id de la fase
 	var $id_fase;
+	//Descripcion de la fase
 	var $descripcion;
+	//Fecha de inicio de la fase
 	var $fecha_ini;
+	//Fecha fin de la fase
 	var $fecha_fin;
+	//Variable que indica si una fase esta completada o no
 	var $completada;
+	//Tarea a la que pertenece la fase
 	var $TAREAS_id_TAREAS;
 
 	//Constructor de la clase
@@ -28,7 +34,9 @@ class FASES_Model {
 
 	//Funcion para insertar una fase
 	function add(){
+		//Funcion para coger la fecha del sistema
 		$date = date('Y-m-d', time());
+		//Sentencia sql para insertar
 		$sql = "INSERT INTO fases
 				VALUES (
 					'$this->id_fase',
@@ -53,7 +61,8 @@ class FASES_Model {
 		$sql = "SELECT * FROM fases WHERE (id_FASES = '$this->id_fase')";    
 		$result = $this->mysqli->query($sql);//Guarda el resultado
 		
-		if ($result->num_rows == 1){	
+		if ($result->num_rows == 1){
+				//Sentencia sql para editr
 			$sql = "UPDATE fases SET
 						`descripcion` = '$this->descripcion'
 					WHERE (`id_FASES` = '$this->id_fase')";
@@ -70,7 +79,7 @@ class FASES_Model {
 
 	//Funcion para buscar una fase de una tarea
 	function search(){ 
-
+		//Sentencia sql para buscar
 		$sql = "SELECT *
 			FROM fases
 			WHERE `TAREAS_id_TAREAS` = '".$_REQUEST['TAREAS_id_TAREAS']."' &&
@@ -84,7 +93,7 @@ class FASES_Model {
 	
 		if (!($resultado = $this->mysqli->query($sql))){
 			return "Error en la búsqueda";//Devuelve mensaje de error
-		}else{ 
+		}else{//Devuelve el resultado
 			return $resultado;
 		}
 	}
@@ -95,7 +104,7 @@ class FASES_Model {
 		$result = $this->mysqli->query($sql);//Guarda el resultado
 		
 		if ($result->num_rows == 1){
-			
+			//Sentencia sql para borrar
 			$sql = "DELETE FROM fases WHERE (`id_FASES` = '$this->id_fase')";        
 			$this->mysqli->query($sql);        
 			return 'Borrado correctamente';//Devuelve mensaje de exito
@@ -110,7 +119,7 @@ class FASES_Model {
 	
 		if (!($resultado = $this->mysqli->query($sql))){
 			return 'No existe'; //Devuelve mensaje de error
-		}else{ 
+		}else{//Devuelve el resultado
 			$result = $resultado;
 			return $result;
 		}
@@ -123,14 +132,14 @@ class FASES_Model {
 		if (!($resultado = $this->mysqli->query($sql))){
 			return 'No existe'; //Devuelve mensaje de error
 		}
-		else{ 
+		else{//Devuelve el resultado
 			$result = $resultado;
 			return $result;
 		
 		}
 	}
 
-	//Funcion que muestra todas las fases (nunca se usa)
+	//Funcion que muestra todas las fases
 	function FasesShowAll(){
 		$sql = "SELECT * FROM fases ";
 		
@@ -165,7 +174,9 @@ class FASES_Model {
 		
 		if ($result->num_rows == 1)
 		{	
+			//Guardamos la fecha del sistema
 			$date = date('Y-m-d', time());
+			//Marca como completada una fase
 			$sql = "UPDATE fases SET
 						`completada` = '1',
 						`fecha_fin` = '$date'				
@@ -198,6 +209,7 @@ class FASES_Model {
 			
 			if ($result->num_rows == 1)
 			{	
+			//Marca como incompleta una fase
 				$sql = "UPDATE fases SET
 							`completada` = '0',
 							`fecha_fin` = ''					

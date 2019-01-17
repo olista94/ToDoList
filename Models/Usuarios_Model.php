@@ -1,17 +1,25 @@
 <!---MODELO DE LOS USUARIOS
  CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
-
+//Declaracion de la clase
 class USUARIOS_Model {
-
+	//Login del usuario
 	var $login;
+	//Contraseña del usuario
 	var $password;
+	//DNI del usuario
 	var $dni;
+	//Nombre del usuario
 	var $nombre;
+	//Apellidos del usuario
 	var $apellidos;
+	//Telefono del usuario
 	var $telefono;
+	//Email del usuario
 	var $email;
+	//Fecha de nacimiento del usuario
 	var $fecha;
+	//Tipo de usuario (admin o normal)
 	var $tipo;
 
 //Constructor de la clase
@@ -34,7 +42,7 @@ function __construct($login,$password,$dni,$nombre,$apellidos,$telefono,$email,$
 
 //Funcion para hacer login
 function login(){
-
+	//Sentencia sql para buscar el usuario
 	$sql = "SELECT *
 			FROM usuarios
 			WHERE (
@@ -74,7 +82,7 @@ function Register(){
 //Funcion que realiza el registro
 function registrar(){
 
-			
+		//Sentencia sql para insertar	
 		$sql = "INSERT INTO usuarios (
 			login,
 			password,
@@ -131,6 +139,7 @@ function edit()
     
     if ($result->num_rows == 1)
     {	
+		//Sentencia sql para editar
 		$sql = "UPDATE usuarios SET
 					`password` = '$this->password',
 					`dni` = '$this->dni',
@@ -157,7 +166,7 @@ function edit()
 
 //Funcion para buscar un usuario
 function search(){ 
-
+		//Sentencia sql para buscar
 	     $sql = "SELECT *
        			FROM usuarios
     			WHERE
@@ -192,7 +201,7 @@ function delete()
     
     if ($result->num_rows == 1)
     {
-    	
+    	//Sentencia sql para borrar
         $sql = "DELETE FROM usuarios WHERE (`login` = '$this->login')";
         
         $this->mysqli->query($sql);

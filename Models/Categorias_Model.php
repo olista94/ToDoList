@@ -1,6 +1,7 @@
 <!---MODELO DE LAS CATEGORIAS
  CREADO POR los Cangrejas EL 21/12/2018-->
 <?php
+//Declaracion de la clase
 class CATEGORIAS_Model {
 	//Id de la categoria
 	var $id_CATEGORIAS;
