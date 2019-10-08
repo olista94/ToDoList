@@ -206,7 +206,7 @@ body {
   display: none;
   position: absolute;
   background-color: #cacaca;
-  min-width: 240px;
+  /*min-width: 240px;*/
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -535,6 +535,20 @@ button {
   margin-bottom: 3px;
 }
 
+.inscripcion{
+  background-image: url(../img/note.png);
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  margin-top: 5px;
+  margin-right: 2px;
+  padding: 10px 15px;
+  margin-bottom: 3px;
+}
+
 /******* Showcurrent *******/
 
 .showU {
@@ -812,4 +826,49 @@ select{
   float: right;
   margin-top: 0;
   margin-right: 0;
+}
+
+ 
+nav a{
+      text-decoration:none;
+      color:inherit;
+      font-size:14px;
+
+      }
+            
+ nav li{
+      display:inline-block;
+      width:150px;
+      height:30px;
+      padding:5px 10px;
+      background-color:#333;
+      border:none;
+      text-align:center;
+      color:#fff;
+      position:relative;
+
+}
+            
+ nav li:hover{
+      background-color:#333;
+      color:white;
+      }
+            
+ nav li>ul{
+      display:none;
+  margin-bottom: 500px;
+      }
+
+ nav li:hover>ul{
+      display:block;
+      position:absolute;
+      top:30px;
+      left:0px;
+
+
+}
+
+.cerrar{
+  padding-bottom: 20px;
+
 }
